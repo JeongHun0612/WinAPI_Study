@@ -30,20 +30,33 @@
 - InvalidateRect
 */
 
-
 #include <Windows.h>
 #include <tchar.h>
+#include <math.h>
+
+#define PI		3.1415926535
+#define DEG2RAD(deg) (deg * PI) / 180
 
 #define REPORT1			1
 #define REPORT2			2
 
 #define REPORT_TYPE		REPORT2
 
+
+enum class ECircleType
+{
+	UP,
+	DOWN
+};
+
 HINSTANCE _hInstance;
 HWND _hWnd;
 LPTSTR _lpszClass = TEXT("Windows API");
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+void drawCircle(HDC hdc, int centerX, int centerY, int radius);
+void drawSemiCircle(HDC hdc, int centerX, int centerY, int radius, ECircleType type);
 
 int APIENTRY WinMain(
 	HINSTANCE hInstance,
@@ -159,40 +172,140 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
-	PAINTSTRUCT ps;
-	int posX = 0;
+	//PAINTSTRUCT ps;
+	RECT r;
+	static int charCount = 0;
 
 	switch (iMessage)
 	{
 	case WM_CREATE:
 		break;
 	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// ¤µ
-		MoveToEx(hdc, 50, 125, NULL);
-		LineTo(hdc, 100, 50);
-		LineTo(hdc, 150, 125);
-
-		// ¤Ç
-		MoveToEx(hdc, 100, 100, NULL);
-		LineTo(hdc, 100, 150);
-		MoveToEx(hdc, 50, 150, NULL);
-		LineTo(hdc, 150, 150);
-
-
-		EndPaint(hWnd, &ps);
-
 		break;
 	case WM_LBUTTONDOWN:
+	{
+		hdc = GetDC(hWnd);
+
+		if (charCount < 3)
+		{
+			charCount++;
+		}
+
+		switch (charCount)
+		{
+		case 1:
+			// ¼Û
+			MoveToEx(hdc, 50, 125, NULL);
+			LineTo(hdc, 100, 50);
+			LineTo(hdc, 150, 125);
+			MoveToEx(hdc, 100, 100, NULL);
+			LineTo(hdc, 100, 150);
+			MoveToEx(hdc, 50, 150, NULL);
+			LineTo(hdc, 150, 150);
+			drawCircle(hdc, 100, 200, 30);
+			break;
+		case 2:
+			// Á¤
+			MoveToEx(hdc, 200, 50, NULL);
+			LineTo(hdc, 270, 50);
+			MoveToEx(hdc, 200, 135, NULL);
+			LineTo(hdc, 235, 50);
+			LineTo(hdc, 270, 135);
+			MoveToEx(hdc, 270, 87, NULL);
+			LineTo(hdc, 300, 87);
+			MoveToEx(hdc, 300, 50, NULL);
+			LineTo(hdc, 300, 125);
+			drawCircle(hdc, 260, 200, 30);
+			break;
+		case 3:
+			// ÈÆ
+			MoveToEx(hdc, 400, 50, NULL);
+			LineTo(hdc, 400, 70);
+			MoveToEx(hdc, 350, 70, NULL);
+			LineTo(hdc, 450, 70);
+			drawCircle(hdc, 400, 110, 30);
+			MoveToEx(hdc, 350, 150, NULL);
+			LineTo(hdc, 450, 150);
+			MoveToEx(hdc, 400, 150, NULL);
+			LineTo(hdc, 400, 190);
+			MoveToEx(hdc, 365, 180, NULL);
+			LineTo(hdc, 365, 230);
+			LineTo(hdc, 435, 230);
+			break;
+		}
+		ReleaseDC(hWnd, hdc);
+
 		break;
+	}
 	case WM_RBUTTONDOWN:
+	{
+		hdc = GetDC(hWnd);
+
+		int startX = 50;
+		int startY = 150;
+
+		if (0 < charCount)
+		{
+			charCount--;
+		}
+
+		r = { startX + (charCount * 150), 50, startY + (charCount * 200), 235 };
+		InvalidateRect(hWnd, &r, TRUE);
+
+		//switch (charCount)
+		//{
+		//case 1:
+		//	r = { 50, 50, 150, 235 };
+		//	break;
+		//case 2:
+		//	r = { 200, 50, 350, 235 };
+		//	break;
+		//case 3:
+		//	r = { 350, 50, 550, 235 };
+		//	break;
+		//}
+
+		//InvalidateRect(hWnd, &r, TRUE);
+
+		ReleaseDC(hWnd, hdc);
 		break;
+	}
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 	}
 
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
+}
+
+void drawCircle(HDC hdc, int centerX, int centerY, int radius)
+{
+	MoveToEx(hdc, centerX + radius, centerY, NULL);
+	for (int i = 0; i <= 360; i++)
+	{
+		LineTo(hdc, centerX + (cos(DEG2RAD(i)) * radius), centerY + (sin(DEG2RAD(i)) * radius));
+	}
+}
+
+void drawSemiCircle(HDC hdc, int centerX, int centerY, int radius, ECircleType type)
+{
+	switch (type)
+	{
+	case ECircleType::UP:
+		//MoveToEx(hdc, centerX - radius, centerY, NULL);
+		for (int i = 180; i <= 360; i++)
+		{
+			LineTo(hdc, centerX + cos(DEG2RAD(i)) * radius, centerY + sin(DEG2RAD(i)) * radius);
+		}
+		break;
+	case ECircleType::DOWN:
+		//MoveToEx(hdc, centerX + radius, centerY, NULL);
+		for (int i = 0; i <= 180; i++)
+		{
+			LineTo(hdc, centerX + cos(DEG2RAD(i)) * radius, centerY + sin(DEG2RAD(i)) * radius);
+		}
+		break;
+	}
 }
 
 #endif
