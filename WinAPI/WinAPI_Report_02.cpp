@@ -29,7 +29,7 @@
 
 - 하나는 움직일 수 있는 사각형 / 다른 하나는 움직일 수 없는 사각형
 
-- 움직일 수 없는 사각형을 움직일 수 있는 사각형을 밀어낼 수 있으면 된다.
+- 움직일 수 없는 사각형을 움직일 수 있는 사각형으로 밀어낼 수 있으면 된다.
 
 - 2개의 사각형을 초기 위치로 돌리는 기능도 추가한다.
 
@@ -53,7 +53,7 @@
 #define REPORT3			3
 #define REPORT4			4
 
-#define REPORT_TYPE		REPORT3
+#define REPORT_TYPE		REPORT2
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -171,6 +171,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
+
+		Ellipse(hdc, 100, 200, 300, 400);
+		for (int i = 0; i < 100; i++)
+		{
+			for (int j = 0; j < 100; j++)
+			{
+				SetPixel(hdc, i, j, RGB(0, 255, 0));
+			}
+		}
+
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
@@ -181,7 +191,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
 }
-
 
 #elif REPORT_TYPE == REPORT3
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
@@ -194,6 +203,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	static int posY = 50;
 	int width = 100;
 	int height = 100;
+	int dist = 10;
 
 	switch (iMessage)
 	{
@@ -207,33 +217,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	case WM_KEYDOWN:
 	{
+		rc = { posX - dist, posY - dist , (posX + width) + dist, (posY + height) + dist };
+
 		switch (wParam)
 		{
 		case VK_UP:
 			if (posY < 1) break;
-			rc = { posX, posY + height, posX + width, 1 };
-			posY--;
+			posY -= dist;
 			break;
 		case VK_DOWN:
 			if (posY + height > SCR_HEIGHT - 40) break;
-			rc = { posX, posY + 1, posX + width, 1 };
-			posY++;
+			posY += dist;
 			break;
 		case VK_LEFT:
 			if (posX < 1) break;
-			rc = { posX + width, posY, 1, posY + height };
-			posX--;
+			posX -= dist;
 			break;
 		case VK_RIGHT:
 			if (posX + width > SCR_WIDTH - 17) break;
-			rc = { posX, posY, 1, posY + height };
-			posX++;
+			posX += dist;
 			break;
 		}
 
 		InvalidateRect(hWnd, &rc, TRUE);
-		//Rectangle(hdc, posX, posY, posX + width, posY + height);
-
 		break;
 	}
 	case WM_DESTROY:
@@ -248,19 +254,90 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
+	PAINTSTRUCT ps;
+	RECT rc = { 0, 0, 0, 0 };
+
+	// PlayerRect Init
+	int startPX = 400;
+	int startPY = 400;
+	static int curPX = startPX;
+	static int curPY = startPY;
+	int pWidth = 100;
+	int pHeight = 100;
+	int dist = 10;
+
+	// EnemyRect Init
+	int startEX = 300;
+	int startEY = 300;
+	static int curEX = startEX;
+	static int curEY = startEY;
+	int eWidth = 100;
+	int eHeight = 100;
 
 	switch (iMessage)
 	{
 	case WM_CREATE:
 		break;
 	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps);
+		Rectangle(hdc, curPX, curPY, curPX + pWidth, curPY + pHeight);
+		Rectangle(hdc, curEX, curEY, curEX + eWidth, curEY + eHeight);
+		EndPaint(hWnd, &ps);
+		break;
+	case WM_KEYDOWN:
+		switch (wParam)
+		{
+		case VK_UP:
+			if (curPY < 1) break;
+			if (curPY == curEY + eHeight && curPX + pWidth > curEX + 1 && curPX < curEX + eWidth)
+			{
+				if (curEY < 1) break;
+				curEY -= dist;
+			}
+			curPY -= dist;
+			break;
+		case VK_DOWN:
+			if (curPY + pHeight > SCR_HEIGHT - 40) break;
+			if (curPY + pHeight == curEY && curPX + pWidth > curEX + 1 && curPX < curEX + eWidth)
+			{
+				if (curEY + eHeight > SCR_HEIGHT - 40) break;
+				curEY += dist;
+			}
+			curPY += dist;
+			break;
+		case VK_LEFT:
+			if (curPX < 1) break;
+			if (curPX == curEX + eWidth && curPY + pHeight > curEY + 1 && curPY < curEY + eHeight)
+			{
+				if (curEX < 1) break;
+				curEX -= dist;
+			}
+			curPX -= dist;
+			break;
+		case VK_RIGHT:
+			if (curPX + pWidth > SCR_WIDTH - 17) break;
+			if (curPX + pWidth == curEX && curPY + pHeight > curEY + 1 && curPY < curEY + eHeight)
+			{
+				if (curEX + eWidth > SCR_WIDTH - 17) break;
+				curEX += dist;
+			}
+			curPX += dist;
+			break;
+		case VK_RETURN:
+			curPX = startPX;
+			curPY = startPY;
+
+			curEX = startEX;
+			curEY = startEY;
+			break;
+		}
+		InvalidateRect(hWnd, NULL, TRUE);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 
 	}
-
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
 }
 

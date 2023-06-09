@@ -226,12 +226,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	RECT rc = { 100,100,200,200 };
 
-	/*
-	◈ RECT : 사각형의 좌표를 저장하기 위한 구조체
-	
-
-	
-	*/
+	//◈ RECT : 사각형의 좌표를 저장하기 위한 구조체
 
 	/*
 	▶ Window Procedure
@@ -250,7 +245,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:		// 생성자
 		break;
 
-
 		/*
 		WM_PAINT
 
@@ -266,11 +260,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:		// 출력에 관한 모든것을 담당한다. (문자, 그림, 도형 등등 화면에 보이는 모든 것을 의미)
 		hdc = BeginPaint(hWnd, &ps);
 
-		//SetPixel(hdc, 300, 200, RGB(255, 0, 0));
-		//for (int i = 0; i < 10000; i++)
-		//{
-		//	SetPixel(hdc, rand() % 800, rand() % 800, RGB(rand() % 255, rand() % 255, rand() % 255));
-		//}
+		SetPixel(hdc, 300, 200, RGB(255, 0, 0));
+		for (int i = 0; i < 10000; i++)
+		{
+			SetPixel(hdc, rand() % 800, rand() % 800, RGB(rand() % 255, rand() % 255, rand() % 255));
+		}
 
 
 		/*
