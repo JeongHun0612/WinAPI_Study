@@ -252,20 +252,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		r = { startX + (charCount * 150), 50, startY + (charCount * 200), 235 };
 		InvalidateRect(hWnd, &r, TRUE);
 
-		//switch (charCount)
-		//{
-		//case 1:
-		//	r = { 50, 50, 150, 235 };
-		//	break;
-		//case 2:
-		//	r = { 200, 50, 350, 235 };
-		//	break;
-		//case 3:
-		//	r = { 350, 50, 550, 235 };
-		//	break;
-		//}
-
-		//InvalidateRect(hWnd, &r, TRUE);
 
 		ReleaseDC(hWnd, hdc);
 		break;

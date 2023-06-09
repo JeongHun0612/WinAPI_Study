@@ -87,6 +87,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 */
 
+// 사각형 중심점에 만들기
+RECT RectMakeCenter(int x, int y, int width, int height)
+{
+	RECT rc = { x - width / 2 , y - height / 2, x + width / 2, y + height / 2 };
+
+	return rc;
+}
+
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	LPSTR    lpszCmdParam,
@@ -216,6 +224,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	char*  : 수정이 불가능
 	*/
 
+	RECT rc = { 100,100,200,200 };
+
+	/*
+	◈ RECT : 사각형의 좌표를 저장하기 위한 구조체
+	
+
+	
+	*/
+
 	/*
 	▶ Window Procedure
 	ㄴ 메세지를 운영체제에 전달 -> 강제로 운영체제가 호출되게 해준다.
@@ -233,8 +250,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:		// 생성자
 		break;
 
+
+		/*
+		WM_PAINT
+
+		- 윈도우를 다시 그려야 할때 사용하는 메세지
+
+		1. 윈도우가 처음 만들어졌을때
+		2. 윈도우 크기를 조절하고 싶을때
+		3. 윈도우가 다른 윈도우에 가려졌다가 다시 보일때
+		4. 특정 함수가 호출이 될 때 -> InvalidateRect, Invalidate, UpdateAllViews 등등..
+			ㄴ 기본적으로 렌더링 관련된 함수가 나오면 PAINT를 떠올려야 한다.
+		
+		*/
 	case WM_PAINT:		// 출력에 관한 모든것을 담당한다. (문자, 그림, 도형 등등 화면에 보이는 모든 것을 의미)
 		hdc = BeginPaint(hWnd, &ps);
+
+		//SetPixel(hdc, 300, 200, RGB(255, 0, 0));
+		//for (int i = 0; i < 10000; i++)
+		//{
+		//	SetPixel(hdc, rand() % 800, rand() % 800, RGB(rand() % 255, rand() % 255, rand() % 255));
+		//}
+
 
 		/*
 		strcpy(x, y) : y를 x에 복사
@@ -271,6 +308,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		MoveToEx(hdc, 400, 400, NULL);
 		LineTo(hdc, 200, 200);
 
+		Ellipse(hdc, 300, 100, 200, 200);
+
+		Rectangle(hdc, 100, 100, 200, 200);
+
 		EndPaint(hWnd, &ps);
 		break;
 
@@ -280,7 +321,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		SetTextColor(hdc, RGB(0, 0, 255));
 		TextOut(hdc, 350, 500, str, strlen(str));
 
+		//InvalidateRect(hWnd, NULL, T/F);
+
 		ReleaseDC(hWnd, hdc);
+		break;
+
+	case WM_RBUTTONDOWN:
+
 		break;
 
 	case WM_KEYDOWN:
@@ -352,4 +399,42 @@ WM_PAINT, PAINSTRUCT
 - KillTimer
 
 - InvalidateRect
+
+
+23/06/09
+-------------------------------------------------------------------------------------
+과제1. 오망성 출력
+
+- 오망성을 마법진 처럼 만들어 온다.
+
+- 양식은 자유지만 본인이 생각했을때 가장 효율적인 방법으로
+ ㄴ 특히 배열은 무조건 사용해본다.
+
+
+과제2. 애플 로고 출력
+
+- SetPixel을 이용해서 만든다.
+
+
+과제3. 사각형 이동
+
+- 방향키를 통해 사각형을 움직인다.
+
+- 예외처리 : 사각형은 화면 밖으로 나갈 수 없다.
+
+
+과제4. 사각형 2개 움직이기
+
+- 총 사각형 갯수 : 2개
+
+- 하나는 움직일 수 있는 사각형 / 다른 하나는 움직일 수 없는 사각형
+
+- 움직일 수 없는 사각형을 움직일 수 있는 사각형을 밀어낼 수 있으면 된다.
+
+- 2개의 사각형을 초기 위치로 돌리는 기능도 추가한다.
+
+- 예외처리 : 2개의 사각형은 화면 밖으로 나갈 수 없다.
+
+※ 별다른 언급을 하기 전까지는 충돌 함수 사용 금지
+
 */
