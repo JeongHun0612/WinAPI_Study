@@ -29,15 +29,10 @@ EX)
 */
 #pragma endregion
 
-
-// WinAPI.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
-#include <Windows.h>
-#include <tchar.h>
+// stdafx.h : 자주 사용하지만 자주 변경되지는 않는 표준 시스템 포함 파일 또는 프로젝트 관련 포함 파일이 들어 있는 포함 파일입니다.
+#include "Stdafx.h"
 
 // 전역 변수
-
 /*
 ※ 인스턴스
 - 윈도우 OS가 현재 실행되고 있는 프로그램을 확인하기 위한 값
@@ -87,13 +82,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 */
 
-// 사각형 중심점에 만들기
-RECT RectMakeCenter(int x, int y, int width, int height)
-{
-	RECT rc = { x - width / 2 , y - height / 2, x + width / 2, y + height / 2 };
-
-	return rc;
-}
+RECT rc;
 
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -224,9 +213,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	char*  : 수정이 불가능
 	*/
 
-	RECT rc = { 100,100,200,200 };
-
-	//◈ RECT : 사각형의 좌표를 저장하기 위한 구조체
 
 	/*
 	▶ Window Procedure
@@ -243,6 +229,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage)
 	{
 	case WM_CREATE:		// 생성자
+		rc = RectMakeCenter(400, 400, 100, 100);
 		break;
 
 		/*
@@ -260,12 +247,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:		// 출력에 관한 모든것을 담당한다. (문자, 그림, 도형 등등 화면에 보이는 모든 것을 의미)
 		hdc = BeginPaint(hWnd, &ps);
 
-		SetPixel(hdc, 300, 200, RGB(255, 0, 0));
-		for (int i = 0; i < 10000; i++)
-		{
-			SetPixel(hdc, rand() % 800, rand() % 800, RGB(rand() % 255, rand() % 255, rand() % 255));
-		}
+		DrawRectMake(hdc, rc);
 
+		//SetPixel(hdc, 300, 200, RGB(255, 0, 0));
+		//for (int i = 0; i < 10000; i++)
+		//{
+		//	SetPixel(hdc, rand() % 800, rand() % 800, RGB(rand() % 255, rand() % 255, rand() % 255));
+		//}
 
 		/*
 		strcpy(x, y) : y를 x에 복사
@@ -289,22 +277,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 
 		// TextOut() : 문자 출력(hdc, 좌표X, 좌표Y, 문자열, 문자열 길이)
-		TextOut(hdc, 300, 300, "과제가 너무 재밌다 하하하...", strlen("과제가 너무 재밌다 하하하..."));
+		//TextOut(hdc, 300, 300, "과제가 너무 재밌다 하하하...", strlen("과제가 너무 재밌다 하하하..."));
 		// ㄴ strlen는 할당받은 메모리에 바인딩 된 문자열에서 NULL값을 제외한 문자열 길이
 		
 		// 문자열 글자색 변경
-		SetTextColor(hdc, RGB(255, 0, 0));
-		TextOut(hdc, 300, 400, "과제 좀 더 내주세요...", strlen("과제 좀 더 내주세요..."));
+		//SetTextColor(hdc, RGB(255, 0, 0));
+		//TextOut(hdc, 300, 400, "과제 좀 더 내주세요...", strlen("과제 좀 더 내주세요..."));
 
-		MoveToEx(hdc, 400, 400, NULL);
-		LineTo(hdc, 200, 400);
+		//MoveToEx(hdc, 400, 400, NULL);
+		//LineTo(hdc, 200, 400);
 
-		MoveToEx(hdc, 400, 400, NULL);
-		LineTo(hdc, 200, 200);
-
-		Ellipse(hdc, 300, 100, 200, 200);
-
-		Rectangle(hdc, 100, 100, 200, 200);
+		//MoveToEx(hdc, 400, 400, NULL);
+		//LineTo(hdc, 200, 200);
 
 		EndPaint(hWnd, &ps);
 		break;
@@ -431,4 +415,22 @@ WM_PAINT, PAINSTRUCT
 
 ※ 별다른 언급을 하기 전까지는 충돌 함수 사용 금지
 
+
+23/06/12
+-------------------------------------------------------------------------------------
+과제 1. 사각형 영혼 밀어넣기
+
+- 시작은 큰 사각형 2개와 작은 사각형 1개
+
+- 내가 움직일 수 있는 사각형 안에는 작은 사각형이 들어 있다.
+
+- 큰 사각형을 움직이면 작은 사각형 역시 움직이는 버전 1개 / 움직이지 않는 버전 1개
+ ㄴ 총 2가지 버전
+ ㄴ 예외처리 : 작은 사각형은 큰 사각형을 벗어날 수 없다.
+
+- 큰 사각형끼리 충돌이 되면 작은 사각형은 충돌이 된 반대편 사각형으로 이동한다.
+
+※ 핵심은 움직일 수 있는 주도권은 작은 사각형을 가지고 있는 "큰 사각형"
+
+예외처리 : 큰 사각형끼리의 모서리에 대한 정밀도를 예외 처리한다.
 */

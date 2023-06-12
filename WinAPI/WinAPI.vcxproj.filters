@@ -1,61 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="2D FrameWork">
+      <UniqueIdentifier>{cbff90dc-5004-4d04-8411-44903df4b1a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="2D FrameWork\Utility">
+      <UniqueIdentifier>{cec31e99-d99c-4839-a1f6-3a23e8a2100b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="2D FrameWork\Utility\Math">
+      <UniqueIdentifier>{5ceddc8e-5eb9-402d-bbe1-1923cba7aa64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Report">
+    <Filter Include="2D FrameWork\PCH">
+      <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Report">
       <UniqueIdentifier>{3dad0817-d3ce-48ef-b2ce-27e0d74312af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Stdafx.h">
+      <Filter>2D FrameWork\PCH</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="C3DMatrix.h">
+      <Filter>2D FrameWork\Utility\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="C3DVector.h">
+      <Filter>2D FrameWork\Utility\Math</Filter>
     </ClInclude>
-    <ClInclude Include="WinAPI.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CommonMacroFunction.h">
+      <Filter>2D FrameWork\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinAPI.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TestProject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="WinAPI_Report_01.cpp">
-      <Filter>소스 파일\Report</Filter>
+      <Filter>2D FrameWork\Report</Filter>
     </ClCompile>
     <ClCompile Include="WinAPI_Report_02.cpp">
-      <Filter>소스 파일\Report</Filter>
+      <Filter>2D FrameWork\Report</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="WinAPI.rc">
-      <Filter>리소스 파일</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="WinAPI.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>2D FrameWork\PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DMatrix.cpp">
+      <Filter>2D FrameWork\Utility\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DVector.cpp">
+      <Filter>2D FrameWork\Utility\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAPI.cpp">
+      <Filter>2D FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAPITimeAttack.cpp">
+      <Filter>2D FrameWork\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAPI_Report_03.cpp">
+      <Filter>2D FrameWork\Report</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

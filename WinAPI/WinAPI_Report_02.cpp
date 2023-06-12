@@ -53,7 +53,7 @@
 #define REPORT3			3
 #define REPORT4			4
 
-#define REPORT_TYPE		REPORT2
+#define REPORT_TYPE		REPORT4
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -170,19 +170,138 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		break;
 	case WM_PAINT:
+	{
 		hdc = BeginPaint(hWnd, &ps);
 
-		Ellipse(hdc, 100, 200, 300, 400);
-		for (int i = 0; i < 100; i++)
+		int radius = 100;
+		int centerX = 300;
+		int centerY = 400;
+
+		for (int i = 0; i <= 30; i++)
 		{
-			for (int j = 0; j < 100; j++)
+			for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
 			{
-				SetPixel(hdc, i, j, RGB(0, 255, 0));
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 0));
+			}
+		}
+
+		for (int i = 30; i <= 60; i++)
+		{
+			for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 255));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 255));
+			}
+		}
+
+		for (int i = 60; i <= 120; i++)
+		{
+			if (i < 90)
+			{
+				for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
+				{
+					SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 0, 255));
+					SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 0, 255));
+				}
+			}
+			else
+			{
+				for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+				{
+					SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 0, 255));
+					SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 0, 255));
+				}
+			}
+		}
+
+		for (int i = 120; i <= 150; i++)
+		{
+			for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 255));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 255));
+			}
+		}
+
+		for (int i = 150; i <= 180; i++)
+		{
+			for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 0, 0));
+			}
+		}
+
+		for (int i = 180; i <= 210; i++)
+		{
+			for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 165, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 165, 0));
+			}
+		}
+
+		for (int i = 210; i <= 240; i++)
+		{
+			for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 215, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 215, 0));
+			}
+		}
+
+		for (int i = 240; i <= 300; i++)
+		{
+
+			if (i < 270)
+			{
+				for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+				{
+					SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 255, 0));
+					SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 255, 0));
+				}
+			}
+			else
+			{
+				for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
+				{
+					SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 255, 0));
+					SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(0, 255, 0));
+				}
+			}
+		}
+
+		for (int i = 300; i < 330; i++)
+		{
+			for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 215, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 215, 0));
+			}
+		}
+
+		for (int i = 330; i < 360; i++)
+		{
+			for (int j = 0; j < cos(DEG2RAD(i)) * radius; j++)
+			{
+				SetPixel(hdc, centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 165, 0));
+				SetPixel(hdc, 180 + centerX + j, centerY + ((sin(DEG2RAD(i)) * radius) * 2), RGB(255, 165, 0));
+			}
+		}
+
+		for (int i = 90; i <= 270; i++)
+		{
+			for (int j = cos(DEG2RAD(i)) * radius; j < 0; j++)
+			{
+				SetPixel(hdc, 600 + j, centerY + (sin(DEG2RAD(i)) * radius), RGB(255, 255, 255));
 			}
 		}
 
 		EndPaint(hWnd, &ps);
 		break;
+	}
+
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
