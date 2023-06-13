@@ -35,9 +35,8 @@
 #define REPORT1			1
 #define REPORT2			2
 #define REPORT3			3
-#define REPORT4			4
 
-#define REPORT_TYPE		REPORT2
+#define REPORT_TYPE		REPORT3
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -45,6 +44,14 @@ HWND _hWnd;
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 void setWindowSize(int x, int y, int width, int height);
 bool isPointInRect(POINT pt, RECT rc);
+
+RECT rcArray[4] = 
+{
+	RectMakeCenter(300, 300, 100, 100),
+	RectMakeCenter(500, 300, 100, 100),
+	RectMakeCenter(300, 500, 100, 100),
+	RectMakeCenter(500, 500, 100, 100)
+};
 
 int APIENTRY WinMain(
 	HINSTANCE hInstance,
@@ -98,7 +105,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	static RECT tempRC = { 0, 0, 0, 0 };
 	static POINT pt = { 0, 0 };
 	static bool isClick = false;
-	char strPT[128];
 
 	switch (iMessage)
 	{
@@ -116,11 +122,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
 
-		if (isPointInRect(pt, rc))
-		{
-			isClick = true;
-			tempRC = { pt.x - rc.left, pt.y - rc.top, rc.right - pt.x, rc.bottom - pt.y };
-		}
+		isClick = isPointInRect(pt, rc);
+		tempRC = { pt.x - rc.left, pt.y - rc.top, rc.right - pt.x, rc.bottom - pt.y };
+
 		break;
 
 	case WM_MOUSEMOVE:
@@ -129,6 +133,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			pt.x = LOWORD(lParam);
 			pt.y = HIWORD(lParam);
 
+			if (pt.x - tempRC.left < 0 || pt.y - tempRC.top < 0 || pt.x + tempRC.right > WINSIZE_X || pt.y + tempRC.bottom > WINSIZE_Y)
+			{
+				isClick = false;
+				break;
+			}
 			rc = { pt.x - tempRC.left, pt.y - tempRC.top, pt.x + tempRC.right, pt.y + tempRC.bottom };
 			InvalidateRect(hWnd, NULL, TRUE);
 		}
@@ -136,10 +145,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONUP:
 
-		if (isPointInRect(pt, rc))
-		{
-			isClick = false;
-		}
+		//if (isPointInRect(pt, rc))
+		//{
+		//	isClick = false;
+		//}
+
+		isClick = false;
+
 		break;
 
 	case WM_DESTROY:
@@ -156,15 +168,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	HDC hdc;
 	PAINTSTRUCT ps;
 
-	static int posX = WINSIZE_X / 2;
-	static int posY = WINSIZE_Y / 2;
-	static int width = 100;
-	static int height = 100;
-
-	static RECT rc = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, width, height);
+	static RECT rc = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
+	static RECT tempRC = { 0, 0, 0, 0 };
 	static POINT pt = { 0, 0 };
 	static bool isClick = false;
-	static char str[128] = "";
 
 	switch (iMessage)
 	{
@@ -173,33 +180,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		TextOut(hdc, 10, 10, str, strlen(str));
 		DrawRectMake(hdc, rc);
 
 		EndPaint(hWnd, &ps);
 		break;
 
 	case WM_LBUTTONDOWN:
-
-		hdc = GetDC(hWnd);
-
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
 
+		//if ((pt.x > rc.left && pt.x < rc.right) || (pt.x > rc.right && pt.x < rc.left))
+		//{
+		//	if ((pt.y > rc.top && pt.y < rc.bottom) || (pt.y < rc.top && pt.y > rc.bottom))
+		//	{
+		//		isClick = true;
+		//	}
+		//}
 
-		if ((pt.x > rc.left && pt.x < rc.right - (rc.right - rc.left) / 2) && pt.y < rc.bottom - (rc.bottom -  rc.top) / 2 && pt.y > rc.top)
-		{
-			wsprintf(str, "ÁÂ»ó´Ü");
-		}
+		isClick = isPointInRect(pt, rc);
 
-		if (isPointInRect(pt, rc))
-		{
-			isClick = true;
-		}
+		tempRC = { pt.x - rc.left, pt.y - rc.top, rc.right - pt.x, rc.bottom - pt.y };
 
 		InvalidateRect(hWnd, NULL, TRUE);
-
-		ReleaseDC(hWnd, hdc);
 		break;
 
 	case WM_MOUSEMOVE:
@@ -208,8 +210,79 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			pt.x = LOWORD(lParam);
 			pt.y = HIWORD(lParam);
 
-			//rc = { pt.x - tempRC.left, pt.y - tempRC.top, pt.x + tempRC.right, pt.y + tempRC.bottom };
-			//rc = { rc.left, rc.top, pt.x + tempRC.right, pt.y + tempRC.bottom};
+			rc = { rc.left, rc.top, pt.x + tempRC.right, pt.y + tempRC.bottom };
+
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
+		break;
+
+	case WM_LBUTTONUP:
+		isClick = false;
+		break;
+
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	}
+
+	return DefWindowProc(hWnd, iMessage, wParam, lParam);
+}
+
+#else
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+{
+	HDC hdc;
+	PAINTSTRUCT ps;
+
+	static int curRC;
+	static RECT tempRC = { 0, 0, 0, 0 };
+	static POINT pt = { 0, 0 };
+	static bool isClick = false;
+
+	switch (iMessage)
+	{
+	case WM_CREATE:
+		break;
+	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps);
+
+		for (int i = 0; i < 4; i++)
+		{
+			DrawRectMake(hdc, rcArray[i]);
+		}
+
+		EndPaint(hWnd, &ps);
+		break;
+
+	case WM_LBUTTONDOWN:
+
+		if (isPointInRect(pt, rcArray[0]))
+		{
+			isClick = true;
+			curRC = 0;
+			tempRC = { pt.x - rcArray[0].left, pt.y - rcArray[0].top, rcArray[0].right - pt.x, rcArray[0].bottom - pt.y };
+		}
+
+		//for (int i = 0; i < 4; i++)
+		//{
+		//	if (isPointInRect(pt, rcArray[i]))
+		//	{
+		//		isClick = true;
+		//		curRC = i;
+		//		tempRC = { pt.x - rcArray[i].left, pt.y - rcArray[i].top, rcArray[i].right - pt.x, rcArray[i].bottom - pt.y };
+		//	}
+		//}
+
+		InvalidateRect(hWnd, NULL, TRUE);
+		break;
+
+	case WM_MOUSEMOVE:
+		if (isClick)
+		{
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+
+			rcArray[curRC] = { pt.x - tempRC.left, pt.y - tempRC.top, pt.x + tempRC.right, pt.y + tempRC.bottom };
 
 			InvalidateRect(hWnd, NULL, TRUE);
 		}
@@ -243,6 +316,14 @@ void setWindowSize(int x, int y, int width, int height)
 
 bool isPointInRect(POINT pt, RECT rc)
 {
-	return pt.x > rc.left && pt.x < rc.right && pt.y > rc.top && pt.y < rc.bottom;
+	if ((pt.x > rc.left && pt.x < rc.right) || (pt.x > rc.right && pt.x < rc.left))
+	{
+		if ((pt.y > rc.top && pt.y < rc.bottom) || (pt.y < rc.top && pt.y > rc.bottom))
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
