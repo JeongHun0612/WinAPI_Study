@@ -55,6 +55,20 @@ MBCS (멀티 바이트 캐릭터 셋)
 WBCS (와이드 바이트 캐릭터 셋)
 
 - 모든 문자를 2바이트로 처리하며 유니코드 기반이다.
+
+
+▶ 유니코드와 멀티바이트의 사용
+
+- VS에서는 개발시 어떤 문자셋(멀티 바이트, 유니코드)을 사용할지 지정을 해줘야 한다.
+
+- 유니코드인 경우에는 문자열을 따옴표로 감싸고 그 앞에 L을 붙여서 (L"")이라고 표기해야 한다.
+
+- 멀티바이트 같은 경우에는 그냥 ""만 사용하면 된다.
+
+- 유니코드로 개발된 프로그램을 멀티바이트로 이식하려면 이들 문자열의 표현 방식을 다시 고쳐줘야 하기 때문에 매우 불편하다.
+	ㄴ 그래서 _T 매크로를 사용해야 한다.
+
+- 문자열을 따옴표로 감싸고 유니코드에서 사용한 "L"대신 "_T"를 사용하면 매크로가 알아서 개발 환경에 맞게 치환해 준다.
 */
 #include <tchar.h>
 
@@ -110,4 +124,31 @@ ID2D1Factory*				_ID2DFactory = nullptr;
 ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 */
 
+// # 사용자 정의 헤더 파일 #
 #include "CommonMacroFunction.h"
+
+// # 매크로 # (윈도우 창 초기화)
+#define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))
+#define WINSTART_X			400
+#define WINSTART_Y			100
+#define WINSIZE_X			800
+#define WINSIZE_Y			800
+
+// WS_CAPTION : 타이틀바를 가지기 위한 옵션
+// WS_SYSMENU : 제목 표시줄에 컨트롤 메뉴 상자 창
+#define WINSTYLE			WS_CAPTION | WS_SYSMENU
+
+// # 매크로 함수 # (클래스에서 동적할당된 부분 해제)
+// 매크로 함수가 2줄 이상 내려갈때 \를 사용하면 된다.
+#define SAFE_DELETE(p)			{if(p) {delete(p); (p) = nullptr;}}
+#define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p); (p) = nullptr;}}
+#define SAFE_RELEASE(p)			{if(p) {(p)->release(); (p) = nullptr;}}
+
+// # 전역 변수 # (데이터 영역)
+// extern 키워드는 다른 헤더 / cpp에서 변수를 공유해서 쓰기 위해 사용한다.
+// ㄴ 객체를 공유하기 위해 사용하면 더 좋다.
+// 기본적으로 전역 변수는 키워드를 생략해도 기본적으로 extern화 되는 경우가 많다.
+extern HINSTANCE		_hInstance;
+extern HWND				_hWnd;
+// X 좌표와 Y 좌표를 평면의 좌표에 정의할 때 사용을 한다.
+extern POINT			_ptMouse;

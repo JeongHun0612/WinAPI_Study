@@ -56,5 +56,8 @@
     <ClCompile Include="WinAPI_Report_03.cpp">
       <Filter>2D FrameWork\Report</Filter>
     </ClCompile>
+    <ClCompile Include="WinAPI_Report_04.cpp">
+      <Filter>2D FrameWork\Report</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

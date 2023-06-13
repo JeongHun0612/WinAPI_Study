@@ -40,11 +40,9 @@ EX)
 - 클래스가 메모리에 실제로 구현된 실체
  ㄴ 실행되고 있는 각각의 프로그램들
 */
+
 HINSTANCE _hInstance;
-// 윈도우 핸들 (윈도우 창)
 HWND _hWnd;
-// 윈도우 타이틀 - sz (NULL 종료 문자열)
-LPTSTR _lpszClass = TEXT("Windows API");
 //TCHAR* pszString = _T("Windows API");
 
 /*
@@ -66,6 +64,7 @@ LPCTSTR     ->      t_string           =    const tchar*
 
 // 콜백
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+void setWindowSize(int x, int y, int width, int height);
 
 /*
 hInstance       ->   프로그램 인스턴스 핸들
@@ -82,7 +81,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 */
 
-RECT rc;
+RECT _rc1, _rc2;
 
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -113,7 +112,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	wndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);                   // 아이콘
 	wndClass.hInstance = hInstance;                                     // 윈도우를 소요할 프로그램의 식별자 정보
 	wndClass.lpfnWndProc = (WNDPROC)WndProc;                            // 윈도우 프로시저
-	wndClass.lpszClassName = _lpszClass;                                // 클래스 이름 (식별자 정보)
+	wndClass.lpszClassName = WINNAME;                                // 클래스 이름 (식별자 정보)
 	wndClass.lpszMenuName = NULL;                                       // 메뉴 이름
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;                           // 윈도우 스타일 (다시 그리기 정보)
 
@@ -124,19 +123,22 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	// 1-3. 화면에 보여줄 윈도우 창 생성
 	_hWnd = CreateWindow
 	(
-		_lpszClass,             // 윈도우 클래스 식별자
-		_lpszClass,             // 윈도우 타이틀 바 이름
-		WS_OVERLAPPEDWINDOW,    // 윈도우 스타일
-		400,                    // 윈도우 화면 X 좌표
-		100,                    // 윈도우 화면 Y 좌표
-		800,                    // 윈도우 화면 가로 크기
-		800,                    // 윈도우 화면 세로 크기
+		WINNAME,				// 윈도우 클래스 식별자
+		WINNAME,				// 윈도우 타이틀 바 이름
+		WINSTYLE,				// 윈도우 스타일
+		WINSTART_X,             // 윈도우 화면 X 좌표
+		WINSTART_Y,             // 윈도우 화면 Y 좌표
+		WINSIZE_X,              // 윈도우 화면 가로 크기
+		WINSIZE_Y,              // 윈도우 화면 세로 크기
 		NULL,                   // 부모 윈도우 -> GetDesktopWindow
 		(HMENU)NULL,            // 메뉴 핸들
 		hInstance,              // 인스턴스 지정
 		NULL                    // 윈도우의 자식 윈도우를 생성하면 지정하고 그렇지 않다면 NULL을 잡아라
 								//  ㄴ 필요에 의해서 사용하기도 하지만 지금은 NULL
 	);
+
+	// 클라이언트 영역의 사이즈를 정확히 잡아주기 위해
+	setWindowSize(WINSTART_X, WINSTART_Y, WINSIZE_X, WINSIZE_Y);
 
 	// 1-4. 화면에 윈도우창 보여주기
 	ShowWindow(_hWnd, nCmdShow);
@@ -205,14 +207,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;			// 핸들 DC
 	PAINTSTRUCT ps;		// 페인트 구조체
-
-	char str[] = "그래";
+	
+	static POINT pt = { 0, 0 };
+	char strPT[128];
 
 	/*
 	char[] : 수정이 가능
 	char*  : 수정이 불가능
 	*/
-
 
 	/*
 	▶ Window Procedure
@@ -229,7 +231,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage)
 	{
 	case WM_CREATE:		// 생성자
-		rc = RectMakeCenter(400, 400, 100, 100);
+		_rc1 = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
+		_rc2 = RectMakeCenter(WINSIZE_X / 2 + 200, WINSIZE_Y / 2, 100, 100);
 		break;
 
 		/*
@@ -242,12 +245,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		3. 윈도우가 다른 윈도우에 가려졌다가 다시 보일때
 		4. 특정 함수가 호출이 될 때 -> InvalidateRect, Invalidate, UpdateAllViews 등등..
 			ㄴ 기본적으로 렌더링 관련된 함수가 나오면 PAINT를 떠올려야 한다.
-		
 		*/
 	case WM_PAINT:		// 출력에 관한 모든것을 담당한다. (문자, 그림, 도형 등등 화면에 보이는 모든 것을 의미)
 		hdc = BeginPaint(hWnd, &ps);
 
-		DrawRectMake(hdc, rc);
+		// wsprintf() : 숫자 -> 문자열 출력
+		wsprintf(strPT, "X : %d       Y : %d", pt.x, pt.y);
+		TextOut(hdc, 10, 10, strPT, strlen(strPT));
+
+		Rectangle(hdc, _rc1.left, _rc1.top, _rc1.right, _rc1.bottom);
+		DrawRectMake(hdc, _rc2);
+
+		EllipseMakeCenter(hdc, WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
 
 		//SetPixel(hdc, 300, 200, RGB(255, 0, 0));
 		//for (int i = 0; i < 10000; i++)
@@ -293,11 +302,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		EndPaint(hWnd, &ps);
 		break;
 
+	case WM_MOUSEMOVE:
+		pt.x = LOWORD(lParam);
+		pt.y = HIWORD(lParam);
+
+		InvalidateRect(hWnd, NULL, TRUE);
+		break;
+
 	case WM_LBUTTONDOWN:	// 마우스 왼쪽 버튼이 눌렀을 때 메세지 발생
 		hdc = GetDC(hWnd);
-		
-		SetTextColor(hdc, RGB(0, 0, 255));
-		TextOut(hdc, 350, 500, str, strlen(str));
 
 		//InvalidateRect(hWnd, NULL, T/F);
 
@@ -331,6 +344,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	// 윈도우 프로시저에서 처리되지 않은 나머지 메세지를 처리해 준다.
 	return (DefWindowProc(hWnd, iMessage, wParam, lParam));
 }
+
+void setWindowSize(int x, int y, int width, int height)
+{
+	RECT rc = { 0, 0, width, height };
+
+	// 실제 윈도우 크기 조정
+	// AdjustWindowRect() : RECT 구조체, 윈도우 스타일, 메뉴 사용 여부
+	AdjustWindowRect(&rc, WINSTYLE, false);
+	
+	// 얻어온 렉트의 정보로 윈도우 사이즈 셋팅
+	// ZORDER : 이미지 간의 레이어에 대한 처리를 하는 기법
+	// NOZORDER : 이미지 레이어를 비켜주지 않겠다.
+	SetWindowPos(_hWnd, NULL, x, y, (rc.right - rc.left), (rc.bottom - rc.top), SWP_NOZORDER | SWP_NOMOVE);
+}
+
 
 /*
 23/06/07
@@ -433,4 +461,37 @@ WM_PAINT, PAINSTRUCT
 ※ 핵심은 움직일 수 있는 주도권은 작은 사각형을 가지고 있는 "큰 사각형"
 
 예외처리 : 큰 사각형끼리의 모서리에 대한 정밀도를 예외 처리한다.
+
+
+23/06/13
+-------------------------------------------------------------------------------------
+과제 1. 사각형 드래그 이동
+
+- 마우스로 사각형을 자유롭게 움직일 수 있으면 된다.
+
+※ T / F 사각형 범위와에서 마우스UP 이벤트가 발생할 시 오류
+
+
+과제 2. 사각형 크기 조절
+
+- 마우스로 사각형의 크기를 자유롭게 조정할 수 있으면 된다.
+
+- 바탕화면에서 드래그 해보면서 똑같이 만들면 OK
+
+
+과제 3. 사각형 4단 밀기
+
+- 사각형의 갯수는 총 4개
+
+- 마우스로 화면에 그려진 4개의 사각형 중 아무거나 선택해 자유롭게 움직인다.
+
+- 마우스로 움직이고 있는 사각형이 다른 사각형과 충돌되면 충돌된 사각형은 "자연스럽게" 밀려난다.
+
+※ 관성 / 그럴싸해 보이게
+ㄴ 에어하키
+
+
+한줄 조사. 디자인 패턴
+
+- 싱글톤 + @ 4개 (게임에서 쓸만한 디자인 패턴을 조사)
 */
