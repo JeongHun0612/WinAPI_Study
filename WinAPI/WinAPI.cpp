@@ -82,6 +82,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 */
 
 RECT _rc1, _rc2;
+int centerX;
+int centerY;
 
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -233,6 +235,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:		// 생성자
 		_rc1 = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
 		_rc2 = RectMakeCenter(WINSIZE_X / 2 + 200, WINSIZE_Y / 2, 100, 100);
+
+		centerX = WINSIZE_X / 2;
+		centerY = WINSIZE_Y / 2;
 		break;
 
 		/*
@@ -253,10 +258,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		wsprintf(strPT, "X : %d       Y : %d", pt.x, pt.y);
 		TextOut(hdc, 10, 10, strPT, strlen(strPT));
 
-		Rectangle(hdc, _rc1.left, _rc1.top, _rc1.right, _rc1.bottom);
-		DrawRectMake(hdc, _rc2);
+		//Rectangle(hdc, _rc1.left, _rc1.top, _rc1.right, _rc1.bottom);
+		//DrawRectMake(hdc, _rc2);
+		//EllipseMakeCenter(hdc, WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
 
-		EllipseMakeCenter(hdc, WINSIZE_X / 2, WINSIZE_Y / 2, 100, 100);
+		Rectangle(hdc, centerX, centerY, 100, 100);
 
 		//SetPixel(hdc, 300, 200, RGB(255, 0, 0));
 		//for (int i = 0; i < 10000; i++)
@@ -310,11 +316,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_LBUTTONDOWN:	// 마우스 왼쪽 버튼이 눌렀을 때 메세지 발생
-		hdc = GetDC(hWnd);
+		centerX = RND->getInt(WINSIZE_X);
+		centerY = RND->getInt(WINSIZE_Y);
 
-		//InvalidateRect(hWnd, NULL, T/F);
+		InvalidateRect(hWnd, NULL, true);
 
-		ReleaseDC(hWnd, hdc);
 		break;
 
 	case WM_RBUTTONDOWN:
@@ -494,4 +500,40 @@ WM_PAINT, PAINSTRUCT
 한줄 조사. 디자인 패턴
 
 - 싱글톤 + @ 4개 (게임에서 쓸만한 디자인 패턴을 조사)
+
+
+23/06/14
+-------------------------------------------------------------------------------------
+과제 1. 마우스로 무작위 도형 출력
+
+- 마우스로 클릭한 좌표에 무작위 도형을 출력한다.
+
+- 도형의 크기 + 도형의 모양 + 도형의 종류까지 모두 무작위 처리한다.
+
+- 도형의 종류 : 사각형, 원, 삼각형 및 다각형
+
+※ 삼각형 + 다각형 -> Polygon() + 배열을 이용한다.
+
+
+<기간 2일>
+과제 2. 도형을 활용한 내 얼굴 그려오기
+
+- 도형을 활용한다.
+
+
+과제 3. 공 튀기기 (싱글톤 활용해 보기)
+
+- 큰 사각형안에 작은 공이 있다.
+
+- 작은공은 큰 사각형 안에서 사용자의 별다른 입력이 없어도 사각형 면에 튕기면서 지속적으로 움직인다.
+
+- 큰 사각형은 키보드 입력을 받으며 크기를 늘리거나 줄일 수 있다.
+
+- 크기가 늘어나거나 줄어들면 당연히 안쪽에 있는 공도 영향을 받는다.
+ ㄴ 마우스 왼 클릭 시 : 공 속도 증가
+ ㄴ 마우스 우 클릭 시 : 공 속도 감소
+
+한줄 조사.
+- GetAsyncKeyState
+ ㄴ 상태값 까지 확인
 */

@@ -4,17 +4,23 @@
     <Filter Include="2D FrameWork">
       <UniqueIdentifier>{cbff90dc-5004-4d04-8411-44903df4b1a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\Utility">
-      <UniqueIdentifier>{cec31e99-d99c-4839-a1f6-3a23e8a2100b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2D FrameWork\Utility\Math">
-      <UniqueIdentifier>{5ceddc8e-5eb9-402d-bbe1-1923cba7aa64}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2D FrameWork\PCH">
       <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
     </Filter>
     <Filter Include="2D FrameWork\Report">
       <UniqueIdentifier>{3dad0817-d3ce-48ef-b2ce-27e0d74312af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\DesignPattern">
+      <UniqueIdentifier>{e38fec4b-5bb8-4bb2-90f4-25e98a46106e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\DesignPattern\Singleton">
+      <UniqueIdentifier>{be1be14e-13eb-4f64-96ff-a0da8b94e038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Report\Utility">
+      <UniqueIdentifier>{cec31e99-d99c-4839-a1f6-3a23e8a2100b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Report\Utility\Math">
+      <UniqueIdentifier>{5ceddc8e-5eb9-402d-bbe1-1923cba7aa64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,13 +28,19 @@
       <Filter>2D FrameWork\PCH</Filter>
     </ClInclude>
     <ClInclude Include="C3DMatrix.h">
-      <Filter>2D FrameWork\Utility\Math</Filter>
+      <Filter>2D FrameWork\Report\Utility\Math</Filter>
     </ClInclude>
     <ClInclude Include="C3DVector.h">
-      <Filter>2D FrameWork\Utility\Math</Filter>
+      <Filter>2D FrameWork\Report\Utility\Math</Filter>
     </ClInclude>
     <ClInclude Include="CommonMacroFunction.h">
-      <Filter>2D FrameWork\Utility</Filter>
+      <Filter>2D FrameWork\Report\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonBase.h">
+      <Filter>2D FrameWork\DesignPattern\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomFunction.h">
+      <Filter>2D FrameWork\Report\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,10 +54,10 @@
       <Filter>2D FrameWork\PCH</Filter>
     </ClCompile>
     <ClCompile Include="C3DMatrix.cpp">
-      <Filter>2D FrameWork\Utility\Math</Filter>
+      <Filter>2D FrameWork\Report\Utility\Math</Filter>
     </ClCompile>
     <ClCompile Include="C3DVector.cpp">
-      <Filter>2D FrameWork\Utility\Math</Filter>
+      <Filter>2D FrameWork\Report\Utility\Math</Filter>
     </ClCompile>
     <ClCompile Include="WinAPI.cpp">
       <Filter>2D FrameWork</Filter>
@@ -57,6 +69,9 @@
       <Filter>2D FrameWork\Report</Filter>
     </ClCompile>
     <ClCompile Include="WinAPI_Report_04.cpp">
+      <Filter>2D FrameWork\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAPI_Report_05.cpp">
       <Filter>2D FrameWork\Report</Filter>
     </ClCompile>
   </ItemGroup>

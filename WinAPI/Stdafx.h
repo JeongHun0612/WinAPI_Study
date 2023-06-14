@@ -39,6 +39,7 @@
 // 메모리 관련 헤더 파일 
 // ㄴ memset / memcpy를 사용하는 헤더파일 (지금은 Windows.h 정의하면 접근가능)
 #include <memory.h>
+#include <time.h>
 
 /*
 ▶ 문자열 셋
@@ -126,6 +127,11 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 
 // # 사용자 정의 헤더 파일 #
 #include "CommonMacroFunction.h"
+#include "RandomFunction.h"
+
+
+// # 싱글톤 #
+#define RND RandomFunction::getSingleton()
 
 // # 매크로 # (윈도우 창 초기화)
 #define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))

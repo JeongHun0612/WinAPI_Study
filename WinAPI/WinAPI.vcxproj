@@ -142,6 +142,8 @@
     <ClInclude Include="C3DMatrix.h" />
     <ClInclude Include="C3DVector.h" />
     <ClInclude Include="CommonMacroFunction.h" />
+    <ClInclude Include="RandomFunction.h" />
+    <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +166,10 @@
     <ClCompile Include="WinAPI_Report_03.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="WinAPI_Report_04.cpp" />
+    <ClCompile Include="WinAPI_Report_04.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="WinAPI_Report_05.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
