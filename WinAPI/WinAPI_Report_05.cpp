@@ -43,14 +43,13 @@
 #define REPORT2			2
 #define REPORT3			3
 
-#define REPORT_TYPE		REPORT1
+#define REPORT_TYPE		REPORT3
 
 HINSTANCE _hInstance;
 HWND _hWnd;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 void setWindowSize(int x, int y, int width, int height);
-bool isPointInRect(POINT pt, RECT rc);
 
 int APIENTRY WinMain(
 	HINSTANCE hInstance,
@@ -100,20 +99,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	HDC hdc;
 	PAINTSTRUCT ps;
 
-	static POINT ptA[5];
+	static POINT polygonPoint[5];
 	static POINT pt = { 0, 0 };
 
-	static bool isClick = false;
-	static int rndNum = 0;
-
-	//static POINT PolygonPoint[6] = { {100,100}, {250,50}, {400,100}, {550,350}, {400,400}, {50,300} };
+	int rndNum = 0;
+	int radius = 0;
+	int degree = 0;
+	int internalAngle = 0;
 
 	switch (iMessage)
 	{
 	case WM_CREATE:
 		break;
 	case WM_PAINT:
-
 		break;
 
 	case WM_LBUTTONDOWN:
@@ -123,50 +121,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
 
-		int radius = 100;
+		rndNum = RND->getFromIntTo(2, 6);
 
-
-		ptA[0].x = pt.x + (cos(DEG2RAD(30)) * radius);
-		ptA[0].y = pt.y + (sin(DEG2RAD(30)) * radius);
-
-		for (int i = 0; i < 5; i++)
+		if (rndNum == 2)
 		{
-
-			//LineTo(hdc, centerX + (cos(DEG2RAD(i)) * radius), centerY + (sin(DEG2RAD(i)) * radius));
-
-			/*pt.x + cos(DEG2RAD(RND->getInt(360)) * radius);*/
-
-			ptA[i] = { (LONG)(cos(DEG2RAD(RND->getInt(360)) * radius), pt.y };
+			EllipseMakeCenter(hdc, pt.x, pt.y, RND->getFromIntTo(100, WINSIZE_X / 2), RND->getFromIntTo(100, WINSIZE_X / 2));
 		}
-	
+		else
+		{
+			internalAngle = 360 / rndNum;
+			radius = RND->getFromIntTo(100, WINSIZE_X / 4);
 
-		//polygonPoint[0] = { pt.x, pt.y };
+			for (int i = 0; i < rndNum; i++)
+			{
+				degree = RND->getFromIntTo(internalAngle * i, internalAngle * (i + 1));
 
-		//int rndNum = RND->getInt(5) + 2;
+				polygonPoint[i].x = pt.x + (cos(DEG2RAD(degree)) * radius);
+				polygonPoint[i].y = pt.y + (sin(DEG2RAD(degree)) * radius);
+			}
 
-		//for (int i = 1; i < rndNum; i++)
-		//{
-		//	polygonPoint[i] = { RND->getInt(800), RND->getInt(800) };
-		//}
-
-		//switch (rndNum)
-		//{
-		//case 2:
-		//	EllipseMakeCenter(hdc, pt.x, pt.y, RND->getFromIntTo(100, 400), RND->getFromIntTo(100, 400));
-		//	break;
-		//case 3:
-		//	Polygon(hdc, polygonPoint, 3);
-		//	break;
-		//case 4:
-		//	Polygon(hdc, polygonPoint, 4);
-		//	break;
-		//case 5:
-		//	Polygon(hdc, polygonPoint, 5);
-		//	break;
-		//case 6:
-		//	Polygon(hdc, polygonPoint, 6);
-		//	break;
-		//}
+			Polygon(hdc, polygonPoint, rndNum);
+		}
 
 		ReleaseDC(hWnd, hdc);
 
@@ -183,6 +158,119 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
 }
+#elif REPORT_TYPE == REPORT2
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+{
+	HDC hdc;
+	PAINTSTRUCT ps;
+
+	switch (iMessage)
+	{
+	case WM_CREATE:
+		break;
+	case WM_PAINT:
+		break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	}
+
+	return DefWindowProc(hWnd, iMessage, wParam, lParam);
+}
+#else
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+{
+	HDC hdc;
+	PAINTSTRUCT ps;
+
+	static RECT rc;
+	static RECT invalRc;
+
+	int rcWidth = 400;
+	int rcHeight = 400;
+	int dist = 5;
+
+	static int ballX = WINSIZE_X / 2;
+	static int ballY = WINSIZE_Y / 2;
+	int ballWidth = 20;
+	int ballHeight = 20;
+
+	static int moveX = -1;
+	static int moveY = -1;
+	static int ballSpeed = 1;
+
+	switch (iMessage)
+	{
+	case WM_CREATE:
+		rc = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, rcWidth, rcHeight);
+		invalRc = { rc.left - 5, rc.top - 5, rc.right + 5, rc.bottom + 5 };
+		SetTimer(hWnd, 1, 10, NULL);
+		break;
+	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps);
+
+		DrawRectMake(hdc, rc);
+		EllipseMake(hdc, ballX, ballY, ballWidth, ballHeight);
+
+		EndPaint(hWnd, &ps);
+		break;
+	case WM_TIMER:
+		if (ballX <= rc.left || ballX + ballWidth >= rc.right)
+		{
+			moveX = -moveX;
+		}
+		if (ballY <= rc.top || ballY + ballHeight >= rc.bottom)
+		{
+			moveY = -moveY;
+		}
+		
+		ballX += moveX * ballSpeed;
+		ballY += moveY * ballSpeed;
+
+		InvalidateRect(hWnd, &invalRc, true);
+		break;
+	case WM_LBUTTONDOWN:
+		if (ballSpeed == 5) break;
+		ballSpeed++;
+		break;
+	case WM_RBUTTONDOWN:
+		if (ballSpeed == 1) break;
+		ballSpeed--;
+		break;
+	case WM_KEYDOWN:
+		switch (wParam)
+		{
+		case VK_LEFT:
+			if (rc.right < rc.left + 50) break;
+			rc.right -= dist;
+			break;
+		case VK_RIGHT:
+			if (rc.right >= rc.left + rcWidth) break;
+			rc.right += dist;
+			break;
+		case VK_UP:
+			if (rc.bottom < rc.top + 50) break;
+			rc.bottom -= dist;
+			break;
+		case VK_DOWN:
+			if (rc.bottom >= rc.top + rcHeight) break;
+			rc.bottom += dist;
+			break;
+		}
+
+		invalRc = { rc.left - 5, rc.top - 5, rc.right + 5, rc.bottom + 5 };
+
+		InvalidateRect(hWnd, &invalRc, true);
+		break;
+	case WM_DESTROY:
+		KillTimer(hWnd, 1);
+		PostQuitMessage(0);
+		return 0;
+	}
+
+	return DefWindowProc(hWnd, iMessage, wParam, lParam);
+}
+
 #endif
 
 
@@ -195,17 +283,4 @@ void setWindowSize(int x, int y, int width, int height)
 
 	// 얻어온 렉트의 정보로 윈도우 사이즈 셋팅
 	SetWindowPos(_hWnd, NULL, x, y, (rc.right - rc.left), (rc.bottom - rc.top), SWP_NOZORDER | SWP_NOMOVE);
-}
-
-bool isPointInRect(POINT pt, RECT rc)
-{
-	if ((pt.x > rc.left && pt.x < rc.right) || (pt.x > rc.right && pt.x < rc.left))
-	{
-		if ((pt.y > rc.top && pt.y < rc.bottom) || (pt.y < rc.top && pt.y > rc.bottom))
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
