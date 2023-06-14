@@ -263,6 +263,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			tempRC = { pt.x - rcArray[0].left, pt.y - rcArray[0].top, rcArray[0].right - pt.x, rcArray[0].bottom - pt.y };
 		}
 
+
 		//for (int i = 0; i < 4; i++)
 		//{
 		//	if (isPointInRect(pt, rcArray[i]))
