@@ -31,6 +31,18 @@
     <Filter Include="2D FrameWork\FrameWorkManager">
       <UniqueIdentifier>{be83ef17-f588-49a1-bb73-f6ed6944ff08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29">
+      <UniqueIdentifier>{15a7a2e5-24ed-4eb5-87d6-f20d8fa45273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass">
+      <UniqueIdentifier>{06f22940-99e5-4a98-924b-02d3fcb265e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass">
+      <UniqueIdentifier>{526689c9-35ed-4134-8e43-3815373cab7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29\GameCore">
+      <UniqueIdentifier>{39398ee3-8b6b-483f-95d6-102ba72af700}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -59,6 +71,15 @@
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_06_MainGame.h">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_06_GameNode.h">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\GameCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +121,18 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>ManagerClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_06_Main.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_06_MainGame.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_06_GameNode.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\GameCore</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

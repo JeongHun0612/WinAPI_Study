@@ -38,7 +38,6 @@ LRESULT GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		this->update();
 		break;
 
-
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 

@@ -47,6 +47,7 @@
 
 HINSTANCE _hInstance;
 HWND _hWnd;
+POINT _ptMouse = { 0, 0 };
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 void setWindowSize(int x, int y, int width, int height);
