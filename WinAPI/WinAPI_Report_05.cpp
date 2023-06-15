@@ -1,7 +1,7 @@
 #include "Stdafx.h"
 /*
 23/06/14
------------------------------------------------------------------------------------- -
+-------------------------------------------------------------------------------------
 과제 1. 마우스로 무작위 도형 출력
 
 - 마우스로 클릭한 좌표에 무작위 도형을 출력한다.
@@ -230,7 +230,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		InvalidateRect(hWnd, &invalRc, true);
 		break;
 	case WM_LBUTTONDOWN:
-		if (ballSpeed == 5) break;
+		if (ballSpeed == 10) break;
 		ballSpeed++;
 		break;
 	case WM_RBUTTONDOWN:
