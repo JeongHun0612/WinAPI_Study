@@ -104,6 +104,18 @@ unordered_map : Hash 자료구조
 // cassert : C++ 프로그래머의 희망 -> 잘 쓰면
 #include <cassert>
 
+// bool바다를 억제할 수 있다.
+// bitset : 비트 연산을 좀 더 쉽게 관리해 주는 함수를 지원하는 STL
+// ㄴ reset(), set(), flip(), all(), any(), size() 등등..
+#include <bitset>
+
+using namespace std;
+
+using std::vector;
+using std::map;
+using std::unordered_map;
+using std::bitset;
+
 /*
 // ! D2D/D3D 헤더 파일 ============================================================================================================
 #include <D2D1.h>
@@ -128,10 +140,12 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 // # 사용자 정의 헤더 파일 #
 #include "CommonMacroFunction.h"
 #include "RandomFunction.h"
+#include "KeyManager.h"
 
 
 // # 싱글톤 #
 #define RND RandomFunction::getSingleton()
+#define KEYMANAGER KeyManager::getSingleton()
 
 // # 매크로 # (윈도우 창 초기화)
 #define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))

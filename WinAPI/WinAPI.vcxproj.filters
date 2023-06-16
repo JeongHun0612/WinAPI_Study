@@ -81,6 +81,7 @@
     <ClInclude Include="Report_06_GameNode.h">
       <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\GameCore</Filter>
     </ClInclude>
+    <ClInclude Include="KeyManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_Report_01.cpp">
@@ -134,5 +135,6 @@
     <ClCompile Include="Report_06_GameNode.cpp">
       <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\GameCore</Filter>
     </ClCompile>
+    <ClCompile Include="KeyManager.cpp" />
   </ItemGroup>
 </Project>

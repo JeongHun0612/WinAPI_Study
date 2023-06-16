@@ -147,6 +147,7 @@
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="IWindowMessageHandler.h" />
+    <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_06_GameNode.h" />
@@ -160,9 +161,12 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="IWindowMessageHandler.cpp" />
+    <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Report_06_GameNode.cpp" />
-    <ClCompile Include="Report_06_Main.cpp" />
+    <ClCompile Include="Report_06_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Report_06_MainGame.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="WinAPITimeAttack.cpp">
@@ -170,7 +174,7 @@
     </ClCompile>
     <ClCompile Include="WinAPI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="WinAPI_Report_01.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

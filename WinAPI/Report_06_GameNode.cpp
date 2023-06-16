@@ -31,7 +31,7 @@ LRESULT Report_06_GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LP
 	switch (iMessage)
 	{
 	case WM_TIMER:
-		//this->update();
+		this->update();
 		break;
 
 	case WM_PAINT:
@@ -43,13 +43,8 @@ LRESULT Report_06_GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LP
 		break;
 
 	case WM_MOUSEMOVE:
-
-		break;
-	case WM_LBUTTONDOWN:
 		_ptMouse.x = LOWORD(lParam);
 		_ptMouse.y = HIWORD(lParam);
-
-		this->update();
 		break;
 
 	case WM_KEYDOWN:

@@ -13,6 +13,8 @@ public:
 	}
 	~RandomFunction() {}
 
+	HRESULT init(void) { return S_OK; }
+
 	inline int getInt(int num)
 	{
 		return rand() % num;

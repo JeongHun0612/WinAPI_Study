@@ -46,13 +46,13 @@ void Report_06_MainGame::update(void)
 			selectCount++;
 			_Card[i].setSelect(true);
 
-			if (selectCount == 2)
+			if (selectCount == 1)
 			{
-				secondCardID = _Card[i].getCardID();
+				firstCardID = _Card[i].getCardID();
 			}
 			else
 			{
-				firstCardID = _Card[i].getCardID();
+				secondCardID = _Card[i].getCardID();
 			}
 		}
 	}
