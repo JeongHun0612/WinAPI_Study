@@ -64,6 +64,7 @@ void Report_07_MainGame::update(void)
 		{
 			if (_Mole[i]->isPointInRect() && _Mole[i]->getState())
 			{
+				_Mole[i]->setState(false);
 				_nScore++;
 			}
 		}
@@ -74,7 +75,7 @@ void Report_07_MainGame::render(HDC hdc)
 {
 	// Draw Score
 	wsprintf(_ScoreStr, "Score : %d", _nScore);
-	TextOut(hdc, 0, 0, _ScoreStr, strlen(_ScoreStr));
+	TextOut(hdc, 10, 10, _ScoreStr, strlen(_ScoreStr));
 
 	// Draw Hole
 	for (int i = 0; i < 3; i++)

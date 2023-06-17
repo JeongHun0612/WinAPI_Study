@@ -36,10 +36,11 @@
 #define REPORT2			2
 #define REPORT3			3
 
-#define REPORT_TYPE		REPORT3
+#define REPORT_TYPE		REPORT2
 
 HINSTANCE _hInstance;
 HWND _hWnd;
+POINT _ptMouse;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 void setWindowSize(int x, int y, int width, int height);
