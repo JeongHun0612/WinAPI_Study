@@ -9,7 +9,7 @@ static int secondCardID = 0;
 
 HRESULT Report_06_MainGame::init(void)
 {
-	Report_06_GameNode::init();
+	GameNode::init();
 
 	int startX = 100;
 	int startY = 50;
@@ -32,12 +32,12 @@ HRESULT Report_06_MainGame::init(void)
 
 void Report_06_MainGame::release(void)
 {
-	Report_06_GameNode::release();
+	GameNode::release();
 }
 
 void Report_06_MainGame::update(void)
 {
-	Report_06_GameNode::update();
+	GameNode::update();
 
 	for (int i = 0; i < 20; i++)
 	{

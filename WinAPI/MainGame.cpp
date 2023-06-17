@@ -42,6 +42,11 @@ void MainGame::update(void)
 		rc.top += 3;
 		rc.bottom += 3;
 	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		rc.top += 10;
+	}
 }
 
 void MainGame::render(HDC hdc)
@@ -53,16 +58,6 @@ void MainGame::render(HDC hdc)
 }
 
 /*
-과제1. 두더지 게임
-
-- 두더지의 수는 최소 8마리 부터 시작한다.
-
-- 화면에 현재 점수를 표기한다.
-
-- 예외 처리
-	ㄴ 두더지를 한번 클릭하면 점수 증가
-		ㄴ 이후 두더지가 사라질때까지 재클릭을 해도 점수가 오르면 안된다.
-
 과제2. 클레이 사격
 
 - 좌 / 우에서 무작위로 출현하는 타켓을 마우스로 제거한다.

@@ -149,9 +149,11 @@
     <ClInclude Include="IWindowMessageHandler.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Mole.h" />
+    <ClInclude Include="MouseManager.h" />
     <ClInclude Include="RandomFunction.h" />
-    <ClInclude Include="Report_06_GameNode.h" />
     <ClInclude Include="Report_06_MainGame.h" />
+    <ClInclude Include="Report_07_MainGame.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
@@ -163,18 +165,23 @@
     <ClCompile Include="IWindowMessageHandler.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
-    <ClCompile Include="Report_06_GameNode.cpp" />
+    <ClCompile Include="Mole.cpp" />
+    <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="Report_06_Main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Report_06_MainGame.cpp" />
+    <ClCompile Include="Report_07_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Report_07_MainGame.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="WinAPITimeAttack.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="WinAPI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="WinAPI_Report_01.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

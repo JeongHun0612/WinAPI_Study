@@ -1,11 +1,11 @@
 #pragma once
-#include "Report_06_GameNode.h"
+#include "GameNode.h"
 #include "Card.h"
 
 #define CARD_COL		4
 #define CARD_ROW		5
 
-class Report_06_MainGame : public Report_06_GameNode
+class Report_06_MainGame : public GameNode
 {
 private:
 	Card _Card[20];

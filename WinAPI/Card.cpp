@@ -35,35 +35,6 @@ void Card::drawCard(HDC hdc)
 	{
 		DrawRectMake(hdc, _rcCard);
 	}
-	
-
-	//switch (_nColorCode)
-	//{
-	//case 1:
-	//	hbr = (HBRUSH)CreateSolidBrush(RGB(0, 255, 0));
-	//	hbrOld = (HBRUSH)::SelectObject(hdc, hbr);
-	//	DrawRectMake(hdc, _rcCard);
-	//	break;
-	//case 2:
-	//	hbr = (HBRUSH)CreateSolidBrush(RGB(255, 0, 0));
-	//	hbrOld = (HBRUSH)::SelectObject(hdc, hbr);
-	//	DrawRectMake(hdc, _rcCard);
-	//	break;
-	//case 4:
-	//	break;
-	//case 5:
-	//	break;
-	//case 6:
-	//	break;
-	//case 7:
-	//	break;
-	//case 8:
-	//	break;
-	//case 9:
-	//	break;
-	//case 10:
-	//	break;
-	//}
 }
 
 bool Card::isPointInRect()

@@ -8,6 +8,7 @@ HRESULT GameNode::init(void)
 
 	RND->init();
 	KEYMANAGER->init();
+	MOUSEMANAGER->init();
 
 	// 함수가 성공적으로 실행 되었음을 알린다.
 	return S_OK;
@@ -20,6 +21,7 @@ void GameNode::release(void)
 
 	RND->releaseSingleton();
 	KEYMANAGER->releaseSingleton();
+	MOUSEMANAGER->releaseSingleton();
 }
 
 void GameNode::update(void)
