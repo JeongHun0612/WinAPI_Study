@@ -46,6 +46,7 @@ void Report_07_MainGame::update(void)
 			_Mole[i]->setState(false);
 		}
 
+		// 두더지 랜덤 등장
 		for (int i = 0; i < MAX_MOLE; i++)
 		{
 			if (RND->getInt(3) == 0)
@@ -58,7 +59,7 @@ void Report_07_MainGame::update(void)
 	}
 
 	// 두더지 클릭
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON) & 0x8001)
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
 		for (int i = 0; i < MAX_MOLE; i++)
 		{
@@ -78,12 +79,9 @@ void Report_07_MainGame::render(HDC hdc)
 	TextOut(hdc, 10, 10, _ScoreStr, strlen(_ScoreStr));
 
 	// Draw Hole
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < MAX_MOLE; i++)
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			EllipseMakeCenter(hdc, 200 + (200 * j), 200 + (200 * i), 150, 100);
-		}
+		EllipseMakeCenter(hdc, 200 + (200 * (i % 3)), 200 + (200 * (i / 3)), 150, 100);
 	}
 
 	// Draw Mole

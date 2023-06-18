@@ -2,15 +2,10 @@
 #include "GameNode.h"
 #include "Card.h"
 
-#define CARD_COL		4
-#define CARD_ROW		5
-
 class Report_06_MainGame : public GameNode
 {
 private:
-	Card _Card[20];
-	HBRUSH hbr;
-	HBRUSH hbrOld;
+	Card _Card[CARD_MAX];
 	char str[125];
 
 public:

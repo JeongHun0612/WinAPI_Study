@@ -2,7 +2,7 @@
 #include "GameNode.h"
 #include "Mole.h"
 
-#define CREATE_CYCLE		2
+#define CREATE_CYCLE		1
 
 class Report_07_MainGame : public GameNode
 {

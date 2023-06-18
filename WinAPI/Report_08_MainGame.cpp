@@ -24,6 +24,7 @@ HRESULT Report_08_MainGame::init(void)
 
 	_nScore = 0;
 
+	// Target init
 	for (int i = 0; i < TARGET_MAX; i++)
 	{
 		_Target[i] = NULL;
@@ -44,18 +45,16 @@ void Report_08_MainGame::update(void)
 	// Create Target
 	if (_nDeltaTime % 100 == 0)
 	{
-		for (int i = 0; i < RND->getFromIntTo(1, 3); i++)
+		int createCount = RND->getFromIntTo(1, 3);
+
+		for (int i = 0; i < createCount; i++)
 		{
 			if (_Target[i] != NULL) break;
 
-			if (RND->getInt(2))
-			{
-				_Target[i] = new Target(-50, RND->getFromIntTo(300, 500), 1, RND->getFromIntTo(8, 10));
-			}
-			else
-			{
-				_Target[i] = new Target(850, RND->getFromIntTo(300, 500), -1, RND->getFromIntTo(8, 10));
-			}
+			int rndPosY = RND->getFromIntTo(300, 500);
+			float rndSpeed = RND->getFromIntTo(8, 10);
+
+			_Target[i] = RND->getInt(2) ? new Target(-50, rndPosY, 1, rndSpeed) : new Target(850, rndPosY, -1, rndSpeed);
 		}
 	}
 
@@ -66,7 +65,8 @@ void Report_08_MainGame::update(void)
 
 		_Target[i]->move();
 
-		if (_Target[i]->getPosX() < -50 || _Target[i]->getPosX() > 850 || _Target[i]->getPosY() > 850)
+		// Target Delete
+		if (_Target[i]->getPosX() < -50 || _Target[i]->getPosX() > WINSIZE_X + 50 || _Target[i]->getPosY() > WINSIZE_Y + 50)
 		{
 			delete(_Target[i]);
 			_Target[i] = NULL;

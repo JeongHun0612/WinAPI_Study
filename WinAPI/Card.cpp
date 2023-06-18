@@ -1,51 +1,57 @@
 #include "Stdafx.h"
 #include "Card.h"
 
-Card::Card(int cardID, int answerNum, int* colorCode, RECT rcCard)
+Card::Card()
+{
+}
+
+Card::Card(int cardID, int colorCode, int posX, int posY)
 {
 	_nCardID = cardID;
-	_nAnswerNum = answerNum;
+	_nColorCode = colorCode;
 
-	_r = colorCode[0];
-	_g = colorCode[1];
-	_b = colorCode[2];
+	_nPosX = posX;
+	_nPosY = posY;
+	_nWidth = 100;
+	_nHeight = 150;
 
-	_rcCard = rcCard;
 	_isSelect = false;
-	_isAnswer = false;
 }
 
 Card::~Card()
 {
-
 }
 
 void Card::drawCard(HDC hdc)
 {
-	if (_isSelect || _isAnswer)
-	{
-		hbr = (HBRUSH)CreateSolidBrush(RGB(_r, _g, _b));
-		hbrOld = (HBRUSH)::SelectObject(hdc, hbr);
-		DrawRectMake(hdc, _rcCard);
+	RectangleMake(hdc, _nPosX, _nPosY, _nWidth, _nHeight);
+	wsprintf(str, "%d", _nColorCode);
+	TextOut(hdc, _nPosX + _nWidth / 2, _nPosY + _nHeight / 2, str, strlen(str));
 
-		hbr = (HBRUSH)::SelectObject(hdc, hbrOld);
-		DeleteObject(hbr);
-	}
-	else
-	{
-		DrawRectMake(hdc, _rcCard);
-	}
+	//if (_isSelect || _isAnswer)
+	//{
+	//	hbr = (HBRUSH)CreateSolidBrush(RGB(_r, _g, _b));
+	//	hbrOld = (HBRUSH)::SelectObject(hdc, hbr);
+	//	DrawRectMake(hdc, _rcCard);
+
+	//	hbr = (HBRUSH)::SelectObject(hdc, hbrOld);
+	//	DeleteObject(hbr);
+	//}
+	//else
+	//{
+	//	DrawRectMake(hdc, _rcCard);
+	//}
 }
 
 bool Card::isPointInRect()
 {
-	if ((_ptMouse.x > _rcCard.left && _ptMouse.x < _rcCard.right) || (_ptMouse.x > _rcCard.right && _ptMouse.x < _rcCard.left))
-	{
-		if ((_ptMouse.y > _rcCard.top && _ptMouse.y < _rcCard.bottom) || (_ptMouse.y < _rcCard.top && _ptMouse.y > _rcCard.bottom))
-		{
-			return true;
-		}
-	}
+	//if ((_ptMouse.x > _nPosX - _nWidth / 2 && _ptMouse.x < _nPosX + _nWidth / 2) || (_ptMouse.x > _nPosX + _nWidth / 2 && _ptMouse.x < _nPosX - _nWidth / 2))
+	//{
+	//	if ((_ptMouse.y > _nPosY - _nHeight / 2 && _ptMouse.y < _nPosY + _nHeight) || (_ptMouse.y < _nPosY - _nHeight && _ptMouse.y > _nPosY + _nHeight))
+	//	{
+	//		return true;
+	//	}
+	//}
 
 	return false;
 }

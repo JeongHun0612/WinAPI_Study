@@ -1,20 +1,6 @@
 #include "Stdafx.h"
 #include "Report_06_MainGame.h"
 
-/*
-과제 1. 카드 짝 맞추기
-
-- 사이즈 : 5 X 4
-
-- 카드 짝을 맞추면 맞춘 카드는 계속 오픈되야 한다.
-
-- 치트 필수
-ㄴ 1. 전부 오픈 후 일정 시간 후 다시 감추기
-ㄴ 2. 1쌍을 제외하고 나머지는 전부 오픈되고 1쌍을 맞추면서 종료
-
-※ HBRUSH
-*/
-
 HINSTANCE _hInstance;
 HWND _hWnd;
 POINT _ptMouse = { 0, 0 };

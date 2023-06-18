@@ -47,6 +47,7 @@ bool Target::isPointInRect()
 
 void Target::drawTarget(HDC hdc)
 {
+	//EllipseMakeCenter(hdc, _nPosX, _nPosY, _nWidth, _nHeight);
 	RectangleMakeCenter(hdc, _nPosX, _nPosY, _nWidth, _nHeight);
 }
 
