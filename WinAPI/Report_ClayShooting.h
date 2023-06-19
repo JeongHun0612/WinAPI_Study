@@ -4,7 +4,7 @@
 
 #define TARGET_MAX		5
 
-class Report_08_MainGame : public GameNode
+class Report_ClayShooting : public GameNode
 {
 private:
 	int _nGameTime;
@@ -25,7 +25,7 @@ public:
 
 	bool getTimeOver();
 
-	Report_08_MainGame() {}
-	~Report_08_MainGame() {}
+	Report_ClayShooting() {}
+	~Report_ClayShooting() {}
 };
 

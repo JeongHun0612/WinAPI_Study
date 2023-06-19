@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_07_MainGame.h"
+#include "Report_Mole.h"
 
 /*
 과제1. 두더지 게임
@@ -13,7 +13,7 @@
 		ㄴ 이후 두더지가 사라질때까지 재클릭을 해도 점수가 오르면 안된다.
 */
 
-HRESULT Report_07_MainGame::init(void)
+HRESULT Report_Mole::init(void)
 {
 	GameNode::init();
 
@@ -28,12 +28,12 @@ HRESULT Report_07_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_07_MainGame::release(void)
+void Report_Mole::release(void)
 {
 	GameNode::release();
 }
 
-void Report_07_MainGame::update(void)
+void Report_Mole::update(void)
 {
 	GameNode::update();
 
@@ -72,7 +72,7 @@ void Report_07_MainGame::update(void)
 	}
 }
 
-void Report_07_MainGame::render(HDC hdc)
+void Report_Mole::render(HDC hdc)
 {
 	// Draw Score
 	wsprintf(_ScoreStr, "Score : %d", _nScore);

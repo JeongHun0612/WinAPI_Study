@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_06_MainGame.h"
+#include "Report_CardMatch.h"
 
 /*
 과제 1. 카드 짝 맞추기
@@ -15,7 +15,7 @@
 ※ HBRUSH
 */
 
-HRESULT Report_06_MainGame::init(void)
+HRESULT Report_CardMatch::init(void)
 {
 	GameNode::init();
 
@@ -39,12 +39,12 @@ HRESULT Report_06_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_06_MainGame::release(void)
+void Report_CardMatch::release(void)
 {
 	GameNode::release();
 }
 
-void Report_06_MainGame::update(void)
+void Report_CardMatch::update(void)
 {
 	GameNode::update();
 
@@ -71,7 +71,7 @@ void Report_06_MainGame::update(void)
 	//}
 }
 
-void Report_06_MainGame::render(HDC hdc)
+void Report_CardMatch::render(HDC hdc)
 {
 	wsprintf(str, "X : %d   Y : %d", _ptMouse.x, _ptMouse.y);
 	TextOut(hdc, 0, 0, str, strlen(str));

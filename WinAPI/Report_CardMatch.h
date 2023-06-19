@@ -2,7 +2,7 @@
 #include "GameNode.h"
 #include "Card.h"
 
-class Report_06_MainGame : public GameNode
+class Report_CardMatch : public GameNode
 {
 private:
 	Card _Card[CARD_MAX];
@@ -14,7 +14,6 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
-	Report_06_MainGame() {}
-	~Report_06_MainGame() {}
+	Report_CardMatch() {}
+	~Report_CardMatch() {}
 };
-

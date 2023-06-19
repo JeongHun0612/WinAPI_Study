@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_08_MainGame.h"
+#include "Report_ClayShooting.h"
 
 /*
 과제2. 클레이 사격
@@ -15,7 +15,7 @@
 - 게임 시간은 60초로 한정하고 시간이 다 되거나 내 점수가 5천점이 되면 게임 종료
 */
 
-HRESULT Report_08_MainGame::init(void)
+HRESULT Report_ClayShooting::init(void)
 {
 	GameNode::init();
 
@@ -33,12 +33,12 @@ HRESULT Report_08_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_08_MainGame::release(void)
+void Report_ClayShooting::release(void)
 {
 	GameNode::release();
 }
 
-void Report_08_MainGame::update(void)
+void Report_ClayShooting::update(void)
 {
 	GameNode::update();
 
@@ -97,7 +97,7 @@ void Report_08_MainGame::update(void)
 	}
 }
 
-void Report_08_MainGame::render(HDC hdc)
+void Report_ClayShooting::render(HDC hdc)
 {
 	wsprintf(_cTimer, "Game Time : %2d", _nGameTime);
 	TextOut(hdc, 10, 0, _cTimer, strlen(_cTimer));
@@ -113,7 +113,7 @@ void Report_08_MainGame::render(HDC hdc)
 	}
 }
 
-bool Report_08_MainGame::getTimeOver()
+bool Report_ClayShooting::getTimeOver()
 {
 	_nDeltaTime++;
 

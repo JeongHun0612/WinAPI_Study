@@ -34,29 +34,11 @@
     <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29">
       <UniqueIdentifier>{15a7a2e5-24ed-4eb5-87d6-f20d8fa45273}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass">
-      <UniqueIdentifier>{06f22940-99e5-4a98-924b-02d3fcb265e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass">
-      <UniqueIdentifier>{526689c9-35ed-4134-8e43-3815373cab7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\WinAPI_Report_08 %28클레이 사격%29">
       <UniqueIdentifier>{0a7a3ef0-9c54-4f4f-95c3-0c38709228fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Report\WinAPI_Report_07 %28두더지 게임%29">
       <UniqueIdentifier>{3f656c4b-7c0e-422f-83b1-d693d63d21b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Report\WinAPI_Report_07 %28두더지 게임%29\ManagerClass">
-      <UniqueIdentifier>{bea5f404-d085-4576-b563-b9cd12acd804}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Report\WinAPI_Report_07 %28두더지 게임%29\ObjectClass">
-      <UniqueIdentifier>{3e19df22-91d4-4339-b5bc-108665fcdece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Report\WinAPI_Report_08 %28클레이 사격%29\ManagerClass">
-      <UniqueIdentifier>{fb7537e5-092e-43bf-9e6d-4d593ed74ab1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass">
-      <UniqueIdentifier>{b85e65ca-d765-49da-8162-fc0fb537f8a9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Report\WinAPI_Report_09 %28똥피하기%29">
       <UniqueIdentifier>{3d08c448-82da-4dff-a679-fcc5d0687c07}</UniqueIdentifier>
@@ -67,8 +49,8 @@
     <Filter Include="Report\WinAPI_Report_11 %28악어이빨 게임%29">
       <UniqueIdentifier>{8bc641b0-d9cf-465d-94a1-39ccbe7126b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas">
-      <UniqueIdentifier>{dddbdec2-e5a0-46b7-8ad0-999f8ce4e023}</UniqueIdentifier>
+    <Filter Include="Report\ManagerClass">
+      <UniqueIdentifier>{100bffa7-cf29-49f6-a30e-efbf4a69bb15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,33 +81,42 @@
     <ClInclude Include="MainGame.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
-    <ClInclude Include="Report_06_MainGame.h">
-      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass</Filter>
-    </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass</Filter>
-    </ClInclude>
     <ClInclude Include="KeyManager.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
     <ClInclude Include="MouseManager.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
-    <ClInclude Include="Report_07_MainGame.h">
-      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29\ManagerClass</Filter>
+    <ClInclude Include="Example_Mole.h" />
+    <ClInclude Include="Report_CardMatch.h">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Mole.h">
+      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29</Filter>
     </ClInclude>
     <ClInclude Include="Mole.h">
-      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29\ObjectClass</Filter>
+      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_08_MainGame.h">
-      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ManagerClass</Filter>
+    <ClInclude Include="Report_ClayShooting.h">
+      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29</Filter>
     </ClInclude>
     <ClInclude Include="Target.h">
-      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass</Filter>
+      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29</Filter>
     </ClInclude>
-    <ClInclude Include="Example_Mole.h" />
-    <ClInclude Include="Report_09_MainGame.h">
-      <Filter>Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas</Filter>
+    <ClInclude Include="Report_Avoid.h">
+      <Filter>Report\WinAPI_Report_09 %28똥피하기%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_BulletShooting.h">
+      <Filter>Report\WinAPI_Report_10 %28총알 발사%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_MainGame.h">
+      <Filter>Report\ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Crocodile.h">
+      <Filter>Report\WinAPI_Report_11 %28악어이빨 게임%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,45 +159,45 @@
     <ClCompile Include="MainGame.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
-    <ClCompile Include="Report_06_Main.cpp">
-      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_06_MainGame.cpp">
-      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ManagerClass</Filter>
-    </ClCompile>
-    <ClCompile Include="Card.cpp">
-      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29\ObjectClass</Filter>
-    </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
     <ClCompile Include="MouseManager.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
-    <ClCompile Include="Report_07_Main.cpp">
+    <ClCompile Include="Example_Mole.cpp" />
+    <ClCompile Include="Report_Main.cpp">
+      <Filter>Report</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_CardMatch.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Report\WinAPI_Report_06 %28짝맞추기%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Mole.cpp">
       <Filter>Report\WinAPI_Report_07 %28두더지 게임%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_07_MainGame.cpp">
-      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29\ManagerClass</Filter>
-    </ClCompile>
     <ClCompile Include="Mole.cpp">
-      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29\ObjectClass</Filter>
+      <Filter>Report\WinAPI_Report_07 %28두더지 게임%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_08_Main.cpp">
+    <ClCompile Include="Report_ClayShooting.cpp">
       <Filter>Report\WinAPI_Report_08 %28클레이 사격%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_08_MainGame.cpp">
-      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ManagerClass</Filter>
-    </ClCompile>
     <ClCompile Include="Target.cpp">
-      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass</Filter>
+      <Filter>Report\WinAPI_Report_08 %28클레이 사격%29</Filter>
     </ClCompile>
-    <ClCompile Include="Example_Mole.cpp" />
-    <ClCompile Include="Report_09_Main.cpp">
+    <ClCompile Include="Report_Avoid.cpp">
       <Filter>Report\WinAPI_Report_09 %28똥피하기%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_09_MainGame.cpp">
-      <Filter>Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas</Filter>
+    <ClCompile Include="Report_BulletShootingh.cpp">
+      <Filter>Report\WinAPI_Report_10 %28총알 발사%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_MainGame.cpp">
+      <Filter>Report\ManagerClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Crocodile.cpp">
+      <Filter>Report\WinAPI_Report_11 %28악어이빨 게임%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

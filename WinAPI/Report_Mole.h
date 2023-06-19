@@ -4,7 +4,7 @@
 
 #define CREATE_CYCLE		1
 
-class Report_07_MainGame : public GameNode
+class Report_Mole : public GameNode
 {
 private:
 	Mole* _Mole[MAX_MOLE];
@@ -19,7 +19,7 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
-	Report_07_MainGame() {}
-	~Report_07_MainGame() {}
+	Report_Mole() {}
+	~Report_Mole() {}
 };
 

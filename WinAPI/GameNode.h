@@ -83,7 +83,7 @@ public:
 			기본적으로 0이 리턴되면 모든 메세지가 처리되었다는 것을 의미한다.
 	*/
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
-
+	
 	GameNode() {}
 	virtual ~GameNode() {}
 };

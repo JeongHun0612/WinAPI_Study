@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_08_MainGame.h"
+#include "Report_MainGame.h"
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -9,7 +9,7 @@ POINT _ptMouse = { 0, 0 };
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void setWindowSize(int x, int y, int width, int height);
 
-Report_08_MainGame* _mg;
+Report_MainGame* _mg;
 
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -17,7 +17,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	int       nCmdShow)
 {
 
-	_mg = new Report_08_MainGame();
+	_mg = new Report_MainGame();
 
 	_hInstance = hInstance;
 
