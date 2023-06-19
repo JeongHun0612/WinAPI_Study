@@ -58,6 +58,18 @@
     <Filter Include="Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass">
       <UniqueIdentifier>{b85e65ca-d765-49da-8162-fc0fb537f8a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\WinAPI_Report_09 %28똥피하기%29">
+      <UniqueIdentifier>{3d08c448-82da-4dff-a679-fcc5d0687c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_10 %28총알 발사%29">
+      <UniqueIdentifier>{e29e7569-e8e7-459f-90cc-d58796e67082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_11 %28악어이빨 게임%29">
+      <UniqueIdentifier>{8bc641b0-d9cf-465d-94a1-39ccbe7126b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas">
+      <UniqueIdentifier>{dddbdec2-e5a0-46b7-8ad0-999f8ce4e023}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -110,6 +122,10 @@
     </ClInclude>
     <ClInclude Include="Target.h">
       <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Mole.h" />
+    <ClInclude Include="Report_09_MainGame.h">
+      <Filter>Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +200,13 @@
     </ClCompile>
     <ClCompile Include="Target.cpp">
       <Filter>Report\WinAPI_Report_08 %28클레이 사격%29\ObjectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Mole.cpp" />
+    <ClCompile Include="Report_09_Main.cpp">
+      <Filter>Report\WinAPI_Report_09 %28똥피하기%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_09_MainGame.cpp">
+      <Filter>Report\WinAPI_Report_09 %28똥피하기%29\ManagerClas</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

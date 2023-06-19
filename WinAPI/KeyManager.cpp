@@ -48,7 +48,6 @@ bool KeyManager::isOnceKeyDown(int key)
 	return false;
 }
 
-
 bool KeyManager::isOnceKeyUp(int key)
 {
 	if (GetKeyState(key) & 0x8000)
