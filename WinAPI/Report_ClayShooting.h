@@ -1,10 +1,10 @@
 #pragma once
-#include "GameNode.h"
+#include "Report_MainGame.h"
 #include "Target.h"
 
 #define TARGET_MAX		5
 
-class Report_ClayShooting : public GameNode
+class Report_ClayShooting : public Report_MainGame
 {
 private:
 	int _nGameTime;

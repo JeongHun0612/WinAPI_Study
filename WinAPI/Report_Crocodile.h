@@ -1,7 +1,7 @@
 #pragma once
-#include "GameNode.h"
+#include "Report_MainGame.h"
 
-class Report_Crocodile : public GameNode
+class Report_Crocodile : public Report_MainGame
 {
 private:
 

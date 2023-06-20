@@ -149,12 +149,15 @@
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="IWindowMessageHandler.h" />
     <ClInclude Include="KeyManager.h" />
-    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MainGame.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Mole.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
+    <ClInclude Include="Report_Horizontal_Shooting.h" />
     <ClInclude Include="Report_Mole.h" />
     <ClInclude Include="Report_ClayShooting.h" />
     <ClInclude Include="Report_Avoid.h">
@@ -164,6 +167,7 @@
     <ClInclude Include="Report_MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Report_Vertical_Shooting.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Target.h" />
@@ -176,11 +180,14 @@
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="IWindowMessageHandler.cpp" />
     <ClCompile Include="KeyManager.cpp" />
-    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MainGame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Mole.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="Report_CardMatch.cpp" />
     <ClCompile Include="Report_Crocodile.cpp" />
+    <ClCompile Include="Report_Horizontal_Shooting.cpp" />
     <ClCompile Include="Report_Mole.cpp" />
     <ClCompile Include="Report_ClayShooting.cpp" />
     <ClCompile Include="Report_Avoid.cpp">
@@ -193,6 +200,7 @@
     <ClCompile Include="Report_MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Report_Vertical_Shooting.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="Target.cpp" />
     <ClCompile Include="WinAPITimeAttack.cpp">

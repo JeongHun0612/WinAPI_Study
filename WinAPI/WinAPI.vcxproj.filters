@@ -52,6 +52,12 @@
     <Filter Include="Report\ManagerClass">
       <UniqueIdentifier>{100bffa7-cf29-49f6-a30e-efbf4a69bb15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\WinAPI_Report_12 %28종스크롤 슈팅 게임%29">
+      <UniqueIdentifier>{84b9e28f-3090-41e8-bda7-801ccf9beaaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\WinAPI_Report_13 %28횡스크롤 슈팅 게임%29">
+      <UniqueIdentifier>{1f1cbe68-c975-4faf-98a8-1eaf18e67849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -117,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="Report_Crocodile.h">
       <Filter>Report\WinAPI_Report_11 %28악어이빨 게임%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Vertical_Shooting.h">
+      <Filter>Report\WinAPI_Report_12 %28종스크롤 슈팅 게임%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Horizontal_Shooting.h">
+      <Filter>Report\WinAPI_Report_13 %28횡스크롤 슈팅 게임%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +210,12 @@
     </ClCompile>
     <ClCompile Include="Report_Crocodile.cpp">
       <Filter>Report\WinAPI_Report_11 %28악어이빨 게임%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Vertical_Shooting.cpp">
+      <Filter>Report\WinAPI_Report_12 %28종스크롤 슈팅 게임%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Horizontal_Shooting.cpp">
+      <Filter>Report\WinAPI_Report_13 %28횡스크롤 슈팅 게임%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

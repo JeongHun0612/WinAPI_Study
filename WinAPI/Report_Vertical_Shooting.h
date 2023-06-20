@@ -1,6 +1,5 @@
 #pragma once
-#include "GameNode.h"
-#include "Example_Mole.h" 
+#include "Report_MainGame.h"
 
 #define BULLET_MAX		10
 #define PLAYER_SPEED	5
@@ -22,7 +21,7 @@ struct tagEnemy
 	bool die;
 };
 
-class MainGame : public GameNode
+class Report_Vertical_Shooting : public Report_MainGame
 {
 private:
 	HBRUSH brush;
@@ -40,8 +39,10 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
+
 	void fireBullet(void);
 
-	MainGame() {}
-	~MainGame() {}
+	Report_Vertical_Shooting() {}
+	~Report_Vertical_Shooting() {}
 };
+

@@ -1,8 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-
-#define MAX_GAMETYPE	6
+#define MAX_GAMETYPE	8
 
 enum GAMETYPE
 {
@@ -12,13 +11,16 @@ enum GAMETYPE
 	AVOIDGAME,
 	BULLETSHOOTING,
 	CROCODILETEETH,
+	VERTICALSHOOTING,
+	HORIZONTALSHOOTING,
+
 	GAMETYPENULL
 };
 
 class Report_MainGame : public GameNode
 {
 private:
-	GameNode* _mg;
+	Report_MainGame* _mg;
 	GAMETYPE _EGameType;
 
 	RECT _gameTypeBtn[MAX_GAMETYPE];
@@ -32,6 +34,8 @@ public:
 	void release(void);
 	void update(void);
 	void render(HDC hdc);
+
+	virtual bool isGameOver(void);
 
 	Report_MainGame() {}
 	~Report_MainGame() {}

@@ -1,8 +1,8 @@
 #pragma once
-#include "GameNode.h"
+#include "Report_MainGame.h"
 #include "Card.h"
 
-class Report_CardMatch : public GameNode
+class Report_CardMatch : public Report_MainGame
 {
 private:
 	Card _Card[CARD_MAX];

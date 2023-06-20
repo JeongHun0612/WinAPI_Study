@@ -1,10 +1,31 @@
 #include "Stdafx.h"
-#include "MainGame.h"
+#include "Report_Vertical_Shooting.h"
 
-HRESULT MainGame::init(void)
+/*
+과제 1. 종스크롤 슈팅 게임
+
+- 플레이어 체력바 설정
+ㄴ 적과 충돌하면 체력이 감소되고 체력바는 3단계로 처리
+ㄴ 빨 / 주 / 초
+
+- 플레이어가 발사한 총알로 적을 제거
+
+과제 2. 1 VS 1 횡스크롤 슈팅 게임
+
+- 왼쪽에 1P / 오른쪽에 2P
+
+- 체력 바는 대전게임처럼 중앙을 기준으로 좌우 배치
+ㄴ 체력 바 상태에 따라 녹 / 노 / 빨
+
+- 공격 당하면 당한쪽은 당연히 체력이 감소해야 한다.
+
+※ 필수 :
+스킬 2개 + 2개 = 4개
+아이템을 2종 구현해 온다.
+*/
+
+HRESULT Report_Vertical_Shooting::init(void)
 {
-	GameNode::init();
-
 	// 플레이어 초기화
 	_playerRC = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2 + 200, 40, 40);
 	_hpBar = RectMake(45, 10, 120, 20);
@@ -24,15 +45,13 @@ HRESULT MainGame::init(void)
 	return S_OK;
 }
 
-void MainGame::release(void)
+void Report_Vertical_Shooting::release(void)
 {
-	GameNode::release();
+
 }
 
-void MainGame::update(void)
+void Report_Vertical_Shooting::update(void)
 {
-	GameNode::update();
-
 	// 플레이어 조작
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && WINSIZE_X > _playerRC.right)
 	{
@@ -119,7 +138,7 @@ void MainGame::update(void)
 	}
 }
 
-void MainGame::render(HDC hdc)
+void Report_Vertical_Shooting::render(HDC hdc)
 {
 	// HP바 그리기
 	TextOut(hdc, 10, 10, "HP : ", strlen("HP : "));
@@ -158,7 +177,7 @@ void MainGame::render(HDC hdc)
 	}
 }
 
-void MainGame::fireBullet(void)
+void Report_Vertical_Shooting::fireBullet(void)
 {
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
@@ -175,27 +194,3 @@ void MainGame::fireBullet(void)
 		break;
 	}
 }
-
-/*
-과제 1. 종스크롤 슈팅 게임
-
-- 플레이어 체력바 설정
-ㄴ 적과 충돌하면 체력이 감소되고 체력바는 3단계로 처리
-ㄴ 빨 / 주 / 초
-
-- 플레이어가 발사한 총알로 적을 제거
-
-과제 2. 1 VS 1 횡스크롤 슈팅 게임
-
-- 왼쪽에 1P / 오른쪽에 2P
-
-- 체력 바는 대전게임처럼 중앙을 기준으로 좌우 배치
-ㄴ 체력 바 상태에 따라 녹 / 노 / 빨
-
-- 공격 당하면 당한쪽은 당연히 체력이 감소해야 한다.
-
-※ 필수 :
-스킬 2개 + 2개 = 4개
-아이템을 2종 구현해 온다.
-
-*/

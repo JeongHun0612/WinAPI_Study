@@ -7,12 +7,14 @@
 #include "Report_Avoid.h"
 #include "Report_BulletShooting.h"
 #include "Report_Crocodile.h"
+#include "Report_Vertical_Shooting.h";
+#include "Report_Horizontal_Shooting.h"
 
 HRESULT Report_MainGame::init(void)
 {
     GameNode::init();
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 2; j++)
         {
@@ -29,6 +31,8 @@ HRESULT Report_MainGame::init(void)
     _gameName[3] = "¶Ë ÇÇÇÏ±â";
     _gameName[4] = "ÃÑ¾Ë ¹ß»ç";
     _gameName[5] = "¾Ç¾î ÀÌ»¡ °ÔÀÓ";
+    _gameName[6] = "Á¾½ºÅ©·Ñ ½´ÆÃ";
+    _gameName[7] = "È¾½ºÅ©·Ñ ½´ÆÃ";
 
     _bIsInGame = false;
 
@@ -40,7 +44,6 @@ void Report_MainGame::release(void)
     GameNode::release();
 
     _mg->release();
-
     SAFE_DELETE(_mg);
 }
 
@@ -52,7 +55,7 @@ void Report_MainGame::update(void)
     {
         _mg->update();
 
-        if (KEYMANAGER->isOnceKeyDown(VK_F1))
+        if (_mg->isGameOver() || KEYMANAGER->isOnceKeyDown(VK_F1))
         {
             _bIsInGame = false;
         }
@@ -88,8 +91,12 @@ void Report_MainGame::update(void)
                     case CROCODILETEETH:
                         _mg = new Report_Crocodile;
                         break;
-                    default:
-                        return;
+                    case VERTICALSHOOTING:
+                        _mg = new Report_Vertical_Shooting;
+                        break;
+                    case HORIZONTALSHOOTING:
+                        _mg = new Report_Horizontal_Shooting;
+                        break;
                     }
 
                     _mg->init();
@@ -115,4 +122,9 @@ void Report_MainGame::render(HDC hdc)
             TextOut(hdc, 10 + _gameTypeBtn[i].left, 15 + _gameTypeBtn[i].top, _gameName[i], strlen(_gameName[i]));
         }
     }
+}
+
+bool Report_MainGame::isGameOver(void)
+{
+    return false;
 }

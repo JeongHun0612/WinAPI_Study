@@ -1,10 +1,10 @@
 #pragma once
-#include "GameNode.h"
+#include "Report_MainGame.h"
 #include "Mole.h"
 
 #define CREATE_CYCLE		1
 
-class Report_Mole : public GameNode
+class Report_Mole : public Report_MainGame
 {
 private:
 	Mole* _Mole[MAX_MOLE];

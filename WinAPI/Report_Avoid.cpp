@@ -89,7 +89,9 @@ void Report_Avoid::update(void)
 			{
 				_vDDong.clear();
 				_count = 0;
-				_bisDead = false;
+
+				setIsInGame(false);
+				//_bisDead = false;
 			}
 		}
 	}
