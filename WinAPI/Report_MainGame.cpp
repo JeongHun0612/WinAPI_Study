@@ -55,7 +55,7 @@ void Report_MainGame::update(void)
     {
         _mg->update();
 
-        if (_mg->isGameOver() || KEYMANAGER->isOnceKeyDown(VK_F1))
+        if (KEYMANAGER->isOnceKeyDown(VK_F1) || _mg->isGameOver())
         {
             _bIsInGame = false;
         }

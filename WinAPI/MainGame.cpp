@@ -112,11 +112,6 @@ void MainGame::update(void)
 			break;
 		}
 	}
-
-	if (_hp == 0)
-	{
-
-	}
 }
 
 void MainGame::render(HDC hdc)

@@ -39,8 +39,9 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
-
 	void fireBullet(void);
+
+	bool isGameOver(void);
 
 	Report_Vertical_Shooting() {}
 	~Report_Vertical_Shooting() {}

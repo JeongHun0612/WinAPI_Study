@@ -150,14 +150,16 @@
     <ClInclude Include="IWindowMessageHandler.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Mole.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
-    <ClInclude Include="Report_Horizontal_Shooting.h" />
+    <ClInclude Include="Report_Horizontal_Shooting.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Report_Mole.h" />
     <ClInclude Include="Report_ClayShooting.h" />
     <ClInclude Include="Report_Avoid.h">
@@ -181,7 +183,7 @@
     <ClCompile Include="IWindowMessageHandler.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Mole.cpp" />
     <ClCompile Include="MouseManager.cpp" />

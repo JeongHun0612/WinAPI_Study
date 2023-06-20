@@ -20,6 +20,7 @@ HRESULT Report_Avoid::init(void)
 
 	_createTime = 50;
 	_gameTime = 0;
+	_count = 0;
 
 	_bisDead = false;
 
@@ -88,10 +89,7 @@ void Report_Avoid::update(void)
 			if (PtInRect(&_RestartBtn, _ptMouse))
 			{
 				_vDDong.clear();
-				_count = 0;
-
-				setIsInGame(false);
-				//_bisDead = false;
+				init();
 			}
 		}
 	}
