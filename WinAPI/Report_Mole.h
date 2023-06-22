@@ -7,6 +7,8 @@
 class Report_Mole : public Report_MainGame
 {
 private:
+	GImage* _bgImage;
+
 	Mole* _Mole[MAX_MOLE];
 	clock_t _tCreateCycle;
 

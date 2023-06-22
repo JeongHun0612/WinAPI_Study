@@ -8,10 +8,17 @@ HRESULT GameNode::init(void)
 
 	RND->init();
 	KEYMANAGER->init();
-	MOUSEMANAGER->init();
+
+	this->setDoubleBuffer();
 
 	// 함수가 성공적으로 실행 되었음을 알린다.
 	return S_OK;
+}
+
+void GameNode::setDoubleBuffer(void)
+{
+	_DoubleBuffer = new GImage;
+	_DoubleBuffer->init(WINSIZE_X, WINSIZE_Y);
 }
 
 void GameNode::release(void)
@@ -21,12 +28,13 @@ void GameNode::release(void)
 
 	RND->releaseSingleton();
 	KEYMANAGER->releaseSingleton();
-	MOUSEMANAGER->releaseSingleton();
+
+	SAFE_DELETE(_DoubleBuffer);
 }
 
 void GameNode::update(void)
 {
-	InvalidateRect(_hWnd, NULL, true);
+	InvalidateRect(_hWnd, NULL, false);
 }
 
 void GameNode::render(HDC hdc)

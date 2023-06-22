@@ -1,6 +1,7 @@
 #pragma once
+#include "GImage.h"
 
-#pragma region 
+#pragma region 객체지향 프로그래밍
 /*
 ▶ 객체지향 프로그래밍 (OOP)
 
@@ -65,12 +66,17 @@
 class GameNode
 {
 private:
+	GImage* _DoubleBuffer;
+	void setDoubleBuffer(void);
 
 public:
 	virtual HRESULT init(void);
 	virtual void release(void);
 	virtual void update(void);
 	virtual void render(HDC hdc);
+
+	// 백버퍼/더블 버퍼 이미지 얻기
+	GImage* getDoubleBuffer(void) { return _DoubleBuffer; }
 
 	// 순수가상 함수
 	//virtual void IFunction() PURE;

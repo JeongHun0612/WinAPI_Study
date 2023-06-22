@@ -14,11 +14,11 @@ struct tagPlayer
 	bool die;
 };
 
-struct tagBullet
-{
-	RECT rc;
-	bool fire;
-};
+//struct tagBullet
+//{
+//	RECT rc;
+//	bool fire;
+//};
 
 class Report_Horizontal_Shooting : public Report_MainGame
 {

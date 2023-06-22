@@ -51,16 +51,21 @@ void Report_Horizontal_Shooting::update(void)
 		_Player1.rc.top += PLAYER_SPEED;
 		_Player1.rc.bottom += PLAYER_SPEED;
 	}
+	// ÃÑ¾Ë ¹ß»ç
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		//RECT _bullet = RectMakeCenter(
-		//	_Player1.rc.right + 20,
-		//	_Player1.rc.top + (_Player1.rc.bottom - _Player1.rc.top) / 2,
-		//	10, 10);
-		//_vPlayerBullet1.push_back(_bullet);
-
-		RECT _bullet = RectMakeCenter(50, 50, 10, 10);
+		RECT _bullet = RectMakeCenter(
+			_Player1.rc.right + 20,
+			_Player1.rc.top + (_Player1.rc.bottom - _Player1.rc.top) / 2,
+			10, 10);
 		_vPlayerBullet1.push_back(_bullet);
+	}
+
+	// ÃÑ¾Ë ÀÌµ¿
+	for (auto iter = _vPlayerBullet1.begin(); iter != _vPlayerBullet1.end(); ++iter)
+	{
+		iter->left += 5;
+		iter->right += 5;
 	}
 
 	// Player2 Á¶ÀÛ
@@ -91,8 +96,8 @@ void Report_Horizontal_Shooting::render(HDC hdc)
 	DrawRectMake(hdc, _Player1.rc);
 	DrawRectMake(hdc, _Player2.rc);
 
-	//for (auto iter = _vPlayerBullet1.begin(); iter != _vPlayerBullet1.end(); ++iter)
-	//{
-	//	EllipseMakeCenter(hdc, iter->left, iter->right, iter->top, iter->bottom);
-	//}
+	for (auto iter = _vPlayerBullet1.begin(); iter != _vPlayerBullet1.end(); ++iter)
+	{
+		Ellipse(hdc, iter->left, iter->top, iter->right, iter->bottom);
+	}
 }

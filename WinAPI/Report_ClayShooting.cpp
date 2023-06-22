@@ -51,10 +51,10 @@ void Report_ClayShooting::update(void)
 		{
 			if (_Target[i] != NULL) break;
 
-			int rndPosY = RND->getFromIntTo(300, 500);
-			float rndSpeed = RND->getFromIntTo(8, 10);
+			int rndPosY = RND->getFromIntTo(300, 400);
+			float rndSpeed = RND->getFromIntTo(10, 12);
 
-			_Target[i] = RND->getInt(2) ? new Target(-50, rndPosY, 1, rndSpeed) : new Target(850, rndPosY, -1, rndSpeed);
+			_Target[i] = RND->getInt(2) ? new Target(-50, rndPosY, 1, rndSpeed) : new Target(WINSIZE_X + 50, rndPosY, -1, rndSpeed);
 		}
 	}
 
@@ -103,7 +103,7 @@ void Report_ClayShooting::render(HDC hdc)
 	TextOut(hdc, 10, 0, _cTimer, strlen(_cTimer));
 
 	wsprintf(_cScore, "Score : %4d", _nScore);
-	TextOut(hdc, 700, 0, _cScore, strlen(_cScore));
+	TextOut(hdc, WINSIZE_X - 100, 0, _cScore, strlen(_cScore));
 
 	for (int i = 0; i < TARGET_MAX; i++)
 	{

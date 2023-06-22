@@ -145,15 +145,17 @@
     <ClInclude Include="C3DVector.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CommonMacroFunction.h" />
+    <ClInclude Include="Example_Bullet.h" />
+    <ClInclude Include="Example_Image.h" />
     <ClInclude Include="Example_Mole.h" />
     <ClInclude Include="GameNode.h" />
+    <ClInclude Include="GImage.h" />
     <ClInclude Include="IWindowMessageHandler.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Mole.h" />
-    <ClInclude Include="MouseManager.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
@@ -169,7 +171,9 @@
     <ClInclude Include="Report_MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Report_Mole_Image.h" />
     <ClInclude Include="Report_Vertical_Shooting.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Target.h" />
@@ -178,15 +182,17 @@
     <ClCompile Include="C3DMatrix.cpp" />
     <ClCompile Include="C3DVector.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Example_Bullet.cpp" />
+    <ClCompile Include="Example_Image.cpp" />
     <ClCompile Include="Example_Mole.cpp" />
     <ClCompile Include="GameNode.cpp" />
+    <ClCompile Include="GImage.cpp" />
     <ClCompile Include="IWindowMessageHandler.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Mole.cpp" />
-    <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="Report_CardMatch.cpp" />
     <ClCompile Include="Report_Crocodile.cpp" />
     <ClCompile Include="Report_Horizontal_Shooting.cpp" />
@@ -197,11 +203,12 @@
     </ClCompile>
     <ClCompile Include="Report_BulletShootingh.cpp" />
     <ClCompile Include="Report_Main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Report_MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Report_Mole_Image.cpp" />
     <ClCompile Include="Report_Vertical_Shooting.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="Target.cpp" />
@@ -210,7 +217,7 @@
     </ClCompile>
     <ClCompile Include="WinAPI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="WinAPI_Report_01.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -227,6 +234,9 @@
     <ClCompile Include="WinAPI_Report_05.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinAPI.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
