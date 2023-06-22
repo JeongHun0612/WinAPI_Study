@@ -1,14 +1,23 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 
-class Report_Mole_Image : public Report_MainGame
+#define MAX_MOLE		9
+
+class Report_Mole_Image : public GameNode
 {
 private:
 	GImage* _holeImage;
 	GImage* _moleImage;
+	GImage* _hammerImage;
 
+	RECT _rc[MAX_MOLE];
+	int _index;				
+	int _count;				
+	int _time;				
+	int _score;				
 
-
+	bool _bIsSelected;	
+	bool _bIsOnceCheck;	
 
 
 public:

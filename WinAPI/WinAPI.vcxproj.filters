@@ -245,6 +245,9 @@
     <ClCompile Include="Report_Mole_Image.cpp">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
     </ClCompile>
+    <ClCompile Include="Mole_Image_Main.cpp">
+      <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
