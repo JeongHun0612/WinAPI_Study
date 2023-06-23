@@ -62,21 +62,21 @@ void Report_15_2_MainGame::update(void)
 		_bIsAuto = !_bIsAuto;
 	}
 
-
 	// 총알 발사
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		tagBullet bullet;
 
-		bullet._centerX = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
-		bullet._centerY = WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
-		bullet.rc = RectMakeCenter(bullet._centerX, bullet._centerY, 30, 30);
+		bullet.centerX = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
+		bullet.centerY = WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
 
-		bullet._radius = 15;
-		bullet._angle = _currentAngle;
-		bullet._moveX = 1;
-		bullet._moveY = 1;
-		bullet._speed = 5.0f;
+		bullet.radius = 15;
+		bullet.angle = _currentAngle;
+		bullet.moveX = 1;
+		bullet.moveY = 1;
+		bullet.speed = 5.0f;
+
+		bullet.rc = RectMakeCenter(bullet.centerX, bullet.centerY, 30, 30);
 
 		_vBullet.push_back(bullet);
 	}
@@ -84,43 +84,39 @@ void Report_15_2_MainGame::update(void)
 	// 총알 이동
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
-		_vBulletIter->_centerX += cosf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveX * _vBulletIter->_speed;
-		_vBulletIter->_centerY += sinf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveY * _vBulletIter->_speed;
+		_vBulletIter->centerX += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveX * _vBulletIter->speed;
+		_vBulletIter->centerY += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveY * _vBulletIter->speed;
 
-		//_vBulletIter->rc.left += cosf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveX * _vBulletIter->_speed;
-		//_vBulletIter->rc.right += cosf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveX * _vBulletIter->_speed;
+		_vBulletIter->rc = RectMakeCenter(_vBulletIter->centerX, _vBulletIter->centerY, 30, 30);
 
-		//_vBulletIter->rc.top += sinf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveY * _vBulletIter->_speed;
-		//_vBulletIter->rc.bottom += sinf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveY * _vBulletIter->_speed;
-
-
-		if (_vBulletIter->rc.right >= WINSIZE_X || _vBulletIter->rc.left <= 0)
+		if (_vBulletIter->rc.left <= 0 || _vBulletIter->rc.right >= WINSIZE_X)
 		{
-			_vBulletIter->_moveX = -_vBulletIter->_moveX;
+			_vBulletIter->moveX = -_vBulletIter->moveX;
+
 		}
-		if (_vBulletIter->rc.bottom >= WINSIZE_Y || _vBulletIter->rc.top <= 0)
+		if (_vBulletIter->rc.top <= 0 || _vBulletIter->rc.bottom >= WINSIZE_Y)
 		{
-			_vBulletIter->_moveY = -_vBulletIter->_moveY;
+			_vBulletIter->moveY = -_vBulletIter->moveY;
 		}
+
+		
 	}
 
 	// 총알 간의 충돌
-	for (int i = 0; i < _vBullet.size(); i++)
-	{
-		for (int j = 0; j < _vBullet.size(); j++)
-		{
-			if (i == j) continue;
+	//for (int i = 0; i < _vBullet.size(); i++)
+	//{
+	//	for (int j = 0; j < _vBullet.size(); j++)
+	//	{
+	//		if (i == j) continue;
 
-			//sqrt((x2 - x1)² + (y2 - y1)²) - 두 점 사이의 거리
-			if (sqrt(pow(_vBullet[i].rc.left + _vBullet[i]._radius - _vBullet[j].rc.left + _vBullet[i]._radius, 2) +
-					 pow(_vBullet[i].rc.top + _vBullet[i]._radius - _vBullet[j].rc.top + _vBullet[i]._radius, 2)) <= 30)
-			{
-
-				_vBullet[i]._moveX = -_vBullet[i]._moveX;
-				_vBullet[i]._moveY = -_vBullet[i]._moveY;
-			}
-		}
-	}
+	//		//sqrt((x2 - x1)² + (y2 - y1)²) - 두 점 사이의 거리
+	//		if (sqrt(pow(_vBullet[i].centerX - _vBullet[j].centerX, 2) + pow(_vBullet[i].centerY - _vBullet[j].centerY, 2)) <= 30)
+	//		{
+	//			_vBullet[i].moveX = -_vBullet[i].moveX;
+	//			_vBullet[i].moveY = -_vBullet[i].moveY;
+	//		}
+	//	}
+	//}
 }
 
 void Report_15_2_MainGame::render(HDC hdc)
@@ -141,8 +137,7 @@ void Report_15_2_MainGame::render(HDC hdc)
 
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
-		//Ellipse(memDC, _vBulletIter->rc.left, _vBulletIter->rc.top, _vBulletIter->rc.right, _vBulletIter->rc.bottom);
-		EllipseMakeCenter(memDC, _vBulletIter->_centerX, _vBulletIter->_centerY, _vBulletIter->_radius);
+		EllipseMakeCenter(memDC, _vBulletIter->centerX, _vBulletIter->centerY, _vBulletIter->radius);
 	}
 
 	// ==========================================================
