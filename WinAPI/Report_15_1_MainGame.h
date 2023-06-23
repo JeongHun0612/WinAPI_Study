@@ -21,9 +21,9 @@ private:
 	HPEN _pen;
 	HPEN _currentPen;
 
-	Timer _hour;
-	Timer _minute;
-	Timer _second;
+	Timer _hour[12];
+	Timer _minute[60];
+	Timer _second[60];
 
 	int _radius;
 

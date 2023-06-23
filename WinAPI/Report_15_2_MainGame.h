@@ -11,8 +11,14 @@
 
 struct tagBullet
 {
+	int _centerX;
+	int _centerY;
+
 	RECT rc;
 	int _angle;
+	int _radius;
+	int _moveX;
+	int _moveY;
 	float _speed;
 };
 
@@ -23,9 +29,10 @@ private:
 	vector<tagBullet>::iterator _vBulletIter;
 
 	int _currentAngle;
-	int _currentPosX;
-	int _currentPosY;
 	int _radius;
+	int _move;
+
+	bool _bIsAuto;
 
 public:
 	HRESULT init(void);

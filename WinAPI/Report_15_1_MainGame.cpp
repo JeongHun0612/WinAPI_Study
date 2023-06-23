@@ -18,11 +18,23 @@ HRESULT Report_15_1_MainGame::init(void)
 {
 	GameNode::init();
 
-	_hour = { 0, 0 };
-	_minute = { 0, 0 };
-	_second = { 0, 0 };
-
 	_radius = 300;
+
+	for (int i = 0; i < 12; i++)
+	{
+		_hour[i].x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(i * 30.0f - 90)) * (_radius - 100);
+		_hour[i].y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(i * 30.0f - 90)) * (_radius - 100);
+	}
+
+	for (int i = 0; i < 60; i++)
+	{
+		_minute[i].x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(i * 6.0f - 90)) * (_radius - 50);
+		_minute[i].y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(i * 6.0f - 90)) * (_radius - 50);
+
+		_second[i].x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(i * 6.0f - 90)) * (_radius - 30);
+		_second[i].y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(i * 6.0f - 90)) * (_radius - 30);
+	}
+
 
 	return S_OK;
 }
@@ -38,14 +50,9 @@ void Report_15_1_MainGame::update(void)
 
 	GetLocalTime(&_st);
 
-	_hour.x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_st.wHour * 30.0f - 90)) * (_radius - 100);
-	_hour.y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(_st.wHour * 30.0f - 90)) * (_radius - 100);
-
-	_minute.x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_st.wMinute * 6.0f - 90)) * (_radius - 50);
-	_minute.y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(_st.wMinute * 6.0f - 90)) * (_radius - 50);
-
-	_second.x = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_st.wSecond * 6.0f - 90)) * (_radius - 30);
-	_second.y = WINSIZE_Y / 2 + sinf(DEGREE_RADIAN(_st.wSecond * 6.0f - 90)) * (_radius - 30);
+	_st.wHour;
+	_st.wMinute;
+	_st.wSecond;
 }
 
 void Report_15_1_MainGame::render(HDC hdc)
@@ -60,9 +67,9 @@ void Report_15_1_MainGame::render(HDC hdc)
 	SetTextAlign(memDC, TA_CENTER);
 	TextOut(memDC, WINSIZE_X / 2, 10, strTime, strlen(strTime));
 
-	ElipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _radius + 20);
-	ElipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _radius);
-	ElipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, 10);
+	EllipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _radius + 20);
+	EllipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _radius);
+	EllipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, 10);
 
 	for (int i = 0; i < 60; i++)
 	{
@@ -77,9 +84,9 @@ void Report_15_1_MainGame::render(HDC hdc)
 		);
 	}
 
-	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _hour.x, _hour.y);
-	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _minute.x, _minute.y);
-	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _second.x, _second.y);
+	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _hour[_st.wHour % 12].x, _hour[_st.wHour % 12].y);
+	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _minute[_st.wMinute].x, _minute[_st.wMinute].y);
+	LineMake(memDC, WINSIZE_X / 2, WINSIZE_Y / 2, _second[_st.wSecond].x, _second[_st.wSecond].y);
 
 	// ==========================================================
 	this->getDoubleBuffer()->render(hdc, 0, 0);
