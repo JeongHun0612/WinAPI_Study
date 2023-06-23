@@ -49,3 +49,8 @@ inline void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 {
 	Ellipse(hdc, x - width / 2, y - height / 2, x + width / 2, y + height / 2);
 }
+
+inline void ElipseMakeCenter(HDC hdc, int x, int y, int radius)
+{
+	Ellipse(hdc, x - radius, y - radius, x + radius, y + radius);
+}

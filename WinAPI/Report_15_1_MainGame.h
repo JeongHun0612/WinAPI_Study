@@ -4,29 +4,30 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-// 상수화
 #define PI 3.141592653f
 
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-struct STAR
+struct Timer
 {
 	int x;
 	int y;
 };
 
-class MainGame : public GameNode
+class Report_15_1_MainGame : public GameNode
 {
 private:
-	float _radian;
-	float _degree;
+	HPEN _pen;
+	HPEN _currentPen;
 
-	// 시간 관련 구조체
+	Timer _hour;
+	Timer _minute;
+	Timer _second;
+
+	int _radius;
+
 	SYSTEMTIME _st;
-
-	HPEN _currentStarPen;
-	STAR _star[5];
 
 public:
 	HRESULT init(void);
@@ -34,6 +35,7 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
-	MainGame() {}
-	~MainGame() {}
+	Report_15_1_MainGame() {}
+	~Report_15_1_MainGame() {}
 };
+

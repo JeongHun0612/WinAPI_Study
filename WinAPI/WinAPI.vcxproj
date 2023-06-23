@@ -147,6 +147,7 @@
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="Example_Bullet.h" />
     <ClInclude Include="Example_Image.h" />
+    <ClInclude Include="Example_Math.h" />
     <ClInclude Include="Example_Mole.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GImage.h" />
@@ -157,6 +158,10 @@
     </ClInclude>
     <ClInclude Include="Mole.h" />
     <ClInclude Include="RandomFunction.h" />
+    <ClInclude Include="Report_15_1_MainGame.h" />
+    <ClInclude Include="Report_15_2_MainGame.h" />
+    <ClInclude Include="Report_15_3_MainGame.h" />
+    <ClInclude Include="Report_15_4_MainGame.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
     <ClInclude Include="Report_Horizontal_Shooting.h">
@@ -184,6 +189,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Example_Bullet.cpp" />
     <ClCompile Include="Example_Image.cpp" />
+    <ClCompile Include="Example_Math.cpp" />
     <ClCompile Include="Example_Mole.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GImage.cpp" />
@@ -193,7 +199,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Mole.cpp" />
-    <ClCompile Include="Mole_Image_Main.cpp" />
+    <ClCompile Include="Mole_Image_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Report_15_1_MainGame.cpp" />
+    <ClCompile Include="Report_15_2_MainGame.cpp" />
+    <ClCompile Include="Report_15_3_MainGame.cpp" />
+    <ClCompile Include="Report_15_4_MainGame.cpp" />
+    <ClCompile Include="Report_15_Main.cpp" />
     <ClCompile Include="Report_CardMatch.cpp" />
     <ClCompile Include="Report_Crocodile.cpp" />
     <ClCompile Include="Report_Horizontal_Shooting.cpp" />

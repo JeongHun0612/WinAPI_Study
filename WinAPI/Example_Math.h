@@ -1,4 +1,5 @@
 #pragma once
+
 #include "GameNode.h"
 
 #define _USE_MATH_DEFINES
@@ -16,7 +17,7 @@ struct STAR
 	int y;
 };
 
-class MainGame : public GameNode
+class Example_Math : public GameNode
 {
 private:
 	float _radian;
@@ -34,6 +35,7 @@ public:
 	void update(void);
 	void render(HDC hdc);
 
-	MainGame() {}
-	~MainGame() {}
+	Example_Math() {}
+	~Example_Math() {}
 };
+

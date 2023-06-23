@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "MainGame.h"
+#include "Example_Math.h"
 
 #pragma region 삼각함수
 /*
@@ -35,7 +35,7 @@
 
 - API에서는 윈도우 좌표계를 사용한다.
 
-- 윈도우 좌표계는 데카르트 좌표계와는 달리 y축이 아래로 내려갈수록 증가하기 때문에 
+- 윈도우 좌표계는 데카르트 좌표계와는 달리 y축이 아래로 내려갈수록 증가하기 때문에
   y좌표를 구할때 별다른 처리를 하지 않았다면 sin 앞에 '-' 기호를 붙여야 한다.
 
 ㆍ 기억해야 할 개념.
@@ -120,7 +120,7 @@
 
 #pragma endregion
 
-HRESULT MainGame::init(void)
+HRESULT Example_Math::init(void)
 {
 	GameNode::init();
 
@@ -146,26 +146,24 @@ HRESULT MainGame::init(void)
 		*/
 	}
 
-
 	return S_OK;
 }
 
-void MainGame::release(void)
+void Example_Math::release(void)
 {
 	GameNode::release();
 
 }
 
-void MainGame::update(void)
+void Example_Math::update(void)
 {
 	GameNode::update();
 
 	GetLocalTime(&_st);
 	_st.wSecond;
-
 }
 
-void MainGame::render(HDC hdc)
+void Example_Math::render(HDC hdc)
 {
 	char strRadian[128];
 	char strDegree[128];
@@ -190,7 +188,7 @@ void MainGame::render(HDC hdc)
 
 	currentPen = (HPEN)SelectObject(hdc, pen);
 
-	LineMake(hdc, WINSIZE_X / 2 - 100, WINSIZE_Y / 2 + 100, WINSIZE_X / 2+ 200, WINSIZE_Y / 2 + 100);
+	LineMake(hdc, WINSIZE_X / 2 - 100, WINSIZE_Y / 2 + 100, WINSIZE_X / 2 + 200, WINSIZE_Y / 2 + 100);
 
 	DeleteObject(pen);
 
@@ -199,37 +197,3 @@ void MainGame::render(HDC hdc)
 		EllipseMakeCenter(hdc, _star[i].x, _star[i].y, 10, 10);
 	}
 }
-
-/*
-과제 2. 포신 각도에 따른 총알 발사
-
-- 예외 처리 : 포신 앵글을 막아준다. -> 화면 밖으로
-
-- 필수 : 수동 / 자동 버전 -> 총 2가지로
-
-
-과제 3. 발사된 총알끼리 충돌 (역삼각 함수)
-
-- 핵심 요소는 총알끼리 충돌이 되면 자연스럽게 팅겨 나가야 한다.
-
-
-과제 4. 발사한 총알에 중력 적용
-
-- 총알이 중력을 받아 떨어진다. -> 힘이 다하면
-
-
-※ 발사된 총알 예의 처리
-ㄴ 4번 과제는 제외
-ㄴ 발사된 총알은 화면 밖으로 나갈 수 없다.
-ㄴ 주의 사항 : 발사된 총알이 화면 끝점에 닿아 튕겨 나갈때 각도에 신경쓴다.
-
-
-도전 과제 1. 도형 회전
-
-- 사각형을 회전 시킨다.
-
-- hdc를 통해 그려온다
-ㄴ WinAPI를 활용해 구현
-
-- 화면축이 바뀐 상태면 상대 좌표로 이동하게 구현을 한다.
-*/

@@ -67,6 +67,9 @@
     <Filter Include="Report\Report_14 %28두더지 게임 - 이미지%29">
       <UniqueIdentifier>{164e880a-f5b5-4f69-8221-a85221e22e75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\Report_15 %28삼각함수%29">
+      <UniqueIdentifier>{c1aa4118-510c-45db-8762-6057b9e87941}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -148,6 +151,21 @@
     </ClInclude>
     <ClInclude Include="Report_Mole_Image.h">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Math.h">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_15_1_MainGame.h">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_15_2_MainGame.h">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_15_3_MainGame.h">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_15_4_MainGame.h">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +265,24 @@
     </ClCompile>
     <ClCompile Include="Mole_Image_Main.cpp">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Math.cpp">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_15_Main.cpp">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_15_1_MainGame.cpp">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_15_2_MainGame.cpp">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_15_3_MainGame.cpp">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_15_4_MainGame.cpp">
+      <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

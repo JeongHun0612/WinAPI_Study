@@ -103,7 +103,6 @@ void Example_Image::render(HDC hdc)
 - 타임 게이지가 모두 소진되면 타임오버 메세지를 화면에 띄우며 게임 종료
 
 
-
 과제 3. 포토샵 설치
 
 - CS6
