@@ -164,9 +164,6 @@
     <ClInclude Include="Report_15_3_MainGame.h">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_15_4_MainGame.h">
-      <Filter>Report\Report_15 %28삼각함수%29</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -279,9 +276,6 @@
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
     <ClCompile Include="Report_15_3_MainGame.cpp">
-      <Filter>Report\Report_15 %28삼각함수%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_15_4_MainGame.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
   </ItemGroup>

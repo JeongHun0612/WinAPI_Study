@@ -2,14 +2,13 @@
 #include "Report_15_1_MainGame.h"
 #include "Report_15_2_MainGame.h"
 #include "Report_15_3_MainGame.h"
-#include "Report_15_4_MainGame.h"
 
 #define REPORT_1		1
 #define REPORT_2		2
 #define REPORT_3		3
 #define REPORT_4		4
 
-#define REPORT_TYPE		REPORT_2
+#define REPORT_TYPE		REPORT_3
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -23,10 +22,8 @@ void setWindowSize(int x, int y, int width, int height);
 Report_15_1_MainGame* _mg;
 #elif REPORT_TYPE == REPORT_2
 Report_15_2_MainGame* _mg;
-#elif REPORT_TYPE == REPORT_3
-Report_15_3_MainGame* _mg;
 #else
-Report_15_4_MainGame* _mg;
+Report_15_3_MainGame* _mg;
 #endif
 
 int APIENTRY WinMain(HINSTANCE hInstance,
@@ -39,10 +36,8 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg = new Report_15_1_MainGame();
 	#elif REPORT_TYPE == REPORT_2
 	_mg = new Report_15_2_MainGame();
-	#elif REPORT_TYPE == REPORT_3
-	_mg = new Report_15_3_MainGame();
 	#else
-	_mg = new Report_15_4_MainGame();
+	_mg = new Report_15_3_MainGame();
 	#endif
 
 	_hInstance = hInstance;

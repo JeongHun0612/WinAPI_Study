@@ -15,11 +15,16 @@ class Report_15_3_MainGame : public GameNode
 public:
 	struct tagBullet
 	{
+		float centerX;
+		float centerY;
+
+		int angle;
+		int radius;
+		int moveX;
+		int moveY;
+		float speed;
+
 		RECT rc;
-		int _angle;
-		int _moveX;
-		int _moveY;
-		float _speed;
 	};
 
 private:

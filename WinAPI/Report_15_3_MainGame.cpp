@@ -2,9 +2,9 @@
 #include "Report_15_3_MainGame.h"
 
 /*
-과제 3. 발사된 총알끼리 충돌 (역삼각 함수)
+과제 4. 발사한 총알에 중력 적용
 
-- 핵심 요소는 총알끼리 충돌이 되면 자연스럽게 팅겨 나가야 한다.
+- 총알이 중력을 받아 떨어진다. -> 힘이 다하면
 */
 
 HRESULT Report_15_3_MainGame::init(void)
@@ -62,14 +62,16 @@ void Report_15_3_MainGame::update(void)
 	{
 		tagBullet bullet;
 
-		bullet.rc = RectMakeCenter(
-			WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30),
-			WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30),
-			30, 30);
-		bullet._angle = _currentAngle;
-		bullet._moveX = 1;
-		bullet._moveY = 1;
-		bullet._speed = 5.0f;
+		bullet.centerX = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
+		bullet.centerY = WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
+
+		bullet.radius = 15;
+		bullet.angle = _currentAngle;
+		bullet.moveX = 1;
+		bullet.moveY = 1;
+		bullet.speed = 10.0f;
+
+		bullet.rc = RectMakeCenter(bullet.centerX, bullet.centerY, bullet.radius * 2, bullet.radius * 2);
 
 		_vBullet.push_back(bullet);
 	}
@@ -77,20 +79,18 @@ void Report_15_3_MainGame::update(void)
 	// 총알 이동
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
-		_vBulletIter->rc.left += cosf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveX * _vBulletIter->_speed;
-		_vBulletIter->rc.right += cosf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveX * _vBulletIter->_speed;
+		_vBulletIter->centerX += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveX * 10.0f;
+		_vBulletIter->centerY += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveY * _vBulletIter->speed;
 
-		_vBulletIter->rc.top += sinf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveY * _vBulletIter->_speed;
-		_vBulletIter->rc.bottom += sinf(DEGREE_RADIAN(_vBulletIter->_angle)) * _vBulletIter->_moveY * _vBulletIter->_speed;
+		_vBulletIter->speed -= 0.15f;
+	}
 
-
-		if (_vBulletIter->rc.right >= WINSIZE_X || _vBulletIter->rc.left <= 0)
+	// 떨어진 총알 제거
+	for (int i = 0; i < _vBullet.size(); i++)
+	{
+		if (_vBullet[i].centerY >= WINSIZE_Y + 100)
 		{
-			_vBulletIter->_moveX = -_vBulletIter->_moveX;
-		}
-		if (_vBulletIter->rc.bottom >= WINSIZE_Y || _vBulletIter->rc.top <= 0)
-		{
-			_vBulletIter->_moveY = -_vBulletIter->_moveY;
+			_vBullet.erase(_vBullet.begin() + i);
 		}
 	}
 }
@@ -113,7 +113,7 @@ void Report_15_3_MainGame::render(HDC hdc)
 
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
-		Ellipse(memDC, _vBulletIter->rc.left, _vBulletIter->rc.top, _vBulletIter->rc.right, _vBulletIter->rc.bottom);
+		EllipseMakeCenter(memDC, _vBulletIter->centerX, _vBulletIter->centerY, _vBulletIter->radius);
 	}
 
 	// ==========================================================

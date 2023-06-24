@@ -11,11 +11,12 @@
 
 struct tagBullet
 {
-	int centerX;
-	int centerY;
+	float centerX;
+	float centerY;
 
 	int angle;
 	int radius;
+	int diameter;
 	int moveX;
 	int moveY;
 	float speed;
