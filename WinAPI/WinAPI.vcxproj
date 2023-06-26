@@ -161,6 +161,8 @@
     <ClInclude Include="Report_15_1_MainGame.h" />
     <ClInclude Include="Report_15_2_MainGame.h" />
     <ClInclude Include="Report_15_3_MainGame.h" />
+    <ClInclude Include="Report_16_1_MainGame.h" />
+    <ClInclude Include="Report_16_2_MainGame.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
     <ClInclude Include="Report_Horizontal_Shooting.h">
@@ -204,7 +206,14 @@
     <ClCompile Include="Report_15_1_MainGame.cpp" />
     <ClCompile Include="Report_15_2_MainGame.cpp" />
     <ClCompile Include="Report_15_3_MainGame.cpp" />
-    <ClCompile Include="Report_15_Main.cpp" />
+    <ClCompile Include="Report_15_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Report_16_1_MainGame.cpp" />
+    <ClCompile Include="Report_16_2_MainGame.cpp" />
+    <ClCompile Include="Report_16_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Report_CardMatch.cpp" />
     <ClCompile Include="Report_Crocodile.cpp" />
     <ClCompile Include="Report_Horizontal_Shooting.cpp" />

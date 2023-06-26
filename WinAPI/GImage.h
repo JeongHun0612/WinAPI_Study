@@ -44,7 +44,6 @@ private:
 	LPIMAGE_INFO	_imageInfo;
 	char*			_fileName;
 	bool			_isTrans;		// 없앨건지?
-	COLORREF		_transColor;	// 없앨 RGB 값 (마젠타 = RGB(255, 0, 255))
 
 	/*
 	COLORREF
@@ -52,6 +51,10 @@ private:
 	- 윈도우즈에서 색상값을 표현하기 위한 부호없는 32bit 정수형
 	ㄴ R, G, B 각각 1바이트 (8bit)이며 0 ~ 255까지의 값을 표현하는데 최적화 되어 있다.
 	*/
+	COLORREF		_transColor;	// 없앨 RGB 값 (마젠타 = RGB(255, 0, 255))
+
+	BLENDFUNCTION _blendFunc;		// 알파블렌드 기능
+	LPIMAGE_INFO _blendImage;		// 알파블렌드 이미지
 
 public:
 	HRESULT init(int width, int height);
@@ -62,6 +65,9 @@ public:
 	// 이미지 파일로 초기화
 	HRESULT init(const char* fileName, int width, int height, bool isTrans = false, COLORREF transColor = RGB(0, 0, 0));
 
+	// 투명 이미지 초기화
+	HRESULT initForAlphaBlend(void);
+
 	// 투명 컬러키 세팅
 	void setTransColor(bool isTrans, COLORREF transColor);
 
@@ -71,6 +77,14 @@ public:
 	// 렌더
 	void render(HDC hdc);
 	void render(HDC hdc, int destX, int destY);
+
+	//이미지 클리핑
+	void render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
+
+	// 알파렌더
+	void alphaRender(HDC hdc, BYTE alpha);
+	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha);
+	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
 	// = 인라인 함수 = 
 	inline HDC getMemDC(void) { return _imageInfo->hMemDC; }
