@@ -18,7 +18,7 @@ HRESULT Report_15_2_MainGame::init(void)
 	GameNode::init();
 
 	_radius = 50;
-	_currentAngle = -90;
+	_currentAngle = 270;
 	_move = 1;
 	_bIsAuto = true;
 
@@ -37,18 +37,18 @@ void Report_15_2_MainGame::update(void)
 	// 포신 이동
 	if (!_bIsAuto)
 	{
-		if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _currentAngle > -170)
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _currentAngle > 190)
 		{
 			_currentAngle -= 1;
 		}
-		if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _currentAngle < -10)
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _currentAngle < 350)
 		{
 			_currentAngle += 1;
 		}
 	}
 	else
 	{
-		if (_currentAngle < -170 || _currentAngle > -10)
+		if (_currentAngle == 190 || _currentAngle == 350)
 		{
 			_move = -_move;
 		}
@@ -67,55 +67,21 @@ void Report_15_2_MainGame::update(void)
 	{
 		tagBullet bullet;
 
-		bullet.centerX = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
-		bullet.centerY = WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
-
-		bullet.radius = 15;
+		bullet.radius = 30;
 		bullet.diameter = bullet.radius * 2;
 		bullet.angle = _currentAngle;
 		bullet.moveX = 1;
 		bullet.moveY = 1;
+
+		bullet.centerX = WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
+		bullet.centerY = WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30);
+		bullet.tempX = 0.0f;
+		bullet.tempY = WINSIZE_Y - bullet.radius;
 		bullet.speed = 5.0f;
 
 		bullet.rc = RectMakeCenter(bullet.centerX, bullet.centerY, bullet.radius * 2, bullet.radius * 2);
 
 		_vBullet.push_back(bullet);
-	}
-
-	// 총알 이동
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
-	{
-		_vBulletIter->centerX += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveX * _vBulletIter->speed;
-		_vBulletIter->centerY += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveY * _vBulletIter->speed;
-
-		_vBulletIter->rc = RectMakeCenter(_vBulletIter->centerX, _vBulletIter->centerY, _vBulletIter->radius * 2, _vBulletIter->radius * 2);
-
-		// 벽 충돌
-		if (_vBulletIter->rc.left <= 0)
-		{
-			_vBulletIter->centerX += -_vBulletIter->rc.left;
-			_vBulletIter->rc.left = 0;
-			_vBulletIter->moveX = -_vBulletIter->moveX;
-
-		}
-		if (_vBulletIter->rc.right >= WINSIZE_X)
-		{
-			_vBulletIter->centerX -= _vBulletIter->rc.right - WINSIZE_X;
-			_vBulletIter->rc.right = WINSIZE_X;
-			_vBulletIter->moveX = -_vBulletIter->moveX;
-		}
-		if (_vBulletIter->rc.top <= 0)
-		{
-			_vBulletIter->centerY += -_vBulletIter->rc.top;
-			_vBulletIter->rc.top = 0;
-			_vBulletIter->moveY = -_vBulletIter->moveY;
-		}
-		if (_vBulletIter->rc.bottom >= WINSIZE_Y)
-		{
-			_vBulletIter->centerY -= _vBulletIter->rc.bottom - WINSIZE_Y;
-			_vBulletIter->rc.bottom = WINSIZE_Y;
-			_vBulletIter->moveY = -_vBulletIter->moveY;
-		}
 	}
 
 	//총알 간의 충돌
@@ -130,32 +96,82 @@ void Report_15_2_MainGame::update(void)
 
 			if (distance <= _vBullet[i].diameter)
 			{
-				_vBullet[i].moveX = -_vBullet[i].moveX;
-				_vBullet[i].moveY = -_vBullet[i].moveY;
+ 				float ratio = _vBullet[i].diameter / (_vBullet[i].diameter - distance);
 
-				_vBullet[i].centerX += sqrt(pow(_vBullet[i].diameter - distance, 2) / 2.0f) * _vBullet[i].moveX;
-				_vBullet[i].centerY += sqrt(pow(_vBullet[i].diameter - distance, 2) / 2.0f) * _vBullet[i].moveY;
+				float num1 = ((_vBullet[i].centerX - _vBullet[j].centerX) / ratio) / 2.0f;
+				float num2 = ((_vBullet[i].centerY - _vBullet[j].centerY) / ratio) / 2.0f;
 
-				//_vBullet[i].centerX += (_vBullet[i].diameter - distance) * _vBullet[i].moveX;
-				//_vBullet[i].centerY += (_vBullet[i].diameter - distance) * _vBullet[i].moveY;
+				if (_vBullet[i].centerX > _vBullet[j].centerX)
+				{
+					_vBullet[i].centerX += num1;
+					_vBullet[j].centerX -= num2;
+				}
+				else
+				{
+					_vBullet[i].centerX -= num1;
+					_vBullet[j].centerX += num1;
+				}
 
-				//_vBullet[j].centerX += (_vBullet[j].diameter - distance) * _vBullet[j].moveX;
-				//_vBullet[j].centerY += (_vBullet[j].diameter - distance) * _vBullet[j].moveY;
+				if (_vBullet[i].centerY > _vBullet[j].centerY)
+				{
+					_vBullet[i].centerY += num1;
+					_vBullet[j].centerY -= num1;
+				}
+				else
+				{
+					_vBullet[i].centerY += num1;
+					_vBullet[j].centerY -= num1;
+				}
 
-
- 				//_vBullet[i].centerX += (450.0f - pow(abs(_vBullet[i].centerX) - abs(_vBullet[j].centerX), 2)) * _vBullet[i].moveX;
-				//_vBullet[i].centerY += (450.0f - pow(abs(_vBullet[i].centerY) - abs(_vBullet[j].centerY), 2)) * _vBullet[i].moveY;
-
-				//_vBullet[i].centerX += (_vBullet[i].diameter - abs(_vBullet[i].centerX - _vBullet[j].centerX)) * _vBullet[i].moveX;
-				//_vBullet[i].centerY += (_vBullet[i].diameter - abs(_vBullet[i].centerY - _vBullet[j].centerY)) * _vBullet[i].moveY;
-
-				//_vBullet[j].centerX += (_vBullet[i].diameter - abs(_vBullet[i].centerX - _vBullet[j].centerX)) * _vBullet[j].moveX;
-				//_vBullet[j].centerY += (_vBullet[i].diameter - abs(_vBullet[i].centerY - _vBullet[j].centerY)) * _vBullet[j].moveY;
-
-
-				//_vBullet[j].moveX = -_vBullet[j].moveX;
-				//_vBullet[j].moveY = -_vBullet[j].moveY;
+				if (abs(_vBullet[i].centerX - _vBullet[j].centerX) < abs(_vBullet[i].centerY - _vBullet[j].centerY))
+				{
+					_vBullet[i].moveY = -_vBullet[i].moveY;
+				}
+				else
+				{
+					_vBullet[i].moveX = -_vBullet[i].moveX;
+				}
 			}
+		}
+	}
+
+	// 총알 이동
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	{
+		_vBulletIter->centerX += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveX * _vBulletIter->speed;
+		_vBulletIter->centerY += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->moveY * _vBulletIter->speed;
+
+		// 벽 충돌
+		if (_vBulletIter->centerX - _vBulletIter->radius < 0)
+		{
+			_vBulletIter->centerX -= _vBulletIter->centerX - _vBulletIter->radius;
+
+			_vBulletIter->angle = 180 + (360 - _vBulletIter->angle);
+			//_vBulletIter->moveX = -_vBulletIter->moveX;
+		}
+
+		if (_vBulletIter->centerX + _vBulletIter->radius > WINSIZE_X)
+		{
+			_vBulletIter->centerX -= (_vBulletIter->centerX + _vBulletIter->radius) - WINSIZE_X;
+
+			_vBulletIter->angle = 180 + (360 - _vBulletIter->angle);
+			//_vBulletIter->moveX = -_vBulletIter->moveX;
+		}
+
+		if (_vBulletIter->centerY - _vBulletIter->radius < 0)
+		{
+			_vBulletIter->centerY -= _vBulletIter->centerY - _vBulletIter->radius;
+
+			_vBulletIter->angle = 360 - _vBulletIter->angle;
+			//_vBulletIter->moveY = -_vBulletIter->moveY;
+		}
+
+		if (_vBulletIter->centerY + _vBulletIter->radius > WINSIZE_Y)
+		{
+			_vBulletIter->centerY -= (_vBulletIter->centerY + _vBulletIter->radius) - WINSIZE_Y;
+
+			_vBulletIter->angle = 360 - _vBulletIter->angle;
+			//_vBulletIter->moveY = -_vBulletIter->moveY;
 		}
 	}
 }

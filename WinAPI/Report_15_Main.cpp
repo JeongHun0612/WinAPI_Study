@@ -6,9 +6,8 @@
 #define REPORT_1		1
 #define REPORT_2		2
 #define REPORT_3		3
-#define REPORT_4		4
 
-#define REPORT_TYPE		REPORT_3
+#define REPORT_TYPE		REPORT_2
 
 HINSTANCE _hInstance;
 HWND _hWnd;
