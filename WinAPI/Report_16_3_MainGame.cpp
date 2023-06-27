@@ -22,19 +22,46 @@ HRESULT Report_16_3_MainGame::init()
 {
 	GameNode::init();
 
+	// 지렁이 객체 초기화
 	for (int i = 0; i < MAX_WORM; i++)
 	{
-		_worms[i].centerPos = { WINSIZE_X / 2, WINSIZE_Y / 2 - i * 15 };
-		_worms[i].angle = 0;
-		_worms[i].radius = 15;
-		_worms[i].speed = 3.0f;
+		_worms[i].x = -50;
+		_worms[i].y = -50;
+		_worms[i].id = i;
+		_worms[i].radius = 20.0f;
+		_worms[i].color = RGB(0, 0, 0);
 	}
 
-	//_bead.rc = RectMakeCenter(WINSIZE_X / 2, WINSIZE_Y / 2, 50, 50);
-	//_bead.angle = 0;
-	//_bead.centerPos = { WINSIZE_X / 2, WINSIZE_Y / 2 };
-	//_bead.radius = 25.0f;
-	//_bead.speed = 3.0f;
+	speed = 3.0f;
+	count = 0;
+
+	switch (RND->getInt(4))
+	{
+	case 0: // Left
+		_worms[0].x = 25;
+		_worms[0].y = RND->getFromIntTo(50, WINSIZE_Y - 50);
+		angle = 0.0f;
+		break;
+	case 1: // Right
+		_worms[0].x = WINSIZE_X - 25;
+		_worms[0].y = RND->getFromIntTo(50, WINSIZE_Y - 50);
+		angle = 180.0f;
+		break;
+	case 2: // Up
+		_worms[0].x = RND->getFromIntTo(50, WINSIZE_X - 50);
+		_worms[0].y = 25;
+		angle = 90;
+		break;
+	case 3: // Down
+		_worms[0].x = RND->getFromIntTo(50, WINSIZE_X - 50);
+		_worms[0].y = WINSIZE_Y - 25;
+		angle = 270;
+		break;
+	}
+
+	// 아이템 객체 초기화
+	_item.x = -50;
+	_item.y = -50;
 
 	return S_OK;
 }
@@ -48,35 +75,76 @@ void Report_16_3_MainGame::update(void)
 {
 	GameNode::update();
 
-	for (int i = 0; i < MAX_WORM; i++)
-	{
-		_worms[i].centerPos.x += sin(DEGREE_RADIAN(_worms[i].angle)) * _worms[i].speed;
-		_worms[i].centerPos.y += cos(DEGREE_RADIAN(_worms[i].angle)) * _worms[i].speed;
-	}
-
-	for (int i = 1; i < MAX_WORM; i++)
-	{
-		if (rotPosX == _worms[i].centerPos.x && rotPosY == _worms[i].centerPos.y)
-		{
-			_worms[i].angle = _worms[0].angle;
-		}
-	}
-
-
+	// 키입력
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
-		rotPosX = _worms[0].centerPos.x;
-		rotPosY = _worms[0].centerPos.y;
-		rotAngle = _worms[0].angle;
-
-		_worms[0].angle += 3;
+		angle -= 3;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
-		rotPosX = _worms[0].centerPos.x;
-		rotPosY = _worms[0].centerPos.y;
+		angle += 3;
+	}
 
-		_worms[0].angle -= 3;
+	// 좌표값 변경
+	_worms[0].x += cosf(DEGREE_RADIAN(angle)) * speed;
+	_worms[0].y += sinf(DEGREE_RADIAN(angle)) * speed;
+
+	// 벽 충돌
+	if (_worms[0].x - _worms[0].radius <= 0)
+	{
+		_worms[0].x = _worms[0].radius;
+		angle = 180 - angle;
+	}
+	if (_worms[0].x + _worms[0].radius >= WINSIZE_X)
+	{
+		_worms[0].x = WINSIZE_X - _worms[0].radius - 10;
+		angle = 180 - angle;
+	}
+	if (_worms[0].y - _worms[0].radius <= 0)
+	{
+		_worms[0].y = _worms[0].radius;
+		angle = 360 - angle;
+	}
+	if (_worms[0].y + _worms[0].radius >= WINSIZE_Y)
+	{
+		_worms[0].y = WINSIZE_Y - _worms[0].radius;
+		angle = 360 - angle;
+	}
+
+	// 아이템 충돌
+	if (PtInRect(&_item.rc, { static_cast<LONG>(_worms[0].x), static_cast<LONG>(_worms[0].y) }))
+	{
+		_item.x = -50;
+		_item.y = -50;
+		_item.rc = RectMake(_item.x, _item.y, 30, 30);
+
+		_worms[_item.id].radius += 10;
+		_worms[_item.id].color = RGB(RND->getInt(256), RND->getInt(256), RND->getInt(256));
+	}
+	
+	// 꼬리 위치 값 변경
+	count++;
+	if (count % 8 == 0)
+	{
+		for (int i = MAX_WORM - 1; i >= 1; i--)
+		{
+			_worms[i].x = _worms[i - 1].x;
+			_worms[i].y = _worms[i - 1].y;
+		}
+	}
+
+	// 아이템 생성
+	if (count % 400 == 0)
+	{
+		_item.id = RND->getInt(MAX_WORM);
+		_item.x = RND->getFromIntTo(50, WINSIZE_X - 50);
+		_item.y = RND->getFromIntTo(50, WINSIZE_Y - 50);
+		_item.rc = RectMake(_item.x, _item.y, 30, 30);
+	}
+
+	if (count == 10000)
+	{
+		count = 0;
 	}
 }
 
@@ -85,16 +153,35 @@ void Report_16_3_MainGame::render(HDC hdc)
 	HDC memDC = this->getDoubleBuffer()->getMemDC();
 	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
 
-	EllipseMakeCenter(memDC, _worms[0].centerPos.x, _worms[0].centerPos.y, _worms[0].radius);
+	HBRUSH hBrush;
+	HBRUSH hOldBrush;
 
-	for (int i = 0; i < MAX_WORM; i++)
+	// 지렁이 렌더
+	for (int i = MAX_WORM - 1; i >= 0; i--)
 	{
-		EllipseMakeCenter(memDC, _worms[i].centerPos.x, _worms[i].centerPos.y, _worms[i].radius);
-		//EllipseMakeCenter(memDC, 
-		//	_worms[0].centerPos.x + sin(DEGREE_RADIAN(_worms[0].angle)) * _worms[0].speed,
-		//	_worms[0].centerPos.y + cos(DEGREE_RADIAN(_worms[0].angle)) * _worms[0].speed,
-		//	_worms[i].radius);
+		if (_worms[i].color != RGB(0, 0, 0))
+		{
+			hBrush = CreateSolidBrush(_worms[i].color);
+			hOldBrush = (HBRUSH)SelectObject(memDC, hBrush);
+
+			EllipseMakeCenter(memDC, _worms[i].x, _worms[i].y, _worms[i].radius);
+
+			hBrush = (HBRUSH)SelectObject(memDC, hOldBrush);
+			DeleteObject(hBrush);
+		}
+		else
+		{
+			EllipseMakeCenter(memDC, _worms[i].x, _worms[i].y, _worms[i].radius);
+		}
+
+		sprintf_s(strId, "%d", _worms[i].id);
+		TextOut(memDC, _worms[i].x, _worms[i].y, strId, strlen(strId));
 	}
+
+	// 아이템 렌더
+	DrawRectMake(memDC, _item.rc);
+	sprintf_s(strId, "%d", _item.id);
+	TextOut(memDC, _item.x + 10, _item.y + 10, strId, strlen(strId));
 
 	this->getDoubleBuffer()->render(hdc, 0, 0);
 }

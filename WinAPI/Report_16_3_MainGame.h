@@ -4,29 +4,38 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define MAX_WORM		30
-#define PI 3.141592653f
+#define MAX_WORM		50
 
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
 struct tagWorm
 {
+	int id;
+	float x, y;
+	float radius;
+	COLORREF color;
+};
+
+struct tagItem
+{
 	RECT rc;
-	POINT centerPos;
-	int radius;
-	float angle;
-	float speed;
+	int x, y;
+	int id;
 };
 
 class Report_16_3_MainGame : public GameNode
 {
 private:
 	tagWorm _worms[MAX_WORM];
+	tagItem _item;
 
-	float rotPosX;
-	float rotPosY;
-	float rotAngle;
+	float angle;
+	float speed;
+
+	int count;
+
+	char strId[10];
 
 public:
 	HRESULT init();
