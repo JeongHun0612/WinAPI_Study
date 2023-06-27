@@ -33,24 +33,17 @@ HRESULT Report_16_1_MainGame::init(void)
 	}
 
 	// 이미지 번호 셔플
-	//for (int i = 0; i < MAX_PIECE - 1; i++)
-	//{
-	//	int temp;
+	for (int i = 0; i < MAX_PIECE - 1; i++)
+	{
+		int temp;
 
-	//	int dest = RND->getInt(MAX_PIECE - 1);
-	//	int sour = RND->getInt(MAX_PIECE - 1);
+		int dest = RND->getInt(MAX_PIECE - 1);
+		int sour = RND->getInt(MAX_PIECE - 1);
 
-	//	temp = _piece[dest].idx;
-	//	_piece[dest].idx = _piece[sour].idx;
-	//	_piece[sour].idx = temp;
-	//}
-
-
-	// 치트
-	int temp = _piece[7].idx;
-	_piece[7].idx = _piece[8].idx;
-	_piece[8].idx = temp;
-	_curPieceIdx = 7;
+		temp = _piece[dest].idx;
+		_piece[dest].idx = _piece[sour].idx;
+		_piece[sour].idx = temp;
+	}
 
 	return S_OK;
 }
@@ -87,6 +80,11 @@ void Report_16_1_MainGame::update(void)
 		swapPiece(_curPieceIdx, _curPieceIdx + 3);
 		_curPieceIdx += 3;
 	}
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	{
+		chit(_piece);
+	}
+
 
 	// 정답 검사
 	if (!_isAnswer)
@@ -151,4 +149,26 @@ void Report_16_1_MainGame::swapPiece(int destIdx, int sourIdx)
 	int temp = _piece[destIdx].idx;
 	_piece[destIdx].idx = _piece[sourIdx].idx;
 	_piece[sourIdx].idx = temp;
+}
+
+void Report_16_1_MainGame::chit(tagPiece* pieces)
+{
+	int temp;
+	for (int i = MAX_PIECE - 1; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (_piece[j].idx > _piece[j + 1].idx)
+			{
+				temp = _piece[j].idx;
+				_piece[j].idx = _piece[j + 1].idx;
+				_piece[j + 1].idx = temp;
+			}
+		}
+	}
+
+	_curPieceIdx = MAX_PIECE - 2;
+	temp = _piece[_curPieceIdx].idx;
+	_piece[_curPieceIdx].idx = _piece[_curPieceIdx + 1].idx;
+	_piece[_curPieceIdx + 1].idx = temp;
 }

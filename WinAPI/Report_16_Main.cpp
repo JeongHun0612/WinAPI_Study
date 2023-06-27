@@ -1,11 +1,53 @@
 #include "Stdafx.h"
 #include "Report_16_1_MainGame.h"
 #include "Report_16_2_MainGame.h"
+#include "Report_16_3_MainGame.h"
+
+/*
+과제 1. 슬라이스 게임
+
+- 치트 필수
+
+- 화면 왼쪽에 원본 사진 출력 < - > 화면 오른쪽에는 9등분된 이미지 출력
+
+- 9등분 된 이미지 제일 아래 오른쪽 칸이 시작 칸
+
+- 퍼즐이 완성되면 알파블렌딩 효과로 이미지가 나타난다.
+ㄴ 중앙에서 완성된 이미지를 보여주면 된다.
+
+
+과제 2. 미니맵 만들기
+
+- 2가지 버전
+
+- 플레이어의 움직임을 미니맵에서도 확인할 수 있어야 한다.
+ㄴ 1. 화면에 표시되는 작은 GUI 형태의 미니맵
+ㄴ 2. 화면위에 그려지는 전체화면 미니맵
+
+
+과제 3. 지렁이 만들기
+
+- 지렁이는 구슬이 꼬리를 물고 이어지는 형태
+ㄴ 각 구슬마다 번호를 표기한다.
+
+- 지렁이는 화면밖의 무작위 위치에서 등장을 한다.
+
+- 특별한 키 입력이 없어도 지렁이는 화면안에서 움직인다.
+
+- 벽에 부딪히면 팅겨 나가야 하고 왼쪽 / 오른쪽 방향키로 조종이 가능해야 한다.
+
+- 따라오는 구슬은 머리가 방향을 튼다고 같이 틀면 안되고 머리가 있던 위치까지 와서 방향을 전환한다.
+
+- 임의의 숫자가 표시된 아이템이 게임이 시작되면 생성되고 지렁이가 아이템을 먹으면 해당하는 번호의 지렁이 구슬이 커진다. (색깔도 넣어보기)
+
+※ 얼마나 자연스러운지가 핵심
+*/
 
 #define REPORT_1		1
 #define REPORT_2		2
+#define REPORT_3		3
 
-#define REPORT_TYPE		REPORT_1
+#define REPORT_TYPE		REPORT_3
 
 HINSTANCE _hInstance;
 HWND _hWnd;
@@ -19,6 +61,8 @@ void setWindowSize(int x, int y, int width, int height);
 Report_16_1_MainGame* _mg;
 #elif REPORT_TYPE == REPORT_2
 Report_16_2_MainGame* _mg;
+#elif REPORT_TYPE == REPORT_3
+Report_16_3_MainGame* _mg;
 #endif
 
 int APIENTRY WinMain(HINSTANCE hInstance,
@@ -31,6 +75,8 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg = new Report_16_1_MainGame();
 #elif REPORT_TYPE == REPORT_2
 	_mg = new Report_16_2_MainGame();
+#elif REPORT_TYPE == REPORT_3
+	_mg = new Report_16_3_MainGame();
 #endif
 
 	_hInstance = hInstance;

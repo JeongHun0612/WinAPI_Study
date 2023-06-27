@@ -178,6 +178,9 @@
     <ClInclude Include="Report_16_2_MainGame.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
+    <ClInclude Include="Report_16_3_MainGame.h">
+      <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
       <Filter>2D FrameWork\PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_16_3_MainGame.cpp">
+      <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

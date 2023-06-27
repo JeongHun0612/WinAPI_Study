@@ -80,6 +80,7 @@ public:
 
 	//이미지 클리핑
 	void render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
+	void render(HDC hdc, int destX, int destY, int destWidt, int destHeight, int sourX, int sourY, int sourWidth, int sourHeight);
 
 	// 알파렌더
 	void alphaRender(HDC hdc, BYTE alpha);
