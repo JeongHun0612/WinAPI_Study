@@ -32,7 +32,7 @@ HRESULT Report_16_3_MainGame::init()
 		_worms[i].color = RGB(0, 0, 0);
 	}
 
-	speed = 3.0f;
+	speed = 4.0f;
 	count = 0;
 
 	switch (RND->getInt(4))
@@ -110,7 +110,7 @@ void Report_16_3_MainGame::update(void)
 		_worms[0].y = WINSIZE_Y - _worms[0].radius;
 		angle = 360 - angle;
 	}
-
+	
 	// 아이템 충돌
 	if (PtInRect(&_item.rc, { static_cast<LONG>(_worms[0].x), static_cast<LONG>(_worms[0].y) }))
 	{
@@ -124,7 +124,7 @@ void Report_16_3_MainGame::update(void)
 	
 	// 꼬리 위치 값 변경
 	count++;
-	if (count % 8 == 0)
+	if (count % 5 == 0)
 	{
 		for (int i = MAX_WORM - 1; i >= 1; i--)
 		{

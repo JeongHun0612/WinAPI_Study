@@ -1,23 +1,20 @@
 #pragma once
 #include "GameNode.h"
 
-#define BG_SIZE_X 1100
-#define BG_SIZE_Y 700
+#define MAX_COL		40
+#define MAX_ROW		25
 
 struct tagPlayer
 {
-	int x, y;
+	POINT pos;
 	RECT rc;
-	RECT miniRC;
 };
 
 struct tagCamera
 {
-	int x, y;
+	POINT pos;
 	int width;
 	int height;
-	RECT rc;
-	RECT miniRC;
 };
 
 struct tagMiniMap
@@ -29,16 +26,21 @@ struct tagMiniMap
 	int height;
 };
 
+struct tagTile
+{
+	int x, y;
+	int index;
+};
+
 class Report_16_2_MainGame : public GameNode
 {
 private:
 	GImage* _bgImage;
-	RECT _bgRC;
 
+	tagTile _tileMap[MAX_ROW][MAX_COL];
 	tagPlayer _player;
 	tagCamera _camera;
 	tagMiniMap _miniMap;
-
 
 public:
 	HRESULT init(void);

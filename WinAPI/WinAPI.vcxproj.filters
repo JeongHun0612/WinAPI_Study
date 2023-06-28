@@ -181,6 +181,8 @@
     <ClInclude Include="Report_16_3_MainGame.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
+    <ClInclude Include="EditSecen.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -309,6 +311,9 @@
     <ClCompile Include="Report_16_3_MainGame.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
+    <ClCompile Include="EditSecen.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileTestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
