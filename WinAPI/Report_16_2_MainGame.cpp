@@ -27,18 +27,30 @@ HRESULT Report_16_2_MainGame::init(void)
 		{
 			_tileMap[i][j].x = j * 64;
 			_tileMap[i][j].y = i * 64;
-			_tileMap[i][j].index = 0;
+			_tileMap[i][j].index = (i * MAX_COL) + j;
 		}
 	}
+
+	// 미니맵 초기화
+	_miniMap.width = 400;
+	_miniMap.height = 250;
+
+	_miniMap.imgae = new GImage;
+	_miniMap.imgae->init("Resources/Images/BackGround/background.bmp", _miniMap.width, _miniMap.height);
+	_miniMap.x = WINSIZE_X - (_miniMap.width + 15);
+	_miniMap.y = WINSIZE_Y - (_miniMap.height + 15);
+
+	// 플레이어 초기화
+	_player.pos = { WINSIZE_X / 2, WINSIZE_Y / 2 - 16 };
+	_player.mapPos = { _miniMap.x + ((_player.pos.x / 64) * 10), _miniMap.y + (_player.pos.y / 64) * 10 };
 
 	// 카메라 초기화
 	_camera.pos = { 0, 0 };
 	_camera.width = WINSIZE_X / 2;
 	_camera.height = WINSIZE_Y / 2;
+	_camera.mapPos = { _player.mapPos.x - 100, _player.mapPos.y - 60 };
 
-	// 플레이어 초기화
-	_player.pos = { WINSIZE_X / 2 - 32, WINSIZE_Y / 2 + 16 };
-	_player.rc = RectMakeCenter(_player.pos.x, _player.pos.y, 64, 64);
+	isShowTile = false;
 
 	return S_OK;
 }
@@ -52,21 +64,65 @@ void Report_16_2_MainGame::update(void)
 {
 	GameNode::update();
 
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _player.rc.left > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _player.pos.x > 0)
 	{
-		_camera.pos.x -= 64;
+		if (_camera.pos.x != 0 && _player.pos.x == WINSIZE_X / 2)
+		{
+			_camera.pos.x -= 32;
+			_camera.mapPos.x -= 10;
+		}
+		else
+		{
+			_player.pos.x -= 64;
+		}
+
+		_player.mapPos.x -= 10;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _player.rc.right < WINSIZE_X)
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _player.pos.x + 64 < WINSIZE_X)
 	{
-		_camera.pos.x += 64;
+		if (_camera.pos.x + _camera.width != WINSIZE_X && _player.pos.x == WINSIZE_X / 2)
+		{
+			_camera.pos.x += 32;
+			_camera.mapPos.x += 10;
+		}
+		else
+		{
+			_player.pos.x += 64;
+		}
+
+		_player.mapPos.x += 10;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _player.rc.top > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _player.pos.y > 0)
 	{
-	
+		if (_camera.pos.y != 0 && _player.pos.y == WINSIZE_Y / 2 - 16)
+		{
+			_camera.pos.y -= 32;
+			_camera.mapPos.y -= 10;
+		}
+		else
+		{
+			_player.pos.y -= 64;
+		}
+
+		_player.mapPos.y -= 10;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _player.rc.bottom < WINSIZE_Y)
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _player.pos.y + 64 < WINSIZE_Y - 64)
 	{
-	
+		if (_camera.pos.y + _camera.height != WINSIZE_Y - 16 && _player.pos.y == WINSIZE_Y / 2 - 16)
+		{
+			_camera.pos.y += 32;
+			_camera.mapPos.y += 10;
+		}
+		else
+		{
+			_player.pos.y += 64;
+		}
+
+		_player.mapPos.y += 10;
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	{
+		isShowTile = !isShowTile;
 	}
 }
 
@@ -81,34 +137,52 @@ void Report_16_2_MainGame::render(HDC hdc)
 	// 배경 이미지 렌더
 	_bgImage->render(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, _camera.pos.x, _camera.pos.y, _camera.width, _camera.height);
 
+
 	// 타일 렌더
-	myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
-
-	for (int i = 0; i < MAX_ROW; i++)
+	if (isShowTile)
 	{
-		for (int j = 0; j < MAX_COL; j++)
+		myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
+
+		char tileID[10];
+		int startX = _camera.pos.x / 32;
+		int startY = _camera.pos.y / 32;
+
+		for (int i = 0; i < WINSIZE_Y / 64; i++)
 		{
-			RectangleMake(memDC, _tileMap[i][j].x, _tileMap[i][j].y, 64, 64);
+			for (int j = 0; j < WINSIZE_X / 64; j++)
+			{
+				RectangleMake(memDC, j * 64, i * 64, 64, 64);
+				sprintf_s(tileID, "%d", _tileMap[startY + i][startX + j].index);
+				TextOut(memDC, j * 64, i * 64, tileID, strlen(tileID));
+			}
 		}
+
+		SelectObject(memDC, oldBrush);
+		DeleteObject(myBrush);
 	}
-
-	SelectObject(memDC, oldBrush);
-	DeleteObject(myBrush);
-
 
 	// 플레이어 렌더
 	myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 255, 255));
 	oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
 
-	DrawRectMake(memDC, _player.rc);
+	RectangleMake(memDC, _player.pos.x, _player.pos.y, 64, 64);
+	//DrawRectMake(memDC, _player.rc);
 
 	SelectObject(memDC, oldBrush);
 	DeleteObject(myBrush);
 
 
 	// 미니맵 이미지 렌더
-	//_miniMap.imgae->render(memDC, _miniMap.x, _miniMap.y);
+	_miniMap.imgae->render(memDC, _miniMap.x, _miniMap.y);
+
+	myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
+	RectangleMake(memDC, _camera.mapPos.x, _camera.mapPos.y, _miniMap.width / 2, _miniMap.height / 2);
+	SelectObject(memDC, oldBrush);
+	DeleteObject(myBrush);
+
+	RectangleMake(memDC, _player.mapPos.x, _player.mapPos.y, 10, 10);
 
 	this->getDoubleBuffer()->render(hdc, 0, 0);
 }

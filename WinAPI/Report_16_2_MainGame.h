@@ -1,18 +1,20 @@
 #pragma once
 #include "GameNode.h"
 
-#define MAX_COL		40
 #define MAX_ROW		25
+#define MAX_COL		40
 
 struct tagPlayer
 {
 	POINT pos;
-	RECT rc;
+	POINT mapPos;
 };
 
 struct tagCamera
 {
 	POINT pos;
+	POINT mapPos;
+
 	int width;
 	int height;
 };
@@ -41,6 +43,8 @@ private:
 	tagPlayer _player;
 	tagCamera _camera;
 	tagMiniMap _miniMap;
+
+	bool isShowTile;
 
 public:
 	HRESULT init(void);
