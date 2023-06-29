@@ -2,18 +2,11 @@
 #pragma once
 #include "GameNode.h"
 
-enum class EPLAYER_STATE
-{
-	IDLE,
-	ATTACK
-};
-
 struct Animaion
 {
 	int maxFrameX;
 	int maxFrameY;
 
-	EPLAYER_STATE state;
 	GImage* image;
 
 	int count;
@@ -24,12 +17,12 @@ class Report_17_1_MainGame : public GameNode
 {
 private:
 	Animaion _idle;
+
 	Animaion _attack1;
+	Animaion _attack2;
+	Animaion _attack3;
 
-	EPLAYER_STATE _currentState;
-
-	int _count;
-	int _index;
+	int _attackIndex;
 
 	bool _isLeft;
 	bool _isAttack;
