@@ -97,17 +97,139 @@ HRESULT GImage::init(const char* fileName, int width, int height, bool isTrans, 
     _imageInfo->height = height;
 
     int len = strlen(fileName);
+    int idx = len + 1;
 
-    _fileName = new char[len + 1];
+    _fileName = new char[idx];
     // strcpy -> 인자 1개 더 추가
     // ㄴ 고질적인 문자/문자열에서 사이즈 문제를 해결한 함수
     // 복사받을 변수, 길이, 원본)
-    strcpy_s(_fileName, len + 1, fileName);
+    strcpy_s(_fileName, idx, fileName);
 
     _isTrans = isTrans;
     _transColor = transColor;
 
     // 리소스를 얻어 오는데 실패
+    if (_imageInfo->hBit == 0)
+    {
+        release();
+        return E_FAIL;
+    }
+
+    ReleaseDC(_hWnd, hdc);
+
+    return S_OK;
+}
+
+HRESULT GImage::init(const char* fileName, float x, float y, int width, int height, bool isTrans, COLORREF transColor)
+{
+    if (_imageInfo != nullptr) this->release();
+
+    HDC hdc = GetDC(_hWnd);
+
+    _imageInfo = new IMAGE_INFO;
+
+    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->resID = 0;
+    _imageInfo->hMemDC = CreateCompatibleDC(hdc);
+    _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
+    _imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
+    _imageInfo->x = x;
+    _imageInfo->y = y;
+    _imageInfo->width = width;
+    _imageInfo->height = height;
+
+    int len = strlen(fileName);
+    int idx = len + 1;
+    _fileName = new char[idx];
+    strcpy_s(_fileName, idx, fileName);
+
+    _isTrans = isTrans;
+    _transColor = transColor;
+
+    if (_imageInfo->hBit == 0)
+    {
+        release();
+        return E_FAIL;
+    }
+
+    ReleaseDC(_hWnd, hdc);
+
+    return S_OK;
+}
+
+HRESULT GImage::init(const char* fileName, int width, int height, int maxFrameX, int maxFrameY, bool isTrans, COLORREF transColor)
+{
+    if (_imageInfo != nullptr) this->release();
+
+    HDC hdc = GetDC(_hWnd);
+
+    _imageInfo = new IMAGE_INFO;
+
+    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->resID = 0;
+    _imageInfo->hMemDC = CreateCompatibleDC(hdc);
+    _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
+    _imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
+    _imageInfo->width = width;
+    _imageInfo->height = height;
+    _imageInfo->currentFrameX = 0;
+    _imageInfo->currentFrameY = 0;
+    _imageInfo->maxFrameX = maxFrameX - 1;
+    _imageInfo->maxFrameY = maxFrameY - 1;
+    _imageInfo->frameWidth = width / maxFrameX;
+    _imageInfo->frameHeight = height / maxFrameY;
+
+    int len = strlen(fileName);
+    int idx = len + 1;
+    _fileName = new char[idx];
+    strcpy_s(_fileName, idx, fileName);
+
+    _isTrans = isTrans;
+    _transColor = transColor;
+
+    if (_imageInfo->hBit == 0)
+    {
+        release();
+        return E_FAIL;
+    }
+
+    ReleaseDC(_hWnd, hdc);
+
+    return S_OK;
+}
+
+HRESULT GImage::init(const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, bool isTrans, COLORREF transColor)
+{
+    if (_imageInfo != nullptr) this->release();
+
+    HDC hdc = GetDC(_hWnd);
+
+    _imageInfo = new IMAGE_INFO;
+
+    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->resID = 0;
+    _imageInfo->hMemDC = CreateCompatibleDC(hdc);
+    _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
+    _imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
+    _imageInfo->x = x;
+    _imageInfo->y = y;
+    _imageInfo->width = width;
+    _imageInfo->height = height;
+    _imageInfo->currentFrameX = 0;
+    _imageInfo->currentFrameY = 0;
+    _imageInfo->maxFrameX = maxFrameX - 1;
+    _imageInfo->maxFrameY = maxFrameY - 1;
+    _imageInfo->frameWidth = width / maxFrameX;
+    _imageInfo->frameHeight = height / maxFrameY;
+
+    int len = strlen(fileName);
+    int idx = len + 1;
+    _fileName = new char[idx];
+    strcpy_s(_fileName, idx, fileName);
+
+    _isTrans = isTrans;
+    _transColor = transColor;
+
     if (_imageInfo->hBit == 0)
     {
         release();
@@ -260,12 +382,11 @@ void GImage::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sou
         // ◈ BitBlt() : DC간의 영역끼리 서로 고속 복사를 해준다.
         //      ㄴ SRCCOPY : 소스 영역을 영역에 복사한다.
 
-        StretchBlt(hdc, destX, destY, WINSIZE_X, WINSIZE_Y, _imageInfo->hMemDC, sourX, sourY, sourWidth, sourHeight, SRCCOPY);
-        //BitBlt(hdc, destX, destY, sourWidth, sourHeight, _imageInfo->hMemDC, sourX, sourY, SRCCOPY);
+        BitBlt(hdc, destX, destY, sourWidth, sourHeight, _imageInfo->hMemDC, sourX, sourY, SRCCOPY);
     }
 }
 
-void GImage::render(HDC hdc, int destX, int destY, int destWidt, int destHeight, int sourX, int sourY, int sourWidth, int sourHeight)
+void GImage::render(HDC hdc, int destX, int destY, int destWidth, int destHeight, int sourX, int sourY, int sourWidth, int sourHeight)
 {
     if (_isTrans)
     {
@@ -275,7 +396,7 @@ void GImage::render(HDC hdc, int destX, int destY, int destWidt, int destHeight,
             hdc,                        // 복사할 장소의 DC (화면 DC)
             destX,                      // 복사될 좌표 시작 X
             destY,                      // 복사될 좌표 시작 Y
-            destWidt,                   // 복사될 이미지 가로 크기
+            destWidth,                   // 복사될 이미지 가로 크기
             destHeight,                 // 복사될 이미지 세로 크기
             _imageInfo->hMemDC,         // 복사될 대상 메모리 DC
             sourX, sourY,               // 복사 시작지점
@@ -287,7 +408,88 @@ void GImage::render(HDC hdc, int destX, int destY, int destWidt, int destHeight,
 
     else
     {
-        StretchBlt(hdc, destX, destY, destWidt, destHeight, _imageInfo->hMemDC, sourX, sourY, sourWidth, sourHeight, SRCCOPY);
+        StretchBlt(hdc, destX, destY, destWidth, destHeight, _imageInfo->hMemDC, sourX, sourY, sourWidth, sourHeight, SRCCOPY);
+    }
+}
+
+void GImage::frameRender(HDC hdc, int destX, int destY)
+{
+    if (_isTrans)
+    {
+        GdiTransparentBlt
+        (
+            hdc,
+            destX,
+            destY,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _imageInfo->hMemDC,
+            _imageInfo->currentFrameX * _imageInfo->frameWidth,
+            _imageInfo->currentFrameY * _imageInfo->frameHeight,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _transColor                
+        );
+    }
+
+    else
+    {
+        // ◈ BitBlt() : DC간의 영역끼리 서로 고속 복사를 해준다.
+        //      ㄴ SRCCOPY : 소스 영역을 영역에 복사한다.
+        BitBlt(hdc, destX, destY,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _imageInfo->hMemDC, 
+            _imageInfo->currentFrameX * _imageInfo->frameWidth,
+            _imageInfo->currentFrameY * _imageInfo->frameHeight,  SRCCOPY);
+    }
+}
+
+void GImage::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY)
+{
+    // 이미지 예외처리
+    _imageInfo->currentFrameX = currentFrameX;
+    _imageInfo->currentFrameY = currentFrameY;
+
+    if (currentFrameX > _imageInfo->maxFrameX)
+    {
+        _imageInfo->currentFrameX = _imageInfo->maxFrameX;
+    }
+
+    if (currentFrameY > _imageInfo->maxFrameY)
+    {
+        _imageInfo->currentFrameY = _imageInfo->maxFrameY;
+    }
+    
+
+    if (_isTrans)
+    {
+        GdiTransparentBlt
+        (
+            hdc,
+            destX,
+            destY,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _imageInfo->hMemDC,
+            _imageInfo->currentFrameX * _imageInfo->frameWidth,
+            _imageInfo->currentFrameY * _imageInfo->frameHeight,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _transColor
+        );
+    }
+
+    else
+    {
+        // ◈ BitBlt() : DC간의 영역끼리 서로 고속 복사를 해준다.
+        //      ㄴ SRCCOPY : 소스 영역을 영역에 복사한다.
+        BitBlt(hdc, destX, destY,
+            _imageInfo->frameWidth,
+            _imageInfo->frameHeight,
+            _imageInfo->hMemDC,
+            _imageInfo->currentFrameX * _imageInfo->frameWidth,
+            _imageInfo->currentFrameY * _imageInfo->frameHeight, SRCCOPY);
     }
 }
 

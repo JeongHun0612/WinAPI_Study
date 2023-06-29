@@ -4,14 +4,13 @@
 class MainGame : public GameNode
 {
 private:
-	GImage* _bgImage;
-	GImage* _plImage;
-	RECT _rc;
+	GImage* _loading;
 
-	int _countA, _countB;
-	int _alphaA, _alphaB;
-	int _alphaNum;
-	
+	int _alphaA;
+	int _count;
+	int _index;
+
+	bool _isLeft;
 	bool _isAlphaIncrease;
 
 public:

@@ -145,8 +145,8 @@
     <ClInclude Include="C3DVector.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CommonMacroFunction.h" />
-    <ClInclude Include="EditSecen.h" />
     <ClInclude Include="Example_Bullet.h" />
+    <ClInclude Include="Example_Cliping.h" />
     <ClInclude Include="Example_Image.h" />
     <ClInclude Include="Example_Math.h" />
     <ClInclude Include="Example_Mole.h" />
@@ -165,6 +165,8 @@
     <ClInclude Include="Report_16_1_MainGame.h" />
     <ClInclude Include="Report_16_2_MainGame.h" />
     <ClInclude Include="Report_16_3_MainGame.h" />
+    <ClInclude Include="Report_17_1_MainGame.h" />
+    <ClInclude Include="Report_17_2_MainGame.h" />
     <ClInclude Include="Report_CardMatch.h" />
     <ClInclude Include="Report_Crocodile.h" />
     <ClInclude Include="Report_Horizontal_Shooting.h">
@@ -185,14 +187,13 @@
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Target.h" />
-    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp" />
     <ClCompile Include="C3DVector.cpp" />
     <ClCompile Include="Card.cpp" />
-    <ClCompile Include="EditSecen.cpp" />
     <ClCompile Include="Example_Bullet.cpp" />
+    <ClCompile Include="Example_Cliping.cpp" />
     <ClCompile Include="Example_Image.cpp" />
     <ClCompile Include="Example_Math.cpp" />
     <ClCompile Include="Example_Mole.cpp" />
@@ -217,8 +218,11 @@
     <ClCompile Include="Report_16_2_MainGame.cpp" />
     <ClCompile Include="Report_16_3_MainGame.cpp" />
     <ClCompile Include="Report_16_Main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Report_17_1_MainGame.cpp" />
+    <ClCompile Include="Report_17_2_MainGame.cpp" />
+    <ClCompile Include="Report_17_Main.cpp" />
     <ClCompile Include="Report_CardMatch.cpp" />
     <ClCompile Include="Report_Crocodile.cpp" />
     <ClCompile Include="Report_Horizontal_Shooting.cpp" />
@@ -238,10 +242,6 @@
     <ClCompile Include="Report_Vertical_Shooting.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="Target.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="TileTestMain.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="WinAPITimeAttack.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>

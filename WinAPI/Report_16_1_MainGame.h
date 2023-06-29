@@ -20,8 +20,6 @@ private:
 
 	int _count, _alpha;
 
-	int test[5] = { 5, 4, 3, 2 ,1 };
-
 public:
 	HRESULT init(void);
 	void release(void);

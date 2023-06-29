@@ -34,9 +34,6 @@
     <Filter Include="Report\ManagerClass">
       <UniqueIdentifier>{100bffa7-cf29-49f6-a30e-efbf4a69bb15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Report\Report_01~05">
-      <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\Report_06 %28짝맞추기%29">
       <UniqueIdentifier>{15a7a2e5-24ed-4eb5-87d6-f20d8fa45273}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,12 @@
     </Filter>
     <Filter Include="2D FrameWork\StudyExample">
       <UniqueIdentifier>{2829c3e6-84db-4b42-aab0-1bfceb634b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\Report_17 %28프레임 이미지%29">
+      <UniqueIdentifier>{0226d98a-b48f-476b-a471-90444d0ebdcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\Report_01~05">
+      <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,8 +184,15 @@
     <ClInclude Include="Report_16_3_MainGame.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
-    <ClInclude Include="EditSecen.h" />
-    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Example_Cliping.h">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_17_1_MainGame.h">
+      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_17_2_MainGame.h">
+      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -311,9 +321,18 @@
     <ClCompile Include="Report_16_3_MainGame.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
-    <ClCompile Include="EditSecen.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="TileTestMain.cpp" />
+    <ClCompile Include="Example_Cliping.cpp">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_17_Main.cpp">
+      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_17_1_MainGame.cpp">
+      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_17_2_MainGame.cpp">
+      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
