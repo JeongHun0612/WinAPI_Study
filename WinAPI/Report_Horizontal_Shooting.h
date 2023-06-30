@@ -1,5 +1,5 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 
 #define PLAYER_SPEED	5
 
@@ -20,7 +20,7 @@ struct tagPlayer
 //	bool fire;
 //};
 
-class Report_Horizontal_Shooting : public Report_MainGame
+class Report_Horizontal_Shooting : public GameNode
 {
 private:
 	tagPlayer _Player1;
@@ -32,7 +32,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_Horizontal_Shooting() {}
 	~Report_Horizontal_Shooting() {}

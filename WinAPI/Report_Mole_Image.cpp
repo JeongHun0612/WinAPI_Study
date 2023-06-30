@@ -90,24 +90,17 @@ void Report_Mole_Image::update(void)
 	}
 }
 
-void Report_Mole_Image::render(HDC hdc)
+void Report_Mole_Image::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
-	// ==========================================================
-
 	char strScore[128];
 	wsprintf(strScore, "Score : %d", _score);
-	TextOut(hdc, 10, 10, strScore, strlen(strScore));
+	TextOut(getMemDC(), 10, 10, strScore, strlen(strScore));
 
 	for (int i = 0; i < MAX_MOLE; i++)
 	{
-		_holeImage->render(memDC, _rc[i].left, _rc[i].top);
+		_holeImage->render(getMemDC(), _rc[i].left, _rc[i].top);
 	}
 
-	_moleImage->render(memDC, _rc[_index].left, _rc[_index].top);
-	_hammerImage->render(memDC, _ptMouse.x - 75, _ptMouse.y - 75);
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
+	_moleImage->render(getMemDC(), _rc[_index].left, _rc[_index].top);
+	_hammerImage->render(getMemDC(), _ptMouse.x - 75, _ptMouse.y - 75);
 }

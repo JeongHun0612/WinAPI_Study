@@ -17,8 +17,6 @@
 
 HRESULT Report_ClayShooting::init(void)
 {
-	GameNode::init();
-
 	_nGameTime = 60;
 	_nDeltaTime = 0;
 
@@ -35,13 +33,10 @@ HRESULT Report_ClayShooting::init(void)
 
 void Report_ClayShooting::release(void)
 {
-	GameNode::release();
 }
 
 void Report_ClayShooting::update(void)
 {
-	GameNode::update();
-
 	// Create Target
 	if (_nDeltaTime % 100 == 0)
 	{
@@ -97,19 +92,19 @@ void Report_ClayShooting::update(void)
 	}
 }
 
-void Report_ClayShooting::render(HDC hdc)
+void Report_ClayShooting::render(void)
 {
 	wsprintf(_cTimer, "Game Time : %2d", _nGameTime);
-	TextOut(hdc, 10, 0, _cTimer, strlen(_cTimer));
+	TextOut(getMemDC(), 10, 0, _cTimer, strlen(_cTimer));
 
 	wsprintf(_cScore, "Score : %4d", _nScore);
-	TextOut(hdc, WINSIZE_X - 100, 0, _cScore, strlen(_cScore));
+	TextOut(getMemDC(), WINSIZE_X - 100, 0, _cScore, strlen(_cScore));
 
 	for (int i = 0; i < TARGET_MAX; i++)
 	{
 		if (_Target[i] == NULL) break;
 
-		_Target[i]->drawTarget(hdc);
+		_Target[i]->drawTarget(getMemDC());
 	}
 }
 

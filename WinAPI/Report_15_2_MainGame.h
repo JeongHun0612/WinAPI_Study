@@ -42,7 +42,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_15_2_MainGame() {}
 	~Report_15_2_MainGame() {}

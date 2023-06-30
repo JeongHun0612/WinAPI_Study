@@ -31,9 +31,6 @@
     <Filter Include="2D FrameWork\FrameWorkManager">
       <UniqueIdentifier>{be83ef17-f588-49a1-bb73-f6ed6944ff08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Report\ManagerClass">
-      <UniqueIdentifier>{100bffa7-cf29-49f6-a30e-efbf4a69bb15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\Report_06 %28짝맞추기%29">
       <UniqueIdentifier>{15a7a2e5-24ed-4eb5-87d6-f20d8fa45273}</UniqueIdentifier>
     </Filter>
@@ -135,9 +132,6 @@
     <ClInclude Include="Report_BulletShooting.h">
       <Filter>Report\Report_10 %28총알 발사%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_MainGame.h">
-      <Filter>Report\ManagerClass</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Crocodile.h">
       <Filter>Report\Report_11 %28악어이빨 게임%29</Filter>
     </ClInclude>
@@ -193,6 +187,12 @@
     <ClInclude Include="Report_17_2_MainGame.h">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>2D FrameWork\FrameWorkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_FrameImage.h">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -215,9 +215,6 @@
     </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>ManagerClass</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_Main.cpp">
-      <Filter>Report</Filter>
     </ClCompile>
     <ClCompile Include="Report_CardMatch.cpp">
       <Filter>Report\Report_06 %28짝맞추기%29</Filter>
@@ -242,9 +239,6 @@
     </ClCompile>
     <ClCompile Include="Report_BulletShootingh.cpp">
       <Filter>Report\Report_10 %28총알 발사%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_MainGame.cpp">
-      <Filter>Report\ManagerClass</Filter>
     </ClCompile>
     <ClCompile Include="Report_Crocodile.cpp">
       <Filter>Report\Report_11 %28악어이빨 게임%29</Filter>
@@ -285,14 +279,8 @@
     <ClCompile Include="Report_Mole_Image.cpp">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
     </ClCompile>
-    <ClCompile Include="Mole_Image_Main.cpp">
-      <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
-    </ClCompile>
     <ClCompile Include="Example_Math.cpp">
       <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_15_Main.cpp">
-      <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
     <ClCompile Include="Report_15_1_MainGame.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
@@ -305,9 +293,6 @@
     </ClCompile>
     <ClCompile Include="GImage.cpp">
       <Filter>2D FrameWork\GImage</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_16_Main.cpp">
-      <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
     <ClCompile Include="Report_16_1_MainGame.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
@@ -332,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="Report_17_2_MainGame.cpp">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_FrameImage.cpp">
+      <Filter>2D FrameWork\StudyExample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -122,8 +122,6 @@
 
 HRESULT Example_Math::init(void)
 {
-	GameNode::init();
-
 	_radian = 3.141592653f;
 	_degree = 180;
 
@@ -151,49 +149,45 @@ HRESULT Example_Math::init(void)
 
 void Example_Math::release(void)
 {
-	GameNode::release();
-
 }
 
 void Example_Math::update(void)
 {
-	GameNode::update();
-
 	GetLocalTime(&_st);
 	_st.wSecond;
 }
 
-void Example_Math::render(HDC hdc)
+void Example_Math::render(void)
 {
 	char strRadian[128];
 	char strDegree[128];
 	char strSecond[128];
 
 	sprintf_s(strSecond, "%d 초", _st.wSecond);
-	TextOut(hdc, WINSIZE_X / 2, 100, strSecond, strlen(strSecond));
+	TextOut(getMemDC(), WINSIZE_X / 2, 100, strSecond, strlen(strSecond));
 
 	// radian에서 degree로
 	// ㄴ 1 Radian = 180 / PI Degree
 	sprintf_s(strRadian, "%.2f 라디안 값은 %.2f 디그리 값과 같다", _radian, _radian * (180.0f / M_PI));
-	TextOut(hdc, WINSIZE_X / 2 - 100, WINSIZE_Y / 2 - 100, strRadian, strlen(strRadian));
+	TextOut(getMemDC(), WINSIZE_X / 2 - 100, WINSIZE_Y / 2 - 100, strRadian, strlen(strRadian));
 
 	// degree에서 radian으로
 	// ㄴ 1 Degree = PI / 180 Radian
 	sprintf_s(strDegree, "%.2f 디그리 값은 %.2f 라디안 값과 같다.", _degree, _degree * (PI / 180.0f));
-	TextOut(hdc, WINSIZE_X / 2 - 100, WINSIZE_Y / 2, strDegree, strlen(strDegree));
+	TextOut(getMemDC(), WINSIZE_X / 2 - 100, WINSIZE_Y / 2, strDegree, strlen(strDegree));
 
 	// Create : 펜 스타일, 길이, 색상
 	HPEN pen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
 	HPEN currentPen;
 
-	currentPen = (HPEN)SelectObject(hdc, pen);
+	currentPen = (HPEN)SelectObject(getMemDC(), pen);
 
-	LineMake(hdc, WINSIZE_X / 2 - 100, WINSIZE_Y / 2 + 100, WINSIZE_X / 2 + 200, WINSIZE_Y / 2 + 100);
+	LineMake(getMemDC(), WINSIZE_X / 2 - 100, WINSIZE_Y / 2 + 100, WINSIZE_X / 2 + 200, WINSIZE_Y / 2 + 100);
 
 	DeleteObject(pen);
 
 	for (int i = 0; i < 5; i++)
 	{
-		EllipseMakeCenter(hdc, _star[i].x, _star[i].y, 10, 10);
+		EllipseMakeCenter(getMemDC(), _star[i].x, _star[i].y, 10, 10);
 	}
 }

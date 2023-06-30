@@ -95,28 +95,28 @@ void Report_Avoid::update(void)
 	}
 }
 
-void Report_Avoid::render(HDC hdc)
+void Report_Avoid::render(void)
 {
 	if (!_bisDead)
 	{
 		wsprintf(strTime, "Current Time : %d", _count / 100);
-		TextOut(hdc, 0, 0, strTime, strlen(strTime));
+		TextOut(getMemDC(), 0, 0, strTime, strlen(strTime));
 
 		for (_iter = _vDDong.begin(); _iter != _vDDong.end(); _iter++)
 		{
-			DrawRectMake(hdc, _iter->rc);
+			DrawRectMake(getMemDC(), _iter->rc);
 		}
 
-		DrawRectMake(hdc, _Player);
+		DrawRectMake(getMemDC(), _Player);
 	}
 	else
 	{
-		SetTextAlign(hdc, TA_CENTER);
+		SetTextAlign(getMemDC(), TA_CENTER);
 
 		wsprintf(strTime, "Game Time : %d", _gameTime);
-		TextOut(hdc, WINSIZE_X / 2 , WINSIZE_Y / 2 - 50, strTime, strlen(strTime));
+		TextOut(getMemDC(), WINSIZE_X / 2 , WINSIZE_Y / 2 - 50, strTime, strlen(strTime));
 
-		DrawRectMake(hdc, _RestartBtn);
-		TextOut(hdc, WINSIZE_X / 2, WINSIZE_Y / 2 - 5, "ReStart", strlen("ReStart"));
+		DrawRectMake(getMemDC(), _RestartBtn);
+		TextOut(getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2 - 5, "ReStart", strlen("ReStart"));
 	}
 }

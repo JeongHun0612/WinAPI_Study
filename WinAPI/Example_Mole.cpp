@@ -70,17 +70,17 @@ void Example_Mole::update(void)
 	}
 }
 
-void Example_Mole::render(HDC hdc)
+void Example_Mole::render(void)
 {
 	for (int i = 0; i < 8; i++)
 	{
-		Rectangle(hdc, _rc[i].left, _rc[i].top, _rc[i].right, _rc[i].bottom);
+		Rectangle(getMemDC() , _rc[i].left, _rc[i].top, _rc[i].right, _rc[i].bottom);
 	}
 
 	char strScore[128];
 
 	wsprintf(strScore, "Score : %d", _score);
-	TextOut(hdc, 50, 100, strScore, strlen(strScore));
+	TextOut(getMemDC(), 50, 100, strScore, strlen(strScore));
 
 	if (_bIsSelected)
 	{
@@ -89,7 +89,7 @@ void Example_Mole::render(HDC hdc)
 		int b = RND->getInt(256);
 
 		HBRUSH brush = CreateSolidBrush(RGB(r, g, b));
-		FillRect(hdc, &_rc[_index], brush);
+		FillRect(getMemDC(), &_rc[_index], brush);
 		DeleteObject(brush); // 데이터 누수 방지
 	}
 }

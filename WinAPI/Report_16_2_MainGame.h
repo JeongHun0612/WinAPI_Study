@@ -4,39 +4,40 @@
 #define MAX_ROW		25
 #define MAX_COL		40
 
-struct tagPlayer
-{
-	POINT pos;
-	POINT mapPos;
-};
-
-struct tagCamera
-{
-	POINT pos;
-	POINT mapPos;
-
-	int width;
-	int height;
-};
-
-struct tagMiniMap
-{
-	GImage* imgae;
-
-	int x, y;
-	int width;
-	int height;
-};
-
-struct tagTile
-{
-	int x, y;
-	int index;
-};
-
 class Report_16_2_MainGame : public GameNode
 {
+public:
+	struct tagPlayer
+	{
+		POINT pos;
+		POINT mapPos;
+	};
+
+	struct tagCamera
+	{
+		POINT pos;
+		POINT mapPos;
+
+		int width;
+		int height;
+	};
+
+	struct tagMiniMap
+	{
+		GImage* imgae;
+
+		int x, y;
+		int width;
+		int height;
+	};
+
+	struct tagTile
+	{
+		int x, y;
+		int index;
+	};
 private:
+
 	GImage* _bgImage;
 
 	tagTile _tileMap[MAX_ROW][MAX_COL];
@@ -50,6 +51,6 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 };
 

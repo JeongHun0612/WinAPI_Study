@@ -63,20 +63,21 @@
 */
 #pragma endregion 
 
+// 백버퍼 -> 정적 이미지
+static GImage* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZE_X, WINSIZE_Y);
+
 class GameNode
 {
 private:
-	GImage* _DoubleBuffer;
-	void setDoubleBuffer(void);
+	HDC _hdc;
+	bool _managerInit;
 
 public:
 	virtual HRESULT init(void);
+	virtual HRESULT init(bool managerInit);
 	virtual void release(void);
 	virtual void update(void);
-	virtual void render(HDC hdc);
-
-	// 백버퍼/더블 버퍼 이미지 얻기
-	GImage* getDoubleBuffer(void) { return _DoubleBuffer; }
+	virtual void render(void);
 
 	// 순수가상 함수
 	//virtual void IFunction() PURE;
@@ -88,6 +89,13 @@ public:
 		 ㄴ 스위치문에서 각 메세지에 대한 처리값을 -1, 0, 1로 운영체제에 어떤 작업을 해야하는지 알여주는 역할을 한다. 
 			기본적으로 0이 리턴되면 모든 메세지가 처리되었다는 것을 의미한다.
 	*/
+
+	// 백 버퍼
+	GImage* getBackBuffer(void) { return _backBuffer; }
+
+	HDC getMemDC() { return _backBuffer->getMemDC(); }
+	HDC getHDC() { return _hdc; }
+
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 	
 	GameNode() {}

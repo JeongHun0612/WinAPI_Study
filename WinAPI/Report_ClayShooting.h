@@ -1,10 +1,10 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 #include "Target.h"
 
 #define TARGET_MAX		5
 
-class Report_ClayShooting : public Report_MainGame
+class Report_ClayShooting : public GameNode
 {
 private:
 	int _nGameTime;
@@ -21,7 +21,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	bool getTimeOver();
 

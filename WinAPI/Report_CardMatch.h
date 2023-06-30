@@ -1,8 +1,8 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 #include "Card.h"
 
-class Report_CardMatch : public Report_MainGame
+class Report_CardMatch : public GameNode
 {
 private:
 	Card _Card[CARD_MAX];
@@ -12,7 +12,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_CardMatch() {}
 	~Report_CardMatch() {}

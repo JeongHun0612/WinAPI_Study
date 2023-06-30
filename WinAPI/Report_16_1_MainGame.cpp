@@ -16,8 +16,6 @@
 
 HRESULT Report_16_1_MainGame::init(void)
 {
-	GameNode::init();
-
 	_puzzleImage = new GImage;
 	_puzzleImage->init("Resources/Images/BackGround/puzzel_image1.bmp", 600, 600);
 
@@ -50,15 +48,11 @@ HRESULT Report_16_1_MainGame::init(void)
 
 void Report_16_1_MainGame::release(void)
 {
-	GameNode::release();
-
 	SAFE_DELETE(_puzzleImage);
 }
 
 void Report_16_1_MainGame::update(void)
 {
-	GameNode::update();
-
 	// 키입력 처리
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _curPieceIdx % 3 != 0)
 	{
@@ -113,35 +107,28 @@ void Report_16_1_MainGame::update(void)
 	}
 }
 
-void Report_16_1_MainGame::render(HDC hdc)
+void Report_16_1_MainGame::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
-	// ==========================================================
-
 	char str[128];
 
 	if (_isAnswer)
 	{
-		_puzzleImage->alphaRender(memDC, WINSIZE_X / 2 - 300, WINSIZE_Y / 2 - 300, _alpha);
+		_puzzleImage->alphaRender(getMemDC(), WINSIZE_X / 2 - 300, WINSIZE_Y / 2 - 300, _alpha);
 	}
 	else
 	{
-		_puzzleImage->render(memDC, 20, 100);
+		_puzzleImage->render(getMemDC(), 20, 100);
 
 		for (int i = 0; i < MAX_PIECE; i++)
 		{
 			if (i == _curPieceIdx) continue;
 
-			_puzzleImage->render(memDC, 660 + _piece[i].rc.left, 100 + _piece[i].rc.top, (_piece[i].idx % 3) * 200, (_piece[i].idx / 3) * 200, 200, 200);
+			_puzzleImage->render(getMemDC(), 660 + _piece[i].rc.left, 100 + _piece[i].rc.top, (_piece[i].idx % 3) * 200, (_piece[i].idx / 3) * 200, 200, 200);
 
 			sprintf_s(str, "%d", _piece[i].idx);
-			TextOut(memDC, 660 + _piece[i].rc.left, 100 + _piece[i].rc.top, str, strlen(str));
+			TextOut(getMemDC(), 660 + _piece[i].rc.left, 100 + _piece[i].rc.top, str, strlen(str));
 		}
 	}
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
 }
 
 void Report_16_1_MainGame::swapPiece(int destIdx, int sourIdx)

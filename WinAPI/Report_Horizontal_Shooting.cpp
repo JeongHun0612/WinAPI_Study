@@ -91,13 +91,13 @@ void Report_Horizontal_Shooting::update(void)
 	}
 }
 
-void Report_Horizontal_Shooting::render(HDC hdc)
+void Report_Horizontal_Shooting::render(void)
 {
-	DrawRectMake(hdc, _Player1.rc);
-	DrawRectMake(hdc, _Player2.rc);
+	DrawRectMake(getMemDC(), _Player1.rc);
+	DrawRectMake(getMemDC(), _Player2.rc);
 
 	for (auto iter = _vPlayerBullet1.begin(); iter != _vPlayerBullet1.end(); ++iter)
 	{
-		Ellipse(hdc, iter->left, iter->top, iter->right, iter->bottom);
+		Ellipse(getMemDC(), iter->left, iter->top, iter->right, iter->bottom);
 	}
 }

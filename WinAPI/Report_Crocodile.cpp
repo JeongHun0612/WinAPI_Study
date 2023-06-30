@@ -24,7 +24,7 @@ void Report_Crocodile::update(void)
 {
 }
 
-void Report_Crocodile::render(HDC hdc)
+void Report_Crocodile::render(void)
 {
-	TextOut(hdc, WINSIZE_X / 2, WINSIZE_Y / 2, "╬г╬Н ╟тюс", strlen("╬г╬Н ╟тюс"));
+	TextOut(getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2, "╬г╬Н ╟тюс", strlen("╬г╬Н ╟тюс"));
 }

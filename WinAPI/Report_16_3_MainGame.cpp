@@ -20,8 +20,6 @@
 
 HRESULT Report_16_3_MainGame::init()
 {
-	GameNode::init();
-
 	// 지렁이 객체 초기화
 	for (int i = 0; i < MAX_WORM; i++)
 	{
@@ -68,13 +66,10 @@ HRESULT Report_16_3_MainGame::init()
 
 void Report_16_3_MainGame::release(void)
 {
-	GameNode::release();
 }
 
 void Report_16_3_MainGame::update(void)
 {
-	GameNode::update();
-
 	// 키입력
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
@@ -148,11 +143,8 @@ void Report_16_3_MainGame::update(void)
 	}
 }
 
-void Report_16_3_MainGame::render(HDC hdc)
+void Report_16_3_MainGame::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
-
 	HBRUSH hBrush;
 	HBRUSH hOldBrush;
 
@@ -161,27 +153,25 @@ void Report_16_3_MainGame::render(HDC hdc)
 	{
 		if (_worms[i].color != RGB(0, 0, 0))
 		{
-			hBrush = CreateSolidBrush(_worms[i].color);
-			hOldBrush = (HBRUSH)SelectObject(memDC, hBrush);
+			hBrush = CreateSolidBrush(_worms[i].color);`
+			hOldBrush = (HBRUSH)SelectObject(getMemDC(), hBrush);
 
-			EllipseMakeCenter(memDC, _worms[i].x, _worms[i].y, _worms[i].radius);
+			EllipseMakeCenter(getMemDC(), _worms[i].x, _worms[i].y, _worms[i].radius);
 
-			hBrush = (HBRUSH)SelectObject(memDC, hOldBrush);
+			hBrush = (HBRUSH)SelectObject(getMemDC(), hOldBrush);
 			DeleteObject(hBrush);
 		}
 		else
 		{
-			EllipseMakeCenter(memDC, _worms[i].x, _worms[i].y, _worms[i].radius);
+			EllipseMakeCenter(getMemDC(), _worms[i].x, _worms[i].y, _worms[i].radius);
 		}
 
 		sprintf_s(strId, "%d", _worms[i].id);
-		TextOut(memDC, _worms[i].x, _worms[i].y, strId, strlen(strId));
+		TextOut(getMemDC(), _worms[i].x, _worms[i].y, strId, strlen(strId));
 	}
 
 	// 아이템 렌더
-	DrawRectMake(memDC, _item.rc);
+	DrawRectMake(getMemDC(), _item.rc);
 	sprintf_s(strId, "%d", _item.id);
-	TextOut(memDC, _item.x + 10, _item.y + 10, strId, strlen(strId));
-
-	this->getDoubleBuffer()->render(hdc, 0, 0);
+	TextOut(getMemDC(), _item.x + 10, _item.y + 10, strId, strlen(strId));
 }

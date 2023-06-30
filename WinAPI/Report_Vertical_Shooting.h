@@ -1,5 +1,5 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 
 #define BULLET_MAX		10
 #define PLAYER_SPEED	5
@@ -8,22 +8,22 @@
 // 적개체가 가지고있는 속성을 생각 -> 단일 이미지면 X, 애니메이션이 많이 들어가면 사용을 고려
 #define	ENEMY_MAX		80
 
-struct tagBullet
-{
-	RECT rc;
-	bool fire;
-};
-
-struct tagEnemy
-{
-	RECT rc;
-	int speed;
-	bool die;
-};
-
-class Report_Vertical_Shooting : public Report_MainGame
+class Report_Vertical_Shooting : public GameNode
 {
 private:
+	struct tagBullet
+	{
+		RECT rc;
+		bool fire;
+	};
+
+	struct tagEnemy
+	{
+		RECT rc;
+		int speed;
+		bool die;
+	};
+
 	HBRUSH brush;
 
 	tagBullet _bullet[BULLET_MAX];
@@ -37,7 +37,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	void fireBullet(void);
 

@@ -3,19 +3,9 @@
 
 HRESULT MainGame::init(void)
 {
-	GameNode::init();
+	GameNode::init(true);
 
-	_loading = new GImage;
-	_loading->init("Resources/Images/Object/zero_loading.bmp", WINSIZE_X / 2 - 200, WINSIZE_Y / 2 - 200,
-		640 , 240,
-		8 , 2,
-		true, RGB(255, 0, 255));
-
-	_alphaA = 0;
-	_count = _index = 0;
-
-	_isLeft = false;
-	_isAlphaIncrease = false;
+	_mg->init();
 
 	return S_OK;
 }
@@ -23,8 +13,8 @@ HRESULT MainGame::init(void)
 void MainGame::release(void)
 {
 	GameNode::release();
-	
-	SAFE_DELETE(_loading);
+
+	_mg->release();
 }
 
 void MainGame::update(void)
@@ -39,84 +29,36 @@ void MainGame::update(void)
 		}
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		_isLeft = true;
-		_loading->setX(_loading->getX() - 8.0f);
-	}
-
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		_isLeft = false;
-		_loading->setX(_loading->getX() + 8.0f);
-	}
-
-	if (_isLeft)
-	{
-		_count++;
-
-		_loading->setFrameY(1);
-
-		if (_count % 3 == 0)
-		{
-			_index--;
-
-			if (_index < 0)
-			{
-				_index = 10;
-			}
-
-			_loading->setFrameX(_index);
-		}
-	}
-	else
-	{
-		_count++;
-		_loading->setFrameY(0);
-
-		if (_count % 2 == 0)
-		{
-			_index++;
-
-			if (_index > 10)
-			{
-				_index = 0;
-			}
-
-			_loading->setFrameX(_index);
-		}
-	}
+	_mg->update();
 }
 
-void MainGame::render(HDC hdc)
+void MainGame::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
+	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
 
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
-	// ==========================================================
+	_mg->render();
 
-	_loading->frameRender(memDC, _loading->getX(), _loading->getY());
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
+	this->getBackBuffer()->render(getHDC(), 0, 0);
 }
 
 /*
-과제 1. 제로 콤보 이미지 완성
+과제 1. 캐릭터 벽잡기
 
-- 스페이스 바를 누르면 1타부터 -> 마지막 공격까지 자동으로 재생
-ㄴ 무한 반복
+- 이미지 필수 : 배경, 벽, 캐릭터 (대기, 이동, 점프, 벽을 잡고 있는 모션)
+
+- 기본적으로 벽을 잡을때는 가장 위쪽 모서리를 잡으며 벽 중간을 잡았을 경우 천천히 지면으로 내려온다.
+
+- 캐릭터가 벽을 잡고 있는 상태에서 위 / 또는 아래 방향키를 누르면 올라가거나 / 내려갈 수 있어야 한다.
+
+- 또한 캐릭터가 벽 위로 올라선 다음 다시 아래로 점프하면 캐릭터는 지면에 착지 할 수 있어야 한다.
+
+- 캐릭터 점프 높이의 지형이 있고 캐릭터는 지형 밑에서 점프로 지형위로 올라 갈 수 있다.
+
+- 캐릭터는 지형에 올라선 상태에서 지면으로 다시 내려올 수 있으면 OK
 
 
-과제 2. 프레임 이미지 처리
+과제 2. 미니맵 연동
 
-- 시작 씬 + 게임 씬
-
-- 게임씬에서는 아래의 이미지를 GUI화 시켜서 재생 시킨다. (버튼)
-ㄴ 프레임 렌더)
-
-- 필수 이미지
-ㄴ 배경, 대기, 이동 (좌 + 우), 찌르기 (좌 + 우), 대각선 찌르기,
-	연속 찌르기 (좌 + 우), 원 돌리기, 승리 포즈 (옷 던지기), 스킬 클라이막스 연출, 패배
-
+- 플레이어의 움직임을 미니맵에서 그대로 확인해야 한다.
+ㄴ 움직임까지 동일하게
 */

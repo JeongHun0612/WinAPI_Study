@@ -3,33 +3,41 @@
 
 HRESULT GameNode::init(void)
 {
-	// 타이머 초기화
-	SetTimer(_hWnd, 1, 10, NULL);
-
-	RND->init();
-	KEYMANAGER->init();
-
-	this->setDoubleBuffer();
-
-	// 함수가 성공적으로 실행 되었음을 알린다.
 	return S_OK;
 }
 
-void GameNode::setDoubleBuffer(void)
+HRESULT GameNode::init(bool managerInit)
 {
-	_DoubleBuffer = new GImage;
-	_DoubleBuffer->init(WINSIZE_X, WINSIZE_Y);
+	_hdc = GetDC(_hWnd);
+	_managerInit = managerInit;
+
+	if (managerInit)
+	{
+		// 타이머 초기화
+		SetTimer(_hWnd, 1, 10, NULL);
+
+		RND->init();
+		KEYMANAGER->init();
+		IMAGEMANAGER->init();
+	}
+
+	return S_OK;
 }
 
 void GameNode::release(void)
 {
-	// 동적할당과 같이 삭제하지 않고 종료하면 메모리 누수가 발생한다.
-	KillTimer(_hWnd, 1);
+	if (_managerInit)
+	{
+		// 동적할당과 같이 삭제하지 않고 종료하면 메모리 누수가 발생한다.
+		KillTimer(_hWnd, 1);
 
-	RND->releaseSingleton();
-	KEYMANAGER->releaseSingleton();
+		RND->releaseSingleton();
+		KEYMANAGER->releaseSingleton();
+		IMAGEMANAGER->release();
+		IMAGEMANAGER->releaseSingleton();
+	}
 
-	SAFE_DELETE(_DoubleBuffer);
+	ReleaseDC(_hWnd, _hdc);
 }
 
 void GameNode::update(void)
@@ -37,7 +45,7 @@ void GameNode::update(void)
 	InvalidateRect(_hWnd, NULL, false);
 }
 
-void GameNode::render(HDC hdc)
+void GameNode::render(void)
 {
 	//! Do Noting
 }
@@ -57,7 +65,7 @@ LRESULT GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		this->render(hdc);
+		this->render();
 
 		EndPaint(hWnd, &ps);
 		break;

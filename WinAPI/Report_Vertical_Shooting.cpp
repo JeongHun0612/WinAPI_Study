@@ -125,10 +125,10 @@ void Report_Vertical_Shooting::update(void)
 	}
 }
 
-void Report_Vertical_Shooting::render(HDC hdc)
+void Report_Vertical_Shooting::render(void)
 {
 	// HP바 그리기
-	TextOut(hdc, 10, 10, "HP : ", strlen("HP : "));
+	TextOut(getMemDC(), 10, 10, "HP : ", strlen("HP : "));
 
 	switch (_hp)
 	{
@@ -143,24 +143,24 @@ void Report_Vertical_Shooting::render(HDC hdc)
 		break;
 	}
 
-	FillRect(hdc, &_hpBar, brush);
+	FillRect(getMemDC(), &_hpBar, brush);
 	DeleteObject(brush);
 
 	// 플레이어 그리기
-	DrawRectMake(hdc, _playerRC);
+	DrawRectMake(getMemDC(), _playerRC);
 
 	// 적개체 그리기
 	for (int i = 0; i < ENEMY_MAX; i++)
 	{
 		if (_enemy[i].die) continue;
-		Rectangle(hdc, _enemy[i].rc.left, _enemy[i].rc.top, _enemy[i].rc.right, _enemy[i].rc.bottom);
+		Rectangle(getMemDC(), _enemy[i].rc.left, _enemy[i].rc.top, _enemy[i].rc.right, _enemy[i].rc.bottom);
 	}
 
 	// 총알 그리기
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
 		if (!_bullet[i].fire) continue;
-		Ellipse(hdc, _bullet[i].rc.left, _bullet[i].rc.top, _bullet[i].rc.right, _bullet[i].rc.bottom);
+		Ellipse(getMemDC(), _bullet[i].rc.left, _bullet[i].rc.top, _bullet[i].rc.right, _bullet[i].rc.bottom);
 	}
 }
 

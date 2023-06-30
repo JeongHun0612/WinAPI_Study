@@ -48,12 +48,12 @@ void Report_BulletShooting::update(void)
     }
 }
 
-void Report_BulletShooting::render(HDC hdc)
+void Report_BulletShooting::render(void)
 {
-    RectangleMakeCenter(hdc, _posX, WINSIZE_Y - 50, 50, 100);
+    RectangleMakeCenter(getMemDC(), _posX, WINSIZE_Y - 50, 50, 100);
 
     for (auto viNum = _vBullet.begin(); viNum != _vBullet.end(); viNum++)
     {
-        DrawRectMake(hdc, *viNum);
+        DrawRectMake(getMemDC(), *viNum);
     }
 }

@@ -30,8 +30,6 @@ enum CURRENT_RECT
 class Example_Mole : public GameNode
 {
 private:
-	Example_Mole* _mole;
-
 	CURRENT_RECT _currentRect;
 
 	RECT _rc[8];
@@ -47,7 +45,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Example_Mole() {}
 	~Example_Mole() {}

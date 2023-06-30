@@ -9,23 +9,24 @@
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-struct tagWorm
-{
-	int id;
-	float x, y;
-	float radius;
-	COLORREF color;
-};
-
-struct tagItem
-{
-	RECT rc;
-	int x, y;
-	int id;
-};
-
 class Report_16_3_MainGame : public GameNode
 {
+public:
+	struct tagWorm
+	{
+		int id;
+		float x, y;
+		float radius;
+		COLORREF color;
+	};
+
+	struct tagItem
+	{
+		RECT rc;
+		int x, y;
+		int id;
+	};
+
 private:
 	tagWorm _worms[MAX_WORM];
 	tagItem _item;
@@ -41,6 +42,6 @@ public:
 	HRESULT init();
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 };
 

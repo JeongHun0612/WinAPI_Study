@@ -50,7 +50,7 @@ HRESULT Report_17_2_MainGame::init(void)
 	wsprintf(_motionBtn[8].name, "스킬 연출");
 	wsprintf(_motionBtn[9].name, "");
 
-	_motionType = EMOTION_TYPE::MOVE;
+	_motionType = EMOTION_TYPE::IDLE;
 
 	_count = _index = 0;
 	_alpha = 0;
@@ -147,7 +147,6 @@ void Report_17_2_MainGame::update(void)
 			_motionImage[_currentIdx].motion->setFrameX(_index);
 		}
 	}
-
 }
 
 void Report_17_2_MainGame::render(HDC hdc)
@@ -171,7 +170,6 @@ void Report_17_2_MainGame::render(HDC hdc)
 	{
 		_skillScene->alphaRender(memDC, _skillScene->getX(), _skillScene->getY(), _alpha);
 	}
-
 
 	// ==========================================================
 	this->getDoubleBuffer()->render(hdc, 0, 0);

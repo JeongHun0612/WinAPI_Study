@@ -135,32 +135,23 @@ void Report_17_1_MainGame::update(void)
 
 void Report_17_1_MainGame::render(HDC hdc)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
-	// ==========================================================
-
 	if (!_isAttack)
 	{
-		_idle.image->frameRender(memDC, _idle.image->getX(), _idle.image->getY());
+		_idle.image->frameRender(getMemDC(), _idle.image->getX(), _idle.image->getY());
 	}
 	else
 	{
 		switch (_attackIndex)
 		{
 		case 0:
-			_attack1.image->frameRender(memDC, _attack1.image->getX(), _attack1.image->getY());
+			_attack1.image->frameRender(getMemDC(), _attack1.image->getX(), _attack1.image->getY());
 			break;
 		case 1:
-			_attack2.image->frameRender(memDC, _attack2.image->getX(), _attack2.image->getY());
+			_attack2.image->frameRender(getMemDC(), _attack2.image->getX(), _attack2.image->getY());
 			break;
 		case 2:
-			_attack3.image->frameRender(memDC, _attack3.image->getX(), _attack3.image->getY());
+			_attack3.image->frameRender(getMemDC(), _attack3.image->getX(), _attack3.image->getY());
 			break;
 		}
 	}
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
-
 }

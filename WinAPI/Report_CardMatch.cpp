@@ -17,8 +17,6 @@
 
 HRESULT Report_CardMatch::init(void)
 {
-	GameNode::init();
-
 	for (int i = 0; i < CARD_MAX; i++)
 	{
 		_Card[i] = Card(i, i / 2, 100 + ((i % 5) * 120), 50 + ((i / 5) * 175));
@@ -41,13 +39,10 @@ HRESULT Report_CardMatch::init(void)
 
 void Report_CardMatch::release(void)
 {
-	GameNode::release();
 }
 
 void Report_CardMatch::update(void)
 {
-	GameNode::update();
-
 	//if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	//{
 	//}
@@ -71,14 +66,14 @@ void Report_CardMatch::update(void)
 	//}
 }
 
-void Report_CardMatch::render(HDC hdc)
+void Report_CardMatch::render()
 {
 	wsprintf(str, "X : %d   Y : %d", _ptMouse.x, _ptMouse.y);
-	TextOut(hdc, 0, 0, str, strlen(str));
+	TextOut(getMemDC(), 0, 0, str, strlen(str));
 
 	for (int i = 0; i < CARD_MAX; i++)
 	{
-		_Card[i].drawCard(hdc);
+		_Card[i].drawCard(getMemDC());
 	}
 
 	//if (selectCount == 2)

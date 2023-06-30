@@ -1,5 +1,5 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 
 struct DDong
 {
@@ -7,7 +7,7 @@ struct DDong
 	int _speed;
 };
 
-class Report_Avoid : public Report_MainGame
+class Report_Avoid : public GameNode
 {
 private:
 	DDong _DDong;
@@ -28,7 +28,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_Avoid() {}
 	~Report_Avoid() {}

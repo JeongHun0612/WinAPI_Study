@@ -1,10 +1,10 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 #include "Mole.h"
 
 #define CREATE_CYCLE		1
 
-class Report_Mole : public Report_MainGame
+class Report_Mole : public GameNode
 {
 private:
 	GImage* _bgImage;
@@ -19,7 +19,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_Mole() {}
 	~Report_Mole() {}

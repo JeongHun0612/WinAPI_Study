@@ -3,8 +3,6 @@
 
 HRESULT Example_Cliping::init(void)
 {
-	GameNode::init();
-
 	_bgImage = new GImage;
 	_bgImage->init("Resources/Images/BackGround/DeadSpace.bmp", WINSIZE_X, WINSIZE_Y);
 
@@ -25,16 +23,12 @@ HRESULT Example_Cliping::init(void)
 
 void Example_Cliping::release(void)
 {
-	GameNode::release();
-
 	SAFE_DELETE(_bgImage);
 	SAFE_DELETE(_plImage);
 }
 
 void Example_Cliping::update(void)
 {
-	GameNode::update();
-
 	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
 		if (MessageBox(_hWnd, "게임을 종료하시겠습니까?", "종료확인", MB_OKCANCEL) == IDOK);
@@ -87,24 +81,15 @@ void Example_Cliping::update(void)
 	}
 }
 
-void Example_Cliping::render(HDC hdc)
+void Example_Cliping::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
+	//_bgImage->render(getMemDC(), 0, 0);
+	_bgImage->alphaRender(getMemDC(), _alphaA);
 
-	// PatBlt() : 사각형 안에 영역을 브러쉬로 채우는 함수
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
-	// ==========================================================
+	//_plImage->render(getMemDC(), _rc.left, _rc.top);
+	_plImage->alphaRender(getMemDC(), _rc.left, _rc.right, _alphaB);
 
-	//_bgImage->render(memDC, 0, 0);
-	_bgImage->alphaRender(memDC, _alphaA);
-
-	//_plImage->render(memDC, _rc.left, _rc.top);
-	_plImage->alphaRender(memDC, _rc.left, _rc.right, _alphaB);
-
-	_bgImage->render(memDC, _rc.left, _rc.top, 500, 300, 300, 300);
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
+	_bgImage->render(getMemDC(), _rc.left, _rc.top, 500, 300, 300, 300);
 }
 
 

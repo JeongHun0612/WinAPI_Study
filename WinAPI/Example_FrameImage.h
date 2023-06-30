@@ -1,20 +1,22 @@
 #pragma once
 #include "GameNode.h"
 
-class Report_BulletShooting : public GameNode
+class Example_FrameImage : GameNode
 {
 private:
-	int _posX;
+	GImage* _loading;
 
-	vector<RECT> _vBullet;
+	int _alphaA;
+	int _count;
+	int _index;
+
+	bool _isLeft;
+	bool _isAlphaIncrease;
 
 public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
 	void render(void);
-
-	Report_BulletShooting() {}
-	~Report_BulletShooting() {}
 };
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Report_MainGame.h"
+#include "GameNode.h"
 
-class Report_Crocodile : public Report_MainGame
+class Report_Crocodile : public GameNode
 {
 private:
 
@@ -9,7 +9,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
 	Report_Crocodile() {}
 	~Report_Crocodile() {}

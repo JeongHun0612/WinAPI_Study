@@ -13,8 +13,6 @@
 
 HRESULT Report_16_2_MainGame::init(void)
 {
-	GameNode::init();
-
 	// ¹è°æ ÀÌ¹ÌÁö ÃÊ±âÈ­
 	_bgImage = new GImage;
 	_bgImage->init("Resources/Images/BackGround/background.bmp", WINSIZE_X, WINSIZE_Y);
@@ -57,13 +55,10 @@ HRESULT Report_16_2_MainGame::init(void)
 
 void Report_16_2_MainGame::release(void)
 {
-	GameNode::release();
 }
 
 void Report_16_2_MainGame::update(void)
 {
-	GameNode::update();
-
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _player.pos.x > 0)
 	{
 		if (_camera.pos.x != 0 && _player.pos.x == WINSIZE_X / 2)
@@ -126,23 +121,20 @@ void Report_16_2_MainGame::update(void)
 	}
 }
 
-void Report_16_2_MainGame::render(HDC hdc)
+void Report_16_2_MainGame::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
-
 	HBRUSH myBrush;
 	HBRUSH oldBrush;
 
 	// ¹è°æ ÀÌ¹ÌÁö ·»´õ
-	_bgImage->render(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, _camera.pos.x, _camera.pos.y, _camera.width, _camera.height);
+	_bgImage->render(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, _camera.pos.x, _camera.pos.y, _camera.width, _camera.height);
 
 
 	// Å¸ÀÏ ·»´õ
 	if (isShowTile)
 	{
 		myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
+		oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
 
 		char tileID[10];
 		int startX = _camera.pos.x / 32;
@@ -152,37 +144,35 @@ void Report_16_2_MainGame::render(HDC hdc)
 		{
 			for (int j = 0; j < WINSIZE_X / 64; j++)
 			{
-				RectangleMake(memDC, j * 64, i * 64, 64, 64);
+				RectangleMake(getMemDC(), j * 64, i * 64, 64, 64);
 				sprintf_s(tileID, "%d", _tileMap[startY + i][startX + j].index);
-				TextOut(memDC, j * 64, i * 64, tileID, strlen(tileID));
+				TextOut(getMemDC(), j * 64, i * 64, tileID, strlen(tileID));
 			}
 		}
 
-		SelectObject(memDC, oldBrush);
+		SelectObject(getMemDC(), oldBrush);
 		DeleteObject(myBrush);
 	}
 
 	// ÇÃ·¹ÀÌ¾î ·»´õ
 	myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 255, 255));
-	oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
+	oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
 
-	RectangleMake(memDC, _player.pos.x, _player.pos.y, 64, 64);
-	//DrawRectMake(memDC, _player.rc);
+	RectangleMake(getMemDC(), _player.pos.x, _player.pos.y, 64, 64);
+	//DrawRectMake(getMemDC(), _player.rc);
 
-	SelectObject(memDC, oldBrush);
+	SelectObject(getMemDC(), oldBrush);
 	DeleteObject(myBrush);
 
 
 	// ¹Ì´Ï¸Ê ÀÌ¹ÌÁö ·»´õ
-	_miniMap.imgae->render(memDC, _miniMap.x, _miniMap.y);
+	_miniMap.imgae->render(getMemDC(), _miniMap.x, _miniMap.y);
 
 	myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	oldBrush = (HBRUSH)SelectObject(memDC, myBrush);
-	RectangleMake(memDC, _camera.mapPos.x, _camera.mapPos.y, _miniMap.width / 2, _miniMap.height / 2);
-	SelectObject(memDC, oldBrush);
+	oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
+	RectangleMake(getMemDC(), _camera.mapPos.x, _camera.mapPos.y, _miniMap.width / 2, _miniMap.height / 2);
+	SelectObject(getMemDC(), oldBrush);
 	DeleteObject(myBrush);
 
-	RectangleMake(memDC, _player.mapPos.x, _player.mapPos.y, 10, 10);
-
-	this->getDoubleBuffer()->render(hdc, 0, 0);
+	RectangleMake(getMemDC(), _player.mapPos.x, _player.mapPos.y, 10, 10);
 }

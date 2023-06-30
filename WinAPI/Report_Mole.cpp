@@ -15,8 +15,6 @@
 
 HRESULT Report_Mole::init(void)
 {
-	GameNode::init();
-
 	_tCreateCycle = clock();
 	_nScore = 0;
 
@@ -30,13 +28,10 @@ HRESULT Report_Mole::init(void)
 
 void Report_Mole::release(void)
 {
-	GameNode::release();
 }
 
 void Report_Mole::update(void)
 {
-	GameNode::update();
-
 	// 두더지 생성 주기
 	if ((clock() - _tCreateCycle) / CLOCKS_PER_SEC > CREATE_CYCLE)
 	{
@@ -72,7 +67,7 @@ void Report_Mole::update(void)
 	}
 }
 
-void Report_Mole::render(HDC hdc)
+void Report_Mole::render(void)
 {
 	// Draw Score
 	wsprintf(_ScoreStr, "Score : %d", _nScore);

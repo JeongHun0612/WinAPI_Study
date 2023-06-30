@@ -9,8 +9,6 @@
 
 HRESULT Report_15_3_MainGame::init(void)
 {
-	GameNode::init();
-
 	_radius = 50;
 	_currentAngle = -90;
 	_move = 1;
@@ -21,13 +19,10 @@ HRESULT Report_15_3_MainGame::init(void)
 
 void Report_15_3_MainGame::release(void)
 {
-	GameNode::release();
 }
 
 void Report_15_3_MainGame::update(void)
 {
-	GameNode::update();
-
 	// 포신 이동
 	if (!_bIsAuto)
 	{
@@ -95,16 +90,12 @@ void Report_15_3_MainGame::update(void)
 	}
 }
 
-void Report_15_3_MainGame::render(HDC hdc)
+void Report_15_3_MainGame::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
-	// ==========================================================
-
-	EllipseMakeCenter(memDC, WINSIZE_X / 2, WINSIZE_Y, _radius);
+	EllipseMakeCenter(getMemDC(), WINSIZE_X / 2, WINSIZE_Y, _radius);
 
 	LineMake(
-		memDC,
+		getMemDC(),
 		WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * _radius,
 		WINSIZE_Y + sinf(DEGREE_RADIAN(_currentAngle)) * _radius,
 		WINSIZE_X / 2 + cosf(DEGREE_RADIAN(_currentAngle)) * (_radius + 30),
@@ -113,9 +104,6 @@ void Report_15_3_MainGame::render(HDC hdc)
 
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
-		EllipseMakeCenter(memDC, _vBulletIter->centerX, _vBulletIter->centerY, _vBulletIter->radius);
+		EllipseMakeCenter(getMemDC(), _vBulletIter->centerX, _vBulletIter->centerY, _vBulletIter->radius);
 	}
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
 }

@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "GImage.h"
 
-
-
 GImage::GImage() : _imageInfo(nullptr)
                  , _fileName(nullptr)
                  , _isTrans(false)
