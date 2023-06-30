@@ -3,7 +3,7 @@
 
 #define MAX_PIECE		9
 
-class Report_16_1_MainGame : public GameNode
+class Report_Slice_Game : public GameNode
 {
 private:
 	struct tagPiece
@@ -11,7 +11,6 @@ private:
 		RECT rc;
 		int idx;
 	};
-
 
 	GImage* _puzzleImage;
 	tagPiece _piece[MAX_PIECE];
@@ -29,5 +28,8 @@ public:
 
 	void swapPiece(int destIdx, int sourIdx);
 	void chit(tagPiece* pieces);
+
+	Report_Slice_Game() {}
+	~Report_Slice_Game() {}
 };
 

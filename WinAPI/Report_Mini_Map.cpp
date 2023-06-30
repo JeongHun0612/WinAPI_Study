@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_16_2_MainGame.h"
+#include "Report_Mini_Map.h"
 
 /*
 과제 2. 미니맵 만들기
@@ -11,7 +11,7 @@
 ㄴ 2. 화면위에 그려지는 전체화면 미니맵
 */
 
-HRESULT Report_16_2_MainGame::init(void)
+HRESULT Report_Mini_Map::init(void)
 {
 	// 배경 이미지 초기화
 	_bgImage = new GImage;
@@ -53,11 +53,11 @@ HRESULT Report_16_2_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_16_2_MainGame::release(void)
+void Report_Mini_Map::release(void)
 {
 }
 
-void Report_16_2_MainGame::update(void)
+void Report_Mini_Map::update(void)
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _player.pos.x > 0)
 	{
@@ -121,7 +121,7 @@ void Report_16_2_MainGame::update(void)
 	}
 }
 
-void Report_16_2_MainGame::render(void)
+void Report_Mini_Map::render(void)
 {
 	HBRUSH myBrush;
 	HBRUSH oldBrush;

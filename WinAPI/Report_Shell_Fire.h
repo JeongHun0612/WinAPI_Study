@@ -9,25 +9,25 @@
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-struct tagBullet
+class Report_Shell_Fire : public GameNode
 {
-	int radius;
-	int diameter;
-	int angle;
-	int moveX;
-	int moveY;
+public:
+	struct tagBullet
+	{
+		int radius;
+		int diameter;
+		int angle;
+		int moveX;
+		int moveY;
 
-	float centerX;
-	float centerY;
-	float tempX;
-	float tempY;
-	float speed;
+		float centerX;
+		float centerY;
+		float tempX;
+		float tempY;
+		float speed;
 
-	RECT rc;
-};
-
-class Report_15_2_MainGame : public GameNode
-{
+		RECT rc;
+	};
 private:
 	vector<tagBullet> _vBullet;
 	vector<tagBullet>::iterator _vBulletIter;
@@ -44,7 +44,7 @@ public:
 	void update(void);
 	void render(void);
 
-	Report_15_2_MainGame() {}
-	~Report_15_2_MainGame() {}
+	Report_Shell_Fire() {}
+	~Report_Shell_Fire() {}
 };
 

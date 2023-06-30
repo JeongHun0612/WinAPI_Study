@@ -9,7 +9,7 @@
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-class Report_15_3_MainGame : public GameNode
+class Report_Bullet_Gravity : public GameNode
 {
 public:
 	struct tagBullet
@@ -42,7 +42,7 @@ public:
 	void update(void);
 	void render(void);
 
-	Report_15_3_MainGame() {}
-	~Report_15_3_MainGame() {}
+	Report_Bullet_Gravity() {}
+	~Report_Bullet_Gravity() {}
 };
 

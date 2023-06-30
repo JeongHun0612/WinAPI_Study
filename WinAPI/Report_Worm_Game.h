@@ -9,7 +9,7 @@
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-class Report_16_3_MainGame : public GameNode
+class Report_Worm_Game : public GameNode
 {
 public:
 	struct tagWorm

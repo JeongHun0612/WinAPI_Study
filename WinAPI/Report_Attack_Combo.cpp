@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_17_1_MainGame.h"
+#include "Report_Attack_Combo.h"
 
 /*
 과제 1. 제로 콤보 이미지 완성
@@ -8,10 +8,8 @@
 ㄴ 무한 반복
 */
 
-HRESULT Report_17_1_MainGame::init(void)
+HRESULT Report_Attack_Combo::init(void)
 {
-    GameNode::init();
-
 	_idle.maxFrameX = 4;
 	_idle.maxFrameY = 2;
 	_idle.image = new GImage;
@@ -41,15 +39,12 @@ HRESULT Report_17_1_MainGame::init(void)
     return S_OK;
 }
 
-void Report_17_1_MainGame::release(void)
+void Report_Attack_Combo::release(void)
 {
-    GameNode::release();
 }
 
-void Report_17_1_MainGame::update(void)
+void Report_Attack_Combo::update(void)
 {
-    GameNode::update();
-
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_isLeft = true;
@@ -133,7 +128,7 @@ void Report_17_1_MainGame::update(void)
 	}
 }
 
-void Report_17_1_MainGame::render(HDC hdc)
+void Report_Attack_Combo::render(void)
 {
 	if (!_isAttack)
 	{

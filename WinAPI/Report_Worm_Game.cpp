@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_16_3_MainGame.h"
+#include "Report_Worm_Game.h"
 
 /*
 - 지렁이는 구슬이 꼬리를 물고 이어지는 형태
@@ -18,7 +18,7 @@
 ※ 얼마나 자연스러운지가 핵심
 */
 
-HRESULT Report_16_3_MainGame::init()
+HRESULT Report_Worm_Game::init()
 {
 	// 지렁이 객체 초기화
 	for (int i = 0; i < MAX_WORM; i++)
@@ -64,11 +64,11 @@ HRESULT Report_16_3_MainGame::init()
 	return S_OK;
 }
 
-void Report_16_3_MainGame::release(void)
+void Report_Worm_Game::release(void)
 {
 }
 
-void Report_16_3_MainGame::update(void)
+void Report_Worm_Game::update(void)
 {
 	// 키입력
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
@@ -143,7 +143,7 @@ void Report_16_3_MainGame::update(void)
 	}
 }
 
-void Report_16_3_MainGame::render(void)
+void Report_Worm_Game::render(void)
 {
 	HBRUSH hBrush;
 	HBRUSH hOldBrush;
@@ -153,7 +153,7 @@ void Report_16_3_MainGame::render(void)
 	{
 		if (_worms[i].color != RGB(0, 0, 0))
 		{
-			hBrush = CreateSolidBrush(_worms[i].color);`
+			hBrush = CreateSolidBrush(_worms[i].color);
 			hOldBrush = (HBRUSH)SelectObject(getMemDC(), hBrush);
 
 			EllipseMakeCenter(getMemDC(), _worms[i].x, _worms[i].y, _worms[i].radius);

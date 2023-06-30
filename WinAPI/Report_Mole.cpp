@@ -71,17 +71,17 @@ void Report_Mole::render(void)
 {
 	// Draw Score
 	wsprintf(_ScoreStr, "Score : %d", _nScore);
-	TextOut(hdc, 10, 10, _ScoreStr, strlen(_ScoreStr));
+	TextOut(getMemDC() , 10, 10, _ScoreStr, strlen(_ScoreStr));
 
 	// Draw Hole
 	for (int i = 0; i < MAX_MOLE; i++)
 	{
-		EllipseMakeCenter(hdc, 200 + (200 * (i % 3)), 200 + (200 * (i / 3)), 150, 100);
+		EllipseMakeCenter(getMemDC(), 200 + (200 * (i % 3)), 200 + (200 * (i / 3)), 150, 100);
 	}
 
 	// Draw Mole
 	for (int i = 0; i < MAX_MOLE; i++)
 	{
-		_Mole[i]->drawMole(hdc);
+		_Mole[i]->drawMole(getMemDC());
 	}
 }

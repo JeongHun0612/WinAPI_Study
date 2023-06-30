@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_15_1_MainGame.h"
+#include "Report_Analog_Clock.h"
 
 /*
 과제 1. 아날로그 시계
@@ -14,7 +14,7 @@
 int currentX = WINSIZE_X / 2;
 int currentY = WINSIZE_Y / 2;
 
-HRESULT Report_15_1_MainGame::init(void)
+HRESULT Report_Analog_Clock::init(void)
 {
 	_radius = 300;
 
@@ -37,11 +37,11 @@ HRESULT Report_15_1_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_15_1_MainGame::release(void)
+void Report_Analog_Clock::release(void)
 {
 }
 
-void Report_15_1_MainGame::update(void)
+void Report_Analog_Clock::update(void)
 {
 	GetLocalTime(&_st);
 
@@ -50,7 +50,7 @@ void Report_15_1_MainGame::update(void)
 	_st.wSecond;
 }
 
-void Report_15_1_MainGame::render(HDC hdc)
+void Report_Analog_Clock::render(void)
 {
 	char strTime[128];
 

@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_15_2_MainGame.h"
+#include "Report_Shell_Fire.h"
 
 /*
 과제 2. 포신 각도에 따른 총알 발사
@@ -13,7 +13,7 @@
 - 핵심 요소는 총알끼리 충돌이 되면 자연스럽게 팅겨 나가야 한다.
 */
 
-HRESULT Report_15_2_MainGame::init(void)
+HRESULT Report_Shell_Fire::init(void)
 {
 	_radius = 50;
 	_currentAngle = 270;
@@ -23,11 +23,11 @@ HRESULT Report_15_2_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_15_2_MainGame::release(void)
+void Report_Shell_Fire::release(void)
 {
 }
 
-void Report_15_2_MainGame::update(void)
+void Report_Shell_Fire::update(void)
 {
 
 	// 포신 이동
@@ -172,7 +172,7 @@ void Report_15_2_MainGame::update(void)
 	}
 }
 
-void Report_15_2_MainGame::render(void)
+void Report_Shell_Fire::render(void)
 {
 	LineMake(getMemDC(),
 		WINSIZE_X / 2,

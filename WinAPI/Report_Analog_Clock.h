@@ -15,7 +15,7 @@ struct Timer
 	int y;
 };
 
-class Report_15_1_MainGame : public GameNode
+class Report_Analog_Clock : public GameNode
 {
 private:
 	HPEN _pen;
@@ -33,9 +33,9 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
-	Report_15_1_MainGame() {}
-	~Report_15_1_MainGame() {}
+	Report_Analog_Clock() {}
+	~Report_Analog_Clock() {}
 };
 

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "GameNode.h"
 
 struct Animaion
@@ -13,7 +12,7 @@ struct Animaion
 	int index;
 };
 
-class Report_17_1_MainGame : public GameNode
+class Report_Attack_Combo : public GameNode
 {
 private:
 	Animaion _idle;
@@ -31,9 +30,9 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
-	Report_17_1_MainGame() {}
-	~Report_17_1_MainGame() {}
+	Report_Attack_Combo() {}
+	~Report_Attack_Combo() {}
 };
 

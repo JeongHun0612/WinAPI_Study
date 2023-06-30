@@ -29,7 +29,7 @@ struct Motion
 	GImage* motion;
 };
 
-class Report_17_2_MainGame : public GameNode
+class Report_Motion_Animation : public GameNode
 {
 private:
 	Button _motionBtn[MAX_MOTION];
@@ -51,9 +51,9 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(HDC hdc);
+	void render(void);
 
-	Report_17_2_MainGame() {}
-	~Report_17_2_MainGame() {}
+	Report_Motion_Animation() {}
+	~Report_Motion_Animation() {}
 };
 

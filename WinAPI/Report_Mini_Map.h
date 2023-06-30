@@ -4,7 +4,7 @@
 #define MAX_ROW		25
 #define MAX_COL		40
 
-class Report_16_2_MainGame : public GameNode
+class Report_Mini_Map : public GameNode
 {
 public:
 	struct tagPlayer

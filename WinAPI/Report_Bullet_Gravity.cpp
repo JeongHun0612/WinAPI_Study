@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_15_3_MainGame.h"
+#include "Report_Bullet_Gravity.h"
 
 /*
 과제 4. 발사한 총알에 중력 적용
@@ -7,7 +7,7 @@
 - 총알이 중력을 받아 떨어진다. -> 힘이 다하면
 */
 
-HRESULT Report_15_3_MainGame::init(void)
+HRESULT Report_Bullet_Gravity::init(void)
 {
 	_radius = 50;
 	_currentAngle = -90;
@@ -17,11 +17,11 @@ HRESULT Report_15_3_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_15_3_MainGame::release(void)
+void Report_Bullet_Gravity::release(void)
 {
 }
 
-void Report_15_3_MainGame::update(void)
+void Report_Bullet_Gravity::update(void)
 {
 	// 포신 이동
 	if (!_bIsAuto)
@@ -90,7 +90,7 @@ void Report_15_3_MainGame::update(void)
 	}
 }
 
-void Report_15_3_MainGame::render(void)
+void Report_Bullet_Gravity::render(void)
 {
 	EllipseMakeCenter(getMemDC(), WINSIZE_X / 2, WINSIZE_Y, _radius);
 

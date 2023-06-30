@@ -76,6 +76,12 @@
     <Filter Include="Report\Report_01~05">
       <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\Report_18 %28캐릭터 벽잡기%29">
+      <UniqueIdentifier>{155f879d-c726-4763-8db4-173916538382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Scene">
+      <UniqueIdentifier>{3b211cd0-55c4-4655-8929-d343a77100af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -157,34 +163,34 @@
     <ClInclude Include="Example_Math.h">
       <Filter>2D FrameWork\StudyExample</Filter>
     </ClInclude>
-    <ClInclude Include="Report_15_1_MainGame.h">
+    <ClInclude Include="Report_Analog_Clock.h">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_15_2_MainGame.h">
+    <ClInclude Include="Report_Shell_Fire.h">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_15_3_MainGame.h">
+    <ClInclude Include="Report_Bullet_Gravity.h">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClInclude>
     <ClInclude Include="GImage.h">
       <Filter>2D FrameWork\GImage</Filter>
     </ClInclude>
-    <ClInclude Include="Report_16_1_MainGame.h">
+    <ClInclude Include="Report_Slice_Game.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_16_2_MainGame.h">
+    <ClInclude Include="Report_Mini_Map.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_16_3_MainGame.h">
+    <ClInclude Include="Report_Worm_Game.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
     <ClInclude Include="Example_Cliping.h">
       <Filter>2D FrameWork\StudyExample</Filter>
     </ClInclude>
-    <ClInclude Include="Report_17_1_MainGame.h">
+    <ClInclude Include="Report_Attack_Combo.h">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClInclude>
-    <ClInclude Include="Report_17_2_MainGame.h">
+    <ClInclude Include="Report_Motion_Animation.h">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClInclude>
     <ClInclude Include="ImageManager.h">
@@ -192,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="Example_FrameImage.h">
       <Filter>2D FrameWork\StudyExample</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Wall_Catch.h">
+      <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>2D FrameWork\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -282,40 +294,37 @@
     <ClCompile Include="Example_Math.cpp">
       <Filter>2D FrameWork\StudyExample</Filter>
     </ClCompile>
-    <ClCompile Include="Report_15_1_MainGame.cpp">
+    <ClCompile Include="Report_Analog_Clock.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_15_2_MainGame.cpp">
+    <ClCompile Include="Report_Shell_Fire.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_15_3_MainGame.cpp">
+    <ClCompile Include="Report_Bullet_Gravity.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
     </ClCompile>
     <ClCompile Include="GImage.cpp">
       <Filter>2D FrameWork\GImage</Filter>
     </ClCompile>
-    <ClCompile Include="Report_16_1_MainGame.cpp">
+    <ClCompile Include="Report_Slice_Game.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_16_2_MainGame.cpp">
+    <ClCompile Include="Report_Mini_Map.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
       <Filter>2D FrameWork\PCH</Filter>
     </ClCompile>
-    <ClCompile Include="Report_16_3_MainGame.cpp">
+    <ClCompile Include="Report_Worm_Game.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
     <ClCompile Include="Example_Cliping.cpp">
       <Filter>2D FrameWork\StudyExample</Filter>
     </ClCompile>
-    <ClCompile Include="Report_17_Main.cpp">
+    <ClCompile Include="Report_Attack_Combo.cpp">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClCompile>
-    <ClCompile Include="Report_17_1_MainGame.cpp">
-      <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Report_17_2_MainGame.cpp">
+    <ClCompile Include="Report_Motion_Animation.cpp">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
@@ -323,6 +332,12 @@
     </ClCompile>
     <ClCompile Include="Example_FrameImage.cpp">
       <Filter>2D FrameWork\StudyExample</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Wall_Catch.cpp">
+      <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>2D FrameWork\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

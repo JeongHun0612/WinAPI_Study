@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_16_1_MainGame.h"
+#include "Report_Slice_Game.h"
 
 /*
 과제 1. 슬라이스 게임
@@ -14,7 +14,7 @@
 ㄴ 중앙에서 완성된 이미지를 보여주면 된다.
 */
 
-HRESULT Report_16_1_MainGame::init(void)
+HRESULT Report_Slice_Game::init(void)
 {
 	_puzzleImage = new GImage;
 	_puzzleImage->init("Resources/Images/BackGround/puzzel_image1.bmp", 600, 600);
@@ -46,12 +46,12 @@ HRESULT Report_16_1_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_16_1_MainGame::release(void)
+void Report_Slice_Game::release(void)
 {
 	SAFE_DELETE(_puzzleImage);
 }
 
-void Report_16_1_MainGame::update(void)
+void Report_Slice_Game::update(void)
 {
 	// 키입력 처리
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _curPieceIdx % 3 != 0)
@@ -107,7 +107,7 @@ void Report_16_1_MainGame::update(void)
 	}
 }
 
-void Report_16_1_MainGame::render(void)
+void Report_Slice_Game::render(void)
 {
 	char str[128];
 
@@ -131,14 +131,14 @@ void Report_16_1_MainGame::render(void)
 	}
 }
 
-void Report_16_1_MainGame::swapPiece(int destIdx, int sourIdx)
+void Report_Slice_Game::swapPiece(int destIdx, int sourIdx)
 {
 	int temp = _piece[destIdx].idx;
 	_piece[destIdx].idx = _piece[sourIdx].idx;
 	_piece[sourIdx].idx = temp;
 }
 
-void Report_16_1_MainGame::chit(tagPiece* pieces)
+void Report_Slice_Game::chit(tagPiece* pieces)
 {
 	int temp;
 	for (int i = MAX_PIECE - 1; i > 0; i--)

@@ -1,5 +1,5 @@
 #include "Stdafx.h"
-#include "Report_17_2_MainGame.h"
+#include "Report_Motion_Animation.h"
 
 /*
 과제 2. 프레임 이미지 처리
@@ -14,10 +14,8 @@
 	연속 찌르기 (좌 + 우), 원 돌리기, 승리 포즈 (옷 던지기), 스킬 클라이막스 연출, 패배
 */
 
-HRESULT Report_17_2_MainGame::init(void)
+HRESULT Report_Motion_Animation::init(void)
 {
-	GameNode::init();
-
 	for (int i = 0; i < MAX_MOTION; i++)
 	{
 		_motionBtn[i].idx = i;
@@ -61,15 +59,12 @@ HRESULT Report_17_2_MainGame::init(void)
 	return S_OK;
 }
 
-void Report_17_2_MainGame::release(void)
+void Report_Motion_Animation::release(void)
 {
-	GameNode::release();
 }
 
-void Report_17_2_MainGame::update(void)
+void Report_Motion_Animation::update(void)
 {
-	GameNode::update();
-
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _motionImage[_currentIdx].motion->getMaxFrameY() == 1)
 	{
 		_isLeft = true;
@@ -149,28 +144,21 @@ void Report_17_2_MainGame::update(void)
 	}
 }
 
-void Report_17_2_MainGame::render(HDC hdc)
+void Report_Motion_Animation::render(void)
 {
-	HDC memDC = this->getDoubleBuffer()->getMemDC();
-	PatBlt(memDC, 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
-	// ==========================================================
-
 	for (int i = 0; i < MAX_MOTION; i++)
 	{
-		DrawRectMake(memDC, _motionBtn[i].rc);
-		SetTextAlign(memDC, TA_CENTER);
-		TextOut(memDC, _motionBtn[i].rc.left + 100, _motionBtn[i].rc.top + 35, _motionBtn[i].name, strlen(_motionBtn[i].name));
+		DrawRectMake(getMemDC(), _motionBtn[i].rc);
+		SetTextAlign(getMemDC(), TA_CENTER);
+		TextOut(getMemDC(), _motionBtn[i].rc.left + 100, _motionBtn[i].rc.top + 35, _motionBtn[i].name, strlen(_motionBtn[i].name));
 	}
 
-	_motionImage[_currentIdx].motion->frameRender(memDC,
+	_motionImage[_currentIdx].motion->frameRender(getMemDC(),
 		_motionImage[_currentIdx].motion->getX() - _motionImage[_currentIdx].motion->getFrameWidth() / 2,
 		_motionImage[_currentIdx].motion->getY() - _motionImage[_currentIdx].motion->getFrameHeight() / 2);
 
 	if (_currentIdx == (int)EMOTION_TYPE::SKILL)
 	{
-		_skillScene->alphaRender(memDC, _skillScene->getX(), _skillScene->getY(), _alpha);
+		_skillScene->alphaRender(getMemDC(), _skillScene->getX(), _skillScene->getY(), _alpha);
 	}
-
-	// ==========================================================
-	this->getDoubleBuffer()->render(hdc, 0, 0);
 }
