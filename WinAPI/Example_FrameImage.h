@@ -1,7 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-class Example_FrameImage : GameNode
+class Example_FrameImage : public GameNode
 {
 private:
 	GImage* _loading;

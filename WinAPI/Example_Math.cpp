@@ -178,16 +178,16 @@ void Example_Math::render(void)
 
 	// Create : 펜 스타일, 길이, 색상
 	HPEN pen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-	HPEN currentPen;
-
-	currentPen = (HPEN)SelectObject(getMemDC(), pen);
+	HPEN oldPen;
+	oldPen = (HPEN)SelectObject(getMemDC(), pen);
 
 	LineMake(getMemDC(), WINSIZE_X / 2 - 100, WINSIZE_Y / 2 + 100, WINSIZE_X / 2 + 200, WINSIZE_Y / 2 + 100);
-
-	DeleteObject(pen);
 
 	for (int i = 0; i < 5; i++)
 	{
 		EllipseMakeCenter(getMemDC(), _star[i].x, _star[i].y, 10, 10);
 	}
+
+	SelectObject(getMemDC(), oldPen);
+	DeleteObject(pen);
 }
