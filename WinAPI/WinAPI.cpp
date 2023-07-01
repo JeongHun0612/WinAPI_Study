@@ -50,6 +50,7 @@ LPCTSTR     ->      t_string           =    const tchar*
 HINSTANCE _hInstance;
 HWND _hWnd;
 POINT _ptMouse = { 0, 0 };
+int _currentSceneIdx = -1;
 //TCHAR* pszString = _T("Windows API");
 
 

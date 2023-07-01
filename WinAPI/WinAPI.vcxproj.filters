@@ -4,9 +4,6 @@
     <Filter Include="2D FrameWork">
       <UniqueIdentifier>{cbff90dc-5004-4d04-8411-44903df4b1a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\PCH">
-      <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2D FrameWork\DesignPattern">
       <UniqueIdentifier>{e38fec4b-5bb8-4bb2-90f4-25e98a46106e}</UniqueIdentifier>
     </Filter>
@@ -82,10 +79,13 @@
     <Filter Include="2D FrameWork\Scene">
       <UniqueIdentifier>{3b211cd0-55c4-4655-8929-d343a77100af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\GImage\PCH">
+      <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
-      <Filter>2D FrameWork\PCH</Filter>
+      <Filter>2D FrameWork\GImage\PCH</Filter>
     </ClInclude>
     <ClInclude Include="C3DMatrix.h">
       <Filter>2D FrameWork\Utility\Math</Filter>
@@ -313,7 +313,7 @@
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
-      <Filter>2D FrameWork\PCH</Filter>
+      <Filter>2D FrameWork\GImage\PCH</Filter>
     </ClCompile>
     <ClCompile Include="Report_Worm_Game.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>

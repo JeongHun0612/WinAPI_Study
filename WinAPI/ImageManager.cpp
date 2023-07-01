@@ -13,6 +13,7 @@ void ImageManager::release(void)
 	this->deleteAll();
 }
 
+
 GImage* ImageManager::addImage(string strKey, int width, int height)
 {
 	// 추가하려는 이미지가 존재하는지 키값으로 확인

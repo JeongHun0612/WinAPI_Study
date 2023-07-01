@@ -157,6 +157,7 @@ void Report_Motion_Animation::render(void)
 		_motionImage[_currentIdx].motion->getX() - _motionImage[_currentIdx].motion->getFrameWidth() / 2,
 		_motionImage[_currentIdx].motion->getY() - _motionImage[_currentIdx].motion->getFrameHeight() / 2);
 
+
 	if (_currentIdx == (int)EMOTION_TYPE::SKILL)
 	{
 		_skillScene->alphaRender(getMemDC(), _skillScene->getX(), _skillScene->getY(), _alpha);

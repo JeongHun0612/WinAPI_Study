@@ -71,7 +71,6 @@ public:
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
-
 	ImageManager() {}
 	~ImageManager() {}
 };

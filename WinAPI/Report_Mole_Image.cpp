@@ -47,6 +47,7 @@ void Report_Mole_Image::release(void)
 {
 	GameNode::release();
 
+	ShowCursor(true);
 	SAFE_DELETE(_holeImage);
 	SAFE_DELETE(_moleImage);
 }

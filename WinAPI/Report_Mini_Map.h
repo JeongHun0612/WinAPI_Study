@@ -37,7 +37,6 @@ public:
 		int index;
 	};
 private:
-
 	GImage* _bgImage;
 
 	tagTile _tileMap[MAX_ROW][MAX_COL];

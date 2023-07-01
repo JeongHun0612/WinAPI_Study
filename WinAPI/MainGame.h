@@ -62,8 +62,12 @@ private:
 	//GameNode* _mg = new Report_Attack_Combo;													// 제로 공격 콤보 (프레임 이미지)
 	//GameNode* _mg = new Report_Motion_Animation;												// 모션 애니메이션 출력
 	//GameNode* _mg = new Report_Wall_Catch;														// 캐릭터 벽잡기 (미니맵)
+
 	
-	GameNode* _mg = new TitleScene;
+	GameNode* _titleScene;
+	GameNode* _currentScene;
+
+	bool _isTitle;
 
 public:
 	HRESULT init(void);

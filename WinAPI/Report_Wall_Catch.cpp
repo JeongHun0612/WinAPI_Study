@@ -25,10 +25,11 @@
 
 HRESULT Report_Wall_Catch::init(void)
 {
-	IMAGEMANAGER->addFrameImage("zero_idle", "Resources/Images/Object/Zero_Idle.bmp", 600, 150, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("zero_move", "Resources/Images/Object/Zero_Move.bmp", 960, 110, 16, 2, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("zero_idle", "Resources/Images/Object/Zero_Idle.bmp", 600, 150, 4, 2, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("zero_move", "Resources/Images/Object/Zero_Move.bmp", 960, 110, 16, 2, true, RGB(255, 0, 255));
 
-	_player._img = IMAGEMANAGER->findImage("zero_idle");
+	IMAGEMANAGER->addImage("Mole", "Resources/Images/Object/Mole.bmp", 200, 200, true, RGB(255, 0, 255));
+
 	_player._state = EState::IDLE;
 	_player._isLeft = false;
 
@@ -43,23 +44,21 @@ void Report_Wall_Catch::release(void)
 
 void Report_Wall_Catch::update(void)
 {
-	IMAGEMANAGER->findImage("zero_move")->getFrameX();
+	//_count++;
 
-	_count++;
+	//_player._img->setFrameY(0);
 
-	_player._img->setFrameY(0);
+	//if (_count % 10 == 0)
+	//{
+	//	_index--;
 
-	if (_count % 10 == 0)
-	{
-		_index--;
+	//	if (_index < 0)
+	//	{
+	//		_index = _player._img->getMaxFrameX();
+	//	}
 
-		if (_index < 0)
-		{
-			_index = _player._img->getMaxFrameX();
-		}
-
-		_player._img->setFrameX(_index);
-	}
+	//	_player._img->setFrameX(_index);
+	//}
 
 		//// 이미지 프레임 연산
 		//if (_isLeft)
@@ -102,9 +101,9 @@ void Report_Wall_Catch::update(void)
 
 void Report_Wall_Catch::render(void)
 {
-	_player._img->frameRender(getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
+	//_player._img->frameRender(getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
 	//IMAGEMANAGER->frameRender("zero_move", getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
 
-
+	IMAGEMANAGER->render("Mole", getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
 }
 
