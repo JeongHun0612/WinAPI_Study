@@ -83,7 +83,7 @@ void Report_Wall_Catch::update(void)
 		_player.x += 4.0f;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_LEFT) && !_player.isJump)
 	{
 		_player.state = EState::IDLE;
 		_count = 0;
@@ -100,17 +100,27 @@ void Report_Wall_Catch::update(void)
 
 	if (_player.isJump)
 	{
-		if (_player.y > 300.0f && !_player.isJumpped)
-		{
-			_player.y--;
-		}
-		else 
-		{
-			_player.y += 2.0f;
+		static float maxPosY = _player.y - 50.0f;
+		static float tempPosY = _player.y;
 
-			if (_player.y >= 300.0f)
+		if (_player.y > maxPosY && !_player.isJumpped)
+		{
+			_player.y -= 1.0f;
+
+			if (_player.y <= maxPosY)
+			{
+				_player.isJumpped = true;
+			}
+		}
+
+		if (_player.isJumpped)
+		{
+			_player.y += 1.0f;
+
+			if (_player.y >= tempPosY)
 			{
 				_player.state = EState::IDLE;
+				_player.isJumpped = false;
 				_player.isJump = false;
 			}
 		}
