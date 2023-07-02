@@ -39,7 +39,7 @@ HRESULT MainGame::init(void)
 	_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
 	_titleScene = new TitleScene;
 	_titleScene->init();
-	_currentScene = nullptr;
+	_gameScene = nullptr;
 
 	_isTitle = true;
 
@@ -63,7 +63,7 @@ void MainGame::update(void)
 	}
 	else
 	{
-		_currentScene->update();
+		_gameScene->update();
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
@@ -82,94 +82,94 @@ void MainGame::update(void)
 		{
 			_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
 			_isTitle = true;
-			_currentScene->release();
-			_currentScene = nullptr;
+			_gameScene->release();
+			_gameScene = nullptr;
 		}
 	}
 
-	if (_currentSceneIdx != SCENE_INDEX::TITLE_SCENE && _currentScene == nullptr)
+	if (_currentSceneIdx != SCENE_INDEX::TITLE_SCENE && _gameScene == nullptr)
 	{
 		switch (_currentSceneIdx)
 		{
 		// 과제 클래스 초기화 =============================================================================================================
 		case SCENE_INDEX::REPORT_CARD_MATCH:
-			_currentScene = new Report_CardMatch;
+			_gameScene = new Report_CardMatch;
 			break;
 		case SCENE_INDEX::REPORT_MOLE:
-			_currentScene = new Report_Mole;
+			_gameScene = new Report_Mole;
 			break;
 		case SCENE_INDEX::REPORT_CLAYSHOOTING:
-			_currentScene = new Report_ClayShooting;
+			_gameScene = new Report_ClayShooting;
 			break;
 		case SCENE_INDEX::REPORT_AVOID:
-			_currentScene = new Report_Avoid;
+			_gameScene = new Report_Avoid;
 			break;
 		case SCENE_INDEX::REPORT_BULLET_SHOOTING:
-			_currentScene = new Report_BulletShooting;
+			_gameScene = new Report_BulletShooting;
 			break;
 		case SCENE_INDEX::REPORT_CROCODILE:
-			_currentScene = new Report_Crocodile;
+			_gameScene = new Report_Crocodile;
 			break;
 		case SCENE_INDEX::REPORT_VERTICAL_SHOOTING:
-			_currentScene = new Report_Vertical_Shooting;
+			_gameScene = new Report_Vertical_Shooting;
 			break;
 		case SCENE_INDEX::REPORT_HORIZONTAL_SHOOTING:
-			_currentScene = new Report_Horizontal_Shooting;
+			_gameScene = new Report_Horizontal_Shooting;
 			break;
 		case SCENE_INDEX::REPORT_MOLE_IMAGE:
-			_currentScene = new Report_Mole_Image;
+			_gameScene = new Report_Mole_Image;
 			break;
 		case SCENE_INDEX::REPORT_ANALOG_CLOCK:
-			_currentScene = new Report_Analog_Clock;
+			_gameScene = new Report_Analog_Clock;
 			break;
 		case SCENE_INDEX::REPORT_SHELL_FIRE:
-			_currentScene = new Report_Shell_Fire;
+			_gameScene = new Report_Shell_Fire;
 			break;
 		case SCENE_INDEX::REPORT_BULLET_GRAVITY:
-			_currentScene = new Report_Bullet_Gravity;
+			_gameScene = new Report_Bullet_Gravity;
 			break;
 		case SCENE_INDEX::REPORT_SLICE_GAME:
-			_currentScene = new Report_Slice_Game;
+			_gameScene = new Report_Slice_Game;
 			break;
 		case SCENE_INDEX::REPORT_MINI_MAP:
-			_currentScene = new Report_Mini_Map;
+			_gameScene = new Report_Mini_Map;
 			break;
 		case SCENE_INDEX::REPORT_WORM_GAME:
-			_currentScene = new Report_Worm_Game;
+			_gameScene = new Report_Worm_Game;
 			break;
 		case SCENE_INDEX::REPORT_ATTACK_COMBO:
-			_currentScene = new Report_Attack_Combo;
+			_gameScene = new Report_Attack_Combo;
 			break;
 		case SCENE_INDEX::REPORT_MOTION_ANIMATION:
-			_currentScene = new Report_Motion_Animation;
+			_gameScene = new Report_Motion_Animation;
 			break;
 		case SCENE_INDEX::REPORT_WALL_CATCH:
-			_currentScene = new Report_Wall_Catch;
+			_gameScene = new Report_Wall_Catch;
 			break;
 
 		// 수업 예제 클래스 초기화 =============================================================================================================
 		case SCENE_INDEX::EXAMPLE_MOLE:
-			_currentScene = new Example_Mole;
+			_gameScene = new Example_Mole;
 			break;
 		case SCENE_INDEX::EXAMPLE_BULLET:
-			_currentScene = new Example_Bullet;
+			_gameScene = new Example_Bullet;
 			break;
 		case SCENE_INDEX::EXAMPLE_MATH:
-			_currentScene = new Example_Math;
+			_gameScene = new Example_Math;
 			break;
 		case SCENE_INDEX::EXAMPLE_IMAGE:
-			_currentScene = new Example_Image;
+			_gameScene = new Example_Image;
 			break;
 		case SCENE_INDEX::EXAMPLE_CLIPING:
-			_currentScene = new Example_Cliping;
+			_gameScene = new Example_Cliping;
 			break;
 		case SCENE_INDEX::EXAMPLE_FRAME_IMAGE:
-			_currentScene = new Example_FrameImage;
+			_gameScene = new Example_FrameImage;
 			break;
 		}
 
 		_isTitle = false;
-		_currentScene->init();
+		_gameScene->init();
 	}
 }
 
@@ -183,7 +183,7 @@ void MainGame::render(void)
 	}
 	else
 	{
-		_currentScene->render();
+		_gameScene->render();
 	}
 
 	SetTextAlign(getMemDC(), TA_LEFT);

@@ -13,8 +13,6 @@
 
 HRESULT Report_Mole_Image::init(void)
 {
-	GameNode::init();
-
 	ShowCursor(false);
 
 	_holeImage = new GImage;
@@ -45,17 +43,14 @@ HRESULT Report_Mole_Image::init(void)
 
 void Report_Mole_Image::release(void)
 {
-	GameNode::release();
-
 	ShowCursor(true);
 	SAFE_DELETE(_holeImage);
 	SAFE_DELETE(_moleImage);
+	SAFE_DELETE(_hammerImage);
 }
 
 void Report_Mole_Image::update(void)
 {
-	GameNode::update();
-
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
 		// PtInRect() : 렉트 안에 POINT(x, y)가 있는지 검사하여 포인트가 사각형 안에 있으면 true값을 반환하는 API 함수

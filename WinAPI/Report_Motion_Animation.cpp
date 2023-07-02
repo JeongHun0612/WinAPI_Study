@@ -61,6 +61,11 @@ HRESULT Report_Motion_Animation::init(void)
 
 void Report_Motion_Animation::release(void)
 {
+	SAFE_DELETE(_skillScene);
+	for (int i = 0; i < MAX_MOTION; i++)
+	{
+		SAFE_DELETE(_motionImage[i].motion);
+	}
 }
 
 void Report_Motion_Animation::update(void)

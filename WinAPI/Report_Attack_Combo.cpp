@@ -41,6 +41,10 @@ HRESULT Report_Attack_Combo::init(void)
 
 void Report_Attack_Combo::release(void)
 {
+	SAFE_DELETE(_idle.image);
+	SAFE_DELETE(_attack1.image);
+	SAFE_DELETE(_attack2.image);
+	SAFE_DELETE(_attack3.image);
 }
 
 void Report_Attack_Combo::update(void)

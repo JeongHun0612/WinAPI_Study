@@ -5,7 +5,7 @@ class MainGame : public GameNode
 {
 private:
 	GameNode* _titleScene;
-	GameNode* _currentScene;
+	GameNode* _gameScene;
 
 	bool _isTitle;
 

@@ -55,6 +55,7 @@ HRESULT Report_Mini_Map::init(void)
 
 void Report_Mini_Map::release(void)
 {
+	SAFE_DELETE(_bgImage);
 }
 
 void Report_Mini_Map::update(void)

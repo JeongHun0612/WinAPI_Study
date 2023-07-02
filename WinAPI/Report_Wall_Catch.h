@@ -1,10 +1,12 @@
 #pragma once
 #include "GameNode.h"
 
+#define		MAX_ANIMATION		3
+
 class Report_Wall_Catch : public GameNode
 {
 public:
-	enum class EState : int
+	enum EState : int
 	{
 		IDLE,
 		MOVE,
@@ -13,14 +15,19 @@ public:
 
 	struct Animation
 	{
-		int count;
+		GImage* frameImage;
+		int frameChangeCnt;
 	};
 
 	struct Player
 	{
-		GImage* _img;
-		EState _state;
-		bool _isLeft;
+		Animation anim[MAX_ANIMATION];
+		EState state;
+
+		float x, y;
+		bool isLeft;
+		bool isJump;
+		bool isJumpped;
 	};
 
 private:

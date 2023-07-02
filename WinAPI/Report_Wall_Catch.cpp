@@ -25,85 +25,138 @@
 
 HRESULT Report_Wall_Catch::init(void)
 {
-	//IMAGEMANAGER->addFrameImage("zero_idle", "Resources/Images/Object/Zero_Idle.bmp", 600, 150, 4, 2, true, RGB(255, 0, 255));
-	//IMAGEMANAGER->addFrameImage("zero_move", "Resources/Images/Object/Zero_Move.bmp", 960, 110, 16, 2, true, RGB(255, 0, 255));
+	_player.anim[EState::IDLE].frameImage = IMAGEMANAGER->addFrameImage("Zero_Idle", "Resources/Images/Object/Zero_Idle.bmp", 600, 150, 4, 2, true, RGB(255, 0, 255));
+	_player.anim[EState::IDLE].frameChangeCnt = 10;
 
-	IMAGEMANAGER->addImage("Mole", "Resources/Images/Object/Mole.bmp", 200, 200, true, RGB(255, 0, 255));
+	_player.anim[EState::MOVE].frameImage = IMAGEMANAGER->addFrameImage("Zero_Move", "Resources/Images/Object/Zero_Move.bmp", 960, 110, 16, 2, true, RGB(255, 0, 255));
+	_player.anim[EState::MOVE].frameChangeCnt = 3;
 
-	_player._state = EState::IDLE;
-	_player._isLeft = false;
+	_player.anim[EState::JUMP].frameImage = IMAGEMANAGER->addFrameImage("Zero_Jump", "Resources/Images/Object/Zero_Jump.bmp", 550, 180, 11, 2, true, RGB(255, 0, 255));
+	_player.anim[EState::JUMP].frameChangeCnt = 5;
 
-	_count = _index = 0;
+	_player.state = EState::IDLE;
+	_player.x = WINSIZE_X / 2.0f;
+	_player.y = WINSIZE_Y / 2.0f;
+	_player.isLeft = false;
+	_player.isJump = false;
+	_player.isJumpped = false;
+
+	_count = 0;
+	_index = 0;
+
 
 	return S_OK;
 }
 
 void Report_Wall_Catch::release(void)
 {
+	IMAGEMANAGER->deleteImage("Zero_Idle");
+	IMAGEMANAGER->deleteImage("Zero_Move");
+	IMAGEMANAGER->deleteImage("Zero_Jump");
 }
 
 void Report_Wall_Catch::update(void)
 {
-	//_count++;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		if (_player.state == EState::IDLE)
+		{
+			_player.state = EState::MOVE;
+			_player.isLeft = true;
+			_count = 0;
+			_index = 0;
+		}
 
-	//_player._img->setFrameY(0);
+		_player.x -= 4.0f;
+	}
 
-	//if (_count % 10 == 0)
-	//{
-	//	_index--;
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		if (_player.state == EState::IDLE)
+		{
+			_player.state = EState::MOVE;
+			_player.isLeft = false;
+			_count = 0;
+			_index = 0;
+		}
 
-	//	if (_index < 0)
-	//	{
-	//		_index = _player._img->getMaxFrameX();
-	//	}
+		_player.x += 4.0f;
+	}
 
-	//	_player._img->setFrameX(_index);
-	//}
+	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	{
+		_player.state = EState::IDLE;
+		_count = 0;
+		_index = 0;
+	}
 
-		//// 이미지 프레임 연산
-		//if (_isLeft)
-		//{
-		//	_count++;
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE) && !_player.isJump)
+	{
+		_player.isJump = true;
+		_player.state = EState::JUMP;
+		_count = 0;
+		_index = 0;
+	}
 
-		//	_motionImage[_currentIdx].motion->setFrameY(0);
+	if (_player.isJump)
+	{
+		if (_player.y > 300.0f && !_player.isJumpped)
+		{
+			_player.y--;
+		}
+		else 
+		{
+			_player.y += 2.0f;
 
-		//	if (_count % 5 == 0)
-		//	{
-		//		_index++;
+			if (_player.y >= 300.0f)
+			{
+				_player.state = EState::IDLE;
+				_player.isJump = false;
+			}
+		}
+	}
 
-		//		if (_index > _motionImage[_currentIdx].motion->getMaxFrameX())
-		//		{
-		//			_index = 0;
-		//		}
+	_count++;
 
-		//		_motionImage[_currentIdx].motion->setFrameX(_index);
-		//	}
-		//}
-		//else
-		//{
-		//	_count++;
+	if (_count % _player.anim[_player.state].frameChangeCnt == 0)
+	{
+		if (!_player.isLeft)
+		{
+			_index++;
 
-		//	_motionImage[_currentIdx].motion->setFrameY(1);
+			if (_player.anim[_player.state].frameImage->getFrameY() != 0)
+			{
+				_player.anim[_player.state].frameImage->setFrameY(0);
+			}
 
-		//	if (_count % 5 == 0)
-		//	{
-		//		_index--;
+			if (_index > _player.anim[_player.state].frameImage->getMaxFrameX())
+			{
+				_index = 0;
+			}
+			_player.anim[_player.state].frameImage->setFrameX(_index);
+		}
+		else
+		{
+			_index--;
 
-		//		if (_index < 0)
-		//		{
-		//			_index = _motionImage[_currentIdx].motion->getMaxFrameX();
-		//		}
+			if (_player.anim[_player.state].frameImage->getFrameY() != 1)
+			{
+				_player.anim[_player.state].frameImage->setFrameY(1);
+			}
 
-		//		_motionImage[_currentIdx].motion->setFrameX(_index);
-		//	}
-		//}
+			if (_index < 0)
+			{
+				_index = _player.anim[_player.state].frameImage->getMaxFrameX();
+			}
+			_player.anim[_player.state].frameImage->setFrameX(_index);
+		}
+	}
 }
 
 void Report_Wall_Catch::render(void)
 {
-	//_player._img->frameRender(getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
-	//IMAGEMANAGER->frameRender("zero_move", getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
-
-	IMAGEMANAGER->render("Mole", getMemDC(), WINSIZE_X / 2, WINSIZE_Y / 2);
+	_player.anim[_player.state].frameImage->frameRender(getMemDC(),
+		_player.x - _player.anim[_player.state].frameImage->getFrameWidth() / 2,
+		_player.y - _player.anim[_player.state].frameImage->getFrameHeight() / 2);
 }
 
