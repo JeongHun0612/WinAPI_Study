@@ -38,7 +38,7 @@ HRESULT MainGame::init(void)
 {
 	GameNode::init(true);
 
-	_currentSceneIdx = SCENE_INDEX::REPORT_RACING_GAME;
+	_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
 	_titleScene = new TitleScene;
 	_titleScene->init();
 	_gameScene = nullptr;
