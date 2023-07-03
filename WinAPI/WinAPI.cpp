@@ -97,6 +97,27 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	// 1-2. 윈도우 클래스 등록
 	RegisterClass(&wndClass);
 
+#ifdef FULLSCREEN
+	// 디바이스 모드 구조체 (화면 디스플레이 관련 구조체)
+	DEVMODE dm;
+	
+	ZeroMemory(&dm, sizeof(DEVMODE));	// 메모리 초기화
+
+	dm.dmSize = sizeof(DEVMODE);
+	dm.dmBitsPerPel = 32;				// 32비트 트루컬러
+	dm.dmPanningWidth = 1980;			// 가로 해상도
+	dm.dmPanningHeight = 1020;			// 세로 해상도
+	dm.dmDisplayFrequency = 60;			// 주사율 (재생빈도 60Hz)
+
+	// 필드 설정
+	dm.dmFields = DM_BITSPERPEL | DM_PANNINGHEIGHT | DM_PANNINGHEIGHT | DM_DISPLAYFREQUENCY;
+
+	if (ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+	{
+		ChangeDisplaySettings(&dm, 0);
+	}
+#endif
+
 	// 1-3. 화면에 보여줄 윈도우 창 생성
 	_hWnd = CreateWindow
 	(
@@ -119,6 +140,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	// 1-4. 화면에 윈도우창 보여주기
 	ShowWindow(_hWnd, nCmdShow);
+
 
 	// 단일 프로젝트 (단기/과제) 업데이트 처리 해야 한다.
 	//UpdateWindow(_hWnd);

@@ -65,6 +65,8 @@ void Report_Wall_Catch::update(void)
 			_player.isLeft = true;
 			_count = 0;
 			_index = 0;
+
+
 		}
 
 		_player.x -= 4.0f;

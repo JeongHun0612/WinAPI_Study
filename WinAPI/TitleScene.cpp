@@ -34,6 +34,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_ATTACK_COMBO].name, "공격 콤보 모션");
 	wsprintf(_sceneBtn[REPORT_MOTION_ANIMATION].name, "캐릭터 모션");
 	wsprintf(_sceneBtn[REPORT_WALL_CATCH].name, "벽 잡기");
+	wsprintf(_sceneBtn[REPORT_RACING_GAME].name, "레이싱 게임");
 
 	// 수업 예제 이름
 	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 게임");
@@ -42,6 +43,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[EXAMPLE_IMAGE].name, "이미지 출력");
 	wsprintf(_sceneBtn[EXAMPLE_CLIPING].name, "클리핑 이미지");
 	wsprintf(_sceneBtn[EXAMPLE_FRAME_IMAGE].name, "프레임 이미지");
+	wsprintf(_sceneBtn[EXAMPLE_LOOP_RENDER].name, "루프 이미지");
 
 	return S_OK;
 }

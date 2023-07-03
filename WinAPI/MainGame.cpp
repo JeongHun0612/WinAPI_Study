@@ -21,6 +21,7 @@
 #include "Report_Attack_Combo.h"
 #include "Report_Motion_Animation.h"
 #include "Report_Wall_Catch.h"
+#include "Report_Racing_Game.h"
 
 
 // 수업 예제 =====================================================
@@ -30,13 +31,14 @@
 #include "Example_Image.h"
 #include "Example_Cliping.h"
 #include "Example_FrameImage.h"
+#include "Example_Loop_Render.h"
 
 
 HRESULT MainGame::init(void)
 {
 	GameNode::init(true);
 
-	_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
+	_currentSceneIdx = SCENE_INDEX::REPORT_RACING_GAME;
 	_titleScene = new TitleScene;
 	_titleScene->init();
 	_gameScene = nullptr;
@@ -146,6 +148,9 @@ void MainGame::update(void)
 		case SCENE_INDEX::REPORT_WALL_CATCH:
 			_gameScene = new Report_Wall_Catch;
 			break;
+		case SCENE_INDEX::REPORT_RACING_GAME:
+			_gameScene = new Report_Racing_Game;
+			break;
 
 		// 수업 예제 클래스 초기화 =============================================================================================================
 		case SCENE_INDEX::EXAMPLE_MOLE:
@@ -165,6 +170,9 @@ void MainGame::update(void)
 			break;
 		case SCENE_INDEX::EXAMPLE_FRAME_IMAGE:
 			_gameScene = new Example_FrameImage;
+			break;
+		case SCENE_INDEX::EXAMPLE_LOOP_RENDER:
+			_gameScene = new Example_Loop_Render;
 			break;
 		}
 

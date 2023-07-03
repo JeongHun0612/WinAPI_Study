@@ -66,10 +66,14 @@ public:
 	void frameRender(string strKey, HDC hdc, int destX, int destY);
 	void frameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
 
-	// ¾ËÆÄ·»´õ
+	// ¾ËÆÄ ·»´õ
 	void alphaRender(string strKey, HDC hdc, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
+
+	// ·çÇÁ ·»´õ
+	void loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
+	void loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
 
 	ImageManager() {}
 	~ImageManager() {}

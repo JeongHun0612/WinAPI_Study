@@ -155,8 +155,23 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
 
-// # 매크로 # (윈도우 창 초기화)
+// ! 타이틀
 #define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))
+
+// ! 전체 화면
+//#define FULLSCREEN
+
+#ifdef FULLSCREEN
+#define WINSTART_X		0
+#define WINSTART_Y		0
+//GetSystemMetrics() : 인자로 전달되는 시스템 설정 정보를 반환
+// ㄴ SM_CXSCREEN + SM_CYSCREEN = 현재 화면 해상도 X / Y 축 반환
+#define WINSIZE_X		GetSystemMetrics(SM_CXSCREEN)  
+#define WINSIZE_Y		GetSystemMetrics(SM_CYSCREEN)
+#define WINSTYLE		WS_POPUPWINDOW | WS_MAXIMIZE
+
+#else
+// # 매크로 # (윈도우 창 초기화)
 #define WINSTART_X			400
 #define WINSTART_Y			100
 #define WINSIZE_X			1280
@@ -165,12 +180,15 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 // WS_CAPTION : 타이틀바를 가지기 위한 옵션
 // WS_SYSMENU : 제목 표시줄에 컨트롤 메뉴 상자 창
 #define WINSTYLE			WS_CAPTION | WS_SYSMENU
+#endif
+
 
 // # 매크로 함수 # (클래스에서 동적할당된 부분 해제)
 // 매크로 함수가 2줄 이상 내려갈때 \를 사용하면 된다.
 #define SAFE_DELETE(p)			{if(p) {delete(p); (p) = nullptr;}}
 #define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p); (p) = nullptr;}}
 #define SAFE_RELEASE(p)			{if(p) {(p)->release(); (p) = nullptr;}}
+
 
 // # 전역 변수 # (데이터 영역)
 // extern 키워드는 다른 헤더 / cpp에서 변수를 공유해서 쓰기 위해 사용한다.

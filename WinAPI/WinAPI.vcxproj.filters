@@ -79,13 +79,16 @@
     <Filter Include="2D FrameWork\Scene">
       <UniqueIdentifier>{3b211cd0-55c4-4655-8929-d343a77100af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\GImage\PCH">
+    <Filter Include="Report\Report_19 %28레이싱 게임%29">
+      <UniqueIdentifier>{0acfd9a2-926b-4149-ad11-362847f97959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\PCH">
       <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
-      <Filter>2D FrameWork\GImage\PCH</Filter>
+      <Filter>2D FrameWork\PCH</Filter>
     </ClInclude>
     <ClInclude Include="C3DMatrix.h">
       <Filter>2D FrameWork\Utility\Math</Filter>
@@ -205,6 +208,12 @@
     <ClInclude Include="TitleScene.h">
       <Filter>2D FrameWork\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Example_Loop_Render.h">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Racing_Game.h">
+      <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -313,7 +322,7 @@
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
-      <Filter>2D FrameWork\GImage\PCH</Filter>
+      <Filter>2D FrameWork\PCH</Filter>
     </ClCompile>
     <ClCompile Include="Report_Worm_Game.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
@@ -338,6 +347,12 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>2D FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Loop_Render.cpp">
+      <Filter>2D FrameWork\StudyExample</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Racing_Game.cpp">
+      <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

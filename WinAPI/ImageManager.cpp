@@ -217,3 +217,15 @@ void ImageManager::alphaRender(string strKey, HDC hdc, int destX, int destY, int
 	GImage* img = findImage(strKey);
 	if (img) img->alphaRender(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight, alpha);
 }
+
+void ImageManager::loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
+{
+	GImage* img = findImage(strKey);
+	if (img) img->loopRender(hdc, drawArea, offsetX, offsetY);
+}
+
+void ImageManager::loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
+{
+	GImage* img = findImage(strKey);
+	if (img) img->loopAlphaRender(hdc, drawArea, offsetX, offsetY, alpha);
+}
