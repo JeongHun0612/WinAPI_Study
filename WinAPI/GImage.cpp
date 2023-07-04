@@ -86,7 +86,7 @@ HRESULT GImage::init(const char* fileName, int width, int height, bool isTrans, 
 
     _imageInfo = new IMAGE_INFO;
 
-    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->loadType = LOAD_FILE;
     _imageInfo->resID = 0;
     _imageInfo->hMemDC = CreateCompatibleDC(hdc);
     _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
@@ -126,7 +126,7 @@ HRESULT GImage::init(const char* fileName, float x, float y, int width, int heig
 
     _imageInfo = new IMAGE_INFO;
 
-    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->loadType = LOAD_FILE;
     _imageInfo->resID = 0;
     _imageInfo->hMemDC = CreateCompatibleDC(hdc);
     _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
@@ -163,7 +163,7 @@ HRESULT GImage::init(const char* fileName, int width, int height, int maxFrameX,
 
     _imageInfo = new IMAGE_INFO;
 
-    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->loadType = LOAD_FILE;
     _imageInfo->resID = 0;
     _imageInfo->hMemDC = CreateCompatibleDC(hdc);
     _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
@@ -204,7 +204,7 @@ HRESULT GImage::init(const char* fileName, float x, float y, int width, int heig
 
     _imageInfo = new IMAGE_INFO;
 
-    _imageInfo->loadType = LOAD_RESOURCE;
+    _imageInfo->loadType = LOAD_FILE;
     _imageInfo->resID = 0;
     _imageInfo->hMemDC = CreateCompatibleDC(hdc);
     _imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);

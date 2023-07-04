@@ -40,7 +40,7 @@ HRESULT Report_Black_Hole::init(void)
 		obj.cy = RND->getInt(WINSIZE_Y);
 		obj.radius = 10.0f;
 		obj.speed = 3.0f;
-		obj.tempRadian = 0.0f;
+		obj.directionRadian = 0.0f;
 		obj.isCenter = false;
 
 		_vObject.push_back(obj);
@@ -72,12 +72,13 @@ void Report_Black_Hole::update(void)
 		obj.cy = RND->getInt(WINSIZE_Y);
 		obj.radius = 10.0f;
 		obj.speed = 3.0f;
-		obj.tempRadian = 0.0f;
+		obj.directionRadian = 0.0f;
 		obj.isCenter = false;
 
 		_vObject.push_back(obj);
 	}
 
+	// 블랙홀 키 입력
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_blackHole.cx -= _blackHole.speed;
@@ -97,6 +98,7 @@ void Report_Black_Hole::update(void)
 
 	for (auto iter = _vObject.begin(); iter != _vObject.end();)
 	{
+		// 생성 radius에서 줄이기 (생성 된 위치를 확인하기 위해)
 		if (iter->radius > 5.0f)
 		{
 			iter->radius -= 0.5f;
@@ -104,35 +106,29 @@ void Report_Black_Hole::update(void)
 
 		if (!iter->isCenter)
 		{
-			float directionRadian = atan2(_blackHole.cy - iter->cy, _blackHole.cx - iter->cx);
+			// 블랙홀을 바라보는 방향의 각도
+			iter->directionRadian = atan2(_blackHole.cy - iter->cy, _blackHole.cx - iter->cx);
+		}
 
-			iter->cx += cosf(directionRadian) * iter->speed;
-			iter->cy += sinf(directionRadian) * iter->speed;
+		// 오브젝트 좌표 이동
+		iter->cx += cosf(iter->directionRadian) * iter->speed;
+		iter->cy += sinf(iter->directionRadian) * iter->speed;
 
-			// 중점으로 왔을 시
-			if (abs(iter->cx - _blackHole.cx) < 2 && abs(iter->cy - _blackHole.cy) < 2)
-			{
-				iter->isCenter = true;
-				iter->tempRadian = directionRadian - RND->getFloat(2.0f * 3.141592f);
-				iter->speed = -iter->speed;
-			}
+		// 중점으로 왔을 시
+		if (abs(iter->cx - _blackHole.cx) < 2 && abs(iter->cy - _blackHole.cy) < 2)
+		{
+			iter->isCenter = true;
+			iter->directionRadian = RND->getFloat(2.0f * 3.141592f);
+		}
 
-			iter++;
+		// 밖으로 빠져나갔을 때
+		if (iter->cx < -10 || iter->cx > WINSIZE_X + 10 || iter->cy < -10 || iter->cy > WINSIZE_Y + 10)
+		{
+			iter = _vObject.erase(iter);
 		}
 		else
 		{
-			iter->cx += cosf(iter->tempRadian) * iter->speed;
-			iter->cy += sinf(iter->tempRadian) * iter->speed;
-
-			// 밖으로 빠져나갔을 때
-			if (iter->cx < -10 || iter->cx > WINSIZE_X + 10 || iter->cy < -10 || iter->cy > WINSIZE_Y + 10)
-			{
-				iter = _vObject.erase(iter);
-			}
-			else
-			{
-				iter++;
-			}
+			iter++;
 		}
 	}
 }

@@ -11,7 +11,7 @@ public:
 		float cx, cy;
 		float radius;
 		float speed;
-		float tempRadian;
+		float directionRadian;
 
 		bool isCenter;
 	};
