@@ -181,6 +181,7 @@
     <ClInclude Include="Report_Analog_Clock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Report_Black_Hole.h" />
     <ClInclude Include="Report_Racing_Game.h" />
     <ClInclude Include="Report_Shell_Fire.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -278,6 +279,7 @@
     <ClCompile Include="Report_Analog_Clock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Report_Black_Hole.cpp" />
     <ClCompile Include="Report_Racing_Game.cpp" />
     <ClCompile Include="Report_Shell_Fire.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

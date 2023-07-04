@@ -85,6 +85,9 @@
     <Filter Include="2D FrameWork\PCH">
       <UniqueIdentifier>{b7bd2ee2-4beb-4068-9eae-38e29cfa2e46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\Report_20 %28블랙홀%29">
+      <UniqueIdentifier>{5b2b6038-ec4a-482d-9aa7-7021101fe711}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -213,6 +216,9 @@
     </ClInclude>
     <ClInclude Include="Report_Racing_Game.h">
       <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_Black_Hole.h">
+      <Filter>Report\Report_20 %28블랙홀%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="Report_Racing_Game.cpp">
       <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_Black_Hole.cpp">
+      <Filter>Report\Report_20 %28블랙홀%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

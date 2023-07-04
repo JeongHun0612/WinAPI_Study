@@ -22,6 +22,7 @@
 #include "Report_Motion_Animation.h"
 #include "Report_Wall_Catch.h"
 #include "Report_Racing_Game.h"
+#include "Report_Black_Hole.h"
 
 
 // 수업 예제 =====================================================
@@ -150,6 +151,9 @@ void MainGame::update(void)
 			break;
 		case SCENE_INDEX::REPORT_RACING_GAME:
 			_gameScene = new Report_Racing_Game;
+			break;
+		case SCENE_INDEX::REPORT_BLACK_HOLE:
+			_gameScene = new Report_Black_Hole;
 			break;
 
 		// 수업 예제 클래스 초기화 =============================================================================================================

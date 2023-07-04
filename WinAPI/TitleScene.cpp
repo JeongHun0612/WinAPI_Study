@@ -35,6 +35,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_MOTION_ANIMATION].name, "캐릭터 모션");
 	wsprintf(_sceneBtn[REPORT_WALL_CATCH].name, "벽 잡기");
 	wsprintf(_sceneBtn[REPORT_RACING_GAME].name, "레이싱 게임");
+	wsprintf(_sceneBtn[REPORT_BLACK_HOLE].name, "블랙홀");
 
 	// 수업 예제 이름
 	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 게임");
