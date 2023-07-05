@@ -88,6 +88,30 @@
     <Filter Include="Report\Report_20 %28블랙홀%29">
       <UniqueIdentifier>{5b2b6038-ec4a-482d-9aa7-7021101fe711}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\StudyExample\총알발사">
+      <UniqueIdentifier>{b671c7d8-4624-4057-94cb-3b4e0818d226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\두더지 잡기">
+      <UniqueIdentifier>{3876da2f-92f6-4576-a222-615aa076b9f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\삼각함수">
+      <UniqueIdentifier>{ca0c8d35-1e0a-4b33-a02f-622c367c1983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\이미지 출력">
+      <UniqueIdentifier>{3138536f-df63-4ab2-bed8-55da9983e7b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\프레임 이미지">
+      <UniqueIdentifier>{5f1f4390-af5a-490d-82ff-b4f26bbea364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\클리핑 이미지">
+      <UniqueIdentifier>{747bf8f1-81a7-4622-a2b5-8843bd7c2dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\루프 이미지">
+      <UniqueIdentifier>{116c0746-4800-49c7-aaec-119c1309e94e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\씬 전환">
+      <UniqueIdentifier>{b388b028-be9f-43fa-8337-794a850b32c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -153,21 +177,9 @@
     <ClInclude Include="Report_Horizontal_Shooting.h">
       <Filter>Report\Report_13 %28횡스크롤 슈팅 게임%29</Filter>
     </ClInclude>
-    <ClInclude Include="Example_Mole.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
-    <ClInclude Include="Example_Bullet.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Example_Image.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Mole_Image.h">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
-    </ClInclude>
-    <ClInclude Include="Example_Math.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
     </ClInclude>
     <ClInclude Include="Report_Analog_Clock.h">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
@@ -190,9 +202,6 @@
     <ClInclude Include="Report_Worm_Game.h">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClInclude>
-    <ClInclude Include="Example_Cliping.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Attack_Combo.h">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClInclude>
@@ -202,23 +211,47 @@
     <ClInclude Include="ImageManager.h">
       <Filter>2D FrameWork\FrameWorkManager</Filter>
     </ClInclude>
-    <ClInclude Include="Example_FrameImage.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Wall_Catch.h">
       <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
       <Filter>2D FrameWork\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Example_Loop_Render.h">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Racing_Game.h">
       <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
     </ClInclude>
     <ClInclude Include="Report_Black_Hole.h">
       <Filter>Report\Report_20 %28블랙홀%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Bullet.h">
+      <Filter>2D FrameWork\StudyExample\총알발사</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Mole.h">
+      <Filter>2D FrameWork\StudyExample\두더지 잡기</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Math.h">
+      <Filter>2D FrameWork\StudyExample\삼각함수</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Image.h">
+      <Filter>2D FrameWork\StudyExample\이미지 출력</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_FrameImage.h">
+      <Filter>2D FrameWork\StudyExample\프레임 이미지</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Cliping.h">
+      <Filter>2D FrameWork\StudyExample\클리핑 이미지</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Loop_Render.h">
+      <Filter>2D FrameWork\StudyExample\루프 이미지</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondScene.h">
+      <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>2D FrameWork\FrameWorkManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,15 +309,6 @@
     <ClCompile Include="Report_Horizontal_Shooting.cpp">
       <Filter>Report\Report_13 %28횡스크롤 슈팅 게임%29</Filter>
     </ClCompile>
-    <ClCompile Include="Example_Mole.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
-    <ClCompile Include="Example_Bullet.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
-    <ClCompile Include="Example_Image.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
     <ClCompile Include="WinAPI_Report_01.cpp">
       <Filter>Report\Report_01~05</Filter>
     </ClCompile>
@@ -305,9 +329,6 @@
     </ClCompile>
     <ClCompile Include="Report_Mole_Image.cpp">
       <Filter>Report\Report_14 %28두더지 게임 - 이미지%29</Filter>
-    </ClCompile>
-    <ClCompile Include="Example_Math.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
     </ClCompile>
     <ClCompile Include="Report_Analog_Clock.cpp">
       <Filter>Report\Report_15 %28삼각함수%29</Filter>
@@ -333,9 +354,6 @@
     <ClCompile Include="Report_Worm_Game.cpp">
       <Filter>Report\Report_16 %28알파 블렌딩%29</Filter>
     </ClCompile>
-    <ClCompile Include="Example_Cliping.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
     <ClCompile Include="Report_Attack_Combo.cpp">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClCompile>
@@ -345,23 +363,47 @@
     <ClCompile Include="ImageManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager</Filter>
     </ClCompile>
-    <ClCompile Include="Example_FrameImage.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
     <ClCompile Include="Report_Wall_Catch.cpp">
       <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>2D FrameWork\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Example_Loop_Render.cpp">
-      <Filter>2D FrameWork\StudyExample</Filter>
-    </ClCompile>
     <ClCompile Include="Report_Racing_Game.cpp">
       <Filter>Report\Report_19 %28레이싱 게임%29</Filter>
     </ClCompile>
     <ClCompile Include="Report_Black_Hole.cpp">
       <Filter>Report\Report_20 %28블랙홀%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Bullet.cpp">
+      <Filter>2D FrameWork\StudyExample\총알발사</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Mole.cpp">
+      <Filter>2D FrameWork\StudyExample\두더지 잡기</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Math.cpp">
+      <Filter>2D FrameWork\StudyExample\삼각함수</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Image.cpp">
+      <Filter>2D FrameWork\StudyExample\이미지 출력</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_FrameImage.cpp">
+      <Filter>2D FrameWork\StudyExample\프레임 이미지</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Cliping.cpp">
+      <Filter>2D FrameWork\StudyExample\클리핑 이미지</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Loop_Render.cpp">
+      <Filter>2D FrameWork\StudyExample\루프 이미지</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondScene.cpp">
+      <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

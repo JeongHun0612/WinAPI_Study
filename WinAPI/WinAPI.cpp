@@ -94,8 +94,15 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;                           // 윈도우 스타일 (다시 그리기 정보)
 
 
+	// assert 사용 예시
+	
+	//HRESULT hr;
+	//hr = RegisterClass(&wndClass);  
+	//assert(SUCCEEDED(hr));
+
 	// 1-2. 윈도우 클래스 등록
 	RegisterClass(&wndClass);
+	
 
 #ifdef FULLSCREEN
 	// 디바이스 모드 구조체 (화면 디스플레이 관련 구조체)

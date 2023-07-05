@@ -15,6 +15,8 @@ HRESULT TitleScene::init(void)
 		_sceneBtn[i + SCENE_INDEX::REPORT_END].rc = RectMake(20 + (i % 6) * 210, (WINSIZE_Y / 2 + 50) + (i / 6) * 80, 180, 50);
 	}
 
+
+
 	// 과제 파일 이름
 	wsprintf(_sceneBtn[REPORT_CARD_MATCH].name, "짝 맞추기");
 	wsprintf(_sceneBtn[REPORT_MOLE].name, "두더지 게임");
@@ -69,6 +71,8 @@ void TitleScene::update(void)
 
 void TitleScene::render(void)
 {
+	FONTMANAGER->drawText(getMemDC(), 0, 0, "휴면 굴림", 30, 30, "Test", strlen("Test"), RGB(255, 0, 0));
+
 	TextOut(getMemDC(), 20, 20, "과제 파일", strlen("과제 파일"));
 	TextOut(getMemDC(), 20, WINSIZE_Y / 2 + 20, "수업 파일", strlen("수업 파일"));
 
