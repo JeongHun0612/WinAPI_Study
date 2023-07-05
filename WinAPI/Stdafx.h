@@ -148,6 +148,7 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #include "RandomFunction.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
+#include "SceneManager.h"
 #include "FontManager.h"
 
 
@@ -155,6 +156,7 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #define RND RandomFunction::getSingleton()
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
+#define SCENEMANAGER SceneManager::getSingleton()
 #define FONTMANAGER	FontManager::getSingleton()
 
 // ! 타이틀
@@ -200,5 +202,3 @@ extern HINSTANCE		_hInstance;
 extern HWND				_hWnd;
 // X 좌표와 Y 좌표를 평면의 좌표에 정의할 때 사용을 한다.
 extern POINT			_ptMouse;
-
-extern int				_currentSceneIdx;

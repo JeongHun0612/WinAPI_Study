@@ -23,14 +23,18 @@
 
 HRESULT Report_Attack_Defense::init(void)
 {
+	// 플레이어 이미지
 	IMAGEMANAGER->addFrameImage("player_head", "Resources/Images/Player/Head.bmp", 244, 44, 8, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("player_body", "Resources/Images/Player/Body.bmp", 272, 300, 8, 10, true, RGB(255, 0, 255));
+
+	// 타일 이미지
+	IMAGEMANAGER->addImage("dirt", "Resources/Images/Tile/dirt1.bmp", 192, 128);
 
 	_player.headImg = IMAGEMANAGER->findImage("player_head");
 	_player.bodyImg = IMAGEMANAGER->findImage("player_body");
 
 	_player.x = WINSIZE_X / 2;
-	_player.y = WINSIZE_Y / 2;
+	_player.y = WINSIZE_Y / 2 - 16;
 
 	_player.rc = RectMake(_player.x, _player.y, 64, 64);
 	_player.curDirection = PLAYER_DIRECTION::NONE;
@@ -94,6 +98,22 @@ void Report_Attack_Defense::update(void)
 
 void Report_Attack_Defense::render(void)
 {
+	// 타일 그리기
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			if (j % 2 == 0)
+			{
+				IMAGEMANAGER->findImage("dirt")->render(getMemDC(), j * 64, i * 64, 0, 0, 64, 64);
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("dirt")->render(getMemDC(), j * 64, i * 64, 64, 0, 64, 64);
+			}
+		}
+	}
+
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		DrawRectMake(getMemDC(), _player.rc);
@@ -118,26 +138,21 @@ void Report_Attack_Defense::moveAction(PLAYER_DIRECTION direction)
 	{
 	case Report_Attack_Defense::PLAYER_DIRECTION::LEFT:
 		_player.x -= 8;
-		_player.rc = RectMake(_player.x, _player.y, 64, 64);
 		break;
 	case Report_Attack_Defense::PLAYER_DIRECTION::RIGHT:
 		_player.x += 8;
-		_player.rc = RectMake(_player.x, _player.y, 64, 64);
 		break;
 	case Report_Attack_Defense::PLAYER_DIRECTION::UP:
 		_player.y -= 8;
-		_player.rc = RectMake(_player.x, _player.y + 8, 64, 64);
 		break;
 	case Report_Attack_Defense::PLAYER_DIRECTION::DOWN:
 		_player.y += 8;
-		_player.rc = RectMake(_player.x, _player.y - 8, 64, 64);
 		break;
 	}
 
 	_player.rc = RectMake(_player.x, _player.y - 8, 64, 64);
 
 	_player.y += (jumpCount < 4) ? -4 : 4;
-
 
 	jumpCount++;
 

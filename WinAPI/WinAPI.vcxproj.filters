@@ -121,6 +121,9 @@
     <Filter Include="Report\Report_01~05">
       <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\SceneManager">
+      <UniqueIdentifier>{a89325a0-6fad-4f67-845e-1b718d61409c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -264,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>2D FrameWork\FrameWorkManager\FontManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +425,9 @@
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager\FontManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

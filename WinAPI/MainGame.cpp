@@ -35,39 +35,24 @@
 #include "Example_FrameImage.h"
 #include "Example_Loop_Render.h"
 
-
-#include "StartScene.h"
-#include "SecondScene.h"
-
-
 HRESULT MainGame::init(void)
 {
 	GameNode::init(true);
 
-	_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
-	_titleScene = new TitleScene;
-	_titleScene->init();
-	_gameScene = nullptr;
+	// 씬 추가
+	addScene();
 
-	_isTitle = true;
-
-	//_start = new StartScene;
-	//_start->init();
-
-	//_second = new SecondScene;
-	//_second->init();
-
-	//// _currentScene -> 시동이 안되면 실행이 안된다.
-	//_currentScene = _start;
-
-	//// <-> assert를 찾기 위해 사용하는 키워드 (프로그래머 팁)
-	//// C
-	//assert(_currentScene != nullptr, "MainGame 초기화 부분에서 노드 파트 오류 발생");
-	//// C++
-	////static_assert()
+	// 초기 화면 (타이틀) <->
+	assert(SCENEMANAGER->changeScene(TITLE_SCENE));
 
 	/*
 	▶ assert
+
+	<-> assert를 찾기 위해 사용하는 키워드 (프로그래머 팁)
+	- C
+	assert(_currentScene != nullptr, "MainGame 초기화 부분에서 노드 파트 오류 발생");
+	- C++
+	static_assert()
 
 	- 디버깅 모드에서 동작하는 오류 검출용 함수
 	ㄴ 릴리즈 모드에서는 동작하지 않는다.
@@ -93,160 +78,78 @@ HRESULT MainGame::init(void)
 void MainGame::release(void)
 {
 	GameNode::release();
-
-	_titleScene->release();
-
-	//SAFE_DELETE(_start);
-	//SAFE_DELETE(_second);
 }
 
 void MainGame::update(void)
 {
 	GameNode::update();
 
-	if (_isTitle)
-	{
-		_titleScene->update();
-	}
-	else
-	{
-		_gameScene->update();
-	}
+	SCENEMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
 	{
-		// 게임 종료
-		if (_isTitle)
+		if (MessageBox(_hWnd, "게임을 종료하시겠습니까?", "종료확인", MB_OKCANCEL) == IDOK)
 		{
-			if (MessageBox(_hWnd, "게임을 종료하시겠습니까?", "종료확인", MB_OKCANCEL) == IDOK)
-			{
-				PostQuitMessage(0);
-			}
-		}
-
-		// 타이틀 씬 복귀
-		else
-		{
-			_currentSceneIdx = SCENE_INDEX::TITLE_SCENE;
-			_isTitle = true;
-			_gameScene->release();
-			_gameScene = nullptr;
+			PostQuitMessage(0);
 		}
 	}
 
-	if (_currentSceneIdx != SCENE_INDEX::TITLE_SCENE && _gameScene == nullptr)
+	if (KEYMANAGER->isOnceKeyDown(VK_BACK))
 	{
-		switch (_currentSceneIdx)
-		{
-		// 과제 클래스 초기화 =============================================================================================================
-		case SCENE_INDEX::REPORT_CARD_MATCH:
-			_gameScene = new Report_CardMatch;
-			break;
-		case SCENE_INDEX::REPORT_MOLE:
-			_gameScene = new Report_Mole;
-			break;
-		case SCENE_INDEX::REPORT_CLAYSHOOTING:
-			_gameScene = new Report_ClayShooting;
-			break;
-		case SCENE_INDEX::REPORT_AVOID:
-			_gameScene = new Report_Avoid;
-			break;
-		case SCENE_INDEX::REPORT_BULLET_SHOOTING:
-			_gameScene = new Report_BulletShooting;
-			break;
-		case SCENE_INDEX::REPORT_CROCODILE:
-			_gameScene = new Report_Crocodile;
-			break;
-		case SCENE_INDEX::REPORT_VERTICAL_SHOOTING:
-			_gameScene = new Report_Vertical_Shooting;
-			break;
-		case SCENE_INDEX::REPORT_HORIZONTAL_SHOOTING:
-			_gameScene = new Report_Horizontal_Shooting;
-			break;
-		case SCENE_INDEX::REPORT_MOLE_IMAGE:
-			_gameScene = new Report_Mole_Image;
-			break;
-		case SCENE_INDEX::REPORT_ANALOG_CLOCK:
-			_gameScene = new Report_Analog_Clock;
-			break;
-		case SCENE_INDEX::REPORT_SHELL_FIRE:
-			_gameScene = new Report_Shell_Fire;
-			break;
-		case SCENE_INDEX::REPORT_BULLET_GRAVITY:
-			_gameScene = new Report_Bullet_Gravity;
-			break;
-		case SCENE_INDEX::REPORT_SLICE_GAME:
-			_gameScene = new Report_Slice_Game;
-			break;
-		case SCENE_INDEX::REPORT_MINI_MAP:
-			_gameScene = new Report_Mini_Map;
-			break;
-		case SCENE_INDEX::REPORT_WORM_GAME:
-			_gameScene = new Report_Worm_Game;
-			break;
-		case SCENE_INDEX::REPORT_ATTACK_COMBO:
-			_gameScene = new Report_Attack_Combo;
-			break;
-		case SCENE_INDEX::REPORT_MOTION_ANIMATION:
-			_gameScene = new Report_Motion_Animation;
-			break;
-		case SCENE_INDEX::REPORT_WALL_CATCH:
-			_gameScene = new Report_Wall_Catch;
-			break;
-		case SCENE_INDEX::REPORT_RACING_GAME:
-			_gameScene = new Report_Racing_Game;
-			break;
-		case SCENE_INDEX::REPORT_BLACK_HOLE:
-			_gameScene = new Report_Black_Hole;
-			break;
-		case SCENE_INDEX::REPORT_ATTACK_DEFENSE:
-			_gameScene = new Report_Attack_Defense;
-			break;
-
-		// 수업 예제 클래스 초기화 =============================================================================================================
-		case SCENE_INDEX::EXAMPLE_MOLE:
-			_gameScene = new Example_Mole;
-			break;
-		case SCENE_INDEX::EXAMPLE_BULLET:
-			_gameScene = new Example_Bullet;
-			break;
-		case SCENE_INDEX::EXAMPLE_MATH:
-			_gameScene = new Example_Math;
-			break;
-		case SCENE_INDEX::EXAMPLE_IMAGE:
-			_gameScene = new Example_Image;
-			break;
-		case SCENE_INDEX::EXAMPLE_CLIPING:
-			_gameScene = new Example_Cliping;
-			break;
-		case SCENE_INDEX::EXAMPLE_FRAME_IMAGE:
-			_gameScene = new Example_FrameImage;
-			break;
-		case SCENE_INDEX::EXAMPLE_LOOP_RENDER:
-			_gameScene = new Example_Loop_Render;
-			break;
-		}
-
-		_isTitle = false;
-		_gameScene->init();
+		// 타이틀 씬 복귀
+		SCENEMANAGER->changeScene(TITLE_SCENE);
 	}
 }
 
 void MainGame::render(void)
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
+	// ==================================================================
 
-	if (_isTitle)
-	{
-		_titleScene->render();
-	}
-	else
-	{
-		_gameScene->render();
-	}
+	SCENEMANAGER->render();
 
+	// ==================================================================
 	SetTextAlign(getMemDC(), TA_LEFT);
 	this->getBackBuffer()->render(getHDC(), 0, 0);
+}
+
+void MainGame::addScene()
+{
+	// 타이틀 씬 추가
+	SCENEMANAGER->addScene(TITLE_SCENE, new TitleScene);
+
+	// 과제 씬 추가
+	SCENEMANAGER->addScene(REPORT_CARD_MATCH, new Report_CardMatch);
+	SCENEMANAGER->addScene(REPORT_MOLE, new Report_Mole);
+	SCENEMANAGER->addScene(REPORT_CLAYSHOOTING, new Report_ClayShooting);
+	SCENEMANAGER->addScene(REPORT_AVOID, new Report_Avoid);
+	SCENEMANAGER->addScene(REPORT_BULLET_SHOOTING, new Report_BulletShooting);
+	SCENEMANAGER->addScene(REPORT_CROCODILE, new Report_Crocodile);
+	SCENEMANAGER->addScene(REPORT_VERTICAL_SHOOTING, new Report_Vertical_Shooting);
+	SCENEMANAGER->addScene(REPORT_HORIZONTAL_SHOOTING, new Report_Horizontal_Shooting);
+	SCENEMANAGER->addScene(REPORT_MOLE_IMAGE, new Report_Mole_Image);
+	SCENEMANAGER->addScene(REPORT_ANALOG_CLOCK, new Report_Analog_Clock);
+	SCENEMANAGER->addScene(REPORT_SHELL_FIRE, new Report_Shell_Fire);
+	SCENEMANAGER->addScene(REPORT_BULLET_GRAVITY, new Report_Bullet_Gravity);
+	SCENEMANAGER->addScene(REPORT_SLICE_GAME, new Report_Slice_Game);
+	SCENEMANAGER->addScene(REPORT_MINI_MAP, new Report_Mini_Map);
+	SCENEMANAGER->addScene(REPORT_WORM_GAME, new Report_Worm_Game);
+	SCENEMANAGER->addScene(REPORT_ATTACK_COMBO, new Report_Attack_Combo);
+	SCENEMANAGER->addScene(REPORT_MOTION_ANIMATION, new Report_Motion_Animation);
+	SCENEMANAGER->addScene(REPORT_WALL_CATCH, new Report_Wall_Catch);
+	SCENEMANAGER->addScene(REPORT_RACING_GAME, new Report_Racing_Game);
+	SCENEMANAGER->addScene(REPORT_BLACK_HOLE, new Report_Black_Hole);
+	SCENEMANAGER->addScene(REPORT_ATTACK_DEFENSE, new Report_Attack_Defense);
+
+
+	// 수업 예제 씬 추가
+	SCENEMANAGER->addScene(EXAMPLE_MOLE, new Example_Mole);
+	SCENEMANAGER->addScene(EXAMPLE_BULLET, new Example_Bullet);
+	SCENEMANAGER->addScene(EXAMPLE_MATH, new Example_Math);
+	SCENEMANAGER->addScene(EXAMPLE_IMAGE, new Example_Image);
+	SCENEMANAGER->addScene(EXAMPLE_CLIPING, new Example_Cliping);
+	SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
+	SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
 }
 
 

@@ -40,7 +40,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_ATTACK_DEFENSE].name, "공격 및 방어");
 
 	// 수업 예제 이름
-	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 게임");
+	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 예제");
 	wsprintf(_sceneBtn[EXAMPLE_BULLET].name, "총알 발사");
 	wsprintf(_sceneBtn[EXAMPLE_MATH].name, "삼각 함수");
 	wsprintf(_sceneBtn[EXAMPLE_IMAGE].name, "이미지 출력");
@@ -64,7 +64,8 @@ void TitleScene::update(void)
 			cout << _sceneBtn[i].idx << endl;
 			cout << _sceneBtn[i].name << endl;
 
-			_currentSceneIdx = _sceneBtn[i].idx;
+			//_currentSceneIdx = _sceneBtn[i].idx;
+			SCENEMANAGER->changeScene(_sceneBtn[i].idx);
 		}
 	}
 }

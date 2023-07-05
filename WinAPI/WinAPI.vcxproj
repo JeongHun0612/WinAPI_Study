@@ -235,6 +235,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SecondScene.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="StartScene.h" />
@@ -336,6 +337,7 @@
     <ClCompile Include="Report_Vertical_Shooting.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SecondScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Stdafx.cpp" />
