@@ -70,9 +70,6 @@
     <Filter Include="Report\Report_17 %28프레임 이미지%29">
       <UniqueIdentifier>{0226d98a-b48f-476b-a471-90444d0ebdcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Report\Report_01~05">
-      <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\Report_18 %28캐릭터 벽잡기%29">
       <UniqueIdentifier>{155f879d-c726-4763-8db4-173916538382}</UniqueIdentifier>
     </Filter>
@@ -111,6 +108,18 @@
     </Filter>
     <Filter Include="2D FrameWork\StudyExample\씬 전환">
       <UniqueIdentifier>{b388b028-be9f-43fa-8337-794a850b32c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\Report_21 %28공격 및 방어%29">
+      <UniqueIdentifier>{e4e87c9f-53ad-48d3-96f4-b8db2b4921e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\ImageManager">
+      <UniqueIdentifier>{779870a3-3905-4710-bce4-a759c4420159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\FontManager">
+      <UniqueIdentifier>{74363a01-f4bb-4eca-ba08-bcf3f79d346d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Report\Report_01~05">
+      <UniqueIdentifier>{94322797-64b6-4b74-933f-bc1d7e89bddb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -208,9 +217,6 @@
     <ClInclude Include="Report_Motion_Animation.h">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClInclude>
-    <ClInclude Include="ImageManager.h">
-      <Filter>2D FrameWork\FrameWorkManager</Filter>
-    </ClInclude>
     <ClInclude Include="Report_Wall_Catch.h">
       <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
     </ClInclude>
@@ -250,8 +256,14 @@
     <ClInclude Include="StartScene.h">
       <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
     </ClInclude>
+    <ClInclude Include="Report_Attack_Defense.h">
+      <Filter>Report\Report_21 %28공격 및 방어%29</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\ImageManager</Filter>
+    </ClInclude>
     <ClInclude Include="FontManager.h">
-      <Filter>2D FrameWork\FrameWorkManager</Filter>
+      <Filter>2D FrameWork\FrameWorkManager\FontManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -360,9 +372,6 @@
     <ClCompile Include="Report_Motion_Animation.cpp">
       <Filter>Report\Report_17 %28프레임 이미지%29</Filter>
     </ClCompile>
-    <ClCompile Include="ImageManager.cpp">
-      <Filter>2D FrameWork\FrameWorkManager</Filter>
-    </ClCompile>
     <ClCompile Include="Report_Wall_Catch.cpp">
       <Filter>Report\Report_18 %28캐릭터 벽잡기%29</Filter>
     </ClCompile>
@@ -402,8 +411,14 @@
     <ClCompile Include="StartScene.cpp">
       <Filter>2D FrameWork\StudyExample\씬 전환</Filter>
     </ClCompile>
+    <ClCompile Include="Report_Attack_Defense.cpp">
+      <Filter>Report\Report_21 %28공격 및 방어%29</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\ImageManager</Filter>
+    </ClCompile>
     <ClCompile Include="FontManager.cpp">
-      <Filter>2D FrameWork\FrameWorkManager</Filter>
+      <Filter>2D FrameWork\FrameWorkManager\FontManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -23,6 +23,7 @@
 #include "Report_Wall_Catch.h"
 #include "Report_Racing_Game.h"
 #include "Report_Black_Hole.h"
+#include "Report_Attack_Defense.h"
 
 
 // 수업 예제 =====================================================
@@ -49,7 +50,6 @@ HRESULT MainGame::init(void)
 	_gameScene = nullptr;
 
 	_isTitle = true;
-
 
 	//_start = new StartScene;
 	//_start->init();
@@ -199,6 +199,9 @@ void MainGame::update(void)
 		case SCENE_INDEX::REPORT_BLACK_HOLE:
 			_gameScene = new Report_Black_Hole;
 			break;
+		case SCENE_INDEX::REPORT_ATTACK_DEFENSE:
+			_gameScene = new Report_Attack_Defense;
+			break;
 
 		// 수업 예제 클래스 초기화 =============================================================================================================
 		case SCENE_INDEX::EXAMPLE_MOLE:
@@ -247,23 +250,3 @@ void MainGame::render(void)
 }
 
 
-/*
-과제 1. 캐릭터 공격 및 방어
-
-- 필수 : 이미지 -> 배경 / 체력바 / 플레이어 (대기, 공격, 방어), 적 (대기, 공격, 피격)
-
-- 기본 형식은 대전게임처럼 좌 / 우로 배치
-ㄴ + 체력바
-
-- 플레이어는 공격 및 방어를 할 수 있고 적은 공격 및 피격 모션이 존재한다.
-ㄴ 적 : 허수아비
-
-- 플레이어는 상시 조종 < - > 적은 공격 on / off 기능만 (이동 X)
-
-- 공격, 방어, 피격 등이 발생하면 상황에 맞는 결과를 화면에 렌더링 한다.
-ㄴ 막기, 빗나감, 치명타 등)
-
-- 데미지도 표기한다.
-ㄴ 컨버팅 할 수 있으면 해본다.
-
-*/

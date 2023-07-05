@@ -16,7 +16,6 @@ HRESULT TitleScene::init(void)
 	}
 
 
-
 	// 과제 파일 이름
 	wsprintf(_sceneBtn[REPORT_CARD_MATCH].name, "짝 맞추기");
 	wsprintf(_sceneBtn[REPORT_MOLE].name, "두더지 게임");
@@ -38,6 +37,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_WALL_CATCH].name, "벽 잡기");
 	wsprintf(_sceneBtn[REPORT_RACING_GAME].name, "레이싱 게임");
 	wsprintf(_sceneBtn[REPORT_BLACK_HOLE].name, "블랙홀");
+	wsprintf(_sceneBtn[REPORT_ATTACK_DEFENSE].name, "공격 및 방어");
 
 	// 수업 예제 이름
 	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 게임");
@@ -71,8 +71,6 @@ void TitleScene::update(void)
 
 void TitleScene::render(void)
 {
-	FONTMANAGER->drawText(getMemDC(), 0, 0, "휴면 굴림", 30, 30, "Test", strlen("Test"), RGB(255, 0, 0));
-
 	TextOut(getMemDC(), 20, 20, "과제 파일", strlen("과제 파일"));
 	TextOut(getMemDC(), 20, WINSIZE_Y / 2 + 20, "수업 파일", strlen("수업 파일"));
 

@@ -58,6 +58,7 @@ void FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fo
 	// 폰트 색깔 변경
 	SetTextColor(hdc, color);
 
+
 	// 텍스트 출력
 	const int stringLength = strlen(printString);
 	TextOut(hdc, destX, destY, printString, stringLength);
@@ -100,7 +101,6 @@ void FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fo
 	// 텍스트 출력
 	wchar_t charBuffer[256];
 	ZeroMemory(charBuffer, sizeof(charBuffer));
-
 
 	TextOutW(hdc, destX, destY, printString, length);
 
