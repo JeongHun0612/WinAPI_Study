@@ -124,6 +124,12 @@
     <Filter Include="2D FrameWork\FrameWorkManager\SceneManager">
       <UniqueIdentifier>{a89325a0-6fad-4f67-845e-1b718d61409c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\TempSoundManager">
+      <UniqueIdentifier>{22d53eca-3a42-4bb0-96af-a9679135edb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\사운드 출력">
+      <UniqueIdentifier>{6ecb8c70-0e52-4a7f-b281-6b9844f9c5b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -270,6 +276,12 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TempSoundManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\TempSoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_TempSound.h">
+      <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +440,12 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TempSoundManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\TempSoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_TempSound.cpp">
+      <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -47,6 +47,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[EXAMPLE_CLIPING].name, "클리핑 이미지");
 	wsprintf(_sceneBtn[EXAMPLE_FRAME_IMAGE].name, "프레임 이미지");
 	wsprintf(_sceneBtn[EXAMPLE_LOOP_RENDER].name, "루프 이미지");
+	wsprintf(_sceneBtn[EXAMPLE_TEMP_SOUND].name, "사운드 재생");
 
 	return S_OK;
 }

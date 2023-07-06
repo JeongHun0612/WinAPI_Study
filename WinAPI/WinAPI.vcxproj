@@ -166,6 +166,7 @@
     <ClInclude Include="Example_FrameImage.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Example_TempSound.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GImage.h" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Target.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="TempSoundManager.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -270,6 +272,7 @@
     <ClCompile Include="Example_FrameImage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Example_TempSound.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GImage.cpp" />
@@ -344,6 +347,7 @@
     <ClCompile Include="Target.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="TempSoundManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="WinAPITimeAttack.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

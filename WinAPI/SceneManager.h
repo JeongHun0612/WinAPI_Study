@@ -7,6 +7,8 @@ static GameNode* _currentScene = NULL;
 
 class SceneManager : public SingletonBase<SceneManager>
 {
+public:
+
 private:
 	typedef map<int, GameNode*>			 mapSceneList;
 	typedef map<int, GameNode*>::iterator mapSceneIter;

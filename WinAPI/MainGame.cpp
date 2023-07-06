@@ -34,6 +34,7 @@
 #include "Example_Cliping.h"
 #include "Example_FrameImage.h"
 #include "Example_Loop_Render.h"
+#include "Example_TempSound.h"
 
 HRESULT MainGame::init(void)
 {
@@ -150,6 +151,5 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene(EXAMPLE_CLIPING, new Example_Cliping);
 	SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
 	SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
+	SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
 }
-
-

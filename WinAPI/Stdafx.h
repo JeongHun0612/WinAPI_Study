@@ -150,6 +150,7 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #include "ImageManager.h"
 #include "SceneManager.h"
 #include "FontManager.h"
+#include "TempSoundManager.h"
 
 
 // # ΩÃ±€≈Ê #
@@ -158,6 +159,7 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #define IMAGEMANAGER ImageManager::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
 #define FONTMANAGER	FontManager::getSingleton()
+#define TEMPSOUNDMANAGER TempSoundManager::getSingleton()
 
 // ! ≈∏¿Ã∆≤
 #define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))

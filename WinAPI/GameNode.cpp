@@ -25,6 +25,7 @@ HRESULT GameNode::init(bool managerInit)
 		IMAGEMANAGER->init();
 		SCENEMANAGER->init();
 		FONTMANAGER->init();
+		TEMPSOUNDMANAGER->init();
 	}
 
 	return S_OK;
@@ -49,6 +50,8 @@ void GameNode::release(void)
 
 		FONTMANAGER->release();
 		FONTMANAGER->releaseSingleton();
+
+		TEMPSOUNDMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);
