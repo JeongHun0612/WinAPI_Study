@@ -24,6 +24,7 @@
 #include "Report_Racing_Game.h"
 #include "Report_Black_Hole.h"
 #include "Report_Attack_Defense.h"
+#include "Report_3D_Matrix.h"
 
 
 // 수업 예제 =====================================================
@@ -142,6 +143,7 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene(REPORT_RACING_GAME, new Report_Racing_Game);
 	SCENEMANAGER->addScene(REPORT_BLACK_HOLE, new Report_Black_Hole);
 	SCENEMANAGER->addScene(REPORT_ATTACK_DEFENSE, new Report_Attack_Defense);
+	SCENEMANAGER->addScene(REPORT_3D_MATRIX, new Report_3D_Matrix);
 
 
 	// 수업 예제 씬 추가

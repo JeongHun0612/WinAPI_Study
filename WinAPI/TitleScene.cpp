@@ -38,6 +38,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_RACING_GAME].name, "레이싱 게임");
 	wsprintf(_sceneBtn[REPORT_BLACK_HOLE].name, "블랙홀");
 	wsprintf(_sceneBtn[REPORT_ATTACK_DEFENSE].name, "공격 및 방어");
+	wsprintf(_sceneBtn[REPORT_3D_MATRIX].name, "3D Matrix");
 
 	// 수업 예제 이름
 	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 예제");

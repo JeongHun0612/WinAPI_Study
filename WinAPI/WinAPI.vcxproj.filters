@@ -136,6 +136,9 @@
     <Filter Include="2D FrameWork\StudyExample\슈팅게임">
       <UniqueIdentifier>{d468dc60-f7be-49b4-81f4-e09e02f7787b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\Report_22 %283D Matrix%29">
+      <UniqueIdentifier>{d8f6201a-0229-4685-be7d-952d519cf8c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -300,6 +303,9 @@
     </ClInclude>
     <ClInclude Include="Example_Shooting_Game.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_3D_Matrix.h">
+      <Filter>Report\Report_22 %283D Matrix%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +482,9 @@
     </ClCompile>
     <ClCompile Include="Example_Shooting_Game.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_3D_Matrix.cpp">
+      <Filter>Report\Report_22 %283D Matrix%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

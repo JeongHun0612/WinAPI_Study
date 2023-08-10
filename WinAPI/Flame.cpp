@@ -27,6 +27,7 @@ void Flame::update(void)
 		if (_image->getFrameX() == _image->getMaxFrameX())
 		{
 			_index = 0;
+			_count = 0;
 			_image->setFrameX(_index);
 		}
 		else

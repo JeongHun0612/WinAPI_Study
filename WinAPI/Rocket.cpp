@@ -12,7 +12,6 @@ HRESULT Rocket::init()
 
     _rc = RectMakeCenter(_x, _y, _image->getWidth(), _image->getHeight());
 
-
     _flame = new Flame;
     _flame->init(&_rc);
 
