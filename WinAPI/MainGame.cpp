@@ -35,6 +35,7 @@
 #include "Example_FrameImage.h"
 #include "Example_Loop_Render.h"
 #include "Example_TempSound.h"
+#include "Example_Shooting_Game.h"
 
 HRESULT MainGame::init(void)
 {
@@ -152,4 +153,5 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
 	SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
 	SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
+	SCENEMANAGER->addScene(EAMPLE_SHOOTING_GAME, new Example_Shooting_Game);
 }

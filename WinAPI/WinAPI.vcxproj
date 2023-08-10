@@ -166,7 +166,9 @@
     <ClInclude Include="Example_FrameImage.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Example_Shooting_Game.h" />
     <ClInclude Include="Example_TempSound.h" />
+    <ClInclude Include="Flame.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GImage.h" />
@@ -236,6 +238,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Rocket.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SecondScene.h" />
     <ClInclude Include="SingletonBase.h" />
@@ -246,6 +249,7 @@
     </ClInclude>
     <ClInclude Include="TempSoundManager.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp" />
@@ -272,7 +276,9 @@
     <ClCompile Include="Example_FrameImage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Example_Shooting_Game.cpp" />
     <ClCompile Include="Example_TempSound.cpp" />
+    <ClCompile Include="Flame.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GImage.cpp" />
@@ -340,6 +346,7 @@
     <ClCompile Include="Report_Vertical_Shooting.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SecondScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
@@ -349,6 +356,7 @@
     </ClCompile>
     <ClCompile Include="TempSoundManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WinAPITimeAttack.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -374,6 +382,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Question.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -130,6 +130,12 @@
     <Filter Include="2D FrameWork\StudyExample\사운드 출력">
       <UniqueIdentifier>{6ecb8c70-0e52-4a7f-b281-6b9844f9c5b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CodingInterview">
+      <UniqueIdentifier>{cbf32c9d-50ed-4337-bfe9-f6f3245cf2cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\슈팅게임">
+      <UniqueIdentifier>{d468dc60-f7be-49b4-81f4-e09e02f7787b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -282,6 +288,18 @@
     </ClInclude>
     <ClInclude Include="Example_TempSound.h">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
+    </ClInclude>
+    <ClInclude Include="Rocket.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClInclude>
+    <ClInclude Include="Flame.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Shooting_Game.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -447,8 +465,25 @@
     <ClCompile Include="Example_TempSound.cpp">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClCompile>
+    <ClCompile Include="Rocket.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Flame.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Shooting_Game.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Question.txt">
+      <Filter>CodingInterview</Filter>
+    </Text>
   </ItemGroup>
 </Project>
