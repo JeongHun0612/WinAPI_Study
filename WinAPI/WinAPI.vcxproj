@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bullets.h" />
     <ClInclude Include="C3DMatrix.h" />
     <ClInclude Include="C3DVector.h" />
     <ClInclude Include="Card.h">
@@ -253,6 +254,7 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="C3DMatrix.cpp" />
     <ClCompile Include="C3DVector.cpp" />
     <ClCompile Include="Card.cpp">

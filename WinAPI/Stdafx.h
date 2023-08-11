@@ -98,6 +98,7 @@ WBCS (와이드 바이트 캐릭터 셋)
 #include <random>
 #include <vector>
 #include <map>
+#include <memory>
 
 /*
 unordered_map : Hash 자료구조

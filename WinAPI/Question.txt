@@ -49,3 +49,5 @@
 ㄴ Allocate -> Release -> Memory Pool
 - 생명주기(life cycle) : 변수의 메모리가 확보(allocate)된 시점부터 해제(release)되어 가용 메모리 풀(memory pool)에 반환되는 시점
 
+10. 포인터와 스마트 포인터의 차이 / 장단점 / 언제 사용하는지
+

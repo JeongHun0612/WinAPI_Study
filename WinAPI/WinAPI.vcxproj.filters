@@ -139,6 +139,9 @@
     <Filter Include="Report\Report_22 %283D Matrix%29">
       <UniqueIdentifier>{d8f6201a-0229-4685-be7d-952d519cf8c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\StudyExample\슈팅게임\플레이어">
+      <UniqueIdentifier>{16cf4802-1ed9-4ab0-b342-0b6e7d8e9f20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -292,13 +295,7 @@
     <ClInclude Include="Example_TempSound.h">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClInclude>
-    <ClInclude Include="Rocket.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClInclude>
     <ClInclude Include="Flame.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
     <ClInclude Include="Example_Shooting_Game.h">
@@ -306,6 +303,15 @@
     </ClInclude>
     <ClInclude Include="Report_3D_Matrix.h">
       <Filter>Report\Report_22 %283D Matrix%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Rocket.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\플레이어</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>2D FrameWork\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullets.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -471,20 +477,23 @@
     <ClCompile Include="Example_TempSound.cpp">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClCompile>
-    <ClCompile Include="Rocket.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClCompile>
     <ClCompile Include="Flame.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClCompile>
-    <ClCompile Include="Example_Shooting_Game.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClCompile>
     <ClCompile Include="Report_3D_Matrix.cpp">
       <Filter>Report\Report_22 %283D Matrix%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Rocket.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\플레이어</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>2D FrameWork\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullets.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Shooting_Game.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
