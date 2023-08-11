@@ -142,6 +142,9 @@
     <Filter Include="2D FrameWork\StudyExample\슈팅게임\플레이어">
       <UniqueIdentifier>{16cf4802-1ed9-4ab0-b342-0b6e7d8e9f20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Report\Report_23 %28타일맵%29">
+      <UniqueIdentifier>{99b450e8-0306-46ef-8b68-e4d61c04eed8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -312,6 +315,9 @@
     </ClInclude>
     <ClInclude Include="Bullets.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClInclude>
+    <ClInclude Include="Report_TileMap.h">
+      <Filter>Report\Report_23 %28타일맵%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -494,6 +500,9 @@
     </ClCompile>
     <ClCompile Include="Example_Shooting_Game.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Report_TileMap.cpp">
+      <Filter>Report\Report_23 %28타일맵%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

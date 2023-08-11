@@ -15,7 +15,8 @@ HRESULT Rocket::init()
 	_flame = new Flame;
 	_flame->init("Flame.bmp", & _x, &_y);
 
-	_missile.init(5, 300);
+	// ¹Ì»çÀÏ
+	_missile.init(5, 500);
 
 	//std::shared_ptr<Rocket> PlayerA = std::make_shared<Rocket>();
 	//std::shared_ptr<Rocket> PlayerB = PlayerA->get_shared_ptr();

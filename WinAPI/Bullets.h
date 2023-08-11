@@ -3,7 +3,6 @@
 
 #define FRAME_COUNT	10.0f
 
-
 // ±â´É -> ¹­¾ú´Ù.
 struct tagBullet
 {
@@ -25,6 +24,8 @@ struct tagBullet
 class Missile : public GameNode
 {
 private:
+
+private:
 	vector<tagBullet> _vBullet;
 	vector<tagBullet>::iterator _vBulletIter;
 
@@ -37,7 +38,6 @@ public:
 	void render(void);
 
 	void fire(float x, float y);
-	void reload(void);
 	void draw(void);
 	void move(void);
 

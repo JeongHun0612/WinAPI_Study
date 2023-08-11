@@ -50,7 +50,12 @@ class Rocket : public GameNode, public std::enable_shared_from_this<Rocket>
 private:
 	GImage* _image;
 	Flame* _flame;
-	Missile _missile;
+
+	// 미사일 1
+	//Missile _missile;
+
+	// 미사일 2
+	MissileM1 _missile;
 
 	RECT _rc;
 	float _x, _y;

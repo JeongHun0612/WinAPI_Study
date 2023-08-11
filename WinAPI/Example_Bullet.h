@@ -8,21 +8,23 @@
 // 적개체가 가지고있는 속성을 생각 -> 단일 이미지면 X, 애니메이션이 많이 들어가면 사용을 고려
 #define	ENEMY_MAX		80
 
-struct tagBullet
-{
-	RECT rc;
-	bool fire;
-};
-
-struct tagEnemy
-{
-	RECT rc;
-	int speed;
-	bool die;
-};
 
 class Example_Bullet : public GameNode
 {
+private:
+	struct tagBullet
+	{
+		RECT rc;
+		bool fire;
+	};
+
+	struct tagEnemy
+	{
+		RECT rc;
+		int speed;
+		bool die;
+	};
+
 private:
 	HBRUSH brush;
 

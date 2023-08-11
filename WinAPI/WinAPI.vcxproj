@@ -202,6 +202,7 @@
     <ClInclude Include="Report_Mini_Map.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Report_TileMap.h" />
     <ClInclude Include="Report_Wall_Catch.h" />
     <ClInclude Include="Report_Worm_Game.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -313,6 +314,7 @@
     <ClCompile Include="Report_Mini_Map.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Report_TileMap.cpp" />
     <ClCompile Include="Report_Wall_Catch.cpp" />
     <ClCompile Include="Report_Worm_Game.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

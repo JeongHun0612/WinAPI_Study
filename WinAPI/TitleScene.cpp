@@ -12,7 +12,7 @@ HRESULT TitleScene::init(void)
 	for (int i = 0; i < SCENE_INDEX::SCENE_END - SCENE_INDEX::REPORT_END; i++)
 	{
 		_sceneBtn[i + SCENE_INDEX::REPORT_END].idx = i + SCENE_INDEX::REPORT_END;
-		_sceneBtn[i + SCENE_INDEX::REPORT_END].rc = RectMake(20 + (i % 6) * 210, (WINSIZE_Y / 2 + 50) + (i / 6) * 80, 180, 50);
+		_sceneBtn[i + SCENE_INDEX::REPORT_END].rc = RectMake(20 + (i % 6) * 210, (WINSIZE_Y / 2 + 150) + (i / 6) * 80, 180, 50);
 	}
 
 
@@ -39,6 +39,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[REPORT_BLACK_HOLE].name, "블랙홀");
 	wsprintf(_sceneBtn[REPORT_ATTACK_DEFENSE].name, "공격 및 방어");
 	wsprintf(_sceneBtn[REPORT_3D_MATRIX].name, "3D Matrix");
+	wsprintf(_sceneBtn[REPORT_TILEMAP].name, "타일맵");
 
 	// 수업 예제 이름
 	wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 예제");
@@ -76,9 +77,9 @@ void TitleScene::update(void)
 void TitleScene::render(void)
 {
 	TextOut(getMemDC(), 20, 20, "과제 파일", strlen("과제 파일"));
-	TextOut(getMemDC(), 20, WINSIZE_Y / 2 + 20, "수업 파일", strlen("수업 파일"));
+	TextOut(getMemDC(), 20, WINSIZE_Y / 2 + 70, "수업 파일", strlen("수업 파일"));
 
-	LineMake(getMemDC(), 0, WINSIZE_Y / 2, WINSIZE_X, WINSIZE_Y / 2);
+	LineMake(getMemDC(), 0, WINSIZE_Y / 2 + 100, WINSIZE_X, WINSIZE_Y / 2 + 100);
 
 	SetTextAlign(getMemDC(), TA_CENTER);
 	for (int i = 0; i < SCENE_INDEX::SCENE_END; i++)

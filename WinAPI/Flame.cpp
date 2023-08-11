@@ -33,7 +33,6 @@ void Flame::update(void)
 	}
 
 	_rc = RectMakeCenter(*_x, *_y + 180, _image->getFrameWidth(), _image->getFrameHeight());
-
 }
 
 void Flame::render(void)
