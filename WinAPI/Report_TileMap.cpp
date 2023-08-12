@@ -20,28 +20,8 @@
 
 HRESULT Report_TileMap::init(void)
 {
-	_tileCount = 10;
-
-	_sizeX = (WINSIZE_Y / _tileCount);
-	_sizeY = (WINSIZE_Y / _tileCount);
-
-	_image = IMAGEMANAGER->addImage("tileImage", "Resources/Images/Object/Mole.bmp", _sizeX, _sizeY);
-
-	_rndTileNum[0] = RND->getInt(_tileCount * _tileCount);
-	_rndTileNum[1] = RND->getInt(_tileCount * _tileCount);
-
-	for (int i = 0; i < _tileCount; i++)
-	{
-		for (int j = 0; j < _tileCount; j++)
-		{
-			Tile tile;
-			tile.y = i * _sizeY;
-			tile.x = j * _sizeX;
-			tile.rc = RectMake(tile.x, tile.y, _sizeX, _sizeY);
-
-			_vTiles.push_back(tile);
-		}
-	}
+	_isDrag = false;
+	_isTextBox = true;
 
 	return S_OK;
 }
@@ -57,9 +37,75 @@ void Report_TileMap::update(void)
 	{
 		for (_viTiles = _vTiles.begin(); _viTiles != _vTiles.end(); ++_viTiles)
 		{
-			if(PtInRect(&_viTiles->rc, _ptMouse))
+			if (PtInRect(&_viTiles->rc, _ptMouse) && _viTiles->img != nullptr)
 			{
-				printf("[%d, %d]\n", _viTiles->y, _viTiles->x);
+				_isDrag = true;
+				_dragImg = _viTiles->img;
+				_viTiles->img = nullptr;
+
+				_diffX = _ptMouse.x - _viTiles->x;
+				_diffY = _ptMouse.y - _viTiles->y;
+
+				break;
+			}
+		}
+	}
+
+	if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && _isDrag)
+	{
+		_isDrag = false;
+
+		for (_viTiles = _vTiles.begin(); _viTiles != _vTiles.end(); ++_viTiles)
+		{
+			if (PtInRect(&_viTiles->rc, _ptMouse))
+			{
+				_viTiles->img = _dragImg;
+				_dragImg = nullptr;
+				break;
+			}
+		}
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	{
+		_isTextBox = !_isTextBox;
+		_strTileCnt = "";
+	}
+
+
+	// 키 입력
+	if (KEYMANAGER->isAnyKeyDown() && _isTextBox)
+	{
+		for (int i = 0; i < KEYMANAGER->getKeyDown().size(); i++)
+		{
+			if (KEYMANAGER->getKeyDown().test(i))
+			{
+				// 숫자 입력
+				if (i >= 48 && i <= 57)
+				{
+					_strTileCnt += i;
+				}
+
+				// 숫자 입력 (NUMPAD)
+				if (i >= VK_NUMPAD0 && i <= VK_NUMPAD9)
+				{
+					_strTileCnt += i - 48;
+				}
+
+				// 숫자 지우기
+				if (i == VK_BACK && !_strTileCnt.empty())
+				{
+					_strTileCnt.pop_back();
+				}
+
+				// 숫자 입력 완료
+				if (i == VK_RETURN)
+				{
+					setTile(_vTiles, stoi(_strTileCnt));
+					_isTextBox = false;
+				}
+
+				break;
 			}
 		}
 	}
@@ -67,13 +113,77 @@ void Report_TileMap::update(void)
 
 void Report_TileMap::render(void)
 {
-	for (int i = 0; i < _vTiles.size(); i++)
+	if (_isTextBox)
 	{
-		DrawRectMake(getMemDC(), _vTiles[i].rc);
+		RectangleMakeCenter(getMemDC(), WINSIZE_X_HALF, WINSIZE_Y_HALF, 100, 50);
 
-		if (i == _rndTileNum[0] || i == _rndTileNum[1])
+		SetTextAlign(getMemDC(), TA_CENTER);
+
+		TextOut(getMemDC(), WINSIZE_X_HALF, WINSIZE_Y_HALF - 50, "타일 갯수 입력", strlen("타일 갯수 입력"));
+		TextOut(getMemDC(), WINSIZE_X_HALF, WINSIZE_Y_HALF - 10, _strTileCnt.c_str(), _strTileCnt.length());
+	}
+	else
+	{
+		for (int i = 0; i < _vTiles.size(); i++)
 		{
-			_image->render(getMemDC(), _vTiles[i].x, _vTiles[i].y);
+			DrawRectMake(getMemDC(), _vTiles[i].rc);
+
+			if (_vTiles[i].img != nullptr)
+			{
+				_vTiles[i].img->render(getMemDC(), _vTiles[i].x, _vTiles[i].y);
+			}
 		}
+
+		if (_isDrag)
+		{
+			_dragImg->render(getMemDC(), _ptMouse.x - _diffX, _ptMouse.y - _diffY);
+		}
+	}
+}
+
+void Report_TileMap::setRandomNum(int* rndNumArray, int count, int range)
+{
+	for (int i = 0; i < count; i++)
+	{
+		rndNumArray[i] = RND->getInt(range);
+
+		for (int j = 0; j < i; j++)
+		{
+			if (rndNumArray[i] == rndNumArray[j]) i--;
+		}
+	}
+}
+
+void Report_TileMap::setTile(vector<Tile>& vTiles, int tileCnt)
+{
+	// vecotr 초기화
+	vTiles.clear();
+
+	// tileSize 계산
+	int tileSize = (WINSIZE_Y / tileCnt);
+
+	// 랜덤 숫자 뽑기
+	setRandomNum(_rndTileNum, RND_IMG_CNT, (tileCnt * tileCnt));
+
+	// 타일 초기화
+	for (int i = 0; i < tileCnt; i++)
+	{
+		for (int j = 0; j < tileCnt; j++)
+		{
+			Tile tile;
+			ZeroMemory(&tile, sizeof(Tile));
+			tile.y = i * tileSize;
+			tile.x = j * tileSize;
+			tile.rc = RectMake(tile.x, tile.y, tileSize, tileSize);
+
+			vTiles.push_back(tile);
+		}
+	}
+
+	 // 타일 이미지 초기화
+	for (int i = 0; i < RND_IMG_CNT; i++)
+	{
+		vTiles[_rndTileNum[i]].img = new GImage;
+		vTiles[_rndTileNum[i]].img->init("Resources/Images/Object/Mole.bmp", tileSize, tileSize);
 	}
 }

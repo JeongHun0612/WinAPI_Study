@@ -145,6 +145,9 @@
     <Filter Include="Report\Report_23 %28타일맵%29">
       <UniqueIdentifier>{99b450e8-0306-46ef-8b68-e4d61c04eed8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\KeyManager">
+      <UniqueIdentifier>{c741a027-6ef9-44fe-9da4-3564cac53fd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -172,9 +175,6 @@
       <Filter>2D FrameWork\Utility</Filter>
     </ClInclude>
     <ClInclude Include="MainGame.h">
-      <Filter>ManagerClass</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyManager.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
     <ClInclude Include="Report_CardMatch.h">
@@ -319,6 +319,9 @@
     <ClInclude Include="Report_TileMap.h">
       <Filter>Report\Report_23 %28타일맵%29</Filter>
     </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\KeyManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -337,9 +340,6 @@
       <Filter>2D FrameWork\Utility</Filter>
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
-      <Filter>ManagerClass</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyManager.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
     <ClCompile Include="Report_CardMatch.cpp">
@@ -503,6 +503,9 @@
     </ClCompile>
     <ClCompile Include="Report_TileMap.cpp">
       <Filter>Report\Report_23 %28타일맵%29</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\KeyManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

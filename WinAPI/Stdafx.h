@@ -94,9 +94,9 @@ WBCS (와이드 바이트 캐릭터 셋)
 ㄴ OS와 독립적으로 동작을 한다.
 */
 #include <chrono>
-
 #include <random>
 #include <vector>
+#include <string>
 #include <map>
 #include <memory>
 
