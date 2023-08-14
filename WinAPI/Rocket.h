@@ -6,7 +6,6 @@
 
 #define ROCKET_SPEED 3.0f;
 
-
 #pragma region 스마트 포인터
 /*
 ▶ 스마트 포인터
@@ -39,9 +38,14 @@
 ㄴ shared_ptr이 소유한 객체 대한 접근을 허용할때 필요하다.
 ㄴ 순환 참조를 제거할 때 사용된다.
 */
-
-
 #pragma endregion
+
+enum BULLET_TYPE
+{
+	Nomral,
+	SHOT,
+	MINI_ROCKET
+};
 
 // enable_shared_from_this : 객체의 생성 및 소멸에 의한 참조 문제를 해결한다.
 // ㄴ 각각의 객체에게 소유권을 부여한다.
@@ -50,6 +54,7 @@ class Rocket : public GameNode, public std::enable_shared_from_this<Rocket>
 private:
 	GImage* _image;
 	Flame* _flame;
+
 
 	// 미사일 1
 	//Missile _missile;

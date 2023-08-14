@@ -49,7 +49,6 @@ HRESULT Example_Shooting_Game::init(void)
 	IMAGEMANAGER->addImage("½´ÆÃ ¸Ê", "Resources/Images/ShootingGame/ShootingBG.bmp", WINSIZE_X, WINSIZE_Y, true, RGB(255, 0, 255));
 
 	_rocket = new Rocket;
-
 	_rocket->init();
 
 	_em = new EnemyManager;

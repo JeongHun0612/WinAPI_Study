@@ -328,14 +328,23 @@
     <ClInclude Include="Enemy.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Minion.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyManager.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Bullets.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMissile.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle_Minion.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Curve_Minion.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Crush_Minion.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -522,14 +531,23 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Minion.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Bullets.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMissile.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle_Minion.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Curve_Minion.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Crush_Minion.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

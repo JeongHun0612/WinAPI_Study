@@ -21,7 +21,7 @@ HRESULT Enemy::init(void)
 	return S_OK;
 }
 
-HRESULT Enemy::init(const char* imageName, POINT position, float speed)
+HRESULT Enemy::init(const char* imageName, POINT position, float speed, float angle)
 {
 	_worldTimeCount = GetTickCount();
 	_rndTimeCount = RND->getFromFloatTo(50, 150);
@@ -32,6 +32,7 @@ HRESULT Enemy::init(const char* imageName, POINT position, float speed)
 	_y = position.y;
 
 	_speed = speed;
+	_angle = angle;
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 
@@ -46,6 +47,8 @@ void Enemy::release(void)
 void Enemy::update(void)
 {
 	move();
+
+	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 void Enemy::render(void)
@@ -57,19 +60,6 @@ void Enemy::render(void)
 // X : 적마다 움직임이 다르다. -> 상속을 전제한 클래스이기 때문에 -> 자식 구현
 void Enemy::move(void)
 {
-	if (_y <= 200)
-	{
-		_y += _speed;
-	}
-	else
-	{
-		_x += cosf(DEGREE_RADIAN(_angle)) * _speed;
-		_y += sinf(DEGREE_RADIAN(_angle)) * _speed;
-
-		_angle += 1.0f;
-	}
-
-	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 void Enemy::draw(void)

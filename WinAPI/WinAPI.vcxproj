@@ -147,7 +147,10 @@
     <ClInclude Include="Card.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Circle_Minion.h" />
     <ClInclude Include="CommonMacroFunction.h" />
+    <ClInclude Include="Crush_Minion.h" />
+    <ClInclude Include="Curve_Minion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Example_Bullet.h">
@@ -181,10 +184,10 @@
     <ClInclude Include="MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Minion.h" />
     <ClInclude Include="Mole.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="NormalMissile.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_3D_Matrix.h" />
     <ClInclude Include="Report_Analog_Clock.h">
@@ -264,6 +267,9 @@
     <ClCompile Include="Card.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Circle_Minion.cpp" />
+    <ClCompile Include="Crush_Minion.cpp" />
+    <ClCompile Include="Curve_Minion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Example_Bullet.cpp">
@@ -297,10 +303,10 @@
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Minion.cpp" />
     <ClCompile Include="Mole.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="NormalMissile.cpp" />
     <ClCompile Include="Report_3D_Matrix.cpp" />
     <ClCompile Include="Report_Analog_Clock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
