@@ -100,6 +100,7 @@ void MainGame::update(void)
 
 	if (KEYMANAGER->isOnceKeyDown(VK_BACK))
 	{
+		cout << "Test" << endl;
 		// Å¸ÀÌÆ² ¾À º¹±Í
 		SCENEMANAGER->changeScene(TITLE_SCENE);
 	}

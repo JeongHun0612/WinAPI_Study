@@ -16,7 +16,8 @@ HRESULT Rocket::init()
 	_flame->init("Flame.bmp", & _x, &_y);
 
 	// ¹Ì»çÀÏ
-	_missile.init(5, 500);
+	_missile = new MissileM1;
+	_missile->init(5, 500);
 
 	//std::shared_ptr<Rocket> PlayerA = std::make_shared<Rocket>();
 	//std::shared_ptr<Rocket> PlayerB = PlayerA->get_shared_ptr();
@@ -34,7 +35,8 @@ void Rocket::release(void)
 	_flame->release();
 	SAFE_DELETE(_flame);
 
-	_missile.release();
+	_missile->release();
+	SAFE_DELETE(_missile);
 }
 
 void Rocket::update(void)
@@ -61,18 +63,17 @@ void Rocket::update(void)
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		// fire
-		_missile.fire(_x, _y);
+		_missile->fire(_x, _y - 60);
 	}
 
 	_flame->update();
 
-	_missile.update();
+	_missile->update();
 }
 
 void Rocket::render(void)
 {
 	_image->render(getMemDC(), _rc.left, _rc.top);
 	_flame->render();
-
-	_missile.render();
+	_missile->render();
 }

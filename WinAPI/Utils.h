@@ -8,6 +8,9 @@
 #define PI				3.141592653f
 #define PI_2			6.283185308f
 
+// 각도 표기 -> 라디안 표기 변환
+#define DEGREE_RADIAN(_deg)			(PI * (_deg) / 180.f)
+
 /*
 - 반올림 오차 (Rounding Error)
 

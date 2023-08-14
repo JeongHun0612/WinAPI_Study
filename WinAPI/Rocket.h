@@ -55,7 +55,7 @@ private:
 	//Missile _missile;
 
 	// πÃªÁ¿œ 2
-	MissileM1 _missile;
+	MissileM1* _missile;
 
 	RECT _rc;
 	float _x, _y;

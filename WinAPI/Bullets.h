@@ -14,7 +14,6 @@ struct tagBullet
 	float fireX, fireY;
 	float angle;
 	float speed;
-	float frameTick;
 	bool fire;
 };
 

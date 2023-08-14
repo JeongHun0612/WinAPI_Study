@@ -139,14 +139,20 @@
     <Filter Include="Report\Report_22 %283D Matrix%29">
       <UniqueIdentifier>{d8f6201a-0229-4685-be7d-952d519cf8c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\StudyExample\슈팅게임\플레이어">
-      <UniqueIdentifier>{16cf4802-1ed9-4ab0-b342-0b6e7d8e9f20}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\Report_23 %28타일맵%29">
       <UniqueIdentifier>{99b450e8-0306-46ef-8b68-e4d61c04eed8}</UniqueIdentifier>
     </Filter>
     <Filter Include="2D FrameWork\FrameWorkManager\KeyManager">
       <UniqueIdentifier>{c741a027-6ef9-44fe-9da4-3564cac53fd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\슈팅게임\Enemy">
+      <UniqueIdentifier>{895f090b-d1bb-4d86-9ac8-248305f77ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\슈팅게임\Player">
+      <UniqueIdentifier>{16cf4802-1ed9-4ab0-b342-0b6e7d8e9f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\슈팅게임\Bullets">
+      <UniqueIdentifier>{70502ba7-4f78-4dcc-8c23-f04ef7c7f5d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -308,19 +314,28 @@
       <Filter>Report\Report_22 %283D Matrix%29</Filter>
     </ClInclude>
     <ClInclude Include="Rocket.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\플레이어</Filter>
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Player</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>2D FrameWork\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullets.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
     <ClInclude Include="Report_TileMap.h">
       <Filter>Report\Report_23 %28타일맵%29</Filter>
     </ClInclude>
     <ClInclude Include="KeyManager.h">
       <Filter>2D FrameWork\FrameWorkManager\KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Minion.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullets.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,13 +505,10 @@
       <Filter>Report\Report_22 %283D Matrix%29</Filter>
     </ClCompile>
     <ClCompile Include="Rocket.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\플레이어</Filter>
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Player</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>2D FrameWork\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullets.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClCompile>
     <ClCompile Include="Example_Shooting_Game.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
@@ -506,6 +518,18 @@
     </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager\KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Minion.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullets.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

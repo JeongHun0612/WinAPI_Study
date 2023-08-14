@@ -68,6 +68,22 @@ void Missile::draw(void)
 		_vBulletIter->img->frameRender(getMemDC(),
 			_vBulletIter->rc.left , _vBulletIter->rc.top,
 			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+
+
+		// 이미지 프레임 변경
+		_vBulletIter->count++;
+
+		if (_vBulletIter->count % 5 == 0)
+		{
+			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+
+			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			{
+				_vBulletIter->img->setFrameX(0);
+			}
+
+			_vBulletIter->count = 0;
+		}
 	}
 }
 
@@ -77,25 +93,12 @@ void Missile::move(void)
 	{
 		if (!_vBulletIter->fire) continue;
 
-		// 이미지 프레임 변경
-
-		if (FRAME_COUNT + _vBulletIter->frameTick <= GetTickCount())
-		{
-			_vBulletIter->frameTick = GetTickCount();
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
-
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
-			{
-				_vBulletIter->img->setFrameX(0);
-			}
-		}
-
 		// 불릿 좌표 변경
 		_vBulletIter->y -= _vBulletIter->speed;
 		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
 
 		// 불릿 삭제 조건
-		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+		if (_range <= getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
 		{
 			_vBulletIter->fire = false;
 		}
@@ -156,6 +159,21 @@ void MissileM1::draw(void)
 		_vBulletIter->img->frameRender(getMemDC(),
 			_vBulletIter->rc.left, _vBulletIter->rc.top,
 			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+
+		// 이미지 프레임 변경
+		_vBulletIter->count++;
+
+		if (_vBulletIter->count % 5 == 0)
+		{
+			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+
+			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			{
+				_vBulletIter->img->setFrameX(0);
+			}
+
+			_vBulletIter->count = 0;
+		}
 	}
 }
 
@@ -163,18 +181,6 @@ void MissileM1::move(void)
 {
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
 	{
-		// 이미지 프레임 변경
-		if (FRAME_COUNT + _vBulletIter->frameTick <= GetTickCount())
-		{
-			_vBulletIter->frameTick = GetTickCount();
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
-
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
-			{
-				_vBulletIter->img->setFrameX(0);
-			}
-		}
-
 		// 불릿 좌표 변경
 		_vBulletIter->y -= _vBulletIter->speed;
 		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
@@ -182,11 +188,9 @@ void MissileM1::move(void)
 		// 불릿 삭제 조건
 		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
 		{
+			SAFE_DELETE(_vBulletIter->img);
 			_vBulletIter = _vBullet.erase(_vBulletIter);
 		}
-		else
-		{
-			_vBulletIter++;
-		}
+		else ++_vBulletIter;
 	}
 }
