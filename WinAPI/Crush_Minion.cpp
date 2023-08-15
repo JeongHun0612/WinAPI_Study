@@ -17,31 +17,25 @@ void Crush_Minion::move()
 	}
 	else
 	{
-		_x += cosf(DEGREE_RADIAN(_angle)) * _speed;
-		_y += sinf(DEGREE_RADIAN(_angle)) * _speed;
-
-		if (_x <= 0.0f)
+		if (_y <= WINSIZE_Y_HALF && _x >= WINSIZE_X_HALF)
 		{
-			_x = 0.0f;
-			_angle = (180.0f - _angle);
+			_x += cosf(getAngle(_x, _y, WINSIZE_X, WINSIZE_Y_HALF)) * _speed;
+			_y += -sinf(getAngle(_x, _y, WINSIZE_X, WINSIZE_Y_HALF)) * _speed;
 		}
-
-		if (_x >= WINSIZE_X)
+		else if (_y > WINSIZE_Y_HALF && _x >= WINSIZE_X_HALF)
 		{
-			_x = (float)WINSIZE_X;
-			_angle = (180.0f - _angle);
+			_x += cosf(getAngle(_x, _y, WINSIZE_X_HALF, WINSIZE_Y)) * _speed;
+			_y += -sinf(getAngle(_x, _y, WINSIZE_X_HALF, WINSIZE_Y)) * _speed;
 		}
-
-		if (_y <= 0.0f)
+		else if (_y > WINSIZE_Y_HALF && _x < WINSIZE_X_HALF)
 		{
-			_y = 0.0f;
-			_angle = (360.0f - _angle);
+			_x += cosf(getAngle(_x, _y, 0.0f, WINSIZE_Y_HALF)) * _speed;
+			_y += -sinf(getAngle(_x, _y, 0.0f, WINSIZE_Y_HALF)) * _speed;
 		}
-
-		if (_y >= WINSIZE_Y)
+		else
 		{
-			_y = (float)WINSIZE_Y;
-			_angle = (360.0f - _angle);
+			_x += cosf(getAngle(_x, _y, WINSIZE_X_HALF, 0.0f)) * _speed;
+			_y += -sinf(getAngle(_x, _y, WINSIZE_X_HALF, 0.0f)) * _speed;
 		}
 	}
 }

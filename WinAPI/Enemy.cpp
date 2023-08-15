@@ -80,4 +80,3 @@ void Enemy::animation(void)
 		}
 	}
 }
-

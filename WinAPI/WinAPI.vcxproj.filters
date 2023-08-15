@@ -346,6 +346,12 @@
     <ClInclude Include="Crush_Minion.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="ShotMissile.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniRocket.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -548,6 +554,12 @@
     </ClCompile>
     <ClCompile Include="Crush_Minion.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotMissile.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniRocket.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

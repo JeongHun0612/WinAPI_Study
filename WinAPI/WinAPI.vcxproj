@@ -184,6 +184,7 @@
     <ClInclude Include="MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="MiniRocket.h" />
     <ClInclude Include="Mole.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -250,6 +251,7 @@
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SecondScene.h" />
+    <ClInclude Include="ShotMissile.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="Stdafx.h" />
@@ -303,6 +305,7 @@
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MiniRocket.cpp" />
     <ClCompile Include="Mole.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -367,6 +370,7 @@
     <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SecondScene.cpp" />
+    <ClCompile Include="ShotMissile.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Stdafx.cpp" />
     <ClCompile Include="Target.cpp">

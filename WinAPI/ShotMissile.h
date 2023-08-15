@@ -1,7 +1,7 @@
 #pragma once
 #include "Bullets.h"
 
-class NormalMissile : public Missile
+class ShotMissile : public Missile
 {
 private:
 
@@ -15,7 +15,7 @@ public:
 	void draw(void);
 	void move(void);
 
-	NormalMissile() {}
-	~NormalMissile() {}
+	ShotMissile() {}
+	~ShotMissile() {}
 };
 

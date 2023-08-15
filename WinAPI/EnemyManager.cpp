@@ -11,7 +11,7 @@ HRESULT EnemyManager::init(void)
 
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CIRCLA);
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CURVE);
-	setMinion("해파리", 20, 15.0f, MOVE_PATTERN::CRUSH);
+	setMinion("해파리", 20, 5.0f, MOVE_PATTERN::CRUSH);
 
 	return S_OK;
 }
@@ -52,7 +52,6 @@ void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE
 		case MOVE_PATTERN::CIRCLA:
 			jellyFish = new Circle_Minion;
 			jellyFish->init(imageName, PointMake(WINSIZE_X_HALF, (i * -50)), speed);
-			_vMinion.push_back(jellyFish);
 			break;
 		case MOVE_PATTERN::CURVE:
 			jellyFish = new Curve_Minion;

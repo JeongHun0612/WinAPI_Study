@@ -1,7 +1,6 @@
 #include "Stdafx.h"
 #include "Curve_Minion.h"
 
-
 Curve_Minion::Curve_Minion() {
 	//! Do Nothing
 }

@@ -42,9 +42,11 @@
 
 enum BULLET_TYPE
 {
-	Nomral,
+	NORMAL_BULLET,
 	SHOT,
-	MINI_ROCKET
+	MINI_ROCKET,
+
+	BULLET_END
 };
 
 // enable_shared_from_this : 객체의 생성 및 소멸에 의한 참조 문제를 해결한다.
@@ -55,12 +57,9 @@ private:
 	GImage* _image;
 	Flame* _flame;
 
-
-	// 미사일 1
-	//Missile _missile;
-
-	// 미사일 2
-	MissileM1* _missile;
+	// 총알
+	Missile* _bullets[BULLET_END];
+	int _curBulletType;
 
 	RECT _rc;
 	float _x, _y;
@@ -73,6 +72,8 @@ public:
 	void release(void);
 	void update(void);
 	void render(void);
+
+	void setBullet(void);
 
 	std::shared_ptr<Rocket> get_shared_ptr()
 	{
