@@ -121,7 +121,7 @@ void Rocket::setBullet(void)
 	_bullets[NORMAL_BULLET] = normalBullet;
 
 	Missile* shotBullet = new ShotMissile;
-	shotBullet->init(90, 500);
+	shotBullet->init(100, WINSIZE_Y);
 	_bullets[SHOT] = shotBullet;
 
 	Missile* miniRocket = new MiniRocket;

@@ -3,6 +3,9 @@
 
 class Circle_Minion : public Enemy
 {
+private:
+
+
 public:
 	void move();
 

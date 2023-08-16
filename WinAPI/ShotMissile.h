@@ -4,6 +4,7 @@
 class ShotMissile : public Missile
 {
 private:
+	bool _isTest;
 
 public:
 	HRESULT init(int bulletMax, float range);

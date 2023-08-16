@@ -1,6 +1,7 @@
 #include "Stdafx.h"
 #include "TitleScene.h"
 
+
 HRESULT TitleScene::init(void)
 {
 	for (int i = 0; i < SCENE_INDEX::REPORT_END; i++)
@@ -14,7 +15,6 @@ HRESULT TitleScene::init(void)
 		_sceneBtn[i + SCENE_INDEX::REPORT_END].idx = i + SCENE_INDEX::REPORT_END;
 		_sceneBtn[i + SCENE_INDEX::REPORT_END].rc = RectMake(20 + (i % 6) * 210, (WINSIZE_Y / 2 + 150) + (i / 6) * 80, 180, 50);
 	}
-
 
 	// 과제 파일 이름
 	wsprintf(_sceneBtn[REPORT_CARD_MATCH].name, "짝 맞추기");

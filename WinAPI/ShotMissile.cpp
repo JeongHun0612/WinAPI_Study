@@ -28,15 +28,15 @@ void ShotMissile::fire(float x, float y)
 {
 	if (_bulletMax <= _vBullet.size()) return;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < _bulletMax; i++)
 	{
 		tagBullet bullet;
 		ZeroMemory(&bullet, sizeof(tagBullet));
 
 		bullet.img = new GImage;
 		bullet.img->init("Resources/Images/ShootingGame/Missile.bmp", 0.0f, 0.0f, 416, 64, 13, 1, true, RGB(255, 0, 255));
-		bullet.speed = 5.0f;
-		bullet.angle = 225 + (i * 45);
+		bullet.speed = 3.0f;
+		bullet.angle = 270;
 		bullet.x = bullet.fireX = x;
 		bullet.y = bullet.fireY = y;
 		bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getFrameWidth(), bullet.img->getFrameHeight());
@@ -52,20 +52,32 @@ void ShotMissile::draw(void)
 
 void ShotMissile::move(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
+	int count = 0;
+
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter, count++)
 	{
 		// ∫“∏¥ ¡¬«• ∫Ø∞Ê
 		_vBulletIter->x += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->speed;
 		_vBulletIter->y += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->speed;
-
 		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
 
-		// ∫“∏¥ ªË¡¶ ¡∂∞«
-		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+
+		if (getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y) >= 200.0f)
 		{
-			SAFE_DELETE(_vBulletIter->img);
-			_vBulletIter = _vBullet.erase(_vBulletIter);
+			_vBulletIter->angle = 225 + ((count / 25) * 30);
+
+			//if (getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y) >= 400.0f)
+			//{
+			//	_vBulletIter->angle = 225 + ((count / 5) * 30);
+			//}
 		}
-		else ++_vBulletIter;
+
+		// ∫“∏¥ ªË¡¶ ¡∂∞«
+		//if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+		//{
+		//	SAFE_DELETE(_vBulletIter->img);
+		//	_vBulletIter = _vBullet.erase(_vBulletIter);
+		//}
+		//else ++_vBulletIter;
 	}
 }
