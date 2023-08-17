@@ -73,9 +73,6 @@
     <Filter Include="Report\Report_18 %28캐릭터 벽잡기%29">
       <UniqueIdentifier>{155f879d-c726-4763-8db4-173916538382}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\Scene">
-      <UniqueIdentifier>{3b211cd0-55c4-4655-8929-d343a77100af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Report\Report_19 %28레이싱 게임%29">
       <UniqueIdentifier>{0acfd9a2-926b-4149-ad11-362847f97959}</UniqueIdentifier>
     </Filter>
@@ -102,9 +99,6 @@
     </Filter>
     <Filter Include="2D FrameWork\StudyExample\클리핑 이미지">
       <UniqueIdentifier>{747bf8f1-81a7-4622-a2b5-8843bd7c2dd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2D FrameWork\StudyExample\루프 이미지">
-      <UniqueIdentifier>{116c0746-4800-49c7-aaec-119c1309e94e}</UniqueIdentifier>
     </Filter>
     <Filter Include="2D FrameWork\StudyExample\씬 전환">
       <UniqueIdentifier>{b388b028-be9f-43fa-8337-794a850b32c5}</UniqueIdentifier>
@@ -142,9 +136,6 @@
     <Filter Include="Report\Report_23 %28타일맵%29">
       <UniqueIdentifier>{99b450e8-0306-46ef-8b68-e4d61c04eed8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2D FrameWork\FrameWorkManager\KeyManager">
-      <UniqueIdentifier>{c741a027-6ef9-44fe-9da4-3564cac53fd2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2D FrameWork\StudyExample\슈팅게임\Enemy">
       <UniqueIdentifier>{895f090b-d1bb-4d86-9ac8-248305f77ad1}</UniqueIdentifier>
     </Filter>
@@ -153,6 +144,18 @@
     </Filter>
     <Filter Include="2D FrameWork\StudyExample\슈팅게임\Bullets">
       <UniqueIdentifier>{70502ba7-4f78-4dcc-8c23-f04ef7c7f5d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\TimeManager">
+      <UniqueIdentifier>{87fc6dc9-6ead-4015-abd5-f022bb6e60c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\KeyManager">
+      <UniqueIdentifier>{c741a027-6ef9-44fe-9da4-3564cac53fd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Scene">
+      <UniqueIdentifier>{3b211cd0-55c4-4655-8929-d343a77100af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\루프 이미지">
+      <UniqueIdentifier>{116c0746-4800-49c7-aaec-119c1309e94e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +354,15 @@
     </ClInclude>
     <ClInclude Include="MiniRocket.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Beam.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -560,6 +572,15 @@
     </ClCompile>
     <ClCompile Include="MiniRocket.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Beam.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

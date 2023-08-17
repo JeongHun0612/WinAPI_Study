@@ -117,6 +117,90 @@ HRESULT Missile::init(int bulletMax, float range)
 
 void Missile::release(void)
 {
+	// 1. 정석 (C++ 표본에서 얘기하는 문법)
+	//for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	//{
+	//	SAFE_DELETE(_vBulletIter->img);
+	//}
+
+	// 2. 줄이고 싶다. (변수에 의해서 길어지는 가독성 파괴)
+	//_vBulletIter = _vBullet.begin();
+	//for (; _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	//{
+	//	SAFE_DELETE(_vBulletIter->img);
+	//}
+
+	// 3. 협업 시 효율적인건 뭐가 있을까?
+	//iterBullet iterBullet = _vBullet.begin();
+
+	//// 협업 X
+	//auto iterBullet = _vBullet.begin();
+	//for (; iterBullet != _vBullet.end(); iterBullet++)
+	//{
+	//	SAFE_DELETE(iterBullet->img);
+	//}
+
+	// 4. range based (Low 언어)
+	//for (auto iter : _vBullet)
+	//{
+	//	SAFE_DELETE(iter.img);
+	//}
+
+	// 5. for each (High 언어)
+	// 별도의 연산로직이 없을때는 사용 가능
+	//for each (auto iter in _vBullet)
+	//{
+	//	SAFE_DELETE(iter.img);
+	//}
+
+	// 6. for_each
+	// ㄴ 반복자의 시작과 끝, 그리고 함수를 파라미터로 받는다.
+	// ㄴ 마지막 부분이 파라미터이기 때문에 람다식으로 표현이 가능
+	//for_each(_vBullet.begin(), _vBullet.end(), update);
+
+	//int Value = 0;
+	//for_each(_vBullet.begin(), _vBullet.end(), [&Value](auto& number))
+	//{
+	//	Value += number;
+	//});
+
+	/*
+	람다식
+	- [] ( ) { } ( )
+	ㄴ [캡처] (매개 변수) {(반환)함수 동작} (호출 인자(생략 가능))
+	[] (int numA, int numB) { cout << numA + numB << endl; } (10, 20);
+	[] (int numA, int numB) { return numA + numB; } (10, 20);
+
+	==================================
+
+	[] : 같은 영역에 있는 모든 변수에 접근 X
+	[&] : 같은 영역에 있는 모든 변수를 참조 O
+	[=] : 같은 영역에 있는 모든 변수를 값 O
+	[&, 변수A] : 같은 영역에 있는 모든 변수를 참조로 캡처. 단, 변수A만 값으로 캡처
+	[=, 변수A] : 같은 영역에 있는 모든 변수를 값으로 캡처. 단, 변수A만 참조로 캡처
+	[&변수A] :
+
+	*/
+
+	//int numberA = 10;
+	//int numberB = 20;
+
+	//auto resultA = [](int NumA, NumB) {return NumA + NumB; } (10, 10);
+	//auto resultB = [&]()->int {return numberA + numberB; } ();
+	//auto resultC = [=, &numberA]()->int {return numberA + numberB; }();
+
+
+	// 7. transform
+	// ㄴ 반복자를 이용한 반복문이라고 할 수 있다. (결과를 다른 컨테이너에 저장)
+	// ㄴ 원본 컨테이너도 가능 + 람다
+
+	//vector<int> _vBulletReload;
+	//transform(_vBullet.begin(), _vBullet.end(), _vBulletReload.begin(), update);
+
+	//transform(_vBullet.begin(), _vBullet.end(), _vBulletReload.begin(),
+	//	[](__int64 numA)-> auto { return numA; });
+
+
 	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
 	{
 		SAFE_DELETE(_vBulletIter->img);
@@ -156,7 +240,7 @@ void Missile::draw(void)
 
 			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
 			{
-				_vBulletIter->img->setFrameX(0);
+				_vBulletIter = _vBullet.erase(_vBulletIter);
 			}
 
 			_vBulletIter->count = 0;

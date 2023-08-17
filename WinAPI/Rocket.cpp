@@ -3,6 +3,7 @@
 #include "NormalMissile.h"
 #include "ShotMissile.h"
 #include "MiniRocket.h"
+#include "Beam.h"
 
 // 설계와의 싸움
 HRESULT Rocket::init()
@@ -47,11 +48,11 @@ void Rocket::release(void)
 
 void Rocket::update(void)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _rc.left > 0)
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _rc.left > 0 && !_beamIrradiation)
 	{
 		_x -= ROCKET_SPEED;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _rc.right < WINSIZE_X)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _rc.right < WINSIZE_X && !_beamIrradiation)
 	{
 		_x += ROCKET_SPEED;
 	}
@@ -127,4 +128,8 @@ void Rocket::setBullet(void)
 	Missile* miniRocket = new MiniRocket;
 	miniRocket->init(3, 300);
 	_bullets[MINI_ROCKET] = miniRocket;
+
+	Missile* beam = new Beam;
+	beam->init(1, 0.0f);
+	_bullets[BEAM] = beam;
 }

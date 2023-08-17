@@ -45,6 +45,7 @@ enum BULLET_TYPE
 	NORMAL_BULLET,
 	SHOT,
 	MINI_ROCKET,
+	BEAM,
 
 	BULLET_END
 };
@@ -59,10 +60,12 @@ private:
 
 	// ÃÑ¾Ë
 	Missile* _bullets[BULLET_END];
+
 	int _curBulletType;
 
 	RECT _rc;
 	float _x, _y;
+	bool _beamIrradiation;
 	
 	//GImage* objectData;
 	//vector<std::shared_ptr<Rocket>> spRocket;

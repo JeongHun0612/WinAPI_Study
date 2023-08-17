@@ -52,8 +52,10 @@ public:
 class Missile : public GameNode
 {
 protected:
+	typedef vector<tagBullet>::iterator iterBullet;
+
 	vector<tagBullet> _vBullet;
-	vector<tagBullet>::iterator _vBulletIter;
+	iterBullet _vBulletIter;
 
 	string _name;
 

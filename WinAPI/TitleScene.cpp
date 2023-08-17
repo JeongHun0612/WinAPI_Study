@@ -1,7 +1,6 @@
 #include "Stdafx.h"
 #include "TitleScene.h"
 
-
 HRESULT TitleScene::init(void)
 {
 	for (int i = 0; i < SCENE_INDEX::REPORT_END; i++)

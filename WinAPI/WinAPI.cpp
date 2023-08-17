@@ -223,7 +223,6 @@ lParam		->		unsigned long -> 마우스 클릭 좌표를 전달
 3. 윈도우가 다른 윈도우에 가려졌다가 다시 보일때
 4. 특정 함수가 호출이 될 때 -> InvalidateRect, Invalidate, UpdateAllViews 등등..
 	ㄴ 기본적으로 렌더링 관련된 함수가 나오면 PAINT를 떠올려야 한다.
-
 */
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
