@@ -64,7 +64,7 @@ HRESULT Example_Shooting_Game::init(void)
 	_rocket->init();
 
 	_em = new EnemyManager;
-	_em->init();
+	_em->init(_rocket);
 
 	return S_OK;
 }

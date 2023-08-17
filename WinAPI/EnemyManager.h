@@ -1,6 +1,7 @@
 #pragma once
 #include "GameNode.h"
 #include "Enemy.h"
+#include "Rocket.h"
 
 enum class MOVE_PATTERN
 {
@@ -22,8 +23,11 @@ private:
 	vEnemy _vMinion;
 	viEnemy _viMinion;
 
+	Rocket* _rocket;
+
 public:
 	HRESULT init(void);
+	HRESULT init(Rocket* rocket);
 	void release(void);
 	void update(void);
 	void render(void);

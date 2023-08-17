@@ -33,10 +33,10 @@ void Beam::fire(float x, float y)
 
 	bullet.img = new GImage;
 	bullet.img->init("Resources/Images/ShootingGame/Beam.bmp", 0.0f, 0.0f, 426, 801, 4, 1, true, RGB(255, 0, 255));
-	bullet.speed = 0.5f;
+	bullet.speed = 0.0f;
 	bullet.x = bullet.fireX = x;
 	bullet.y = bullet.fireY = y;
-	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getFrameWidth(), bullet.img->getFrameHeight());
+	bullet.rc = RectMakeCenter(bullet.x, bullet.y - bullet.img->getFrameHeight() / 2, bullet.img->getFrameWidth(), bullet.img->getFrameHeight());
 
 	_vBullet.push_back(bullet);
 }
@@ -68,18 +68,18 @@ void Beam::draw(void)
 
 void Beam::move(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
-	{
-		// ∫“∏¥ ¡¬«• ∫Ø∞Ê
-		_vBulletIter->y -= _vBulletIter->speed;
-		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
+	//for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
+	//{
+	//	// ∫“∏¥ ¡¬«• ∫Ø∞Ê
+	//	_vBulletIter->y -= _vBulletIter->speed;
+	//	_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
 
-		// ∫“∏¥ ªË¡¶ ¡∂∞«
-		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
-		{
-			SAFE_DELETE(_vBulletIter->img);
-			_vBulletIter = _vBullet.erase(_vBulletIter);
-		}
-		else ++_vBulletIter;
-	}
+	//	// ∫“∏¥ ªË¡¶ ¡∂∞«
+	//	if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+	//	{
+	//		SAFE_DELETE(_vBulletIter->img);
+	//		_vBulletIter = _vBullet.erase(_vBulletIter);
+	//	}
+	//	else ++_vBulletIter;
+	//}
 }

@@ -13,6 +13,7 @@ public:
 	void update(float lock = 0.0f);
 	void render(HDC hdc);
 
+	inline unsigned long getFrameRate(char* str = nullptr) const { return _timer->getFrameRate(); }
 	inline float getWorldTime(void) const { return _timer->getWorldTime(); }
 	inline float getElapsedTime(void) const { return _timer->getElapsedTime(); }
 

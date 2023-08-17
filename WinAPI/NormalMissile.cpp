@@ -43,7 +43,27 @@ void NormalMissile::fire(float x, float y)
 
 void NormalMissile::draw(void)
 {
-	Missile::draw();
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	{
+		_vBulletIter->img->frameRender(getMemDC(),
+			_vBulletIter->rc.left, _vBulletIter->rc.top,
+			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+
+		// 이미지 프레임 변경
+		_vBulletIter->count++;
+
+		if (_vBulletIter->count % 5 == 0)
+		{
+			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+
+			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			{
+				_vBulletIter->img->setFrameX(0);
+			}
+
+			_vBulletIter->count = 0;
+		}
+	}
 }
 
 void NormalMissile::move(void)

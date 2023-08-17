@@ -70,7 +70,9 @@ public:
 
 	virtual void fire(float x, float y);
 	virtual void move(void);
-	void draw(void);
+	virtual void draw(void);
+
+	bool collisionCheck(RECT rc);
 
 	string getName() { return _name; }
 

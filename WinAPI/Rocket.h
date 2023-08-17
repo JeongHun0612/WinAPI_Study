@@ -65,7 +65,6 @@ private:
 
 	RECT _rc;
 	float _x, _y;
-	bool _beamIrradiation;
 	
 	//GImage* objectData;
 	//vector<std::shared_ptr<Rocket>> spRocket;
@@ -82,6 +81,8 @@ public:
 	{
 		return shared_from_this();
 	}
+
+	Missile* getMisslie() { return _bullets[_curBulletType]; }
 
 	Rocket() {}
 	~Rocket() {}

@@ -89,6 +89,7 @@ void MainGame::update(void)
 	GameNode::update();
 
 	SCENEMANAGER->update();
+	TIMEMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
 	{
@@ -100,7 +101,6 @@ void MainGame::update(void)
 
 	if (KEYMANAGER->isOnceKeyDown(VK_BACK))
 	{
-		cout << "Test" << endl;
 		// Å¸ÀÌÆ² ¾À º¹±Í
 		SCENEMANAGER->changeScene(TITLE_SCENE);
 	}
@@ -112,6 +112,7 @@ void MainGame::render(void)
 	// ==================================================================
 
 	SCENEMANAGER->render();
+	//TIMEMANAGER->render(getMemDC());
 
 	// ==================================================================
 	SetTextAlign(getMemDC(), TA_LEFT);

@@ -221,33 +221,31 @@ void Missile::render(void)
 
 void Missile::fire(float x, float y)
 {
-}
-
-void Missile::draw(void)
-{
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
-	{
-		_vBulletIter->img->frameRender(getMemDC(),
-			_vBulletIter->rc.left, _vBulletIter->rc.top,
-			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
-
-		// 이미지 프레임 변경
-		_vBulletIter->count++;
-
-		if (_vBulletIter->count % 5 == 0)
-		{
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
-
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
-			{
-				_vBulletIter = _vBullet.erase(_vBulletIter);
-			}
-
-			_vBulletIter->count = 0;
-		}
-	}
+	// ! Do Nothing
 }
 
 void Missile::move(void)
 {
+	// ! Do Nothing
+}
+
+void Missile::draw(void)
+{
+	// ! Do Nothing
+}
+
+bool Missile::collisionCheck(RECT rc)
+{
+	RECT rt;
+
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	{
+		if (IntersectRect(&rt, &_vBulletIter->rc, &rc))
+		{
+			//_vBullet.erase(_vBulletIter);
+			return true;
+		}
+	}
+
+	return false;
 }

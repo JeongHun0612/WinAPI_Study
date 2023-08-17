@@ -6,12 +6,19 @@
 
 HRESULT EnemyManager::init(void)
 {
+	return S_OK;
+}
+
+HRESULT EnemyManager::init(Rocket* rocket)
+{
 	IMAGEMANAGER->addFrameImage("해파리", "Resources/Images/ShootingGame/JellyFish.bmp",
 		0.0f, 0.0f, 1140, 47, 19, 1, true, RGB(255, 0, 255));
 
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CIRCLA);
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CURVE);
 	setMinion("해파리", 20, 5.0f, MOVE_PATTERN::CRUSH);
+
+	_rocket = rocket;
 
 	return S_OK;
 }
@@ -27,9 +34,21 @@ void EnemyManager::release(void)
 
 void EnemyManager::update(void)
 {
-	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
+	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end();)
 	{
 		(*_viMinion)->update();
+
+		if (_rocket->getMisslie()->collisionCheck((*_viMinion)->getRC()))
+		{
+			(*_viMinion)->setCurHP((*_viMinion)->getCurHP() - 1);
+
+			if ((*_viMinion)->getCurHP() <= 0)
+			{
+				_viMinion = _vMinion.erase(_viMinion);
+			}
+			else ++_viMinion;
+		}
+		else ++_viMinion;
 	}
 }
 

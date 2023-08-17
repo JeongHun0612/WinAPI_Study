@@ -48,11 +48,11 @@ void Rocket::release(void)
 
 void Rocket::update(void)
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _rc.left > 0 && !_beamIrradiation)
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT) && _rc.left > 0)
 	{
 		_x -= ROCKET_SPEED;
 	}
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _rc.right < WINSIZE_X && !_beamIrradiation)
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT) && _rc.right < WINSIZE_X)
 	{
 		_x += ROCKET_SPEED;
 	}
@@ -118,7 +118,7 @@ void Rocket::render(void)
 void Rocket::setBullet(void)
 {
 	Missile* normalBullet = new NormalMissile;
-	normalBullet->init(30, 500);
+	normalBullet->init(30, WINSIZE_Y);
 	_bullets[NORMAL_BULLET] = normalBullet;
 
 	Missile* shotBullet = new ShotMissile;
@@ -126,7 +126,7 @@ void Rocket::setBullet(void)
 	_bullets[SHOT] = shotBullet;
 
 	Missile* miniRocket = new MiniRocket;
-	miniRocket->init(3, 300);
+	miniRocket->init(3, 500);
 	_bullets[MINI_ROCKET] = miniRocket;
 
 	Missile* beam = new Beam;

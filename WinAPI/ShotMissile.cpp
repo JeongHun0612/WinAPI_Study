@@ -47,20 +47,39 @@ void ShotMissile::fire(float x, float y)
 
 void ShotMissile::draw(void)
 {
-	Missile::draw();
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	{
+		_vBulletIter->img->frameRender(getMemDC(),
+			_vBulletIter->rc.left, _vBulletIter->rc.top,
+			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+
+		// 이미지 프레임 변경
+		_vBulletIter->count++;
+
+		if (_vBulletIter->count % 5 == 0)
+		{
+			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+
+			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			{
+				_vBulletIter->img->setFrameX(0);
+			}
+
+			_vBulletIter->count = 0;
+		}
+	}
 }
 
 void ShotMissile::move(void)
 {
 	int count = 0;
 
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter, count++)
+	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); count++)
 	{
 		// 불릿 좌표 변경
 		_vBulletIter->x += cosf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->speed;
 		_vBulletIter->y += sinf(DEGREE_RADIAN(_vBulletIter->angle)) * _vBulletIter->speed;
 		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
-
 
 		if (getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y) >= 200.0f)
 		{
@@ -73,11 +92,11 @@ void ShotMissile::move(void)
 		}
 
 		// 불릿 삭제 조건
-		//if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
-		//{
-		//	SAFE_DELETE(_vBulletIter->img);
-		//	_vBulletIter = _vBullet.erase(_vBulletIter);
-		//}
-		//else ++_vBulletIter;
+		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+		{
+			SAFE_DELETE(_vBulletIter->img);
+			_vBulletIter = _vBullet.erase(_vBulletIter);
+		}
+		else ++_vBulletIter;
 	}
 }

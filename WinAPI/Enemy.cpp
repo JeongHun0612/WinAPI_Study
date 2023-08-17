@@ -2,14 +2,14 @@
 #include "Enemy.h"
 
 Enemy::Enemy(void) : _rc(RectMake(0, 0, 0, 0)),
-					 _currentFrameX(0),
-					 _currentFrameY(0),
-					 _x(0.0f),
-					 _y(0.0f),
-					 _speed(0.0f),
-					 _angle(0.0f),
-					 _worldTimeCount(0.0f),
-					 _rndTimeCount(0.0f)
+_currentFrameX(0),
+_currentFrameY(0),
+_x(0.0f),
+_y(0.0f),
+_speed(0.0f),
+_angle(0.0f),
+_worldTimeCount(0.0f),
+_rndTimeCount(0.0f)
 {}
 
 
@@ -27,6 +27,9 @@ HRESULT Enemy::init(const char* imageName, POINT position, float speed, float an
 	_rndTimeCount = RND->getFromFloatTo(50, 150);
 
 	_image = IMAGEMANAGER->findImage(imageName);
+
+	_maxHP = 3;
+	_curHP = _maxHP;
 
 	_x = position.x;
 	_y = position.y;
@@ -65,6 +68,28 @@ void Enemy::move(void)
 void Enemy::draw(void)
 {
 	_image->frameRender(getMemDC(), _rc.left, _rc.top, _currentFrameX, _currentFrameY);
+
+	switch (_curHP)
+	{
+	case 1:
+		_hBrush = CreateSolidBrush(RGB(255, 0, 0));
+		break;
+	case 2:
+		_hBrush = CreateSolidBrush(RGB(255, 255, 0));
+		break;
+	case 3:
+		_hBrush = CreateSolidBrush(RGB(0, 255, 0));
+		break;
+	}
+
+	_hOldBrush = (HBRUSH)SelectObject(getMemDC(), _hBrush);
+
+	RectangleMake(getMemDC(),
+		_rc.left, _rc.top - 10,
+		(_image->getFrameWidth() / _maxHP) * _curHP, 10);
+
+	SelectObject(getMemDC(), _hOldBrush);
+	DeleteObject(_hBrush);
 }
 
 void Enemy::animation(void)

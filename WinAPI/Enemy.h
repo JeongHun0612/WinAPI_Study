@@ -4,10 +4,16 @@
 // Enemy (부모) : 적은 이 클래스를 기반으로 일반 몬스터, 보스 등을 만들 수 있다.
 class Enemy : public GameNode
 {
+private:
+	HBRUSH _hBrush;
+	HBRUSH _hOldBrush;
+
 protected:
 	GImage* _image;
 	RECT _rc;
 
+	int _maxHP;
+	int _curHP;
 	int _currentFrameX;
 	int _currentFrameY;
 
@@ -28,6 +34,11 @@ public:
 	virtual void move(void);
 	void draw(void);
 	void animation(void);
+
+	RECT getRC() { return _rc; }
+
+	int getCurHP() { return _curHP; }
+	void setCurHP(int curHP) { _curHP = curHP; }
 
 	Enemy(void);
 	~Enemy(void) {}

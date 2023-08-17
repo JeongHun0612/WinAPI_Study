@@ -9,14 +9,15 @@
 // 각도 표기 -> 라디안 표기 변환
 #define DEGREE_RADIAN(_deg)			(M_PI * (_deg) / 180.f)
 
-struct Timer
-{
-	int x;
-	int y;
-};
-
 class Report_Analog_Clock : public GameNode
 {
+private:
+	struct Timer
+	{
+		int x;
+		int y;
+	};
+
 private:
 	HPEN _pen;
 	HPEN _currentPen;

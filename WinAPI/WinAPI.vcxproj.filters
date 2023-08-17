@@ -307,9 +307,6 @@
     <ClInclude Include="Example_TempSound.h">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClInclude>
-    <ClInclude Include="Flame.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClInclude>
     <ClInclude Include="Example_Shooting_Game.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
@@ -363,6 +360,9 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Flame.h">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -525,9 +525,6 @@
     <ClCompile Include="Example_TempSound.cpp">
       <Filter>2D FrameWork\StudyExample\사운드 출력</Filter>
     </ClCompile>
-    <ClCompile Include="Flame.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
-    </ClCompile>
     <ClCompile Include="Report_3D_Matrix.cpp">
       <Filter>Report\Report_22 %283D Matrix%29</Filter>
     </ClCompile>
@@ -581,6 +578,9 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Flame.cpp">
+      <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
