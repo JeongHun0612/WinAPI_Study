@@ -35,7 +35,7 @@ public:
 	void draw(void);
 	void animation(void);
 
-	RECT getRC() { return _rc; }
+	RECT getRC(void) { return _rc; }
 
 	int getCurHP() { return _curHP; }
 	void setCurHP(int curHP) { _curHP = curHP; }

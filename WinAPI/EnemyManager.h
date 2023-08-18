@@ -20,8 +20,12 @@ private:
 	typedef vector<Enemy*>::iterator viEnemy;
 
 private:
+	GImage* effectImg;
+
 	vEnemy _vMinion;
 	viEnemy _viMinion;
+
+	vector<RECT> _effectPos;
 
 	Rocket* _rocket;
 
@@ -33,6 +37,10 @@ public:
 	void render(void);
 
 	void setMinion(const char* imageName, int count, float speed, MOVE_PATTERN type);
+	void removeMinion(int arrNum);
+	void dieAnimation(void);
+
+	vector<Enemy*> getMinions(void) { return _vMinion; }
 
 	EnemyManager() {}
 	~EnemyManager() {}

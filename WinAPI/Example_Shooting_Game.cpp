@@ -54,6 +54,22 @@
 
 ㄴ 1. 체력바를 각각의 객체위에 띄어주는 방법
 ㄴ 2. 적 객체 한정으로 체력바를 공유하는 방법
+
+[08 / 18]
+
+과제 1. 적이 죽을 때 이펙트 구현
+
+- 무장마다 다른 이펙트로 구현
+
+- 이펙트는 프레임 렌더 처리
+
+
+과제 2. 적 미사일 발사
+
+- 적이 미사일을 발사하며 미사일은 로켓의 위치로 쏴야 한다.
+
+- 적이 발사하는 미사일은 발사 주기와 스피드가 모두 달라야 한다.
+
 */
 
 HRESULT Example_Shooting_Game::init(void)
@@ -82,6 +98,8 @@ void Example_Shooting_Game::update(void)
 {
 	_rocket->update();
 	_em->update();
+
+	collision();
 }
 
 void Example_Shooting_Game::render(void)
@@ -90,4 +108,6 @@ void Example_Shooting_Game::render(void)
 
 	_rocket->render();
 	_em->render();
+
+	TIMEMANAGER->render(getMemDC());
 }

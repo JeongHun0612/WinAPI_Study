@@ -15,6 +15,8 @@ public:
 	void update(void);
 	void render(void);
 
+	void collision(void);
+
 	Example_Shooting_Game() {}
 	~Example_Shooting_Game() {}
 };

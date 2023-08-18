@@ -89,7 +89,6 @@ void MainGame::update(void)
 	GameNode::update();
 
 	SCENEMANAGER->update();
-	TIMEMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
 	{
@@ -112,7 +111,6 @@ void MainGame::render(void)
 	// ==================================================================
 
 	SCENEMANAGER->render();
-	//TIMEMANAGER->render(getMemDC());
 
 	// ==================================================================
 	SetTextAlign(getMemDC(), TA_LEFT);

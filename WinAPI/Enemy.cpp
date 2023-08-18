@@ -12,8 +12,6 @@ _worldTimeCount(0.0f),
 _rndTimeCount(0.0f)
 {}
 
-
-
 HRESULT Enemy::init(void)
 {
 	// ! Do Nothing;

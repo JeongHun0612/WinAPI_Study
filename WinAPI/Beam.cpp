@@ -5,6 +5,7 @@ HRESULT Beam::init(int bulletMax, float range)
 {
 	Missile::init(bulletMax, range);
 
+	_bulletType = BULLET_TYPE::BEAM;
 	_name = "∑π¿Ã¿˙";
 
 	return S_OK;

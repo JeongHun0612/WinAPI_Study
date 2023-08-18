@@ -274,6 +274,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Circle_Minion.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Crush_Minion.cpp" />
     <ClCompile Include="Curve_Minion.cpp" />
     <ClCompile Include="Enemy.cpp" />

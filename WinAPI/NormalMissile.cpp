@@ -5,6 +5,7 @@ HRESULT NormalMissile::init(int bulletMax, float range)
 {
 	Missile::init(bulletMax, range);
 
+	_bulletType = BULLET_TYPE::NORMAL_BULLET;
 	_name = "¿œπ›";
 
 	return S_OK;

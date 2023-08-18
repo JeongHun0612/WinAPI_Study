@@ -23,6 +23,16 @@ struct tagBullet
 	bool explosion;
 };
 
+enum class BULLET_TYPE
+{
+	NORMAL_BULLET,
+	SHOT,
+	MINI_ROCKET,
+	BEAM,
+
+	BULLET_END
+};
+
 // 객체로 정의한다.
 // ㄴ 배열처럼 미리 장전을 해두고 발사
 
@@ -57,10 +67,14 @@ protected:
 	vector<tagBullet> _vBullet;
 	iterBullet _vBulletIter;
 
+	BULLET_TYPE _bulletType;
+
 	string _name;
 
-	float _range;
 	int _bulletMax;
+	
+
+	float _range;
 
 public:
 	virtual HRESULT init(int bulletMax, float range);
@@ -73,8 +87,12 @@ public:
 	virtual void draw(void);
 
 	bool collisionCheck(RECT rc);
+	void removeBullet(int arrNum);
 
-	string getName() { return _name; }
+	vector<tagBullet> getBullet(void) { return _vBullet; }
+
+	string getName(void) { return _name; }
+	BULLET_TYPE getBulletType(void) { return _bulletType; }
 
 	Missile() {}
 	~Missile() {}

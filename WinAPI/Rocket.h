@@ -40,26 +40,18 @@
 */
 #pragma endregion
 
-enum BULLET_TYPE
-{
-	NORMAL_BULLET,
-	SHOT,
-	MINI_ROCKET,
-	BEAM,
-
-	BULLET_END
-};
 
 // enable_shared_from_this : 객체의 생성 및 소멸에 의한 참조 문제를 해결한다.
 // ㄴ 각각의 객체에게 소유권을 부여한다.
-class Rocket : public GameNode, public std::enable_shared_from_this<Rocket>
+class Rocket : public GameNode /*, public std::enable_shared_from_this<Rocket> */
 {
 private:
 	GImage* _image;
 	Flame* _flame;
 
 	// 총알
-	Missile* _bullets[BULLET_END];
+	vector<Missile*> _vBullets;
+	vector<Missile*>::iterator _viBullets;
 
 	int _curBulletType;
 
@@ -76,16 +68,19 @@ public:
 	void render(void);
 
 	void setBullet(void);
+	void removeMissile(int arrNum);
 
-	std::shared_ptr<Rocket> get_shared_ptr()
-	{
-		return shared_from_this();
-	}
+	Missile* getMisslie() { return _vBullets[_curBulletType]; }
 
-	Missile* getMisslie() { return _bullets[_curBulletType]; }
+	RECT getRect() { return _rc; }
 
 	Rocket() {}
 	~Rocket() {}
+
+	//std::shared_ptr<Rocket> get_shared_ptr()
+	//{
+	//	return shared_from_this();
+	//}
 
 	//Rocket() { objectData = new GImage[10]; }
 	//~Rocket() { delete[] objectData; }

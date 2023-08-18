@@ -21,7 +21,7 @@ HRESULT Rocket::init()
 
 	// 미사일 셋팅
 	setBullet();
-	_curBulletType = NORMAL_BULLET;
+	_curBulletType = 0;
 
 	//std::shared_ptr<Rocket> PlayerA = std::make_shared<Rocket>();
 	//std::shared_ptr<Rocket> PlayerB = PlayerA->get_shared_ptr();
@@ -39,10 +39,10 @@ void Rocket::release(void)
 	_flame->release();
 	SAFE_DELETE(_flame);
 
-	for (int i = 0; i < BULLET_END; i++)
+	for (_viBullets = _vBullets.begin(); _viBullets != _vBullets.end(); ++_viBullets)
 	{
-		_bullets[i]->release();
-		SAFE_DELETE(_bullets[i]);
+		(*_viBullets)->release();
+		SAFE_DELETE(*_viBullets);
 	}
 }
 
@@ -71,7 +71,7 @@ void Rocket::update(void)
 
 		if (_curBulletType < 0)
 		{
-			_curBulletType = BULLET_END - 1;
+			_curBulletType = _vBullets.size() - 1;
 		}
 	}
 
@@ -79,7 +79,7 @@ void Rocket::update(void)
 	{
 		_curBulletType++;
 
-		if (_curBulletType == BULLET_END)
+		if (_curBulletType == _vBullets.size())
 		{
 			_curBulletType = 0;
 		}
@@ -90,14 +90,14 @@ void Rocket::update(void)
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		// fire
-		_bullets[_curBulletType]->fire(_x, _y - 60);
+		_vBullets[_curBulletType]->fire(_x, _y - 60);
 	}
 
 	_flame->update();
 
-	for (int i = 0; i < BULLET_END; i++)
+	for (_viBullets = _vBullets.begin(); _viBullets != _vBullets.end(); ++_viBullets)
 	{
-		_bullets[i]->update();
+		(*_viBullets)->update();
 	}
 }
 
@@ -106,12 +106,12 @@ void Rocket::render(void)
 	_image->render(getMemDC(), _rc.left, _rc.top);
 	_flame->render();
 
-	for (int i = 0; i < BULLET_END; i++)
+	for (_viBullets = _vBullets.begin(); _viBullets != _vBullets.end(); ++_viBullets)
 	{
-		_bullets[i]->render();
+		(*_viBullets)->render();
 	}
 
-	string strBulletType = "무기 타입 : " + _bullets[_curBulletType]->getName();
+	string strBulletType = "무기 타입 : " + _vBullets[_curBulletType]->getName();
 	TextOut(getMemDC(), WINSIZE_X - 200, WINSIZE_Y - 50, strBulletType.c_str(), strBulletType.length());
 }
 
@@ -119,17 +119,22 @@ void Rocket::setBullet(void)
 {
 	Missile* normalBullet = new NormalMissile;
 	normalBullet->init(30, WINSIZE_Y);
-	_bullets[NORMAL_BULLET] = normalBullet;
+	_vBullets.push_back(normalBullet);
 
 	Missile* shotBullet = new ShotMissile;
 	shotBullet->init(100, WINSIZE_Y);
-	_bullets[SHOT] = shotBullet;
+	_vBullets.push_back(shotBullet);
 
 	Missile* miniRocket = new MiniRocket;
 	miniRocket->init(3, 500);
-	_bullets[MINI_ROCKET] = miniRocket;
+	_vBullets.push_back(miniRocket);
 
 	Missile* beam = new Beam;
 	beam->init(1, 0.0f);
-	_bullets[BEAM] = beam;
+	_vBullets.push_back(beam);
+}
+
+void Rocket::removeMissile(int arrNum)
+{
+	_vBullets[_curBulletType]->removeBullet(arrNum);
 }

@@ -5,6 +5,7 @@ HRESULT MiniRocket::init(int bulletMax, float range)
 {
     Missile::init(bulletMax, range);
 
+	_bulletType = BULLET_TYPE::MINI_ROCKET;
     _name = "미니 로켓";
 
     return S_OK;

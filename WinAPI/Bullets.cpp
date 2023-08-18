@@ -242,10 +242,17 @@ bool Missile::collisionCheck(RECT rc)
 	{
 		if (IntersectRect(&rt, &_vBulletIter->rc, &rc))
 		{
-			//_vBullet.erase(_vBulletIter);
+			SAFE_DELETE(_vBulletIter->img);
+			_vBullet.erase(_vBulletIter);
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void Missile::removeBullet(int arrNum)
+{
+	SAFE_DELETE(_vBullet[arrNum].img);
+	_vBullet.erase(_vBullet.begin() + arrNum);
 }

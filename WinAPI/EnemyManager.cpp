@@ -14,6 +14,9 @@ HRESULT EnemyManager::init(Rocket* rocket)
 	IMAGEMANAGER->addFrameImage("해파리", "Resources/Images/ShootingGame/JellyFish.bmp",
 		0.0f, 0.0f, 1140, 47, 19, 1, true, RGB(255, 0, 255));
 
+	effectImg = IMAGEMANAGER->addFrameImage("사망이펙트", "Resources/Images/ShootingGame/effect_explosion.bmp",
+		0.0f, 0.0f, 1152, 144, 8, 1, true, RGB(255, 0, 255));
+
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CIRCLA);
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CURVE);
 	setMinion("해파리", 20, 5.0f, MOVE_PATTERN::CRUSH);
@@ -34,22 +37,24 @@ void EnemyManager::release(void)
 
 void EnemyManager::update(void)
 {
-	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end();)
+	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
 	{
 		(*_viMinion)->update();
 
-		if (_rocket->getMisslie()->collisionCheck((*_viMinion)->getRC()))
-		{
-			(*_viMinion)->setCurHP((*_viMinion)->getCurHP() - 1);
+		//if (_rocket->getMisslie()->collisionCheck((*_viMinion)->getRC()))
+		//{
+		//	(*_viMinion)->setCurHP((*_viMinion)->getCurHP() - 1);
 
-			if ((*_viMinion)->getCurHP() <= 0)
-			{
-				_viMinion = _vMinion.erase(_viMinion);
-			}
-			else ++_viMinion;
-		}
-		else ++_viMinion;
+		//	if ((*_viMinion)->getCurHP() <= 0)
+		//	{
+		//		_viMinion = _vMinion.erase(_viMinion);
+		//	}
+		//	else ++_viMinion;
+		//}
+		//else ++_viMinion;
 	}
+
+	dieAnimation();
 }
 
 void EnemyManager::render(void)
@@ -83,5 +88,21 @@ void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE
 		}
 
 		_vMinion.push_back(jellyFish);
+	}
+}
+
+void EnemyManager::removeMinion(int arrNum)
+{
+	_effectPos.push_back(_vMinion[arrNum]->getRC());
+
+	SAFE_DELETE(_vMinion[arrNum]);
+	_vMinion.erase(_vMinion.begin() + arrNum);
+}
+
+void EnemyManager::dieAnimation(void)
+{
+	for (int i = 0; i < _effectPos.size(); i++)
+	{
+		effectImg->frameRender(getMemDC(), _effectPos[i].left, _effectPos[i].top, effectImg->getFrameX(), effectImg->getFrameY());
 	}
 }
