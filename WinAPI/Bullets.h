@@ -7,8 +7,6 @@
 struct tagBullet
 {
 	GImage* img;
-	GImage* effectImg;
-
 	RECT rc;
 
 	int radius;
@@ -23,19 +21,8 @@ struct tagBullet
 	bool explosion;
 };
 
-enum class BULLET_TYPE
-{
-	NORMAL_BULLET,
-	SHOT,
-	MINI_ROCKET,
-	BEAM,
-
-	BULLET_END
-};
-
 // 객체로 정의한다.
 // ㄴ 배열처럼 미리 장전을 해두고 발사
-
 class Bullets : public GameNode
 {
 protected:
@@ -61,39 +48,58 @@ public:
 // 발사가 될때마다 만들고 삭제
 class Missile : public GameNode
 {
-protected:
+private:
 	typedef vector<tagBullet>::iterator iterBullet;
 
 	vector<tagBullet> _vBullet;
 	iterBullet _vBulletIter;
 
-	BULLET_TYPE _bulletType;
-
-	string _name;
-
 	int _bulletMax;
-	
 
 	float _range;
 
 public:
-	virtual HRESULT init(int bulletMax, float range);
+	HRESULT init(int bulletMax, float range);
 	void release(void);
 	void update(void);
 	void render(void);
 
-	virtual void fire(float x, float y);
-	virtual void move(void);
-	virtual void draw(void);
+	void fire(float x, float y);
+	void move(void);
+	void draw(void);
 
-	bool collisionCheck(RECT rc);
 	void removeBullet(int arrNum);
 
-	vector<tagBullet> getBullet(void) { return _vBullet; }
-
-	string getName(void) { return _name; }
-	BULLET_TYPE getBulletType(void) { return _bulletType; }
+	vector<tagBullet> getBullet() { return _vBullet; }
 
 	Missile() {}
 	~Missile() {}
+};
+
+class Beam : public GameNode
+{
+private:
+	typedef vector<tagBullet>::iterator iterBullet;
+
+	vector<tagBullet> _vBullet;
+	iterBullet _vBulletIter;
+
+	int _bulletMax;
+
+	float _range;
+
+public:
+	HRESULT init(int bulletMax, float range);
+	void release(void);
+	void update(void);
+	void render(void);
+
+	void fire(float x, float y);
+	void move(void);
+	void draw(void);
+
+	vector<tagBullet> getBullet() { return _vBullet; }
+
+	Beam() {}
+	~Beam() {}
 };

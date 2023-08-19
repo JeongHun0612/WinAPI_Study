@@ -337,9 +337,6 @@
     <ClInclude Include="Bullets.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="NormalMissile.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
-    </ClInclude>
     <ClInclude Include="Circle_Minion.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClInclude>
@@ -353,9 +350,6 @@
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="MiniRocket.h">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
-    </ClInclude>
-    <ClInclude Include="Beam.h">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="TimeManager.h">
@@ -555,9 +549,6 @@
     <ClCompile Include="Bullets.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="NormalMissile.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
-    </ClCompile>
     <ClCompile Include="Circle_Minion.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Enemy</Filter>
     </ClCompile>
@@ -571,9 +562,6 @@
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="MiniRocket.cpp">
-      <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
-    </ClCompile>
-    <ClCompile Include="Beam.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">

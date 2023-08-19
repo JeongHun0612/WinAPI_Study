@@ -3,49 +3,45 @@
 
 void Example_Shooting_Game::collision(void)
 {
-	switch (_rocket->getMisslie()->getBulletType())
+	// 미사일 충돌
+	for (int i = 0; i < _rocket->getMisslie()->getBullet().size(); i++)
 	{
-	case BULLET_TYPE::NORMAL_BULLET:
-		for (int i = 0; i < _rocket->getMisslie()->getBullet().size(); i++)
+		for (int j = 0; j < _em->getMinions().size(); j++)
 		{
-			for (int j = 0; j < _em->getMinions().size(); j++)
+			RECT rc;
+
+			if (IntersectRect(&rc, &_rocket->getMisslie()->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
 			{
-				RECT rc;
+				_rocket->removeMissile(i);
 
-				if (IntersectRect(&rc, &_rocket->getMisslie()->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
+				_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
+
+				if (_em->getMinions()[j]->getCurHP() == 0)
 				{
-					_rocket->removeMissile(i);
-
-					_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
-
-					if (_em->getMinions()[j]->getCurHP() == 0)
-					{
-						_em->removeMinion(j);
-					}
-					break;
+					_em->removeMinion(j);
 				}
+				break;
 			}
 		}
-		break;
-	default:
-		for (int i = 0; i < _rocket->getMisslie()->getBullet().size(); i++)
+	}
+
+	// 빔 충돌
+	for (int i = 0; i < _rocket->getBeam()->getBullet().size(); i++)
+	{
+		for (int j = 0; j < _em->getMinions().size(); j++)
 		{
-			for (int j = 0; j < _em->getMinions().size(); j++)
+			RECT rc;
+
+			if (IntersectRect(&rc, &_rocket->getBeam()->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
 			{
-				RECT rc;
+				_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
 
-				if (IntersectRect(&rc, &_rocket->getMisslie()->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
+				if (_em->getMinions()[j]->getCurHP() == 0)
 				{
-					_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
-
-					if (_em->getMinions()[j]->getCurHP() == 0)
-					{
-						_em->removeMinion(j);
-					}
-					break;
+					_em->removeMinion(j);
 				}
+				break;
 			}
 		}
-		break;
 	}
 }

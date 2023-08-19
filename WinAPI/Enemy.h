@@ -1,5 +1,6 @@
 #pragma once
 #include "GameNode.h"
+#include "Bullets.h"
 
 // Enemy (부모) : 적은 이 클래스를 기반으로 일반 몬스터, 보스 등을 만들 수 있다.
 class Enemy : public GameNode
@@ -10,6 +11,8 @@ private:
 
 protected:
 	GImage* _image;
+	Missile* _missile;
+
 	RECT _rc;
 
 	int _maxHP;
@@ -20,6 +23,8 @@ protected:
 	float _x, _y;
 	float _speed;
 	float _angle;
+	float _fireTimeCount;
+	float _fireWorldTimeCount;
 	float _worldTimeCount;
 	float _rndTimeCount;
 
@@ -32,8 +37,12 @@ public:
 	void render(void);
 
 	virtual void move(void);
+	void fire(void);
 	void draw(void);
 	void animation(void);
+
+	float getX(void) { return _x; }
+	float getY(void) { return _y; }
 
 	RECT getRC(void) { return _rc; }
 

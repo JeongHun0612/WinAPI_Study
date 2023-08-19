@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Beam.h" />
     <ClInclude Include="Bullets.h" />
     <ClInclude Include="C3DMatrix.h" />
     <ClInclude Include="C3DVector.h" />
@@ -189,7 +188,6 @@
     <ClInclude Include="Mole.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="NormalMissile.h" />
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="Report_3D_Matrix.h" />
     <ClInclude Include="Report_Analog_Clock.h">
@@ -266,7 +264,6 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Beam.cpp" />
     <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="C3DMatrix.cpp" />
     <ClCompile Include="C3DVector.cpp" />
@@ -314,7 +311,6 @@
     <ClCompile Include="Mole.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="NormalMissile.cpp" />
     <ClCompile Include="Report_3D_Matrix.cpp" />
     <ClCompile Include="Report_Analog_Clock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

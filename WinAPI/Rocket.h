@@ -1,6 +1,5 @@
 #pragma once
 #include "GameNode.h"
-
 #include "Flame.h"
 #include "Bullets.h"
 
@@ -40,6 +39,12 @@
 */
 #pragma endregion
 
+enum class WEAPON_TYPE
+{
+	MISSILE,
+	BEAM
+};
+
 
 // enable_shared_from_this : 객체의 생성 및 소멸에 의한 참조 문제를 해결한다.
 // ㄴ 각각의 객체에게 소유권을 부여한다.
@@ -50,13 +55,15 @@ private:
 	Flame* _flame;
 
 	// 총알
-	vector<Missile*> _vBullets;
-	vector<Missile*>::iterator _viBullets;
+	Missile* _missile;
+	Beam* _beam;
 
-	int _curBulletType;
+	WEAPON_TYPE _weaponType;
 
 	RECT _rc;
 	float _x, _y;
+
+	bool _isBeamLaunch;
 	
 	//GImage* objectData;
 	//vector<std::shared_ptr<Rocket>> spRocket;
@@ -67,10 +74,10 @@ public:
 	void update(void);
 	void render(void);
 
-	void setBullet(void);
 	void removeMissile(int arrNum);
 
-	Missile* getMisslie() { return _vBullets[_curBulletType]; }
+	Missile* getMisslie() { return _missile; }
+	Beam* getBeam() { return _beam; }
 
 	RECT getRect() { return _rc; }
 
