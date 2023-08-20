@@ -157,6 +157,9 @@
     <Filter Include="2D FrameWork\StudyExample\루프 이미지">
       <UniqueIdentifier>{116c0746-4800-49c7-aaec-119c1309e94e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\StudyExample\텐가이">
+      <UniqueIdentifier>{7cb8db70-81ce-45d4-b14a-6d6b4e421c9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -357,6 +360,9 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>2D FrameWork\FrameWorkManager\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Tengai.h">
+      <Filter>2D FrameWork\StudyExample\텐가이</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -572,6 +578,9 @@
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>2D FrameWork\StudyExample\슈팅게임</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Tengai.cpp">
+      <Filter>2D FrameWork\StudyExample\텐가이</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
