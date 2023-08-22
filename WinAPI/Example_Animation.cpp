@@ -26,7 +26,7 @@ HRESULT Example_Animation::init(void)
     _animationA = new Animation;
     _animationA->init(_image->getWidth(), _image->getHeight(), 110, 67);
     _animationA->setDefPlayFrame(false, true);
-    _animationA->setFPS(12);
+    _animationA->setFPS(0.2);
 
     return S_OK;
 }

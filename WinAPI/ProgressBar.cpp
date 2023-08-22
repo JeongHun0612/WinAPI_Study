@@ -28,15 +28,15 @@ void ProgressBar::update(void)
 void ProgressBar::render(void)
 {
     _progressBarDown->render(getMemDC(),
-        _rc.left + _progressBarDown->getWidth() / 2,
-        _rc.top + _progressBarDown->getHeight() / 2,
+        _rc.left,
+        _rc.top,
         0, 0,
         _progressBarDown->getWidth(),
         _progressBarDown->getHeight());
 
     _progressBarUp->render(getMemDC(),
-        _rc.left + _progressBarUp->getWidth() / 2,
-        _rc.top + _progressBarUp->getHeight() / 2,
+        _rc.left,
+        _rc.top,
         0, 0,
         _width,
         _progressBarUp->getHeight());

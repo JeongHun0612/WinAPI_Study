@@ -1,5 +1,6 @@
 #pragma once
 #include "GameNode.h"
+
 class ProgressBar : public GameNode
 {
 private:
@@ -8,6 +9,7 @@ private:
 
 	RECT _rc;
 	int _x, _y;
+
 	float _width;
 
 public:

@@ -25,8 +25,8 @@ HRESULT Rocket::init()
 
 	_weaponType = WEAPON_TYPE::MISSILE;
 
-	_currentHP = 10;
 	_maxHP = 10;
+	_currentHP = 10;
 
 	_hpBar = new ProgressBar;
 	_hpBar->init(_x, _y, 52, 4);
@@ -111,8 +111,12 @@ void Rocket::update(void)
 	_missile->update();
 	_beam->update();
 
-	_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
+	//_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
+	//_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
+
+	_hpBar->setX(_x);
 	_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
+
 	_hpBar->update();
 	_hpBar->setGauge(_currentHP, _maxHP);
 }

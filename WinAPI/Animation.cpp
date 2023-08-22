@@ -71,7 +71,7 @@ void Animation::setDefPlayFrame(bool reverse, bool loop)
 			}
 
 			// ¿Ã¶§
-			for (int i = _frameNum - 2; i > 0; i--)
+			for (int i = _frameNum - 1; i > 0; i--)
 			{
 				_playList.push_back(i);
 			}
