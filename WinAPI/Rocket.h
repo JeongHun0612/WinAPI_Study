@@ -2,6 +2,7 @@
 #include "GameNode.h"
 #include "Flame.h"
 #include "Bullets.h"
+#include "ProgressBar.h"
 
 #define ROCKET_SPEED 3.0f;
 
@@ -60,8 +61,12 @@ private:
 
 	WEAPON_TYPE _weaponType;
 
+	ProgressBar* _hpBar;
+
 	RECT _rc;
 	float _x, _y;
+	float _currentHP;
+	float _maxHP;
 
 	bool _isBeamLaunch;
 	
@@ -80,6 +85,19 @@ public:
 	Beam* getBeam() { return _beam; }
 
 	RECT getRect() { return _rc; }
+
+	inline void hitDamage(float damage)
+	{
+		if (_currentHP <= 0)
+		{
+			_currentHP = 0;
+			return;
+		}
+		else
+		{
+			_currentHP -= damage;
+		}
+	}
 
 	Rocket() {}
 	~Rocket() {}

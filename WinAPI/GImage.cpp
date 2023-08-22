@@ -1,5 +1,6 @@
 #include "Stdafx.h"
 #include "GImage.h"
+#include "Animation.h"
 
 GImage::GImage() : _imageInfo(nullptr)
                  , _fileName(nullptr)
@@ -565,6 +566,11 @@ void GImage::loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY
 void GImage::loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
 {
 
+}
+
+void GImage::aniRender(HDC hdc, int destX, int destY, Animation* anim)
+{
+    render(hdc, destX, destY, anim->getFramePos().x, anim->getFramePos().y, anim->getFrameWidth(), anim->getFrameHeight());
 }
 
 // ¾ËÆÄ ·»´õ

@@ -8,6 +8,30 @@
 5. 루프 / 리프팅
 */
 
+// 전처리기 단계가 길어지면서 메모리 사용량 + 컴파일 시간이 늘어난다.
+//#include "Animation.h"
+
+// 전방 선언
+class Animation;
+
+/*
+- 클래스 전방 선언
+- 애니메이션이라는 클래스라는게 있다라고만 알려주는 키워드
+
+전방선언 + 전처리기문 -> #include
+
+is a 관계 : 제네시스는 차다. ( #include )
+ㄴ 모든 정보를 다 알고 있어야 한다.
+
+has a 관계 : 제네시스는 바퀴를 가지고 있다. ( 전방선언 )
+ㄴ 필요한 정보만 알고 있는다.
+
+- 이를 해결하기 위해 전방 선언으로 풀어줄 수 있다.
+ㄴ 1. 클래스의 포인터 / 참조 형식으로 이름만 참조할 경우
+ㄴ 2. 매개 변수나 리턴 타입을 위한 이름만 참조할 경우
+ㄴ 3. .cpp에 include가 꼭 선행되어야한다.
+*/
+
 // GDI Image
 class GImage 
 {
@@ -114,6 +138,9 @@ public:
 	// 루프 렌더 ( 반복 / 이미지를 밀고 당기는 방식 )
 	void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
 	void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
+
+	// 애니메이션 렌더
+	void aniRender(HDC hdc, int destX, int destY, Animation* anim);
 
 	// 알파렌더
 	void alphaRender(HDC hdc, BYTE alpha);

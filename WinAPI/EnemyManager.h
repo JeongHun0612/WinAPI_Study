@@ -10,19 +10,19 @@ enum class MOVE_PATTERN
 	CRUSH
 };
 
-struct Animation
-{
-	GImage* img;
-	float x, y;
-	float timeCount;
-};
-
 // cpp / h 차이 (참조 / 복사 / 디컴파일)
 // cpp는 참조를 하고 넘어간다.
 // h는 복사를 하고 넘어간다.
 class EnemyManager : public GameNode
 {
 private:
+	struct Animation
+	{
+		GImage* img;
+		float x, y;
+		float timeCount;
+	};
+
 	typedef vector<Enemy*> vEnemy;
 	typedef vector<Enemy*>::iterator viEnemy;
 

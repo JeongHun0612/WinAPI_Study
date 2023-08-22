@@ -51,6 +51,7 @@ HRESULT TitleScene::init(void)
 	wsprintf(_sceneBtn[EXAMPLE_TEMP_SOUND].name, "사운드 재생");
 	wsprintf(_sceneBtn[EAMPLE_SHOOTING_GAME].name, "슈팅 게임");
 	wsprintf(_sceneBtn[EXAMPLE_TENGAI].name, "텐가이");
+	wsprintf(_sceneBtn[EXAMPLE_ANIMATION].name, "애니메이션");
 
 	return S_OK;
 }

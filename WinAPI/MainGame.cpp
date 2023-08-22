@@ -39,6 +39,7 @@
 #include "Example_TempSound.h"
 #include "Example_Shooting_Game.h"
 #include "Example_Tengai.h"
+#include "Example_Animation.h"
 
 HRESULT MainGame::init(void)
 {
@@ -160,4 +161,5 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
 	SCENEMANAGER->addScene(EAMPLE_SHOOTING_GAME, new Example_Shooting_Game);
 	SCENEMANAGER->addScene(EXAMPLE_TENGAI, new Example_Tengai);
+	SCENEMANAGER->addScene(EXAMPLE_ANIMATION, new Example_Animation);
 }

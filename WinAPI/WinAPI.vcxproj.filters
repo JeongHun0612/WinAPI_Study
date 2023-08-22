@@ -160,6 +160,15 @@
     <Filter Include="2D FrameWork\StudyExample\텐가이">
       <UniqueIdentifier>{7cb8db70-81ce-45d4-b14a-6d6b4e421c9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\ProgressBar">
+      <UniqueIdentifier>{be73b423-3b22-40c1-83d9-8c52c85cd23f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\애니메이션">
+      <UniqueIdentifier>{3fec9ab3-43a7-49ec-be58-a108aeb23cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Animation">
+      <UniqueIdentifier>{648d9e35-6bed-4cf9-aef1-5a09e68d6441}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -363,6 +372,15 @@
     </ClInclude>
     <ClInclude Include="Example_Tengai.h">
       <Filter>2D FrameWork\StudyExample\텐가이</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.h">
+      <Filter>2D FrameWork\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_Animation.h">
+      <Filter>2D FrameWork\StudyExample\애니메이션</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>2D FrameWork\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -581,6 +599,15 @@
     </ClCompile>
     <ClCompile Include="Example_Tengai.cpp">
       <Filter>2D FrameWork\StudyExample\텐가이</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>2D FrameWork\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_Animation.cpp">
+      <Filter>2D FrameWork\StudyExample\애니메이션</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>2D FrameWork\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

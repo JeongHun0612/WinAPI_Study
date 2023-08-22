@@ -9,7 +9,6 @@ public:
 	HRESULT init();
 	void release();
 
-
 	void drawText(HDC hdc, int destX, int destY, char* fontName, int fonsSize, int fontWidth,
 		char* printString, int length, COLORREF color);
 
