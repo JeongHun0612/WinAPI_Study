@@ -112,16 +112,12 @@ void Rocket::update(void)
 	_missile->update();
 	_beam->update();
 
-<<<<<<< HEAD
 	collision();
 
-	_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
-=======
 	//_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
 	//_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
 
 	_hpBar->setX(_x);
->>>>>>> 405db0e9a214c8055030d8d6c895a9cf654badb3
 	_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
 
 	_hpBar->update();
