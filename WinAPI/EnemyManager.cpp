@@ -1,21 +1,26 @@
 #include "Stdafx.h"
 #include "EnemyManager.h"
+#include "Rocket.h"
 #include "Circle_Minion.h"
 #include "Curve_Minion.h"
 #include "Crush_Minion.h"
 
 HRESULT EnemyManager::init(void)
 {
-	return S_OK;
-}
-
-HRESULT EnemyManager::init(Rocket* rocket)
-{
 	IMAGEMANAGER->addFrameImage("해파리", "Resources/Images/ShootingGame/JellyFish.bmp", 1140, 47, 19, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("적 미사일", "Resources/Images/ShootingGame/Bullet.bmp", 14, 14, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("사망이펙트", "Resources/Images/ShootingGame/effect_die.bmp", 532, 23, true, RGB(255, 0, 255));
 
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CIRCLA);
 	setMinion("해파리", 25, 3.0f, MOVE_PATTERN::CURVE);
 	setMinion("해파리", 20, 5.0f, MOVE_PATTERN::CRUSH);
+
+	_bullet = new Bullet;
+	_bullet->init("적 미사일", 5, 500);
+
+	_dieEffectImg = IMAGEMANAGER->findImage("사망이펙트");
+	_dieAnim = new Animation;
+	_dieAnim->init(_dieEffectImg->getWidth(), _dieEffectImg->getHeight(), 38, 23);
 
 	return S_OK;
 }
@@ -27,6 +32,9 @@ void EnemyManager::release(void)
 		(*_viMinion)->release();
 		SAFE_DELETE(*_viMinion);
 	}
+
+	_bullet->release();
+	SAFE_DELETE(_bullet);
 }
 
 void EnemyManager::update(void)
@@ -36,23 +44,11 @@ void EnemyManager::update(void)
 		(*_viMinion)->update();
 	}
 
-	for (_viAnim = _vAnim.begin(); _viAnim != _vAnim.end();)
-	{
-		_viAnim->timeCount += TIMEMANAGER->getElapsedTime();
+	minionBulletFire();
+	_bullet->update();
+	collision();
 
-		if (_viAnim->timeCount >= 0.1f)
-		{
-			_viAnim->img->setFrameX(_viAnim->img->getFrameX() + 1);
-
-			_viAnim->timeCount = 0.0f;
-		}
-
-		if (_viAnim->img->getFrameX() == _viAnim->img->getMaxFrameX())
-		{
-			_viAnim = _vAnim.erase(_viAnim);
-		}
-		else ++_viAnim++;
-	}
+	_dieAnim->frameUpdate(TIMEMANAGER->getElapsedTime());
 }
 
 void EnemyManager::render(void)
@@ -62,10 +58,7 @@ void EnemyManager::render(void)
 		(*_viMinion)->render();
 	}
 
-	for (_viAnim = _vAnim.begin(); _viAnim != _vAnim.end(); ++_viAnim)
-	{
-		_viAnim->img->frameRender(getMemDC(), _viAnim->x, _viAnim->y, _viAnim->img->getFrameX(), _viAnim->img->getFrameY());
-	}
+	_bullet->render();
 }
 
 void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE_PATTERN type)
@@ -96,15 +89,48 @@ void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE
 
 void EnemyManager::removeMinion(int arrNum)
 {
-	Animation dieAnim;
-	ZeroMemory(&dieAnim, sizeof(Animation));
-	dieAnim.img = new GImage;
-	dieAnim.img->init("Resources/Images/ShootingGame/effect_die.bmp", 1064, 46, 14, 1, true, RGB(255, 0, 255));
-	dieAnim.x = _vMinion[arrNum]->getX() - dieAnim.img->getFrameWidth() / 2;
-	dieAnim.y = _vMinion[arrNum]->getY() - dieAnim.img->getFrameHeight() / 2;
-	dieAnim.timeCount = 0.0f;
-	_vAnim.push_back(dieAnim);
+	//Animation dieAnim;
+	//ZeroMemory(&dieAnim, sizeof(Animation));
+	//dieAnim.img = new GImage;
+	//dieAnim.img->init("Resources/Images/ShootingGame/effect_die.bmp", 1064, 46, 14, 1, true, RGB(255, 0, 255));
+	//dieAnim.x = _vMinion[arrNum]->getX() - dieAnim.img->getFrameWidth() / 2;
+	//dieAnim.y = _vMinion[arrNum]->getY() - dieAnim.img->getFrameHeight() / 2;
+	//dieAnim.timeCount = 0.0f;
+	//_vAnim.push_back(dieAnim);
+
+	_dieEffectImg->aniRender(getMemDC(), _vMinion[arrNum]->getX(), _vMinion[arrNum]->getY(), _dieAnim);
 
 	SAFE_DELETE(_vMinion[arrNum]);
 	_vMinion.erase(_vMinion.begin() + arrNum);
+}
+
+void EnemyManager::minionBulletFire(void)
+{
+	for (_viMinion = _vMinion.begin(); _viMinion != _vMinion.end(); ++_viMinion)
+	{
+		if ((*_viMinion)->bulletCountFire())
+		{
+			RECT rc = (*_viMinion)->getRC();
+
+			_bullet->fire(
+				rc.left + (rc.right - rc.left) / 2,
+				rc.bottom + (rc.top - rc.bottom) / 2 + 30,
+				getAngle(rc.left + (rc.right - rc.left) / 2, rc.bottom + (rc.top - rc.bottom) / 2 + 30, _rocket->getPosition().x, _rocket->getPosition().y),
+				RND->getFromFloatTo(2.0f, 4.0f));
+		}
+	}
+}
+
+void EnemyManager::collision(void)
+{
+	for (int i = 0; i < _bullet->getBullet().size(); i++)
+	{
+		RECT rc;
+
+		if (IntersectRect(&rc, &_bullet->getBullet()[i].rc, &_rocket->getRect()))
+		{
+			_bullet->removeBullet(i);
+			_rocket->hitDamage(1.0f);
+		}
+	}
 }

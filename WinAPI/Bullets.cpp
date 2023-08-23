@@ -1,111 +1,81 @@
 #include "Stdafx.h"
 #include "Bullets.h"
 
-HRESULT Bullets::init(int bulletMax, float range)
+HRESULT Bullet::init(const char* imageName, int bulletMax, float range)
 {
+	_imageName = imageName;
+	_bulletMax = bulletMax;
 	_range = range;
-
-	for (int i = 0; i < bulletMax; i++)
-	{
-		tagBullet bullet;
-		// ZeroMemory vs memset 
-		// ZeroMemory는 0으로 초기화, memset은 0이 아닌 값으로도 초기화가 가능
-		ZeroMemory(&bullet, sizeof(tagBullet));
-
-		bullet.img = new GImage;
-		bullet.img->init("Resources/Images/ShootingGame/Missile.bmp", 0.0f, 0.0f, 416, 64, 13, 1, true, RGB(255, 0, 255));
-		bullet.fire = false;
-		bullet.speed = 5.0f;
-
-		_vBullet.push_back(bullet);
-	}
 
 	return S_OK;
 }
 
-void Bullets::release(void)
+void Bullet::release(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
-	{
-		SAFE_DELETE(_vBulletIter->img);
-	}
-
 	_vBullet.clear();
 }
 
-void Bullets::update(void)
+void Bullet::update(void)
 {
 	move();
 }
 
-void Bullets::render(void)
+void Bullet::render(void)
 {
 	draw();
 }
 
-void Bullets::fire(float x, float y)
+void Bullet::fire(float x, float y, float angle, float speed)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
-	{
-		if (_vBulletIter->fire) continue;
+	if (_bulletMax <= _vBullet.size()) return;
 
-		_vBulletIter->fire = true;
-		_vBulletIter->x = _vBulletIter->fireX = x;
-		_vBulletIter->y = _vBulletIter->fireY = y;
-		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y,
-			_vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
+	tagBullet bullet;
+	ZeroMemory(&bullet, sizeof(tagBullet));
 
-		break;
-	}
+	bullet.img = IMAGEMANAGER->findImage(_imageName);
+	bullet.speed = speed;
+	bullet.angle = angle;
+	bullet.x = bullet.fireX = x;
+	bullet.y = bullet.fireY = y;
+	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getWidth(), bullet.img->getHeight());
+
+	_vBullet.push_back(bullet);
 }
 
-void Bullets::draw(void)
+void Bullet::move(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	{
-		if (!_vBulletIter->fire) continue;
-
-		_vBulletIter->img->frameRender(getMemDC(),
-			_vBulletIter->rc.left, _vBulletIter->rc.top,
-			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
-
-
-		// 이미지 프레임 변경
-		_vBulletIter->count++;
-
-		if (_vBulletIter->count % 5 == 0)
-		{
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
-
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
-			{
-				_vBulletIter->img->setFrameX(0);
-			}
-
-			_vBulletIter->count = 0;
-		}
-	}
-}
-
-void Bullets::move(void)
-{
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
-	{
-		if (!_vBulletIter->fire) continue;
-
 		// 불릿 좌표 변경
-		_vBulletIter->y -= _vBulletIter->speed;
-		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
+		_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
+		_viBullet->y -= sinf(_viBullet->angle) * _viBullet->speed;
+
+		_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y, _viBullet->img->getWidth(), _viBullet->img->getHeight());
 
 		// 불릿 삭제 조건
-		if (_range <= getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+		if (_range <= MY_UTIL::getDistance(_viBullet->fireX, _viBullet->fireY, _viBullet->x, _viBullet->y))
 		{
-			_vBulletIter->fire = false;
+			_viBullet = _vBullet.erase(_viBullet);
 		}
+		else ++_viBullet;
 	}
+}
+
+void Bullet::draw(void)
+{
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
+	{
+		_viBullet->img->render(getMemDC(), _viBullet->rc.left, _viBullet->rc.top);
+	}
+}
+
+void Bullet::removeBullet(int arrNum)
+{
+	_vBullet.erase(_vBullet.begin() + arrNum);
 }
 
 // ======================================================================================================
+
 
 HRESULT Missile::init(int bulletMax, float range)
 {
@@ -118,16 +88,16 @@ HRESULT Missile::init(int bulletMax, float range)
 void Missile::release(void)
 {
 	// 1. 정석 (C++ 표본에서 얘기하는 문법)
-	//for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	//{
-	//	SAFE_DELETE(_vBulletIter->img);
+	//	SAFE_DELETE(_viBullet->img);
 	//}
 
 	// 2. 줄이고 싶다. (변수에 의해서 길어지는 가독성 파괴)
-	//_vBulletIter = _vBullet.begin();
-	//for (; _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	//_viBullet = _vBullet.begin();
+	//for (; _viBullet != _vBullet.end(); ++_viBullet)
 	//{
-	//	SAFE_DELETE(_vBulletIter->img);
+	//	SAFE_DELETE(_viBullet->img);
 	//}
 
 	// 3. 협업 시 효율적인건 뭐가 있을까?
@@ -201,9 +171,9 @@ void Missile::release(void)
 	//	[](__int64 numA)-> auto { return numA; });
 
 
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		SAFE_DELETE(_vBulletIter->img);
+		SAFE_DELETE(_viBullet->img);
 	}
 
 	_vBullet.clear();
@@ -238,43 +208,43 @@ void Missile::fire(float x, float y)
 
 void Missile::move(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	{
 		// 불릿 좌표 변경
-		_vBulletIter->y -= _vBulletIter->speed;
-		_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
+		_viBullet->y -= _viBullet->speed;
+		_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y, _viBullet->img->getFrameWidth(), _viBullet->img->getFrameHeight());
 
 		// 불릿 삭제 조건
-		if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+		if (_range <= MY_UTIL::getDistance(_viBullet->fireX, _viBullet->fireY, _viBullet->x, _viBullet->y))
 		{
-			SAFE_DELETE(_vBulletIter->img);
-			_vBulletIter = _vBullet.erase(_vBulletIter);
+			SAFE_DELETE(_viBullet->img);
+			_viBullet = _vBullet.erase(_viBullet);
 		}
-		else ++_vBulletIter;
+		else ++_viBullet;
 	}
 }
 
 void Missile::draw(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		_vBulletIter->img->frameRender(getMemDC(),
-			_vBulletIter->rc.left, _vBulletIter->rc.top,
-			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+		_viBullet->img->frameRender(getMemDC(),
+			_viBullet->rc.left, _viBullet->rc.top,
+			_viBullet->img->getFrameX(), _viBullet->img->getFrameY());
 
 		// 이미지 프레임 변경
-		_vBulletIter->count++;
+		_viBullet->count++;
 
-		if (_vBulletIter->count % 5 == 0)
+		if (_viBullet->count % 5 == 0)
 		{
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+			_viBullet->img->setFrameX(_viBullet->img->getFrameX() + 1);
 
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			if (_viBullet->img->getFrameX() >= _viBullet->img->getMaxFrameX())
 			{
-				_vBulletIter->img->setFrameX(0);
+				_viBullet->img->setFrameX(0);
 			}
 
-			_vBulletIter->count = 0;
+			_viBullet->count = 0;
 		}
 	}
 }
@@ -297,9 +267,9 @@ HRESULT Beam::init(int bulletMax, float range)
 
 void Beam::release(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		SAFE_DELETE(_vBulletIter->img);
+		SAFE_DELETE(_viBullet->img);
 	}
 
 	_vBullet.clear();
@@ -334,43 +304,43 @@ void Beam::fire(float x, float y)
 
 void Beam::draw(void)
 {
-	for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end(); ++_vBulletIter)
+	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		_vBulletIter->img->frameRender(getMemDC(),
-			_vBulletIter->rc.left, _vBulletIter->rc.top,
-			_vBulletIter->img->getFrameX(), _vBulletIter->img->getFrameY());
+		_viBullet->img->frameRender(getMemDC(),
+			_viBullet->rc.left, _viBullet->rc.top,
+			_viBullet->img->getFrameX(), _viBullet->img->getFrameY());
 
 		// 이미지 프레임 변경
-		_vBulletIter->count++;
+		_viBullet->count++;
 
-		if (_vBulletIter->count % 5 == 0)
+		if (_viBullet->count % 5 == 0)
 		{
-			_vBulletIter->img->setFrameX(_vBulletIter->img->getFrameX() + 1);
+			_viBullet->img->setFrameX(_viBullet->img->getFrameX() + 1);
 
-			if (_vBulletIter->img->getFrameX() >= _vBulletIter->img->getMaxFrameX())
+			if (_viBullet->img->getFrameX() >= _viBullet->img->getMaxFrameX())
 			{
-				_vBulletIter->img->setFrameX(0);
+				_viBullet->img->setFrameX(0);
 			}
 
-			_vBulletIter->count = 0;
+			_viBullet->count = 0;
 		}
 	}
 }
 
 void Beam::move(void)
 {
-	//for (_vBulletIter = _vBullet.begin(); _vBulletIter != _vBullet.end();)
+	//for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	//{
 	//	// 불릿 좌표 변경
-	//	_vBulletIter->y -= _vBulletIter->speed;
-	//	_vBulletIter->rc = RectMakeCenter(_vBulletIter->x, _vBulletIter->y, _vBulletIter->img->getFrameWidth(), _vBulletIter->img->getFrameHeight());
+	//	_viBullet->y -= _viBullet->speed;
+	//	_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y, _viBullet->img->getFrameWidth(), _viBullet->img->getFrameHeight());
 
 	//	// 불릿 삭제 조건
-	//	if (_range <= MY_UTIL::getDistance(_vBulletIter->fireX, _vBulletIter->fireY, _vBulletIter->x, _vBulletIter->y))
+	//	if (_range <= MY_UTIL::getDistance(_viBullet->fireX, _viBullet->fireY, _viBullet->x, _viBullet->y))
 	//	{
-	//		SAFE_DELETE(_vBulletIter->img);
-	//		_vBulletIter = _vBullet.erase(_vBulletIter);
+	//		SAFE_DELETE(_viBullet->img);
+	//		_viBullet = _vBullet.erase(_viBullet);
 	//	}
-	//	else ++_vBulletIter;
+	//	else ++_viBullet;
 	//}
 }

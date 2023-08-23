@@ -46,6 +46,7 @@ enum class WEAPON_TYPE
 	BEAM
 };
 
+class EnemyManager;
 
 // enable_shared_from_this : 객체의 생성 및 소멸에 의한 참조 문제를 해결한다.
 // ㄴ 각각의 객체에게 소유권을 부여한다.
@@ -58,10 +59,11 @@ private:
 	// 총알
 	Missile* _missile;
 	Beam* _beam;
-
 	WEAPON_TYPE _weaponType;
 
 	ProgressBar* _hpBar;
+	EnemyManager* _em;
+
 
 	RECT _rc;
 	float _x, _y;
@@ -79,12 +81,16 @@ public:
 	void update(void);
 	void render(void);
 
+	void collision(void);
+	void setEnemyManagerMemoryAddress(EnemyManager* em) { _em = em; }
+
 	void removeMissile(int arrNum);
 
-	Missile* getMisslie() { return _missile; }
-	Beam* getBeam() { return _beam; }
+	Missile* getMisslie(void) { return _missile; }
+	Beam* getBeam(void) { return _beam; }
 
-	RECT getRect() { return _rc; }
+	POINT getPosition(void) { return PointMake((int)_x, (int)_y); }
+	RECT getRect(void) { return _rc; }
 
 	inline void hitDamage(float damage)
 	{

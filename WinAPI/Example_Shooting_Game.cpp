@@ -70,6 +70,23 @@
 
 - 적이 발사하는 미사일은 발사 주기와 스피드가 모두 달라야 한다.
 
+
+[08 / 23]
+
+과제 1. 팀 포트폴리오 PPT 발표 준비
+ㄴ 발표일 : 내일
+ㄴ 발표자 준비
+
+과제 2. 세미 포트폴리오 (장르 : 슈팅 게임)
+ㄴ 27일 (일) 까지 -> 월요일 제출
+ㄴ 새로운 이미지 필수 (1945, 동방 시리즈, 텐가이)
+ㄴ 스타트 씬과 게임 씬 + 플레이어 선택 씬
+ㄴ 적을 죽이면 점수 획득
+ㄴ 파워에 따라 총알 모양 바꾸기
+ㄴ 플레이어 -> 체력 / 라이프
+ㄴ 적을 모두 죽이면 보스 출현 (보스 출현에 대해서는 자연스럽게)
+ㄴ 적 2 + @ + 중간 보스 
+ㄴ 보스를 죽이면 게임 루프를 다시 가능한 구조
 */
 
 HRESULT Example_Shooting_Game::init(void)
@@ -80,7 +97,10 @@ HRESULT Example_Shooting_Game::init(void)
 	_rocket->init();
 
 	_em = new EnemyManager;
-	_em->init(_rocket);
+	_em->init();
+
+	_em->setRocketMemoryAddress(_rocket);
+	_rocket->setEnemyManagerMemoryAddress(_em);
 
 	return S_OK;
 }
@@ -99,7 +119,7 @@ void Example_Shooting_Game::update(void)
 	_rocket->update();
 	_em->update();
 
-	collision();
+	//collision();
 }
 
 void Example_Shooting_Game::render(void)

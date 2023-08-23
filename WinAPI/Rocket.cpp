@@ -1,5 +1,6 @@
 #include "Stdafx.h"
 #include "Rocket.h"
+#include "EnemyManager.h"
 
 // 설계와의 싸움
 HRESULT Rocket::init()
@@ -111,10 +112,16 @@ void Rocket::update(void)
 	_missile->update();
 	_beam->update();
 
+<<<<<<< HEAD
+	collision();
+
+	_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
+=======
 	//_hpBar->setX(_x - (_rc.right - _rc.left) / 2);
 	//_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
 
 	_hpBar->setX(_x);
+>>>>>>> 405db0e9a214c8055030d8d6c895a9cf654badb3
 	_hpBar->setY(_y - 10 - (_rc.bottom - _rc.top) / 2);
 
 	_hpBar->update();
@@ -130,6 +137,52 @@ void Rocket::render(void)
 	_beam->render();
 
 	_hpBar->render();
+}
+
+void Rocket::collision(void)
+{
+	// 미사일 충돌
+	for (int i = 0; i < _missile->getBullet().size(); i++)
+	{
+		for (int j = 0; j < _em->getMinions().size(); j++)
+		{
+			RECT rc;
+
+			if (IntersectRect(&rc, &_missile->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
+			{
+				_missile->removeBullet(i);
+
+				_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
+
+				if (_em->getMinions()[j]->getCurHP() == 0)
+				{
+					_em->removeMinion(j);
+				}
+
+				break;
+			}
+		}
+	}
+
+	// 빔 충돌
+	for (int i = 0; i < _beam->getBullet().size(); i++)
+	{
+		for (int j = 0; j < _em->getMinions().size(); j++)
+		{
+			RECT rc;
+
+			if (IntersectRect(&rc, &_beam->getBullet()[i].rc, &CollisionAreaResizing(_em->getMinions()[j]->getRC(), 40, 30)))
+			{
+				_em->getMinions()[j]->setCurHP(_em->getMinions()[j]->getCurHP() - 1);
+
+				if (_em->getMinions()[j]->getCurHP() == 0)
+				{
+					_em->removeMinion(j);
+				}
+				break;
+			}
+		}
+	}
 }
 
 void Rocket::removeMissile(int arrNum)

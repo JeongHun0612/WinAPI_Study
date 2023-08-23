@@ -23,10 +23,12 @@ protected:
 	float _x, _y;
 	float _speed;
 	float _angle;
-	float _fireTimeCount;
-	float _fireWorldTimeCount;
+
 	float _worldTimeCount;
 	float _rndTimeCount;
+
+	float _rndFirecount;
+	float _bulletFireCount;
 
 public:
 	HRESULT init(void);
@@ -37,9 +39,10 @@ public:
 	void render(void);
 
 	virtual void move(void);
-	void fire(void);
 	void draw(void);
 	void animation(void);
+
+	bool bulletCountFire(void);
 
 	float getX(void) { return _x; }
 	float getY(void) { return _y; }

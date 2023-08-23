@@ -21,28 +21,34 @@ struct tagBullet
 	bool explosion;
 };
 
-// 객체로 정의한다.
-// ㄴ 배열처럼 미리 장전을 해두고 발사
-class Bullets : public GameNode
+// 공용 총알 (쏠때마다 만들고 삭제)
+class Bullet : public GameNode
 {
-protected:
+private:
 	vector<tagBullet> _vBullet;
-	vector<tagBullet>::iterator _vBulletIter;
+	vector<tagBullet>::iterator _viBullet;
 
+	const char* _imageName;
+
+	int _bulletMax;
 	float _range;
 
 public:
-	HRESULT init(int bulletMax, float range);
+	HRESULT init(const char* imageName, int bulletMax, float range);
 	void release(void);
 	void update(void);
 	void render(void);
 
-	void fire(float x, float y);
-	void draw(void);
+	void fire(float x, float y, float angle, float speed);
 	void move(void);
+	void draw(void);
 
-	Bullets() {}
-	~Bullets() {}
+	void removeBullet(int arrNum);
+
+	vector<tagBullet> getBullet() { return _vBullet; }
+
+	Bullet(void) {}
+	virtual ~Bullet() {}
 };
 
 // 발사가 될때마다 만들고 삭제
@@ -52,10 +58,9 @@ private:
 	typedef vector<tagBullet>::iterator iterBullet;
 
 	vector<tagBullet> _vBullet;
-	iterBullet _vBulletIter;
+	iterBullet _viBullet;
 
 	int _bulletMax;
-
 	float _range;
 
 public:
@@ -82,7 +87,7 @@ private:
 	typedef vector<tagBullet>::iterator iterBullet;
 
 	vector<tagBullet> _vBullet;
-	iterBullet _vBulletIter;
+	iterBullet _viBullet;
 
 	int _bulletMax;
 

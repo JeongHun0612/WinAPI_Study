@@ -8,10 +8,10 @@ _x(0.0f),
 _y(0.0f),
 _speed(0.0f),
 _angle(0.0f),
-_fireTimeCount(0.0f),
-_fireWorldTimeCount(0.0f),
 _worldTimeCount(0.0f),
-_rndTimeCount(0.0f)
+_rndTimeCount(0.0f),
+_rndFirecount(0.0f),
+_bulletFireCount(0.0f)
 {}
 
 HRESULT Enemy::init(void)
@@ -28,7 +28,9 @@ HRESULT Enemy::init(const char* imageName, POINT position, float speed, float an
 
 	_worldTimeCount = GetTickCount();
 	_rndTimeCount = RND->getFromFloatTo(50, 150);
-	_fireTimeCount = RND->getFromFloatTo(2, 4);
+
+	_bulletFireCount = TIMEMANAGER->getWorldTime();
+	_rndFirecount = RND->getFromFloatTo(0.5f, 4.5f);
 
 	_image = IMAGEMANAGER->findImage(imageName);
 
@@ -54,7 +56,6 @@ void Enemy::release(void)
 void Enemy::update(void)
 {
 	move();
-	fire();
 
 	_missile->update();
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
@@ -71,19 +72,6 @@ void Enemy::render(void)
 // X : 적마다 움직임이 다르다. -> 상속을 전제한 클래스이기 때문에 -> 자식 구현
 void Enemy::move(void)
 {
-}
-
-void Enemy::fire(void)
-{
-	if (_fireWorldTimeCount += TIMEMANAGER->getElapsedTime())
-	{
-		if (_fireTimeCount <= _fireWorldTimeCount)
-		{
-			_missile->fire(_x, _y + 60);
-
-			_fireWorldTimeCount = 0.0f;
-		}
-	}
 }
 
 void Enemy::draw(void)
@@ -125,4 +113,17 @@ void Enemy::animation(void)
 			_currentFrameX = 0;
 		}
 	}
+}
+
+bool Enemy::bulletCountFire(void)
+{
+	if (_rndFirecount + _bulletFireCount <= TIMEMANAGER->getWorldTime())
+	{
+		_bulletFireCount = TIMEMANAGER->getWorldTime();
+		_rndFirecount = RND->getFromFloatTo(2.0f, 6.0f);
+
+		return true;
+	}
+
+	return false;
 }
