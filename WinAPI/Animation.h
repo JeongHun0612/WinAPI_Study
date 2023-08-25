@@ -62,6 +62,8 @@ public:
 	inline int getFrameHeight(void) { return _frameHeight; }
 	inline DWORD getNowPlayIdx(void) { return _nowPlayIdx; }
 
+	inline void setFrameUpdateSec(float sec) { _frameUpdateSec = sec; }
+
 	Animation(void);
 	~Animation() {}
 };

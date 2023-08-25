@@ -382,6 +382,9 @@
     <ClInclude Include="Animation.h">
       <Filter>2D FrameWork\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp">
@@ -608,6 +611,9 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>2D FrameWork\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

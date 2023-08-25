@@ -157,10 +157,10 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #include "RandomFunction.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
-#include "SceneManager.h"
 #include "FontManager.h"
 #include "TempSoundManager.h"
 #include "TimeManager.h"
+#include "SceneManager.h"
 #include "Utils.h"
 
 using namespace MY_UTIL;
@@ -170,10 +170,10 @@ using namespace MY_UTIL;
 #define RND RandomFunction::getSingleton()
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
-#define SCENEMANAGER SceneManager::getSingleton()
 #define FONTMANAGER	FontManager::getSingleton()
 #define TEMPSOUNDMANAGER TempSoundManager::getSingleton()
 #define TIMEMANAGER TimeManager::getSingleton()
+#define SCENEMANAGER SceneManager::getSingleton()
 
 // ! ≈∏¿Ã∆≤
 #define WINNAME				(LPTSTR)(TEXT("WindowsAPI"))
