@@ -59,6 +59,7 @@ void EnemyManager::render(void)
 	}
 
 	_bullet->render();
+	_dieEffectImg->aniRender(getMemDC(), _vMinion[arrNum]->getX(), _vMinion[arrNum]->getY(), _dieAnim);
 }
 
 void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE_PATTERN type)
@@ -98,7 +99,7 @@ void EnemyManager::removeMinion(int arrNum)
 	//dieAnim.timeCount = 0.0f;
 	//_vAnim.push_back(dieAnim);
 
-	_dieEffectImg->aniRender(getMemDC(), _vMinion[arrNum]->getX(), _vMinion[arrNum]->getY(), _dieAnim);
+	_dieAnim->AniStart();
 
 	SAFE_DELETE(_vMinion[arrNum]);
 	_vMinion.erase(_vMinion.begin() + arrNum);
