@@ -14,6 +14,14 @@ HRESULT Example_Tengai::init(void)
 
 	_testImg = IMAGEMANAGER->addImage("test", "Resources/Images/Tengai/MiniHealerBG.bmp", WINSIZE_X, WINSIZE_Y);
 
+	_attackImg = IMAGEMANAGER->addImage("attack", "Resources/Images/Object/Night_Attack.bmp", 16650, 559, true, RGB(255, 0, 255));
+	_attackAnim = new Animation;
+	_attackAnim->init(16650, 559, 555, 559);
+	_attackAnim->setDefPlayFrame(false, true);
+
+	_attackAnim->AniStart();
+	_attackAnim->setFrameUpdateSec(0.05f);
+
 
 	return S_OK;
 }
@@ -47,15 +55,19 @@ void Example_Tengai::update(void)
 
 		_frameCnt = 0.0f;
 	}
+
+
+	_attackAnim->frameUpdate(TIMEMANAGER->getElapsedTime());
 }
 
 void Example_Tengai::render(void)
 {
 	_testImg->render(getMemDC());
 
+	_attackImg->aniRender(getMemDC(), WINSIZE_X_HALF, 100, _attackAnim);
+
 	//for (int i = 0; i < 3; i++)
 	//{
 	//	_bgImg[i].img->loopRender(getMemDC(), &_bgImg[i].rc, _bgImg[i].offsetX, _bgImg[i].offsetY);
-
 	//}
 }

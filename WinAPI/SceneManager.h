@@ -7,13 +7,10 @@ static GameNode* _currentScene = NULL;
 
 class SceneManager : public SingletonBase<SceneManager>
 {
-public:
-
 private:
 	typedef map<int, GameNode*>			 mapSceneList;
 	typedef map<int, GameNode*>::iterator mapSceneIter;
 
-private:
 	mapSceneList _mSceneList;
 
 public:
@@ -28,4 +25,24 @@ public:
 	SceneManager() {}
 	~SceneManager() {}
 };
+
+//#pragma once
+//#include "SingletonBase.h"
+//
+//class GameNode;
+//class Scene;
+//
+//class SceneManager : public SingletonBase<SceneManager>
+//{
+//	friend class SingletonBase<SceneManager>;
+//
+//private:
+//
+//public:
+//
+//	SceneManager() {}
+//	~SceneManager() {}
+//};
+//
+//#define SCENEMANAGER SceneManager::getSingleton()
 

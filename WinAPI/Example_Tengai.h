@@ -1,5 +1,6 @@
 #pragma once
 #include "GameNode.h"
+#include "Animation.h"
 
 struct LoopImage
 {
@@ -13,6 +14,9 @@ struct LoopImage
 class Example_Tengai : public GameNode
 {
 private:
+	GImage* _attackImg;
+	Animation* _attackAnim;
+
 	GImage* _testImg;
 	float _frameCnt;
 
