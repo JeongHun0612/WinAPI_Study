@@ -155,7 +155,7 @@ void Animation::setPlayFrame(int start, int end, bool reverse, bool loop)
 
 void Animation::setFPS(int framePerSec)
 {
-	_frameUpdateSec = framePerSec;
+	_frameUpdateSec = 1.0f / framePerSec;
 }
 
 void Animation::frameUpdate(float elapsedTime)
