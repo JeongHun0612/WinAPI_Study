@@ -25,17 +25,26 @@ class TitleScene : public GameNode
 public:
 	struct Button
 	{
-		int idx;
+		string name;
 		RECT rc;
-		char name[128];
+
+		float x, y;
 	};
 private:
-	Button _sceneBtn[SCENE_INDEX::SCENE_END];
+	vector<Button> _vSceneBtn;
+	vector<Button>::iterator _viSceneBtn;
+	
+	//Button _sceneBtn[SCENE_INDEX::SCENE_END];
 
 public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
 	void render(void);
+
+	void addButton(float x, float y, int width, int height, string text);
+
+	TitleScene() {}
+	~TitleScene() {}
 };
 

@@ -21,11 +21,17 @@ HRESULT GameNode::init(bool managerInit)
 		SetTimer(_hWnd, 1, 10, NULL);
 
 		RND->init();
+
 		KEYMANAGER->init();
+
 		IMAGEMANAGER->init();
+
 		SCENEMANAGER->init();
+
 		FONTMANAGER->init();
+
 		TEMPSOUNDMANAGER->init();
+
 		TIMEMANAGER->init();
 	}
 

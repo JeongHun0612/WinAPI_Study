@@ -59,7 +59,7 @@ void EnemyManager::render(void)
 	}
 
 	_bullet->render();
-	_dieEffectImg->aniRender(getMemDC(), _vMinion[arrNum]->getX(), _vMinion[arrNum]->getY(), _dieAnim);
+	//_dieEffectImg->aniRender(getMemDC(), _vMinion[arrNum]->getX(), _vMinion[arrNum]->getY(), _dieAnim);
 }
 
 void EnemyManager::setMinion(const char* imageName, int count, float speed, MOVE_PATTERN type)

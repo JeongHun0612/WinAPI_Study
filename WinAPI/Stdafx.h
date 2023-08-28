@@ -165,7 +165,6 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 
 using namespace MY_UTIL;
 
-
 // # 싱글톤 #
 #define RND RandomFunction::getSingleton()
 #define KEYMANAGER KeyManager::getSingleton()
@@ -210,6 +209,7 @@ using namespace MY_UTIL;
 #define SAFE_DELETE(p)			{if(p) {delete(p); (p) = nullptr;}}
 #define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p); (p) = nullptr;}}
 #define SAFE_RELEASE(p)			{if(p) {(p)->release(); (p) = nullptr;}}
+#define SAFE_RELEASE_SCENE(p)	{if(p) {(p)->release(); (p) = nullptr;}}
 
 
 // # 전역 변수 # (데이터 영역)

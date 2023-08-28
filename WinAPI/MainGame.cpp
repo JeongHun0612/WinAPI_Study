@@ -49,7 +49,7 @@ HRESULT MainGame::init(void)
 	addScene();
 
 	// 초기 화면 (타이틀) <->
-	assert(SCENEMANAGER->changeScene(TITLE_SCENE));
+	SCENEMANAGER->changeScene("타이틀 씬");
 
 	/*
 	▶ assert
@@ -103,7 +103,7 @@ void MainGame::update(void)
 	if (KEYMANAGER->isOnceKeyDown(VK_BACK))
 	{
 		// 타이틀 씬 복귀
-		SCENEMANAGER->changeScene(TITLE_SCENE);
+		SCENEMANAGER->changeScene("타이틀 씬");
 	}
 }
 
@@ -115,51 +115,50 @@ void MainGame::render(void)
 	SCENEMANAGER->render();
 
 	// ==================================================================
-	SetTextAlign(getMemDC(), TA_LEFT);
 	this->getBackBuffer()->render(getHDC(), 0, 0);
 }
 
 void MainGame::addScene()
 {
 	// 타이틀 씬 추가
-	SCENEMANAGER->addScene(TITLE_SCENE, new TitleScene);
+	SCENEMANAGER->addScene("타이틀 씬", new TitleScene);
 
 	// 과제 씬 추가
-	SCENEMANAGER->addScene(REPORT_CARD_MATCH, new Report_CardMatch);
-	SCENEMANAGER->addScene(REPORT_MOLE, new Report_Mole);
-	SCENEMANAGER->addScene(REPORT_CLAYSHOOTING, new Report_ClayShooting);
-	SCENEMANAGER->addScene(REPORT_AVOID, new Report_Avoid);
-	SCENEMANAGER->addScene(REPORT_BULLET_SHOOTING, new Report_BulletShooting);
-	SCENEMANAGER->addScene(REPORT_CROCODILE, new Report_Crocodile);
-	SCENEMANAGER->addScene(REPORT_VERTICAL_SHOOTING, new Report_Vertical_Shooting);
-	SCENEMANAGER->addScene(REPORT_HORIZONTAL_SHOOTING, new Report_Horizontal_Shooting);
-	SCENEMANAGER->addScene(REPORT_MOLE_IMAGE, new Report_Mole_Image);
-	SCENEMANAGER->addScene(REPORT_ANALOG_CLOCK, new Report_Analog_Clock);
-	SCENEMANAGER->addScene(REPORT_SHELL_FIRE, new Report_Shell_Fire);
-	SCENEMANAGER->addScene(REPORT_BULLET_GRAVITY, new Report_Bullet_Gravity);
-	SCENEMANAGER->addScene(REPORT_SLICE_GAME, new Report_Slice_Game);
-	SCENEMANAGER->addScene(REPORT_MINI_MAP, new Report_Mini_Map);
-	SCENEMANAGER->addScene(REPORT_WORM_GAME, new Report_Worm_Game);
-	SCENEMANAGER->addScene(REPORT_ATTACK_COMBO, new Report_Attack_Combo);
-	SCENEMANAGER->addScene(REPORT_MOTION_ANIMATION, new Report_Motion_Animation);
-	SCENEMANAGER->addScene(REPORT_WALL_CATCH, new Report_Wall_Catch);
-	SCENEMANAGER->addScene(REPORT_RACING_GAME, new Report_Racing_Game);
-	SCENEMANAGER->addScene(REPORT_BLACK_HOLE, new Report_Black_Hole);
-	SCENEMANAGER->addScene(REPORT_ATTACK_DEFENSE, new Report_Attack_Defense);
-	SCENEMANAGER->addScene(REPORT_3D_MATRIX, new Report_3D_Matrix);
-	SCENEMANAGER->addScene(REPORT_TILEMAP, new Report_TileMap);
+	SCENEMANAGER->addScene("짝 맞추기", new Report_CardMatch);
+	SCENEMANAGER->addScene("두더지 게임", new Report_Mole);
+	SCENEMANAGER->addScene("클레이 사격", new Report_ClayShooting);
+	SCENEMANAGER->addScene("똥 피하기", new Report_Avoid);
+	SCENEMANAGER->addScene("총알 발사", new Report_BulletShooting);
+	SCENEMANAGER->addScene("악어 이빨 게임", new Report_Crocodile);
+	SCENEMANAGER->addScene("종스크롤 슈팅", new Report_Vertical_Shooting);
+	SCENEMANAGER->addScene("횡스크롤 슈팅", new Report_Horizontal_Shooting);
+	SCENEMANAGER->addScene("두더지 게임(이미지)", new Report_Mole_Image);
+	SCENEMANAGER->addScene("아날로그 시계", new Report_Analog_Clock);
+	SCENEMANAGER->addScene("포탄 발사", new Report_Shell_Fire);
+	SCENEMANAGER->addScene("총알 중력", new Report_Bullet_Gravity);
+	SCENEMANAGER->addScene("이미지 슬라이스", new Report_Slice_Game);
+	SCENEMANAGER->addScene("미니맵", new Report_Mini_Map);
+	SCENEMANAGER->addScene("지렁이 게임", new Report_Worm_Game);
+	SCENEMANAGER->addScene("공격 콤보 모션", new Report_Attack_Combo);
+	SCENEMANAGER->addScene("캐릭터 모션", new Report_Motion_Animation);
+	SCENEMANAGER->addScene("벽 잡기", new Report_Wall_Catch);
+	SCENEMANAGER->addScene("레이싱 게임", new Report_Racing_Game);
+	SCENEMANAGER->addScene("블랙홀", new Report_Black_Hole);
+	SCENEMANAGER->addScene("공격 및 방어", new Report_Attack_Defense);
+	SCENEMANAGER->addScene("3D Matrix", new Report_3D_Matrix);
+	SCENEMANAGER->addScene("타일맵", new Report_TileMap);
 
 
 	// 수업 예제 씬 추가
-	SCENEMANAGER->addScene(EXAMPLE_MOLE, new Example_Mole);
-	SCENEMANAGER->addScene(EXAMPLE_BULLET, new Example_Bullet);
-	SCENEMANAGER->addScene(EXAMPLE_MATH, new Example_Math);
-	SCENEMANAGER->addScene(EXAMPLE_IMAGE, new Example_Image);
-	SCENEMANAGER->addScene(EXAMPLE_CLIPING, new Example_Cliping);
-	SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
-	SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
-	SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
-	SCENEMANAGER->addScene(EAMPLE_SHOOTING_GAME, new Example_Shooting_Game);
-	SCENEMANAGER->addScene(EXAMPLE_TENGAI, new Example_Tengai);
-	SCENEMANAGER->addScene(EXAMPLE_ANIMATION, new Example_Animation);
+	//SCENEMANAGER->addScene(EXAMPLE_MOLE, new Example_Mole);
+	//SCENEMANAGER->addScene(EXAMPLE_BULLET, new Example_Bullet);
+	//SCENEMANAGER->addScene(EXAMPLE_MATH, new Example_Math);
+	//SCENEMANAGER->addScene(EXAMPLE_IMAGE, new Example_Image);
+	//SCENEMANAGER->addScene(EXAMPLE_CLIPING, new Example_Cliping);
+	//SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
+	//SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
+	//SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
+	//SCENEMANAGER->addScene(EAMPLE_SHOOTING_GAME, new Example_Shooting_Game);
+	//SCENEMANAGER->addScene(EXAMPLE_TENGAI, new Example_Tengai);
+	//SCENEMANAGER->addScene(EXAMPLE_ANIMATION, new Example_Animation);
 }
