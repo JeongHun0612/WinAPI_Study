@@ -33,6 +33,8 @@ HRESULT GameNode::init(bool managerInit)
 		TEMPSOUNDMANAGER->init();
 
 		TIMEMANAGER->init();
+
+		INIDATAMANAGER->init();
 	}
 
 	return S_OK;
@@ -62,6 +64,9 @@ void GameNode::release(void)
 
 		TIMEMANAGER->release();
 		TIMEMANAGER->releaseSingleton();
+
+		INIDATAMANAGER->release();
+		INIDATAMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

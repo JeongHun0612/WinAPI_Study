@@ -1,5 +1,20 @@
 #pragma once
 #include "GameNode.h"
+#include "Button.h"
+
+#define WIDTH	180
+#define HEIGHT	50
+
+#define INTERVAL_X	30
+#define INTERVAL_Y	20
+
+#define REPORT_START_X		115
+#define REPORT_START_Y		100
+
+#define EXAMPLE_START_X		115
+#define EXAMPLE_START_Y		550
+
+
 
 enum SCENE_INDEX : int
 {
@@ -22,19 +37,9 @@ enum SCENE_INDEX : int
 
 class TitleScene : public GameNode
 {
-public:
-	struct Button
-	{
-		string name;
-		RECT rc;
-
-		float x, y;
-	};
 private:
 	vector<Button> _vSceneBtn;
 	vector<Button>::iterator _viSceneBtn;
-	
-	//Button _sceneBtn[SCENE_INDEX::SCENE_END];
 
 public:
 	HRESULT init(void);
@@ -42,7 +47,7 @@ public:
 	void update(void);
 	void render(void);
 
-	void addButton(float x, float y, int width, int height, string text);
+	static void testFunc(string sceneName);
 
 	TitleScene() {}
 	~TitleScene() {}

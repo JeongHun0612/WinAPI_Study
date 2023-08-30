@@ -40,6 +40,7 @@
 #include "Example_Shooting_Game.h"
 #include "Example_Tengai.h"
 #include "Example_Animation.h"
+#include "Example_INIData.h"
 
 HRESULT MainGame::init(void)
 {
@@ -120,9 +121,6 @@ void MainGame::render(void)
 
 void MainGame::addScene()
 {
-	// 타이틀 씬 추가
-	SCENEMANAGER->addScene("타이틀 씬", new TitleScene);
-
 	// 과제 씬 추가
 	SCENEMANAGER->addScene("짝 맞추기", new Report_CardMatch);
 	SCENEMANAGER->addScene("두더지 게임", new Report_Mole);
@@ -150,15 +148,20 @@ void MainGame::addScene()
 
 
 	// 수업 예제 씬 추가
-	//SCENEMANAGER->addScene(EXAMPLE_MOLE, new Example_Mole);
-	//SCENEMANAGER->addScene(EXAMPLE_BULLET, new Example_Bullet);
-	//SCENEMANAGER->addScene(EXAMPLE_MATH, new Example_Math);
-	//SCENEMANAGER->addScene(EXAMPLE_IMAGE, new Example_Image);
-	//SCENEMANAGER->addScene(EXAMPLE_CLIPING, new Example_Cliping);
-	//SCENEMANAGER->addScene(EXAMPLE_FRAME_IMAGE, new Example_FrameImage);
-	//SCENEMANAGER->addScene(EXAMPLE_LOOP_RENDER, new Example_Loop_Render);
-	//SCENEMANAGER->addScene(EXAMPLE_TEMP_SOUND, new Example_TempSound);
-	//SCENEMANAGER->addScene(EAMPLE_SHOOTING_GAME, new Example_Shooting_Game);
-	//SCENEMANAGER->addScene(EXAMPLE_TENGAI, new Example_Tengai);
-	//SCENEMANAGER->addScene(EXAMPLE_ANIMATION, new Example_Animation);
+	SCENEMANAGER->addScene("두더지 예제", new Example_Mole);
+	SCENEMANAGER->addScene("총알 발사", new Example_Bullet);
+	SCENEMANAGER->addScene("삼각 함수", new Example_Math);
+	SCENEMANAGER->addScene("이미지 출력", new Example_Image);
+	SCENEMANAGER->addScene("클리핑 이미지", new Example_Cliping);
+	SCENEMANAGER->addScene("프레임 이미지", new Example_FrameImage);
+	SCENEMANAGER->addScene("루프 이미지", new Example_Loop_Render);
+	SCENEMANAGER->addScene("사운드 재생", new Example_TempSound);
+	SCENEMANAGER->addScene("슈팅 게임", new Example_Shooting_Game);
+	SCENEMANAGER->addScene("텐가이", new Example_Tengai);
+	SCENEMANAGER->addScene("애니메이션", new Example_Animation);
+	SCENEMANAGER->addScene("INI 데이터", new Example_INIData);
+
+
+	// 타이틀 씬 추가
+	SCENEMANAGER->addScene("타이틀 씬", new TitleScene);
 }

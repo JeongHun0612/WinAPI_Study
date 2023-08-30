@@ -3,96 +3,150 @@
 
 HRESULT TitleScene::init(void)
 {
-	for (int i = 0; i < SCENEMANAGER->getSceneLiset().size(); i++)
-	{
-		// 타이틀 씬은 버튼에서 제외
-		if (SCENEMANAGER->getSceneLiset()[i].first == "타이틀 씬") continue;
+	Button sceneBtn;
 
-		addButton(20 + (i % 6) * 210, 50 + (i / 6) * 80, 180, 50, SCENEMANAGER->getSceneLiset()[i].first);
-	}
-	
+	// 과제 씬 버튼 등록 ===============================================================================================================
+	sceneBtn.init("짝 맞추기", REPORT_START_X + (WIDTH + INTERVAL_X) * 0, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	//sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("짝 맞추기"); });
 
-	//for (int i = 0; i < SCENEMANAGER->getSceneList().size(); i++)
-	//{
+	sceneBtn.setOnClick(bind(testFunc, "짝 맞추기"));
 
-	//	cout << SCENEMANAGER->getSceneList().begin()->first << endl;
+	_vSceneBtn.push_back(sceneBtn);
 
-	//	//cout << SCENEMANAGER->getSceneList().end()->first << endl;
-	//}
+	sceneBtn.init("두더지 게임", REPORT_START_X + (WIDTH + INTERVAL_X) * 1, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("두더지 게임"); });
+	_vSceneBtn.push_back(sceneBtn);
 
-	//for (int i = 0; i < SCENE_INDEX::REPORT_END; i++)
-	//{
-	//	_sceneBtn[i].idx = i;
-	//	_sceneBtn[i].rc = RectMake(20 + (i % 6) * 210, 50 + (i / 6) * 80, 180, 50);
-	//}
+	sceneBtn.init("클레이 사격", REPORT_START_X + (WIDTH + INTERVAL_X) * 2, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("클레이 사격"); });
+	_vSceneBtn.push_back(sceneBtn);
 
-	//for (int i = 0; i < SCENE_INDEX::SCENE_END - SCENE_INDEX::REPORT_END; i++)
-	//{
-	//	_sceneBtn[i + SCENE_INDEX::REPORT_END].idx = i + SCENE_INDEX::REPORT_END;
-	//	_sceneBtn[i + SCENE_INDEX::REPORT_END].rc = RectMake(20 + (i % 6) * 210, (WINSIZE_Y / 2 + 150) + (i / 6) * 80, 180, 50);
-	//}
+	sceneBtn.init("똥 피하기", REPORT_START_X + (WIDTH + INTERVAL_X) * 3, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("똥 피하기"); });
+	_vSceneBtn.push_back(sceneBtn);
 
-	// 과제 파일 이름
-	//wsprintf(_sceneBtn[REPORT_CARD_MATCH].name, "짝 맞추기");
-	//wsprintf(_sceneBtn[REPORT_MOLE].name, "두더지 게임");
-	//wsprintf(_sceneBtn[REPORT_CLAYSHOOTING].name, "클레이 사격");
-	//wsprintf(_sceneBtn[REPORT_AVOID].name, "똥 피하기");
-	//wsprintf(_sceneBtn[REPORT_BULLET_SHOOTING].name, "총알 발사");
-	//wsprintf(_sceneBtn[REPORT_CROCODILE].name, "악어 이빨 게임");
-	//wsprintf(_sceneBtn[REPORT_VERTICAL_SHOOTING].name, "종스크롤 슈팅");
-	//wsprintf(_sceneBtn[REPORT_HORIZONTAL_SHOOTING].name, "횡스크롤 슈팅");
-	//wsprintf(_sceneBtn[REPORT_MOLE_IMAGE].name, "두더지 게임(이미지)");
-	//wsprintf(_sceneBtn[REPORT_ANALOG_CLOCK].name, "아날로그 시계");
-	//wsprintf(_sceneBtn[REPORT_SHELL_FIRE].name, "포탄 발사");
-	//wsprintf(_sceneBtn[REPORT_BULLET_GRAVITY].name, "총알 중력");
-	//wsprintf(_sceneBtn[REPORT_SLICE_GAME].name, "이미지 슬라이스");
-	//wsprintf(_sceneBtn[REPORT_MINI_MAP].name, "미니맵");
-	//wsprintf(_sceneBtn[REPORT_WORM_GAME].name, "지렁이 게임");
-	//wsprintf(_sceneBtn[REPORT_ATTACK_COMBO].name, "공격 콤보 모션");
-	//wsprintf(_sceneBtn[REPORT_MOTION_ANIMATION].name, "캐릭터 모션");
-	//wsprintf(_sceneBtn[REPORT_WALL_CATCH].name, "벽 잡기");
-	//wsprintf(_sceneBtn[REPORT_RACING_GAME].name, "레이싱 게임");
-	//wsprintf(_sceneBtn[REPORT_BLACK_HOLE].name, "블랙홀");
-	//wsprintf(_sceneBtn[REPORT_ATTACK_DEFENSE].name, "공격 및 방어");
-	//wsprintf(_sceneBtn[REPORT_3D_MATRIX].name, "3D Matrix");
-	//wsprintf(_sceneBtn[REPORT_TILEMAP].name, "타일맵");
+	sceneBtn.init("총알 발사", REPORT_START_X + (WIDTH + INTERVAL_X) * 4, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("총알 발사"); });
+	_vSceneBtn.push_back(sceneBtn);
 
-	//_sceneBtn[0].name = "짝 맞추기";
-	//_sceneBtn[1].name = "두더지 게임";
-	//_sceneBtn[2].name = "클레이 사격";
-	//_sceneBtn[3].name = "똥 피하기";
-	//_sceneBtn[4].name = "총알 발사";
-	//_sceneBtn[5].name = "악어 이빨 게임";
-	//_sceneBtn[6].name = "종스크롤 슈팅";
-	//_sceneBtn[7].name = "횡스크롤 슈팅";
-	//_sceneBtn[8].name = "두더지 게임(이미지)";
-	//_sceneBtn[9].name = "아날로그 시계";
-	//_sceneBtn[10].name = "포탄 발사";
-	//_sceneBtn[11].name = "총알 중력";
-	//_sceneBtn[12].name = "이미지 슬라이스";
-	//_sceneBtn[13].name = "미니맵";
-	//_sceneBtn[14].name = "지렁이 게임";
-	//_sceneBtn[15].name = "공격 콤보 모션";
-	//_sceneBtn[16].name = "캐릭터 모션";
-	//_sceneBtn[17].name = "벽 잡기";
-	//_sceneBtn[18].name = "레이싱 게임";
-	//_sceneBtn[19].name = "블랙홀";
-	//_sceneBtn[20].name = "공격 및 방어";
-	//_sceneBtn[21].name = "3D Matrix";
-	//_sceneBtn[22].name = "타일맵";
+	sceneBtn.init("악어 이빨 게임", REPORT_START_X + (WIDTH + INTERVAL_X) * 5, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("악어 이빨 게임"); });
+	_vSceneBtn.push_back(sceneBtn);
 
-	// 수업 예제 이름
-	//wsprintf(_sceneBtn[EXAMPLE_MOLE].name, "두더지 예제");
-	//wsprintf(_sceneBtn[EXAMPLE_BULLET].name, "총알 발사");
-	//wsprintf(_sceneBtn[EXAMPLE_MATH].name, "삼각 함수");
-	//wsprintf(_sceneBtn[EXAMPLE_IMAGE].name, "이미지 출력");
-	//wsprintf(_sceneBtn[EXAMPLE_CLIPING].name, "클리핑 이미지");
-	//wsprintf(_sceneBtn[EXAMPLE_FRAME_IMAGE].name, "프레임 이미지");
-	//wsprintf(_sceneBtn[EXAMPLE_LOOP_RENDER].name, "루프 이미지");
-	//wsprintf(_sceneBtn[EXAMPLE_TEMP_SOUND].name, "사운드 재생");
-	//wsprintf(_sceneBtn[EAMPLE_SHOOTING_GAME].name, "슈팅 게임");
-	//wsprintf(_sceneBtn[EXAMPLE_TENGAI].name, "텐가이");
-	//wsprintf(_sceneBtn[EXAMPLE_ANIMATION].name, "애니메이션");
+	sceneBtn.init("종스크롤 슈팅", REPORT_START_X + (WIDTH + INTERVAL_X) * 0, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("종스크롤 슈팅"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("횡스크롤 슈팅", REPORT_START_X + (WIDTH + INTERVAL_X) * 1, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("횡스크롤 슈팅"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("두더지 게임(이미지)", REPORT_START_X + (WIDTH + INTERVAL_X) * 2, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("두더지 게임(이미지)"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("아날로그 시계", REPORT_START_X + (WIDTH + INTERVAL_X) * 3, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("아날로그 시계"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("포탄 발사", REPORT_START_X + (WIDTH + INTERVAL_X) * 4, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("포탄 발사"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("총알 중력", REPORT_START_X + (WIDTH + INTERVAL_X) * 5, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("총알 중력"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("이미지 슬라이스", REPORT_START_X + (WIDTH + INTERVAL_X) * 0, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("이미지 슬라이스"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("미니맵", REPORT_START_X + (WIDTH + INTERVAL_X) * 1, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("미니맵"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("지렁이 게임", REPORT_START_X + (WIDTH + INTERVAL_X) * 2, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("지렁이 게임"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("공격 콤보 모션", REPORT_START_X + (WIDTH + INTERVAL_X) * 3, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("공격 콤보 모션"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("벽 잡기", REPORT_START_X + (WIDTH + INTERVAL_X) * 4, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("벽 잡기"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("레이싱 게임", REPORT_START_X + (WIDTH + INTERVAL_X) * 5, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 2, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("레이싱 게임"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("블랙홀", REPORT_START_X + (WIDTH + INTERVAL_X) * 0, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 3, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("블랙홀"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("공격 및 방어", REPORT_START_X + (WIDTH + INTERVAL_X) * 1, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 3, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("공격 및 방어"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("3D Matrix", REPORT_START_X + (WIDTH + INTERVAL_X) * 2, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 3, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("3D Matrix"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("타일맵", REPORT_START_X + (WIDTH + INTERVAL_X) * 3, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 3, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("타일맵"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+
+	// 수업 예제 씬 버튼 등록 ===============================================================================================================
+
+	sceneBtn.init("두더지 예제", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 0, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("두더지 예제"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("총알 발사", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 1, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("총알 발사"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("삼각 함수", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 2, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("삼각 함수"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("이미지 출력", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 3, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("이미지 출력"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("클리핑 이미지", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 4, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("클리핑 이미지"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("프레임 이미지", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 5, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("프레임 이미지"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("루프 이미지", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 0, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("루프 이미지"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("사운드 재생", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 1, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("사운드 재생"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("슈팅 게임", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 2, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("슈팅 게임"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("텐가이", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 3, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("텐가이"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("애니메이션", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 4, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("애니메이션"); });
+	_vSceneBtn.push_back(sceneBtn);
+
+	sceneBtn.init("INI 데이터", EXAMPLE_START_X + (WIDTH + INTERVAL_X) * 5, EXAMPLE_START_Y + (HEIGHT + INTERVAL_Y) * 1, WIDTH, HEIGHT);
+	sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("INI 데이터"); });
+	_vSceneBtn.push_back(sceneBtn);
 
 	return S_OK;
 }
@@ -103,13 +157,10 @@ void TitleScene::release(void)
 
 void TitleScene::update(void)
 {
-	//for (_viSceneBtn = _vSceneBtn.begin(); _viSceneBtn != _vSceneBtn.end(); ++_viSceneBtn)
-	//{
-	//	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON) && PtInRect(&_viSceneBtn->rc, _ptMouse))
-	//	{
-	//		SCENEMANAGER->changeScene(_viSceneBtn->name);
-	//	}
-	//}
+	for (_viSceneBtn = _vSceneBtn.begin(); _viSceneBtn != _vSceneBtn.end(); ++_viSceneBtn)
+	{
+		_viSceneBtn->update();
+	}
 }
 
 void TitleScene::render(void)
@@ -120,36 +171,13 @@ void TitleScene::render(void)
 	TextOut(getMemDC(), 20, WINSIZE_Y / 2 + 70, "수업 파일", strlen("수업 파일"));
 	LineMake(getMemDC(), 0, WINSIZE_Y / 2 + 100, WINSIZE_X, WINSIZE_Y / 2 + 100);
 
-	SetTextAlign(getMemDC(), TA_CENTER);
-
-	//for (auto iter = _vSceneBtn.begin(); iter != _vSceneBtn.end(); ++iter)
-	//{
-	//	DrawRectMake(getMemDC(), iter->rc);
-	//	//RectangleMakeCenter(getMemDC(), iter->x, iter->y, 180, 50);
-	//}
-
-	//for (auto iter : _vSceneBtn)
-	//{
-	//	DrawRectMake(getMemDC(), iter.rc);
-	//}
-
 	for (_viSceneBtn = _vSceneBtn.begin(); _viSceneBtn != _vSceneBtn.end(); ++_viSceneBtn)
 	{
-		//DrawRectMake(getMemDC(), _viSceneBtn->rc);
-		Rectangle(getMemDC(), _viSceneBtn->rc.left, _viSceneBtn->rc.top, _viSceneBtn->rc.right, _viSceneBtn->rc.bottom);
-		//TextOut(getMemDC(), _viSceneBtn->x, _viSceneBtn->y, _viSceneBtn->name.c_str(), _viSceneBtn->name.length());
+		_viSceneBtn->render();
 	}
-
-	SetTextAlign(getMemDC(), TA_LEFT);
 }
 
-void TitleScene::addButton(float x, float y, int width, int height, string text)
+void TitleScene::testFunc(string sceneName)
 {
-	Button btn;
-	btn.x = x;
-	btn.y = y;
-	btn.rc = RectMakeCenter(btn.x, btn.y, width, height);
-	btn.name = text;
-
-	_vSceneBtn.push_back(btn);
+	SCENEMANAGER->changeScene(sceneName);
 }

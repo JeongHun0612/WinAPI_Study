@@ -16,21 +16,23 @@ enum class EMOTION_TYPE
 	SKILL
 };
 
-struct Button
-{
-	int idx;
-	char name[128];
-	RECT rc;
-};
-
-struct Motion
-{
-	int x, y;
-	GImage* motion;
-};
 
 class Report_Motion_Animation : public GameNode
 {
+private:
+	struct Button
+	{
+		int idx;
+		char name[128];
+		RECT rc;
+	};
+
+	struct Motion
+	{
+		int x, y;
+		GImage* motion;
+	};
+
 private:
 	Button _motionBtn[MAX_MOTION];
 	Motion _motionImage[MAX_MOTION];
