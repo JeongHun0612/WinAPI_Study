@@ -32,6 +32,8 @@ HRESULT GameNode::init(bool managerInit)
 
 		SOUNDMANAGER->init();
 
+		TEMPSOUNDMANAGER->init();
+
 		TIMEMANAGER->init();
 
 		INIDATAMANAGER->init();
@@ -62,6 +64,8 @@ void GameNode::release(void)
 
 		SOUNDMANAGER->release();
 		SOUNDMANAGER->releaseSingleton();
+
+		TEMPSOUNDMANAGER->releaseSingleton();
 
 		TIMEMANAGER->release();
 		TIMEMANAGER->releaseSingleton();

@@ -5,6 +5,8 @@ HRESULT TitleScene::init(void)
 {
 	Button sceneBtn;
 
+	SOUNDMANAGER->play("타이틀", 1.0f);
+
 	// 과제 씬 버튼 등록 ===============================================================================================================
 	sceneBtn.init("짝 맞추기", REPORT_START_X + (WIDTH + INTERVAL_X) * 0, REPORT_START_Y + (HEIGHT + INTERVAL_Y) * 0, WIDTH, HEIGHT);
 	//sceneBtn.setOnClick([]() { SCENEMANAGER->changeScene("짝 맞추기"); });

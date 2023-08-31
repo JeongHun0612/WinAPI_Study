@@ -165,3 +165,11 @@ void MainGame::addScene()
 	// 타이틀 씬 추가
 	SCENEMANAGER->addScene("타이틀 씬", new TitleScene);
 }
+
+void MainGame::addSound()
+{
+	SOUNDMANAGER->addSound("타이틀", "Resources/Sounds/BGM_BATTLE.wav", true, true);
+	SOUNDMANAGER->addSound("배틀", "Resources/Sounds/BGM_BATTLE_BOSS.wav", true, true);
+
+	SOUNDMANAGER->addSound("공격", "Resources/Sounds/attack.mp3", false, false);
+}

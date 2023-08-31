@@ -12,6 +12,7 @@ public:
 	void render(void);
 
 	void addScene();
+	void addSound();
 
 	MainGame() {}
 	~MainGame() {}
