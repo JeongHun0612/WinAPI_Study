@@ -31,9 +31,14 @@
 
 // ! 라이브러리 추가 ============================================================================================================
 #pragma comment (lib, "msimg32.lib")
+//#pragma comment(lib, "gdiplus")
+#pragma comment(lib, "lib/FMOD/fmodex_vc.lib")
 
 //! Windows 헤더 파일 ============================================================================================================
 #include <Windows.h>
+
+// ! 외부 헤더 파일 ===============================================================================================================
+#include "inc/FMOD/fmod.hpp"
 
 //! C 런타임 헤더 파일 ============================================================================================================
 // stdlib : C언어의 표준 라이브러리 함수의 헤더 파일
@@ -158,9 +163,9 @@ ID2D1HwndRenderTarget*		_ID2DRenderTarget = nullptr;
 #include "KeyManager.h"
 #include "ImageManager.h"
 #include "FontManager.h"
-#include "TempSoundManager.h"
 #include "TimeManager.h"
 #include "SceneManager.h"
+#include "SoundManager.h"
 #include "INIData.h"
 #include "Utils.h"
 
@@ -171,9 +176,9 @@ using namespace MY_UTIL;
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
 #define FONTMANAGER	FontManager::getSingleton()
-#define TEMPSOUNDMANAGER TempSoundManager::getSingleton()
 #define TIMEMANAGER TimeManager::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
+#define SOUNDMANAGER SoundManager::getSingleton()
 #define INIDATAMANAGER INIData::getSingleton()
 
 // ! 타이틀

@@ -30,7 +30,7 @@ HRESULT GameNode::init(bool managerInit)
 
 		FONTMANAGER->init();
 
-		TEMPSOUNDMANAGER->init();
+		SOUNDMANAGER->init();
 
 		TIMEMANAGER->init();
 
@@ -60,7 +60,8 @@ void GameNode::release(void)
 		FONTMANAGER->release();
 		FONTMANAGER->releaseSingleton();
 
-		TEMPSOUNDMANAGER->releaseSingleton();
+		SOUNDMANAGER->release();
+		SOUNDMANAGER->releaseSingleton();
 
 		TIMEMANAGER->release();
 		TIMEMANAGER->releaseSingleton();

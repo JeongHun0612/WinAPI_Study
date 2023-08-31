@@ -178,6 +178,9 @@
     <Filter Include="2D FrameWork\Data">
       <UniqueIdentifier>{10e41536-4c2d-40bd-be80-b0694edeb98a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\SoundManager">
+      <UniqueIdentifier>{786f658b-68b8-4c56-afbf-8d54b06d5186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -402,6 +405,9 @@
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\SoundManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -641,6 +647,9 @@
     </ClCompile>
     <ClCompile Include="INIData.cpp">
       <Filter>2D FrameWork\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\SoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
