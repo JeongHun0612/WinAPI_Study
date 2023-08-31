@@ -49,6 +49,10 @@ HRESULT MainGame::init(void)
 	// 씬 추가
 	addScene();
 
+	// 사운드 추가
+	addSound();
+
+
 	// 초기 화면 (타이틀) <->
 	SCENEMANAGER->changeScene("타이틀 씬");
 

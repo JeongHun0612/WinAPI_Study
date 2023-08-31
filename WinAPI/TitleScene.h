@@ -14,8 +14,6 @@
 #define EXAMPLE_START_X		115
 #define EXAMPLE_START_Y		550
 
-
-
 enum SCENE_INDEX : int
 {
 	REPORT_CARD_MATCH, REPORT_MOLE, REPORT_CLAYSHOOTING, REPORT_AVOID,
@@ -47,9 +45,8 @@ public:
 	void update(void);
 	void render(void);
 
-	static void testFunc(string sceneName);
+	static void nextSceneEvent(string sceneName);
 
 	TitleScene() {}
 	~TitleScene() {}
 };
-

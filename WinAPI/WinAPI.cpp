@@ -195,6 +195,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		}
 		else
 		{
+			SOUNDMANAGER->update();
 			TIMEMANAGER->update(60.0f);
 			_mg->update();
 			_mg->render();
