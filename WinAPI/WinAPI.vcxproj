@@ -78,6 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\언리얼\source\repos\WinAPI_Study\WinAPI\JsonCpp\include\json;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\언리얼\source\repos\WinAPI_Study\WinAPI\JsonCpp\lib_json;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -122,6 +124,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\Users\언리얼\source\repos\WinAPI_Study\WinAPI\JsonCpp\lib_json\json_vc71_libmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -186,6 +189,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="INIData.h" />
     <ClInclude Include="IWindowMessageHandler.h" />
+    <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -318,6 +322,7 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="INIData.cpp" />
     <ClCompile Include="IWindowMessageHandler.cpp" />
+    <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -429,7 +434,16 @@
   <ItemGroup>
     <Text Include="Question.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Character.json" />
+    <None Include="Quest.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

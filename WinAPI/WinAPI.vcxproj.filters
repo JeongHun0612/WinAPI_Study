@@ -181,6 +181,15 @@
     <Filter Include="2D FrameWork\FrameWorkManager\SoundManager">
       <UniqueIdentifier>{786f658b-68b8-4c56-afbf-8d54b06d5186}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\Data\INI">
+      <UniqueIdentifier>{c2eca36e-67ba-4911-b5db-d2c8afed463d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Data\Json">
+      <UniqueIdentifier>{2333bf24-b868-4422-9b8f-ee12355a525b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\Data\Json\Schema">
+      <UniqueIdentifier>{fb92ede5-e84e-4ae5-8a3d-7ba05c6d378c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -400,14 +409,17 @@
     <ClInclude Include="Example_INIData.h">
       <Filter>2D FrameWork\StudyExample\INI 데이터</Filter>
     </ClInclude>
-    <ClInclude Include="INIData.h">
-      <Filter>2D FrameWork\Data</Filter>
-    </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>2D FrameWork\FrameWorkManager\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="INIData.h">
+      <Filter>2D FrameWork\Data\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSaveLoader.h">
+      <Filter>2D FrameWork\Data\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -645,11 +657,14 @@
     <ClCompile Include="Example_INIData.cpp">
       <Filter>2D FrameWork\StudyExample\INI 데이터</Filter>
     </ClCompile>
-    <ClCompile Include="INIData.cpp">
-      <Filter>2D FrameWork\Data</Filter>
-    </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager\SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="INIData.cpp">
+      <Filter>2D FrameWork\Data\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSaveLoader.cpp">
+      <Filter>2D FrameWork\Data\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -659,5 +674,13 @@
     <Text Include="Question.txt">
       <Filter>CodingInterview</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Quest.json">
+      <Filter>2D FrameWork\Data\Json\Schema</Filter>
+    </None>
+    <None Include="Character.json">
+      <Filter>2D FrameWork\Data\Json\Schema</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -33,12 +33,14 @@
 #pragma comment (lib, "msimg32.lib")
 //#pragma comment(lib, "gdiplus")
 #pragma comment(lib, "./lib/FMOD/fmodex64_vc.lib")
+#pragma comment(lib, "./JsonCpp/lib_json/json_vc71_libmtd.lib")
 
 //! Windows 헤더 파일 ============================================================================================================
 #include <Windows.h>
 
 // ! 외부 헤더 파일 ===============================================================================================================
 #include "./inc/FMOD/fmod.hpp"
+#include "JsonCpp/include/json/json.h"
 
 //! C 런타임 헤더 파일 ============================================================================================================
 // stdlib : C언어의 표준 라이브러리 함수의 헤더 파일
@@ -101,6 +103,8 @@ WBCS (와이드 바이트 캐릭터 셋)
 #include <chrono>
 #include <random>
 #include <vector>
+#include <queue>
+#include <deque>
 #include <string>
 #include <map>
 #include <memory>
@@ -112,6 +116,7 @@ WBCS (와이드 바이트 캐릭터 셋)
 // ㄴ bind : 특정 인자에 대해서만 함수를 실행시키고 싶을 때 / 특정 인자와 특정 함수를 묶어 버릴 때
 // ㄴ 함수 포인터 -> 이벤트 -> 트리거 -> 델리게이트 -> 액션 트리거 / 관찰자 패턴
 #include <functional>
+#include <fstream>
 
 /*
 unordered_map : Hash 자료구조
@@ -135,6 +140,8 @@ using std::vector;
 using std::map;
 using std::unordered_map;
 using std::bitset;
+using std::queue;
+using std::deque;
 
 /*
 // ! D2D/D3D 헤더 파일 ============================================================================================================
