@@ -33,14 +33,14 @@
 #pragma comment (lib, "msimg32.lib")
 //#pragma comment(lib, "gdiplus")
 #pragma comment(lib, "./lib/FMOD/fmodex64_vc.lib")
-#pragma comment(lib, "./JsonCpp/lib_json/json_vc71_libmtd.lib")
+//#pragma comment(lib, "./JsonCpp/lib_json/json_vc71_libmtd.lib")
 
 //! Windows 헤더 파일 ============================================================================================================
 #include <Windows.h>
 
 // ! 외부 헤더 파일 ===============================================================================================================
 #include "./inc/FMOD/fmod.hpp"
-#include "JsonCpp/include/json/json.h"
+//#include "JsonCpp/include/json/json.h"
 
 //! C 런타임 헤더 파일 ============================================================================================================
 // stdlib : C언어의 표준 라이브러리 함수의 헤더 파일
