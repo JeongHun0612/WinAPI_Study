@@ -36,6 +36,7 @@ void INIData::iniSave(char* fileName)
 
     GetCurrentDirectory(256, str);
 
+
     // strcat : 문자열 연결
     // ㄴ 폴더명 + 파일명
     strcat_s(str, dir);
