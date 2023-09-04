@@ -23,8 +23,6 @@ void Example_INIData::update(void)
     if (KEYMANAGER->isOnceKeyDown('0'))
     {
         int test = INIDATAMANAGER->loadDataInteger("100팀", "용석", "무서움");
-
-        cout << test << endl;
     }
 }
 

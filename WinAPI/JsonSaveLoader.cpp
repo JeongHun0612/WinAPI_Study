@@ -198,6 +198,12 @@ Json::Value JsonSaveLoader::loadJsonFile(char* fileName)
     // parse : 파싱을 하는 프로세서
     bool parsingRet = reader.parse(jsonStr, root);
 
+    if (!parsingRet)
+    {
+        string errorMsg = reader.getFormatedErrorMessages();
+        MessageBox(_hWnd, errorMsg.c_str(), "오류", MB_OK);
+        PostQuitMessage(0);
+    }
 
     return root;
 }

@@ -41,6 +41,7 @@
 #include "Example_Tengai.h"
 #include "Example_Animation.h"
 #include "Example_INIData.h"
+#include "Example_JsonData.h"
 
 HRESULT MainGame::init(void)
 {
@@ -105,7 +106,7 @@ void MainGame::update(void)
 		}
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_BACK))
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
 	{
 		// 타이틀 씬 복귀
 		SCENEMANAGER->changeScene("타이틀 씬");
@@ -164,6 +165,7 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene("텐가이", new Example_Tengai);
 	SCENEMANAGER->addScene("애니메이션", new Example_Animation);
 	SCENEMANAGER->addScene("INI 데이터", new Example_INIData);
+	SCENEMANAGER->addScene("JSON 데이터", new Example_JsonData);
 
 
 	// 타이틀 씬 추가

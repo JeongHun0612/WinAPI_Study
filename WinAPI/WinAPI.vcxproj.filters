@@ -190,6 +190,9 @@
     <Filter Include="2D FrameWork\Data\Json\Schema">
       <UniqueIdentifier>{fb92ede5-e84e-4ae5-8a3d-7ba05c6d378c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\StudyExample\Json 데이터">
+      <UniqueIdentifier>{68ff5955-3159-4107-b836-21dbc85800ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -420,6 +423,15 @@
     </ClInclude>
     <ClInclude Include="JsonSaveLoader.h">
       <Filter>2D FrameWork\Data\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Example_JsonData.h">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="Quest.h">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="QuestSample.h">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -665,6 +677,15 @@
     </ClCompile>
     <ClCompile Include="JsonSaveLoader.cpp">
       <Filter>2D FrameWork\Data\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Example_JsonData.cpp">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClCompile>
+    <ClCompile Include="Quest.cpp">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClCompile>
+    <ClCompile Include="QuestSample.cpp">
+      <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
