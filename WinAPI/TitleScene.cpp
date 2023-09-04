@@ -21,9 +21,13 @@ HRESULT TitleScene::init(void)
 		}
 
 		Button sceneBtn;
+		string nextSceneName = SCENEMANAGER->getSceneLiset()[i].first;
 
-		sceneBtn.init(SCENEMANAGER->getSceneLiset()[i].first, startPosX + (WIDTH + INTERVAL_X) * (count % 6), startPosY + (HEIGHT + INTERVAL_Y) * (count / 6), WIDTH, HEIGHT);
-		sceneBtn.setOnClick(bind(nextSceneEvent, SCENEMANAGER->getSceneLiset()[i].first));
+		sceneBtn.init(nextSceneName, startPosX + (WIDTH + INTERVAL_X) * (count % 6), startPosY + (HEIGHT + INTERVAL_Y) * (count / 6), WIDTH, HEIGHT);
+		sceneBtn.setOnClick([nextSceneName]() {
+			SCENEMANAGER->changeScene(nextSceneName);
+			});
+
 		_vSceneBtn.push_back(sceneBtn);
 	}
 
