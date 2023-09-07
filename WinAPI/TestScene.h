@@ -1,7 +1,7 @@
 #pragma once
 #include "GameNode.h"
 
-class MainGame : public GameNode
+class TestScene : public GameNode
 {
 private:
 
@@ -11,11 +11,7 @@ public:
 	void update(void);
 	void render(void);
 
-	void addScene();
-	void addSound();
-
-	void eventFunc();
-
-	MainGame() {}
-	~MainGame() {}
+	TestScene() {}
+	~TestScene() {}
 };
+

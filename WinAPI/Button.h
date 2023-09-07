@@ -16,7 +16,7 @@ class Button : public GameNode
 public:
 	// 함수 포인터를 이용한 방식
 	//typedef void(*ButtonCallBack)(void);
-	typedef function<void(void)> ButtonCallBack;
+	typedef function<void()> ButtonCallBack;
 
 private:
 	ButtonCallBack _onClick;

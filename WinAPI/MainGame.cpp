@@ -97,6 +97,21 @@ void MainGame::update(void)
 	GameNode::update();
 
 	SCENEMANAGER->update();
+	EVENTMANAGER->update();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_F2))
+	{
+		EVENTMANAGER->addEventHandler([](HDC hdc) {
+			cout << "Event1" << endl;
+			RectangleMake(hdc, WINSIZE_X_HALF, WINSIZE_Y_HALF, 100, 100);
+		});
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_F3))
+	{
+		EVENTMANAGER->addEventHandler([]() {
+			cout << "Event2" << endl;
+			});
+	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
 	{
@@ -119,6 +134,7 @@ void MainGame::render(void)
 	// ==================================================================
 
 	SCENEMANAGER->render();
+	EVENTMANAGER->render(getMemDC());
 
 	// ==================================================================
 	this->getBackBuffer()->render(getHDC(), 0, 0);
@@ -178,4 +194,9 @@ void MainGame::addSound()
 	SOUNDMANAGER->addSound("배틀", "Resources/Sounds/BGM_BATTLE_BOSS.wav", true, true);
 
 	SOUNDMANAGER->addSound("공격", "Resources/Sounds/attack.mp3", false, false);
+}
+
+void MainGame::eventFunc()
+{
+	RectangleMake(getMemDC(), WINSIZE_X_HALF, WINSIZE_Y_HALF, 100, 100);
 }

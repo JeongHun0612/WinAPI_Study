@@ -193,6 +193,9 @@
     <Filter Include="2D FrameWork\StudyExample\Json 데이터">
       <UniqueIdentifier>{68ff5955-3159-4107-b836-21dbc85800ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\FrameWorkManager\EventManager">
+      <UniqueIdentifier>{eca2a3af-372d-4d6d-9d40-68913d06f763}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -432,6 +435,12 @@
     </ClInclude>
     <ClInclude Include="QuestSample.h">
       <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -686,6 +695,12 @@
     </ClCompile>
     <ClCompile Include="QuestSample.cpp">
       <Filter>2D FrameWork\StudyExample\Json 데이터</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

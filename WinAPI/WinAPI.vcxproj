@@ -155,6 +155,7 @@
     <ClInclude Include="Curve_Minion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Example_Animation.h" />
     <ClInclude Include="Example_Bullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -271,6 +272,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="TempSoundManager.h" />
+    <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
@@ -291,6 +293,7 @@
     <ClCompile Include="Curve_Minion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Example_Animation.cpp" />
     <ClCompile Include="Example_Bullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -404,6 +407,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="TempSoundManager.cpp" />
+    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
