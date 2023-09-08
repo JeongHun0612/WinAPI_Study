@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Boss_Event.h" />
     <ClInclude Include="Bullets.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="C3DMatrix.h" />
@@ -153,9 +154,13 @@
     <ClInclude Include="CommonMacroFunction.h" />
     <ClInclude Include="Crush_Minion.h" />
     <ClInclude Include="Curve_Minion.h" />
+    <ClInclude Include="CustomEvent.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventListener.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventPublisher.h" />
     <ClInclude Include="Example_Animation.h" />
     <ClInclude Include="Example_Bullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -163,6 +168,7 @@
     <ClInclude Include="Example_Cliping.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Example_Event.h" />
     <ClInclude Include="Example_Image.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -197,6 +203,7 @@
     <ClInclude Include="Mole.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Player_Event.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="Quest.h" />
     <ClInclude Include="QuestSample.h" />
@@ -272,7 +279,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="TempSoundManager.h" />
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
@@ -280,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Boss_Event.cpp" />
     <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="C3DMatrix.cpp" />
@@ -291,9 +298,13 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Crush_Minion.cpp" />
     <ClCompile Include="Curve_Minion.cpp" />
+    <ClCompile Include="CustomEvent.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventListener.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventPublisher.cpp" />
     <ClCompile Include="Example_Animation.cpp" />
     <ClCompile Include="Example_Bullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -301,6 +312,7 @@
     <ClCompile Include="Example_Cliping.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Example_Event.cpp" />
     <ClCompile Include="Example_Image.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -335,6 +347,7 @@
     <ClCompile Include="Mole.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Player_Event.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="Quest.cpp" />
     <ClCompile Include="QuestSample.cpp" />
@@ -407,7 +420,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="TempSoundManager.cpp" />
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />

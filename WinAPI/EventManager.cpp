@@ -31,7 +31,7 @@ void EventManager::addEventHandler(EventHandler handler)
 	_vEventHandler.push_back(handler);
 }
 
-void EventManager::addEventHandler(EventHandlerRender handler)
+void EventManager::addRenderEventHandler(EventHandlerRender handler)
 {
 	_vEventHandlerRender.push_back(handler);
 }
@@ -40,6 +40,14 @@ void EventManager::addEventHandler(const char* eventName, EventHandler handler)
 {
 	cout << "add EventHandler" << endl;
 	eventHandlers[eventName] = handler;
+}
+
+void EventManager::removeEventHandler(string keyName)
+{
+}
+
+void EventManager::removeRenderEventHandler(string keyName)
+{
 }
 
 void EventManager::excute(const char* eventName)

@@ -42,6 +42,7 @@
 #include "Example_Animation.h"
 #include "Example_INIData.h"
 #include "Example_JsonData.h"
+#include "Example_Event.h"
 
 HRESULT MainGame::init(void)
 {
@@ -182,6 +183,7 @@ void MainGame::addScene()
 	SCENEMANAGER->addScene("애니메이션", new Example_Animation);
 	SCENEMANAGER->addScene("INI 데이터", new Example_INIData);
 	SCENEMANAGER->addScene("JSON 데이터", new Example_JsonData);
+	SCENEMANAGER->addScene("이벤트 처리", new Example_Event);
 
 
 	// 타이틀 씬 추가

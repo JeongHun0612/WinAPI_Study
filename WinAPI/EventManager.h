@@ -22,8 +22,12 @@ public:
 	void render(HDC hdc);
 
 	void addEventHandler(EventHandler handler);
-	void addEventHandler(EventHandlerRender handler);
+	void addRenderEventHandler(EventHandlerRender handler);
 	void addEventHandler(const char* eventName, EventHandler handler);
+
+	void removeEventHandler(string keyName);
+	void removeRenderEventHandler(string keyName);
+
 	void excute(const char* eventName);
 };
 

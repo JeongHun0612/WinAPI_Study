@@ -196,6 +196,12 @@
     <Filter Include="2D FrameWork\FrameWorkManager\EventManager">
       <UniqueIdentifier>{eca2a3af-372d-4d6d-9d40-68913d06f763}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D FrameWork\StudyExample\Event처리">
+      <UniqueIdentifier>{5a466535-dab5-40dc-8fd3-8cde72b9f8ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D FrameWork\StudyExample\Event처리\Event">
+      <UniqueIdentifier>{8d957f1a-3dd0-4d4d-bad9-1020a1f142a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -439,8 +445,26 @@
     <ClInclude Include="EventManager.h">
       <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
+    <ClInclude Include="Example_Event.h">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>2D FrameWork\StudyExample\Event처리\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomEvent.h">
+      <Filter>2D FrameWork\StudyExample\Event처리\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventListener.h">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClInclude>
+    <ClInclude Include="EventPublisher.h">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Event.h">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss_Event.h">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -699,8 +723,26 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>2D FrameWork\FrameWorkManager\EventManager</Filter>
+    <ClCompile Include="Example_Event.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomEvent.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventListener.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClCompile>
+    <ClCompile Include="EventPublisher.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Event.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Event.cpp">
+      <Filter>2D FrameWork\StudyExample\Event처리</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
